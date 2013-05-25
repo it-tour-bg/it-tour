@@ -1,0 +1,14 @@
+development: &default
+  adapter: postgresql
+  host: localhost
+  database: rogue_conf_development
+  username: rstankov
+  password:
+  min_messages: WARNING
+  template: template0
+
+test: &test
+  <<: *default
+  database: rogue_conf_development<%= ENV['TEST_ENV_NUMBER'] %>
+
+
