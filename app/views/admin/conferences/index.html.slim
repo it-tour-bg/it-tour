@@ -1,0 +1,28 @@
+ul.breadcrumb
+  li
+    = link_to 'Dashboard', admin_root_path
+    span.divider = '/'
+  li.active
+    ' Conferences
+
+
+.actions
+  = link_to 'New conference', new_admin_conference_path, class: 'btn'
+
+h1 Conferences
+
+table.table
+  thead
+    tr
+      th Name
+      th Contact person
+      th
+  tbody
+    - @conferences.each do |conference|
+      tr
+        td = conference.name
+        td #{conference.contact_name} (#{conference.contact_email})
+        td
+          = link_to 'Edit', edit_admin_conference_path(conference), class: 'btn'
+          = link_to 'Delete', admin_conference_path(conference), method: :delete, confirm: 'Are you sure?', class: 'btn'
+

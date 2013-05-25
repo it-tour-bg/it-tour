@@ -1,0 +1,11 @@
+= simple_form_for [:admin, @conference] do |form|
+  = form.error_notification
+
+  = form.input :name
+  = form.input :contact_name
+  = form.input :contact_email
+
+  .form-actions
+    = form.button :submit, class: 'btn-primary'
+    = link_to 'Cancel', admin_conferences_path, class: 'btn btn-danger'
+
