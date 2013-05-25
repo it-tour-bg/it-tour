@@ -1,0 +1,42 @@
+@import "bootstrap";
+
+body { padding-top: 60px; }
+
+@mixin clearfix {
+  *zoom: 1;
+  &:after { content: ''; clear: both; display: block; height: 0; font-size: 0; visibility: hidden; }
+}
+
+@mixin inline-block {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.simple_form {
+  .boolean { @include clearfix; }
+  .boolean label { @include inline-block; }
+  .boolean .controls { @include inline-block; float: left; }
+
+  $width: 925px;
+
+  input[type="text"],
+  input[type="email"],
+  input[type="password"] { width: $width; }
+  textarea { resize: vertical; width: $width; }
+
+  h1 + & { border-top: 1px solid #e5e5e5; margin-top: 20px; padding-top: 20px; }
+
+  .error { color: #b94a48; }
+
+  .field_with_errors { color: #b94a48 }
+  .field_with_errors input { border-color: #b94a48 }
+}
+
+.btn + .btn { margin-left: 20px; }
+
+.actions {
+  float: right;
+}
+
+a + span.label.label-info { margin-left: 10px; }
+

@@ -1,0 +1,28 @@
+doctype html
+
+html
+  head
+    title The Tour
+    = stylesheet_link_tag 'admin', media: 'all'
+    = javascript_include_tag 'admin'
+    = csrf_meta_tags
+  body
+    .navbar.navbar-inverse.navbar-fixed-top
+      .navbar-inner
+        .container
+          = link_to 'The Tour', '#', class: 'brand'
+          ul.nav
+
+    .container
+      - if alert
+        .alert.alert-error
+          button type="button" class="close" data-dismiss="alert" &times;
+          = alert
+
+      - if notice
+        .alert.alert-success
+          button type="button" class="close" data-dismiss="alert" &times;
+          = notice
+
+      = yield
+
