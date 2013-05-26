@@ -12,6 +12,10 @@ class Admin::EventsController < Admin::BaseController
     respond_with @event, location: admin_events_path
   end
 
+  def show
+    @event = Event.find event_id
+  end
+
   def edit
     @event = Event.find event_id
   end

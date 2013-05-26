@@ -1,0 +1,9 @@
+- title @conference.name
+
+- breadcrumbs ['Conferences', admin_conferences_path]
+
+- actions do
+  = link_to 'Add event', new_admin_event_path(@conference, conference_id: @conference.id), class: 'btn'
+  = link_to 'Edit', edit_admin_conference_path(@conference), class: 'btn'
+  = link_to 'Delete', admin_conference_path(@conference), method: :delete, confirm: 'Are you sure?', class: 'btn'
+

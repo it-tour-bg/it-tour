@@ -12,6 +12,10 @@ class Admin::ConferencesController < Admin::BaseController
     respond_with @conference, location: admin_conferences_path
   end
 
+  def show
+    @conference = Conference.find conference_id
+  end
+
   def edit
     @conference = Conference.find conference_id
   end

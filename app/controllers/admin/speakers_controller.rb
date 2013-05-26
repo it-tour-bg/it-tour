@@ -12,6 +12,10 @@ class Admin::SpeakersController < Admin::BaseController
     respond_with @speaker, location: admin_speakers_path
   end
 
+  def show
+    @speaker = Speaker.find speaker_id
+  end
+
   def edit
     @speaker = Speaker.find speaker_id
   end

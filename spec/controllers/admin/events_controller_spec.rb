@@ -1,89 +1,97 @@
 require 'spec_helper'
 
-describe Admin::SpeakersController do
+describe Admin::EventsController do
  stub_rendering
 
- let(:speaker) { double :speaker }
+ let(:event) { double :event }
 
  describe "GET index" do
-    it "assigns all speakers" do
-      Speaker.stub all: [speaker]
+    it "assigns all events" do
+      Event.stub all: [event]
       get :index
-      expect(assigns[:speakers]).to eq [speaker]
+      expect(assigns[:events]).to eq [event]
     end
   end
 
   describe "GET new" do
-    it "assigns new speaker" do
-      Speaker.stub new: speaker
+    it "assigns new event" do
+      Event.stub new: event
       get :new
-      expect(assigns[:speaker]).to eq speaker
+      expect(assigns[:event]).to eq event
     end
   end
 
   describe "GET create" do
     before do
-      Speaker.stub(:create).with('name' => 'VarnaConf').and_return speaker
+      Event.stub(:create).with('name' => 'VarnaConf').and_return event
     end
 
-    it "creates a new speaker" do
-      Speaker.should_receive(:create).with('name' => 'VarnaConf').and_return speaker
-      get :create, speaker: {name: 'VarnaConf'}
+    it "creates a new event" do
+      Event.should_receive(:create).with('name' => 'VarnaConf').and_return event
+      get :create, event: {name: 'VarnaConf'}
     end
 
-    it "assigns the new speaker" do
-      get :create, speaker: {name: 'VarnaConf'}
-      expect(assigns[:speaker]).to eq speaker
+    it "assigns the new event" do
+      get :create, event: {name: 'VarnaConf'}
+      expect(assigns[:event]).to eq event
     end
 
-    it "responds with the new speaker" do
-      controller.should_receive(:respond_with).with(speaker, location: admin_speakers_path)
-      get :create, speaker: {name: 'VarnaConf'}
+    it "responds with the new event" do
+      controller.should_receive(:respond_with).with(event, location: admin_events_path)
+      get :create, event: {name: 'VarnaConf'}
+    end
+  end
+
+  describe "GET show" do
+    it "assigns the event" do
+      Event.stub(:find).with('1').and_return event
+      get :show, id: '1'
+      expect(assigns[:event]).to eq event
     end
   end
 
   describe "GET edit" do
-    it "assigns the speaker" do
-      Speaker.stub(:find).with('1').and_return speaker
+    it "assigns the event" do
+      Event.stub(:find).with('1').and_return event
       get :edit, id: '1'
-      expect(assigns[:speaker]).to eq speaker
+      expect(assigns[:event]).to eq event
     end
   end
 
   describe "GET update" do
     before do
-      Speaker.stub(:update).with('1', 'name' => 'VarnaConf').and_return speaker
+      Event.stub(:update).with('1', 'name' => 'VarnaConf').and_return event
     end
 
-    it "updates the speaker" do
-      Speaker.should_receive(:update).with('1', 'name' => 'VarnaConf').and_return speaker
-      put :update, id: '1', speaker: {name: 'VarnaConf'}
+    it "updates the event" do
+      Event.should_receive(:update).with('1', 'name' => 'VarnaConf').and_return event
+      put :update, id: '1', event: {name: 'VarnaConf'}
     end
 
-    it "assigns the speaker" do
-      put :update, id: '1', speaker: {name: 'VarnaConf'}
-      expect(assigns[:speaker]).to eq speaker
+    it "assigns the event" do
+      put :update, id: '1', event: {name: 'VarnaConf'}
+      expect(assigns[:event]).to eq event
     end
 
-    it "responds with the speaker" do
-      controller.should_receive(:respond_with).with(speaker, location: admin_speakers_path)
-      put :update, id: '1', speaker: {name: 'VarnaConf'}
+    it "responds with the event" do
+      controller.should_receive(:respond_with).with(event, location: admin_events_path)
+      put :update, id: '1', event: {name: 'VarnaConf'}
     end
   end
 
   describe "DELETE destroy" do
     before do
-      Speaker.stub(:destroy).with('1')
+      Event.stub(:destroy).with('1')
     end
 
-    it "removes the speaker" do
-      Speaker.should_receive(:destroy).with('1')
+    it "removes the event" do
+      Event.should_receive(:destroy).with('1')
       delete :destroy, id: '1'
     end
 
-    it "redirects to speakers list" do
+    it "redirects to events list" do
       delete :destroy, id: '1'
-      expect(controller).to redirect_to admin_speakers_path
+      expect(controller).to redirect_to admin_events_path
     end
   end
 end

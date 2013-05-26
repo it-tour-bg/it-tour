@@ -42,6 +42,15 @@ describe Admin::SpeakersController do
     end
   end
 
+  describe "GET show" do
+    it "assigns the speaker" do
+      Speaker.stub(:find).with('1').and_return speaker
+      get :show, id: '1'
+      expect(assigns[:speaker]).to eq speaker
+    end
+  end
+
+
   describe "GET edit" do
     it "assigns the speaker" do
       Speaker.stub(:find).with('1').and_return speaker

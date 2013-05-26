@@ -12,10 +12,8 @@ table.table
   tbody
     - @conferences.each do |conference|
       tr
-        td = conference.name
+        td = link_to conference.name, admin_conference_path(conference)
         td #{conference.contact_name} (#{conference.contact_email})
-        td width="250"
-          = link_to 'Add event', new_admin_event_path(conference, conference_id: conference.id), class: 'btn'
+        td width="1%"
           = link_to 'Edit', edit_admin_conference_path(conference), class: 'btn'
-          = link_to 'Delete', admin_conference_path(conference), method: :delete, confirm: 'Are you sure?', class: 'btn'
 

@@ -42,6 +42,14 @@ describe Admin::ConferencesController do
     end
   end
 
+  describe "GET show" do
+    it "assigns the conference" do
+      Conference.stub(:find).with('1').and_return conference
+      get :show, id: '1'
+      expect(assigns[:conference]).to eq conference
+    end
+  end
+
   describe "GET edit" do
     it "assigns the conference" do
       Conference.stub(:find).with('1').and_return conference

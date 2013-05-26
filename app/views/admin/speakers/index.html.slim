@@ -11,8 +11,7 @@ table.table
   tbody
     - @speakers.each do |speaker|
       tr
-        td = speaker.name
-        td width="150"
+        td = link_to speaker.name, admin_speaker_path(speaker)
+        td width="1%"
           = link_to 'Edit', edit_admin_speaker_path(speaker), class: 'btn'
-          = link_to 'Delete', admin_speaker_path(speaker), method: :delete, confirm: 'Are you sure?', class: 'btn'
 
