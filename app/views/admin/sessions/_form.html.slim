@@ -1,0 +1,21 @@
+- breadcrumbs ['Conferences', admin_conferences_path],
+  [@session.event.conference.name, admin_conference_path(@session.event.conference)],
+  [@session.event.name, admin_event_path(@session.event)]
+
+= simple_form_for [:admin, @session] do |form|
+  = form.error_notification
+
+  - if @session.new_record?
+    = form.hidden_field :event_id
+
+  = form.input :title
+  = form.association :speaker, collection: Speaker.all, prompt: '[None]'
+  = form.input :start_at, hint: 'Example: 09:10'
+
+  = form.input :slides_url
+  = form.input :video_url
+
+  .form-actions
+    = form.button :submit, class: 'btn-primary'
+    = link_to 'Cancel', admin_event_path(@session.event), class: 'btn btn-danger'
+

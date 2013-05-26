@@ -1,7 +1,35 @@
-- title @event.name
+- title @event.full_name
 
-- breadcrumbs ['Events', admin_events_path]
+- breadcrumbs ['Events', admin_events_path], [@event.conference.name, admin_conference_path(@event.conference)]
 
 - actions do
   = link_to 'Edit', edit_admin_event_path(@event), class: 'btn'
   = link_to 'Delete', admin_event_path(@event), method: :delete, confirm: 'Are you sure?', class: 'btn'
+
+
+article
+  h4 Sessions
+
+  table.table
+    thead
+      tr
+        th width="1%" Start
+        th Name
+        th Speaker
+        th Slides
+        th Video
+        td width="60px"
+    tbody
+      - @event.sessions.each do |session|
+        tr
+          td = session.start_at
+          td = session.title
+          td = session.speaker && link_to(session.speaker.name, admin_speaker_path(session.speaker))
+          td = session.slides_url
+          td = session.video_url
+          td
+            = link_to 'Edit', edit_admin_session_path(session)
+            = link_to 'Delete', admin_session_path(session), method: :delete, confirm: 'Are you sure?'
+    tfoot
+      tr
+        th colspan="6" = link_to '+ session', new_admin_session_path(event_id: @event.id), class: 'btn'
