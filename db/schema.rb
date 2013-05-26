@@ -11,12 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130525142328) do
+ActiveRecord::Schema.define(version: 20130526134533) do
 
   create_table "conferences", force: true do |t|
     t.string   "name"
     t.string   "contact_name"
     t.string   "contact_email"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "speakers", force: true do |t|
+    t.string   "name",          null: false
+    t.text     "description"
+    t.string   "personal_site"
+    t.string   "company"
+    t.string   "company_site"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
