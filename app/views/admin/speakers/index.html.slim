@@ -1,0 +1,27 @@
+ul.breadcrumb
+  li
+    = link_to 'Dashboard', admin_root_path
+    span.divider = '/'
+  li.active
+    ' Speakers
+
+
+.actions
+  = link_to 'New speaker', new_admin_speaker_path, class: 'btn'
+
+h1 Speakers
+
+table.table
+  thead
+    tr
+      th Name
+      th Contact person
+      th
+  tbody
+    - @speakers.each do |speaker|
+      tr
+        td = speaker.name
+        td
+          = link_to 'Edit', edit_admin_speaker_path(speaker), class: 'btn'
+          = link_to 'Delete', admin_speaker_path(speaker), method: :delete, confirm: 'Are you sure?', class: 'btn'
+

@@ -1,0 +1,13 @@
+= simple_form_for [:admin, @speaker] do |form|
+  = form.error_notification
+
+  = form.input :name
+  = form.input :description
+  = form.input :personal_site
+  = form.input :company
+  = form.input :company_site
+
+  .form-actions
+    = form.button :submit, class: 'btn-primary'
+    = link_to 'Cancel', admin_speakers_path, class: 'btn btn-danger'
+
