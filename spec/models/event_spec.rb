@@ -2,6 +2,8 @@ require 'spec_helper'
 
 describe Event do
   it { belong_to :conference }
+  it { have_many :sessions }
+
   it { validate_presence_of :name }
   it { validate_presence_of :conference }
   it { validate_presence_of :date }
