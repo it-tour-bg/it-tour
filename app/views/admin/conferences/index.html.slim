@@ -1,15 +1,7 @@
-ul.breadcrumb
-  li
-    = link_to 'Dashboard', admin_root_path
-    span.divider = '/'
-  li.active
-    ' Conferences
+- title "Conferences"
 
-
-.actions
+- actions do
   = link_to 'New conference', new_admin_conference_path, class: 'btn'
-
-h1 Conferences
 
 table.table
   thead
@@ -22,7 +14,8 @@ table.table
       tr
         td = conference.name
         td #{conference.contact_name} (#{conference.contact_email})
-        td
+        td width="250"
+          = link_to 'Add event', new_admin_event_path(conference, conference_id: conference.id), class: 'btn'
           = link_to 'Edit', edit_admin_conference_path(conference), class: 'btn'
           = link_to 'Delete', admin_conference_path(conference), method: :delete, confirm: 'Are you sure?', class: 'btn'
 

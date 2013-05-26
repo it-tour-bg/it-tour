@@ -2,7 +2,7 @@ doctype html
 
 html
   head
-    title The Tour
+    title = title_with_base 'TourConf Admin'
     = stylesheet_link_tag 'admin', media: 'all'
     = javascript_include_tag 'admin'
     = csrf_meta_tags
@@ -12,6 +12,9 @@ html
         .container
           = link_to 'The Tour', '#', class: 'brand'
           ul.nav
+            li = link_to 'Conferences', admin_conferences_path
+            li = link_to 'Events', admin_events_path
+            li = link_to 'Speakers', admin_speakers_path
 
     .container
       - if alert
@@ -23,6 +26,23 @@ html
         .alert.alert-success
           button type="button" class="close" data-dismiss="alert" &times;
           = notice
+
+      - if breadcrumbs.present? || title_value.present?
+        ul.breadcrumb
+          li
+            = link_to 'Dashboard', '#'
+            span.divider = '/'
+          - breadcrumbs.each do |name, link|
+            li
+              = link_to name, link
+              span.divider = '/'
+          li.active = title_value
+
+      - if title_value.present?
+        - if content_for? :actions
+          .actions = content_for :actions
+
+        h1 = title_value
 
       = yield
 
