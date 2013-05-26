@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130526141220) do
+ActiveRecord::Schema.define(version: 20130526211001) do
 
   create_table "conferences", force: true do |t|
     t.string   "name"
@@ -37,6 +37,17 @@ ActiveRecord::Schema.define(version: 20130526141220) do
     t.datetime "updated_at"
   end
 
+  create_table "sessions", force: true do |t|
+    t.integer  "event_id",   null: false
+    t.integer  "speaker_id"
+    t.string   "start_at",   null: false
+    t.string   "title",      null: false
+    t.string   "slides_url"
+    t.string   "video_url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "speakers", force: true do |t|
     t.string   "name",          null: false
     t.text     "description"
@@ -48,5 +59,8 @@ ActiveRecord::Schema.define(version: 20130526141220) do
   end
 
   add_foreign_key "events", "conferences", :name => "events_conference_id_fk"
+
+  add_foreign_key "sessions", "events", :name => "sessions_event_id_fk"
+  add_foreign_key "sessions", "speakers", :name => "sessions_speaker_id_fk"
 
 end
