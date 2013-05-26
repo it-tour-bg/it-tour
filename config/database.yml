@@ -1,7 +1,7 @@
 development: &default
   adapter: postgresql
   host: localhost
-  database: rogue_conf_development
+  database: tour_conf_development
   username: rstankov
   password:
   min_messages: WARNING
@@ -9,6 +9,5 @@ development: &default
 
 test: &test
   <<: *default
-  database: rogue_conf_development<%= ENV['TEST_ENV_NUMBER'] %>
-
+  database: tour_conf_test<%= ENV['TEST_ENV_NUMBER'] %>
 
