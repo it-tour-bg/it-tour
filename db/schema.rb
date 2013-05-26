@@ -11,12 +11,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130526134533) do
+ActiveRecord::Schema.define(version: 20130526141220) do
 
   create_table "conferences", force: true do |t|
     t.string   "name"
     t.string   "contact_name"
     t.string   "contact_email"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "events", force: true do |t|
+    t.integer  "conference_id"
+    t.string   "name",                                       null: false
+    t.date     "date",                                       null: false
+    t.boolean  "publicly_announced",         default: false, null: false
+    t.string   "facebook_event_url"
+    t.string   "venue_name"
+    t.string   "venue_site_url"
+    t.string   "venue_address"
+    t.string   "venue_google_map_url"
+    t.string   "venue_google_map_image_url"
+    t.string   "venue_notes"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -30,5 +46,7 @@ ActiveRecord::Schema.define(version: 20130526134533) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_foreign_key "events", "conferences", :name => "events_conference_id_fk"
 
 end
