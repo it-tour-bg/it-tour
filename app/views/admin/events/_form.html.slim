@@ -1,0 +1,22 @@
+= simple_form_for [:admin, @event] do |form|
+  = form.error_notification
+
+  - if @event.new_record?
+    = form.association :conference, collection: Conference.all, prompt: '- Select -', selected: params[:conference_id]
+  = form.input :name
+  = form.input :date
+  = form.input :publicly_announced
+  = form.input :facebook_event_url
+  = form.input :venue_name
+  = form.input :venue_site_url
+  = form.input :venue_address
+  = form.input :venue_google_map_url
+  = form.input :venue_google_map_image_url
+  = form.input :venue_notes
+
+  .form-actions
+    = form.button :submit, class: 'btn-primary'
+    = link_to 'Cancel', admin_events_path, class: 'btn btn-danger'
+
+
+

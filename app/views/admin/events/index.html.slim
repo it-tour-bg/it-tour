@@ -1,0 +1,26 @@
+ul.breadcrumb
+  li
+    = link_to 'Dashboard', admin_root_path
+    span.divider = '/'
+  li.active
+    ' Events
+
+
+.actions
+  = link_to 'New event', new_admin_event_path, class: 'btn'
+
+h1 Events
+
+table.table
+  thead
+    tr
+      th Name
+      th
+  tbody
+    - @events.each do |event|
+      tr
+        td = event.full_name
+        td
+          = link_to 'Edit', edit_admin_event_path(event), class: 'btn'
+          = link_to 'Delete', admin_event_path(event), method: :delete, confirm: 'Are you sure?', class: 'btn'
+
