@@ -10,7 +10,8 @@
   article
     p Facebook event: #{link_to @event.facebook_event_url}
 
-article
+- if @event.venue_name?
+  article
   h4 Venue
   p = link_to @event.venue_name, @event.venue_site_url
   p
@@ -18,6 +19,16 @@ article
       #{@event.venue_notes}
   = link_to @event.venue_google_map_url, target: :blank do
     = image_tag @event.venue_google_map_image_url
+
+- if @event.venue_name?
+  article
+    h4 After party
+    p = link_to @event.after_party_venue_name, @event.after_party_venue_site_url
+    p
+      ' #{@event.after_party_venue_address}<br>
+        #{@event.after_party_venue_notes}
+    = link_to @event.after_party_venue_map_url, target: :blank do
+      = image_tag @event.after_party_venue_map_image_url
 
 article
   h4 Sessions

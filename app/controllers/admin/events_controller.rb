@@ -48,7 +48,13 @@ class Admin::EventsController < Admin::BaseController
       :venue_address,
       :venue_google_map_url,
       :venue_google_map_image_url,
-      :venue_notes
+      :venue_notes,
+      :after_party_venue_name,
+      :after_party_venue_site_url,
+      :after_party_venue_address,
+      :after_party_venue_map_url,
+      :after_party_venue_map_image_url,
+      :after_party_venue_notes,
     )
   end
 end
