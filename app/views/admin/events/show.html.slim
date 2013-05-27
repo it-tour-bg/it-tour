@@ -6,9 +6,9 @@
   = link_to 'Edit', edit_admin_event_path(@event), class: 'btn'
   = link_to 'Delete', admin_event_path(@event), method: :delete, confirm: 'Are you sure?', class: 'btn'
 
-- if @event.facebook_event_url?
+- if @event.event_url?
   article
-    p Facebook event: #{link_to @event.facebook_event_url}
+    p Facebook event: #{link_to @event.event_url}
 
 - if @event.venue_name?
   article
@@ -17,8 +17,8 @@
   p
     ' #{@event.venue_address}<br>
       #{@event.venue_notes}
-  = link_to @event.venue_google_map_url, target: :blank do
-    = image_tag @event.venue_google_map_image_url
+  = link_to @event.venue_map_url, target: :blank do
+    = image_tag @event.venue_map_image_url
 
 - if @event.venue_name?
   article
