@@ -6,8 +6,9 @@
   = link_to 'Edit', edit_admin_event_path(@event), class: 'btn'
   = link_to 'Delete', admin_event_path(@event), method: :delete, confirm: 'Are you sure?', class: 'btn'
 
-- if @event.event_url?
-  article
+article
+  p Date: #{l @event.date, format: :long}
+  - if @event.event_url?
     p Facebook event: #{link_to @event.event_url}
 
 - if @event.venue_name?
