@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130527203304) do
+ActiveRecord::Schema.define(version: 20130527213548) do
 
   create_table "conferences", force: true do |t|
     t.string   "name"
@@ -19,6 +19,9 @@ ActiveRecord::Schema.define(version: 20130527203304) do
     t.string   "contact_email"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "facebook_account"
+    t.string   "twitter_account"
+    t.string   "youtube_account"
   end
 
   create_table "events", force: true do |t|
