@@ -8,6 +8,8 @@ class Event < ActiveRecord::Base
 
   attr_readonly :conference_id
 
+  delegate :facebook_account, :twitter_account, :youtube_account, to: :conference
+
   def full_name
     "#{conference.name} #{name}"
   end

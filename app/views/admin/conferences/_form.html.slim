@@ -5,6 +5,11 @@
   = form.input :contact_name
   = form.input :contact_email
 
+  = field_set_tag 'Social accounts' do
+    = form.input :facebook_account
+    = form.input :twitter_account
+    = form.input :youtube_account
+
   .form-actions
     = form.button :submit, class: 'btn-primary'
     = link_to 'Cancel', admin_conferences_path, class: 'btn btn-danger'
