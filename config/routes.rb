@@ -1,7 +1,9 @@
 TourConf::Application.routes.draw do
   namespace :admin do
     resources :conferences
-    resources :events
+    resources :events do
+      resource :notes, controller: 'event_notes', only: [:edit, :update]
+    end
     resources :sessions, only: [:new, :create, :edit, :update, :destroy]
     resources :speakers
 

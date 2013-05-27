@@ -1,0 +1,17 @@
+- title 'Edit notes'
+
+- breadcrumbs ['Events', admin_events_path],
+  [@event.conference.name, admin_conference_path(@event.conference)],
+  [@event.name, admin_event_path(@event)]
+
+= simple_form_for @event, url: admin_event_notes_path(@event) do |form|
+  = form.error_notification
+
+  = form.input :notes
+
+  .form-actions
+    = form.button :submit, class: 'btn-primary'
+    = link_to 'Cancel', admin_event_path(@event), class: 'btn btn-danger'
+
+
+

@@ -59,3 +59,11 @@ article
     tfoot
       tr
         th colspan="6" = link_to '+ session', new_admin_session_path(event_id: @event.id), class: 'btn'
+
+article
+  .actions
+    = link_to 'Edit', edit_admin_event_notes_path(@event), class: 'btn'
+
+  h4 Notes
+
+  = simple_format @event.notes
