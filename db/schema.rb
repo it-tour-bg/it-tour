@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130527202545) do
+ActiveRecord::Schema.define(version: 20130527203304) do
 
   create_table "conferences", force: true do |t|
     t.string   "name"
@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 20130527202545) do
     t.text     "after_party_venue_map_url"
     t.text     "after_party_venue_map_image_url"
     t.string   "town"
+    t.text     "notes"
   end
 
   create_table "sessions", force: true do |t|
