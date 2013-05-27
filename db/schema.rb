@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130527194207) do
+ActiveRecord::Schema.define(version: 20130527195841) do
 
   create_table "conferences", force: true do |t|
     t.string   "name"
@@ -26,12 +26,12 @@ ActiveRecord::Schema.define(version: 20130527194207) do
     t.string   "name",                                            null: false
     t.date     "date",                                            null: false
     t.boolean  "publicly_announced",              default: false, null: false
-    t.string   "facebook_event_url"
+    t.string   "event_url"
     t.string   "venue_name"
     t.string   "venue_site_url"
     t.string   "venue_address"
-    t.string   "venue_google_map_url"
-    t.string   "venue_google_map_image_url"
+    t.string   "venue_map_url"
+    t.string   "venue_map_image_url"
     t.string   "venue_notes"
     t.datetime "created_at"
     t.datetime "updated_at"
