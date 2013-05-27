@@ -12,6 +12,7 @@ gem 'bootstrap-sass'
 gem 'simple_form', '3.0.0.rc'
 gem 'turbolinks'
 gem 'foreigner'
+gem 'redcarpet'
 
 group :development, :test do
   gem 'rspec-rails'
