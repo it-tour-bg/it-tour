@@ -37,7 +37,7 @@ describe Admin::EventsController do
     end
 
     it "responds with the new event" do
-      controller.should_receive(:respond_with).with(event, location: admin_events_path)
+      controller.should_receive(:respond_with).with(event, location: admin_event_path(event))
       get :create, event: {name: 'VarnaConf'}
     end
   end
@@ -74,7 +74,7 @@ describe Admin::EventsController do
     end
 
     it "responds with the event" do
-      controller.should_receive(:respond_with).with(event, location: admin_events_path)
+      controller.should_receive(:respond_with).with(event, location: admin_event_path(event))
       put :update, id: '1', event: {name: 'VarnaConf'}
     end
   end

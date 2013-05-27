@@ -9,7 +9,7 @@ class Admin::EventsController < Admin::BaseController
 
   def create
     @event = Event.create event_params
-    respond_with @event, location: admin_events_path
+    respond_with @event, location: admin_event_path(@event)
   end
 
   def show
@@ -22,7 +22,7 @@ class Admin::EventsController < Admin::BaseController
 
   def update
     @event = Event.update event_id, event_params
-    respond_with @event, location: admin_events_path
+    respond_with @event, location: admin_event_path(@event)
   end
 
   def destroy
