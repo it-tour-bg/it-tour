@@ -41,6 +41,7 @@ class Admin::EventsController < Admin::BaseController
       :conference_id,
       :name,
       :date,
+      :town,
       :publicly_announced,
       :facebook_event_url,
       :venue_name,

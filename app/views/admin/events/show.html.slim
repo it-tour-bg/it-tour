@@ -8,6 +8,7 @@
 
 article
   p Date: #{l @event.date, format: :long}
+  p Town: #{@event.town}
   - if @event.event_url?
     p Facebook event: #{link_to @event.event_url}
 
