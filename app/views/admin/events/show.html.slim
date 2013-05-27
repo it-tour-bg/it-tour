@@ -6,9 +6,22 @@
   = link_to 'Edit', edit_admin_event_path(@event), class: 'btn'
   = link_to 'Delete', admin_event_path(@event), method: :delete, confirm: 'Are you sure?', class: 'btn'
 
+- if @event.facebook_event_url?
+  article
+    p Facebook event: #{link_to @event.facebook_event_url}
+
+article
+  h4 Venue
+  p = link_to @event.venue_name, @event.venue_site_url
+  p
+    ' #{@event.venue_address}<br>
+      #{@event.venue_notes}
+  = link_to @event.venue_google_map_url, target: :blank do
+    = image_tag @event.venue_google_map_image_url
 
 article
   h4 Sessions
+
 
   table.table
     thead
