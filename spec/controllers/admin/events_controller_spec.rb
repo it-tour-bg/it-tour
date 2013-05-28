@@ -1,11 +1,12 @@
 require 'spec_helper'
 
 describe Admin::EventsController do
- stub_rendering
+  stub_current_user
+  stub_rendering
 
- let(:event) { double :event }
+  let(:event) { double :event }
 
- describe "GET index" do
+  describe "GET index" do
     it "assigns all events" do
       Event.stub all: [event]
       get :index

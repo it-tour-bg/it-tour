@@ -9,4 +9,10 @@ TourConf::Application.routes.draw do
 
     root to: 'conferences#index'
   end
+
+  namespace :sign do
+    get    :in,  to: 'sessions#new'
+    post   :in,  to: 'sessions#create'
+    delete :out, to: 'sessions#destroy'
+  end
 end

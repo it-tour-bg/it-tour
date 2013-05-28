@@ -1,0 +1,10 @@
+@mixin clearfix {
+  *zoom: 1;
+  &:after { content: ''; clear: both; display: block; height: 0; font-size: 0; visibility: hidden; }
+}
+
+@mixin inline-block {
+  display: inline-block;
+  vertical-align: middle;
+}
+

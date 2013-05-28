@@ -1,11 +1,12 @@
 require 'spec_helper'
 
 describe Admin::SpeakersController do
- stub_rendering
+  stub_current_user
+  stub_rendering
 
- let(:speaker) { double :speaker }
+  let(:speaker) { double :speaker }
 
- describe "GET index" do
+  describe "GET index" do
     it "assigns all speakers" do
       Speaker.stub all: [speaker]
       get :index

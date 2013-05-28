@@ -1,0 +1,19 @@
+doctype html
+
+html
+  head
+    title Admin
+    = stylesheet_link_tag 'sign'
+    = csrf_meta_tags
+  body
+    = simple_form_for @login, url: sign_in_path do |form|
+      h1 Login
+
+      = form.error_notification
+
+      = form.input :email
+      = form.input :password
+
+      .form-actions
+        = form.button :submit, value: 'Sign in', class: 'btn-primary'
+

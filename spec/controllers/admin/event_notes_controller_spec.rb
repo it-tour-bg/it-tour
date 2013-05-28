@@ -1,9 +1,10 @@
 require 'spec_helper'
 
 describe Admin::EventNotesController do
- stub_rendering
+  stub_current_user
+  stub_rendering
 
- let(:event) { double :event }
+  let(:event) { double :event }
 
   describe "GET edit" do
     it "assigns the event" do

@@ -1,11 +1,12 @@
 require 'spec_helper'
 
 describe Admin::ConferencesController do
- stub_rendering
+  stub_current_user
+  stub_rendering
 
- let(:conference) { double :conference }
+  let(:conference) { double :conference }
 
- describe "GET index" do
+  describe "GET index" do
     it "assigns all conferences" do
       Conference.stub all: [conference]
       get :index

@@ -1,9 +1,10 @@
 require 'spec_helper'
 
 describe Admin::SessionsController do
- stub_rendering
+  stub_current_user
+  stub_rendering
 
- let(:session) { double :session, event: double(:event) }
+  let(:session) { double :session, event: double(:event) }
 
   describe "GET new" do
     it "assigns new session with given session id" do

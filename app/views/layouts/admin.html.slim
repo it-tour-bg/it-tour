@@ -15,6 +15,8 @@ html
             li = link_to 'Conferences', admin_conferences_path
             li = link_to 'Speakers', admin_speakers_path
             li = link_to 'Events', admin_events_path
+          ul.nav.pull-right
+            li = link_to 'Sign out', sign_out_path, method: :delete
 
     .container
       - if alert

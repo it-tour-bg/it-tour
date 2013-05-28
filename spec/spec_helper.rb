@@ -15,4 +15,5 @@ RSpec.configure do |config|
 
   config.include FactoryGirl::Syntax::Methods
   config.include SpecSupport::Controllers::StubRendering
+  config.extend  SpecSupport::Controllers::StubCurrentUser
 end
