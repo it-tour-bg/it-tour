@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130527213548) do
+ActiveRecord::Schema.define(version: 20130527214957) do
 
   create_table "conferences", force: true do |t|
     t.string   "name"
@@ -68,6 +68,17 @@ ActiveRecord::Schema.define(version: 20130527213548) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "users", force: true do |t|
+    t.string   "first_name",                   null: false
+    t.string   "last_name",                    null: false
+    t.string   "email",           default: "", null: false
+    t.string   "password_digest", default: "", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
 
   add_foreign_key "events", "conferences", :name => "events_conference_id_fk"
 
