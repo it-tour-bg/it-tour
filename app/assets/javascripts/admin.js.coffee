@@ -1,5 +1,6 @@
 #= require jquery
 #= require jquery_ujs
+#= require bootstrap-alert
 
 $(document).on 'focus', 'textarea', ->
     namespace = 'sizer'
