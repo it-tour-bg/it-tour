@@ -3,5 +3,5 @@ class Conference < ActiveRecord::Base
   validates :contact_name, presence: true
   validates :contact_email, presence: true
 
-  has_many :events
+  has_many :events, dependent: :destroy
 end
