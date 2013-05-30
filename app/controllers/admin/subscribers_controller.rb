@@ -1,6 +1,10 @@
 class Admin::SubscribersController < Admin::BaseController
   def index
-    @subscribers = Subscriber.all
+    @subscribers = Subscriber.filter params[:filter] || {}
+
+    respond_with @subscribers do |format|
+      format.csv { render }
+    end
   end
 
   def create

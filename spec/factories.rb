@@ -28,7 +28,7 @@ FactoryGirl.define do
     password_confirmation  '123456'
   end
 
-  factory :email do
+  factory :subscriber do
     email { generate :email }
   end
 end

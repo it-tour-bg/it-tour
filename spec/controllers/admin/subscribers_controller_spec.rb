@@ -6,6 +6,14 @@ describe Admin::SubscribersController do
 
   let(:subscriber) { double :subscriber, conference_id: '2' }
 
+  describe "GET index" do
+    it "assign filtered subscribers list" do
+      Subscriber.stub(:filter).with({'key' => 'value'}).and_return [subscriber]
+      get :index, filter: {key: 'value'}
+      expect(assigns[:subscribers]).to eq [subscriber]
+    end
+  end
+
   describe "GET create" do
     before do
       Subscriber.stub create: subscriber
