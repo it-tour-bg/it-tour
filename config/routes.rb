@@ -6,6 +6,7 @@ TourConf::Application.routes.draw do
     end
     resources :sessions, only: [:new, :create, :edit, :update, :destroy]
     resources :speakers
+    resources :subscribers, only: [:index, :create, :update, :destroy]
 
     root to: 'conferences#index'
   end

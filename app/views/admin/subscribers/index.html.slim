@@ -1,0 +1,25 @@
+- title 'Subscribers'
+
+= render 'form', subscriber: Subscriber.new
+
+table.table
+  thead
+    tr
+      th Email
+      th Conference
+      th Active?
+      th
+  tbody
+    - @subscribers.each do |subscriber|
+      tr
+        td = subscriber.email
+        td = subscriber.conference && subscriber.conference.name
+        td = subscriber.active? ? 'Yes' : 'No'
+        td width="1%"
+          - if subscriber.active?
+            = link_to 'Deactivate', admin_subscriber_path(subscriber, subscriber: {active: false}), method: :put
+          - else
+            = link_to 'Activate', admin_subscriber_path(subscriber, subscriber: {active: true}), method: :put
+          = link_to 'Delete', admin_subscriber_path(subscriber), method: :delete, confirm: 'Are you sure?'
+
+
