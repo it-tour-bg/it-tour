@@ -8,43 +8,65 @@ describe Admin::SubscribersController do
 
   describe "GET create" do
     before do
-      Subscriber.stub(:create).with('email' => 'address').and_return subscriber
+      Subscriber.stub create: subscriber
+      subscriber.stub error_message: nil
     end
 
     it "creates a new subscriber" do
       Subscriber.should_receive(:create).with('email' => 'address').and_return subscriber
-      get :create, subscriber: {email: 'address'}
+      post_create_subscriber email: 'address'
     end
 
     it "assigns the new subscriber" do
-      get :create, subscriber: {email: 'address'}
+      post_create_subscriber
       expect(assigns[:subscriber]).to eq subscriber
     end
 
-    it "responds with the new subscriber" do
-      controller.should_receive(:respond_with).with(subscriber, location: admin_subscribers_path(conference_id: '2'))
-      get :create, subscriber: {email: 'address'}
+    it "sets the flash alert to subscriber error message (if some)" do
+      subscriber.stub error_message: 'Error message'
+      post_create_subscriber
+      expect(flash[:alert]).to eq 'Error message'
+    end
+
+    it "redirects to admin conference subscribers list" do
+      post_create_subscriber
+      expect(controller).to redirect_to admin_subscribers_path(conference_id: '2')
+    end
+
+    def post_create_subscriber(attributes = {key: 'value'})
+      post :create, subscriber: attributes
     end
   end
 
   describe "GET update" do
     before do
-      Subscriber.stub(:update).with('1', 'email' => 'address').and_return subscriber
+      Subscriber.stub update: subscriber
+      subscriber.stub error_message: nil
     end
 
     it "updates the subscriber" do
       Subscriber.should_receive(:update).with('1', 'email' => 'address').and_return subscriber
-      put :update, id: '1', subscriber: {email: 'address'}
+      patch_update_subscriber 1, email: 'address'
     end
 
     it "assigns the subscriber" do
-      put :update, id: '1', subscriber: {email: 'address'}
+      patch_update_subscriber
       expect(assigns[:subscriber]).to eq subscriber
     end
 
-    it "responds with the subscriber" do
-      controller.should_receive(:respond_with).with(subscriber, location: admin_subscribers_path(conference_id: '2'))
-      put :update, id: '1', subscriber: {email: 'address'}
+    it "sets the flash alert to subscriber error message (if some)" do
+      subscriber.stub error_message: 'Error message'
+      patch_update_subscriber
+      expect(flash[:alert]).to eq 'Error message'
+    end
+
+    it "redirects to admin conference subscribers list" do
+      patch_update_subscriber
+      expect(controller).to redirect_to admin_subscribers_path(conference_id: '2')
+    end
+
+    def patch_update_subscriber(id = 1, attributes = {key: 'value'})
+      patch :update, id: id, subscriber: attributes
     end
   end
 

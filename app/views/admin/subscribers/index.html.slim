@@ -1,25 +1,30 @@
 - title 'Subscribers'
 
-= render 'form', subscriber: Subscriber.new
-
-table.table
-  thead
-    tr
-      th Email
-      th Conference
-      th Active?
-      th
-  tbody
-    - @subscribers.each do |subscriber|
+= simple_form_for [:admin, Subscriber.new] do |form|
+  table.table
+    thead
       tr
-        td = subscriber.email
-        td = subscriber.conference && subscriber.conference.name
-        td = subscriber.active? ? 'Yes' : 'No'
-        td width="1%"
-          - if subscriber.active?
-            = link_to 'Deactivate', admin_subscriber_path(subscriber, subscriber: {active: false}), method: :put
-          - else
-            = link_to 'Activate', admin_subscriber_path(subscriber, subscriber: {active: true}), method: :put
-          = link_to 'Delete', admin_subscriber_path(subscriber), method: :delete, confirm: 'Are you sure?'
+        th Email
+        th Conference
+        th Active?
+        th
+    thead
+      tr
+        th = form.input :email
+        th = form.association :conference, prompt: '[ - none - ]'
+        th = form.check_box :active
+        th = form.button :submit, value: 'Create'
+    tbody
+      - @subscribers.each do |subscriber|
+        tr
+          td = subscriber.email
+          td = subscriber.conference && subscriber.conference.name
+          td width="1%" = subscriber.active? ? 'Yes' : 'No'
+          td width="1%"
+            - if subscriber.active?
+              = link_to 'Deactivate', admin_subscriber_path(subscriber, subscriber: {active: false}), method: :put
+            - else
+              = link_to 'Activate', admin_subscriber_path(subscriber, subscriber: {active: true}), method: :put
+            = link_to 'Delete', admin_subscriber_path(subscriber), method: :delete, confirm: 'Are you sure?'
 
 

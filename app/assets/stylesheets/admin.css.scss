@@ -21,6 +21,19 @@ body { padding-top: 60px; }
 
   .field_with_errors { color: #b94a48 }
   .field_with_errors input { border-color: #b94a48 }
+
+  .table {
+    $width: 90%;
+
+    select,
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] { width: $width; margin: 0px; }
+
+    input[type="checkbox"] { margin-bottom: 10px; }
+
+    label { display: none; }
+  }
 }
 
 .table a + a,

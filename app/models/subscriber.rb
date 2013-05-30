@@ -7,4 +7,8 @@ class Subscriber < ActiveRecord::Base
       uniqueness: {scope: :conference_id}
 
   default_scope { order 'id DESC' }
+
+  def error_message
+    errors.full_messages.first
+  end
 end

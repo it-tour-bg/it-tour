@@ -5,17 +5,19 @@ class Admin::SubscribersController < Admin::BaseController
 
   def create
     @subscriber = Subscriber.create subscriber_params
-    respond_with @subscriber, location: subscribers_path
+    flash[:alert] = @subscriber.error_message
+    redirect_to return_to_path
   end
 
   def update
     @subscriber = Subscriber.update subscriber_id, subscriber_params
-    respond_with @subscriber, location: subscribers_path
+    flash[:alert] = @subscriber.error_message
+    redirect_to return_to_path
   end
 
   def destroy
     @subscriber = Subscriber.destroy subscriber_id
-    redirect_to subscribers_path
+    redirect_to return_to_path
   end
 
   private
@@ -32,13 +34,7 @@ class Admin::SubscribersController < Admin::BaseController
     )
   end
 
-  def respond_with(*args)
-    super(*args) do |format|
-      format.html { render :show }
-    end
-  end
-
-  def subscribers_path
+  def return_to_path
     admin_subscribers_path conference_id: @subscriber.conference_id
   end
 end
