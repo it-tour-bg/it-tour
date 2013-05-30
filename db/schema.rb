@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130528222559) do
+ActiveRecord::Schema.define(version: 20130530122208) do
 
   create_table "conferences", force: true do |t|
     t.string   "name"
@@ -70,6 +70,14 @@ ActiveRecord::Schema.define(version: 20130528222559) do
     t.string   "twitter_account"
   end
 
+  create_table "subscribers", force: true do |t|
+    t.integer  "conference_id"
+    t.string   "email",                        null: false
+    t.boolean  "active",        default: true, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "users", force: true do |t|
     t.string   "first_name",                   null: false
     t.string   "last_name",                    null: false
@@ -85,5 +93,7 @@ ActiveRecord::Schema.define(version: 20130528222559) do
 
   add_foreign_key "sessions", "events", :name => "sessions_event_id_fk"
   add_foreign_key "sessions", "speakers", :name => "sessions_speaker_id_fk"
+
+  add_foreign_key "subscribers", "conferences", :name => "subscribers_conference_id_fk"
 
 end
