@@ -44,6 +44,7 @@ class Admin::SpeakersController < Admin::BaseController
       :company,
       :company_site,
       :twitter_account,
+      :photo,
     )
   end
 end

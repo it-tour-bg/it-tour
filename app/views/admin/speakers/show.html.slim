@@ -5,3 +5,7 @@
 - actions do
   = link_to 'Edit', edit_admin_speaker_path(@speaker), class: 'btn'
   = link_to 'Delete', admin_speaker_path(@speaker), method: :delete, confirm: 'Are you sure?', class: 'btn'
+
+- if @speaker.photo?
+  = image_tag @speaker.photo
+

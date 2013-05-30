@@ -28,6 +28,10 @@ FactoryGirl.define do
     password_confirmation  '123456'
   end
 
+  factory :speaker do
+    name 'John Doe'
+  end
+
   factory :subscriber do
     email { generate :email }
   end
