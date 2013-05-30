@@ -22,24 +22,24 @@ describe Admin::EventsController do
     end
   end
 
-  describe "GET create" do
+  describe "POST create" do
     before do
       Event.stub(:create).with('name' => 'VarnaConf').and_return event
     end
 
     it "creates a new event" do
       Event.should_receive(:create).with('name' => 'VarnaConf').and_return event
-      get :create, event: {name: 'VarnaConf'}
+      post :create, event: {name: 'VarnaConf'}
     end
 
     it "assigns the new event" do
-      get :create, event: {name: 'VarnaConf'}
+      post :create, event: {name: 'VarnaConf'}
       expect(assigns[:event]).to eq event
     end
 
     it "responds with the new event" do
       controller.should_receive(:respond_with).with(event, location: admin_event_path(event))
-      get :create, event: {name: 'VarnaConf'}
+      post :create, event: {name: 'VarnaConf'}
     end
   end
 
@@ -59,24 +59,24 @@ describe Admin::EventsController do
     end
   end
 
-  describe "GET update" do
+  describe "PATCH update" do
     before do
       Event.stub(:update).with('1', 'name' => 'VarnaConf').and_return event
     end
 
     it "updates the event" do
       Event.should_receive(:update).with('1', 'name' => 'VarnaConf').and_return event
-      put :update, id: '1', event: {name: 'VarnaConf'}
+      patch :update, id: '1', event: {name: 'VarnaConf'}
     end
 
     it "assigns the event" do
-      put :update, id: '1', event: {name: 'VarnaConf'}
+      patch :update, id: '1', event: {name: 'VarnaConf'}
       expect(assigns[:event]).to eq event
     end
 
     it "responds with the event" do
       controller.should_receive(:respond_with).with(event, location: admin_event_path(event))
-      put :update, id: '1', event: {name: 'VarnaConf'}
+      patch :update, id: '1', event: {name: 'VarnaConf'}
     end
   end
 

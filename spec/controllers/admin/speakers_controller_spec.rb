@@ -22,24 +22,24 @@ describe Admin::SpeakersController do
     end
   end
 
-  describe "GET create" do
+  describe "POST create" do
     before do
       Speaker.stub(:create).with('name' => 'VarnaConf').and_return speaker
     end
 
     it "creates a new speaker" do
       Speaker.should_receive(:create).with('name' => 'VarnaConf').and_return speaker
-      get :create, speaker: {name: 'VarnaConf'}
+      post :create, speaker: {name: 'VarnaConf'}
     end
 
     it "assigns the new speaker" do
-      get :create, speaker: {name: 'VarnaConf'}
+      post :create, speaker: {name: 'VarnaConf'}
       expect(assigns[:speaker]).to eq speaker
     end
 
     it "responds with the new speaker" do
       controller.should_receive(:respond_with).with(speaker, location: admin_speakers_path)
-      get :create, speaker: {name: 'VarnaConf'}
+      post :create, speaker: {name: 'VarnaConf'}
     end
   end
 
@@ -60,24 +60,24 @@ describe Admin::SpeakersController do
     end
   end
 
-  describe "GET update" do
+  describe "PATCH update" do
     before do
       Speaker.stub(:update).with('1', 'name' => 'VarnaConf').and_return speaker
     end
 
     it "updates the speaker" do
       Speaker.should_receive(:update).with('1', 'name' => 'VarnaConf').and_return speaker
-      put :update, id: '1', speaker: {name: 'VarnaConf'}
+      patch :update, id: '1', speaker: {name: 'VarnaConf'}
     end
 
     it "assigns the speaker" do
-      put :update, id: '1', speaker: {name: 'VarnaConf'}
+      patch :update, id: '1', speaker: {name: 'VarnaConf'}
       expect(assigns[:speaker]).to eq speaker
     end
 
     it "responds with the speaker" do
       controller.should_receive(:respond_with).with(speaker, location: admin_speakers_path)
-      put :update, id: '1', speaker: {name: 'VarnaConf'}
+      patch :update, id: '1', speaker: {name: 'VarnaConf'}
     end
   end
 

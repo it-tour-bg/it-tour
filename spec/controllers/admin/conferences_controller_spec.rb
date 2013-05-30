@@ -22,24 +22,24 @@ describe Admin::ConferencesController do
     end
   end
 
-  describe "GET create" do
+  describe "POST create" do
     before do
       Conference.stub(:create).with('name' => 'VarnaConf').and_return conference
     end
 
     it "creates a new conference" do
       Conference.should_receive(:create).with('name' => 'VarnaConf').and_return conference
-      get :create, conference: {name: 'VarnaConf'}
+      post :create, conference: {name: 'VarnaConf'}
     end
 
     it "assigns the new conference" do
-      get :create, conference: {name: 'VarnaConf'}
+      post :create, conference: {name: 'VarnaConf'}
       expect(assigns[:conference]).to eq conference
     end
 
     it "responds with the new conference" do
       controller.should_receive(:respond_with).with(conference, location: admin_conference_path(conference))
-      get :create, conference: {name: 'VarnaConf'}
+      post :create, conference: {name: 'VarnaConf'}
     end
   end
 
@@ -59,24 +59,24 @@ describe Admin::ConferencesController do
     end
   end
 
-  describe "GET update" do
+  describe "PATCH update" do
     before do
       Conference.stub(:update).with('1', 'name' => 'VarnaConf').and_return conference
     end
 
     it "updates the conference" do
       Conference.should_receive(:update).with('1', 'name' => 'VarnaConf').and_return conference
-      put :update, id: '1', conference: {name: 'VarnaConf'}
+      patch :update, id: '1', conference: {name: 'VarnaConf'}
     end
 
     it "assigns the conference" do
-      put :update, id: '1', conference: {name: 'VarnaConf'}
+      patch :update, id: '1', conference: {name: 'VarnaConf'}
       expect(assigns[:conference]).to eq conference
     end
 
     it "responds with the conference" do
       controller.should_receive(:respond_with).with(conference, location: admin_conference_path(conference))
-      put :update, id: '1', conference: {name: 'VarnaConf'}
+      patch :update, id: '1', conference: {name: 'VarnaConf'}
     end
   end
 

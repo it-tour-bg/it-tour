@@ -14,24 +14,24 @@ describe Admin::SessionsController do
     end
   end
 
-  describe "GET create" do
+  describe "POST create" do
     before do
       Session.stub(:create).with('title' => 'Opening').and_return session
     end
 
     it "creates a new session" do
       Session.should_receive(:create).with('title' => 'Opening').and_return session
-      get :create, session: {title: 'Opening'}
+      post :create, session: {title: 'Opening'}
     end
 
     it "assigns the new session" do
-      get :create, session: {title: 'Opening'}
+      post :create, session: {title: 'Opening'}
       expect(assigns[:session]).to eq session
     end
 
     it "responds with the new session" do
       controller.should_receive(:respond_with).with(session, location: admin_event_path(session.event))
-      get :create, session: {title: 'Opening'}
+      post :create, session: {title: 'Opening'}
     end
   end
 
@@ -43,24 +43,24 @@ describe Admin::SessionsController do
     end
   end
 
-  describe "GET update" do
+  describe "PATCH update" do
     before do
       Session.stub(:update).with('1', 'title' => 'Opening').and_return session
     end
 
     it "updates the session" do
       Session.should_receive(:update).with('1', 'title' => 'Opening').and_return session
-      put :update, id: '1', session: {title: 'Opening'}
+      patch :update, id: '1', session: {title: 'Opening'}
     end
 
     it "assigns the session" do
-      put :update, id: '1', session: {title: 'Opening'}
+      patch :update, id: '1', session: {title: 'Opening'}
       expect(assigns[:session]).to eq session
     end
 
     it "responds with the session" do
       controller.should_receive(:respond_with).with(session, location: admin_event_path(session.event))
-      put :update, id: '1', session: {title: 'Opening'}
+      patch :update, id: '1', session: {title: 'Opening'}
     end
   end
 

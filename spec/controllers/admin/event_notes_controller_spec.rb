@@ -14,24 +14,24 @@ describe Admin::EventNotesController do
     end
   end
 
-  describe "GET update" do
+  describe "PATCH update" do
     before do
       Event.stub(:update).with('1', notes: 'text').and_return event
     end
 
     it "updates the event" do
       Event.should_receive(:update).with('1', notes: 'text').and_return event
-      put :update, event_id: '1', event: {notes: 'text'}
+      patch :update, event_id: '1', event: {notes: 'text'}
     end
 
     it "assigns the event" do
-      put :update, event_id: '1', event: {notes: 'text'}
+      patch :update, event_id: '1', event: {notes: 'text'}
       expect(assigns[:event]).to eq event
     end
 
     it "responds with the event" do
       controller.should_receive(:respond_with).with(event, location: admin_event_path(event))
-      put :update, event_id: '1', event: {notes: 'text'}
+      patch :update, event_id: '1', event: {notes: 'text'}
     end
   end
 end

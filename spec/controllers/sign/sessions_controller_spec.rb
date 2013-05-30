@@ -14,7 +14,7 @@ module Sign
       end
     end
 
-    describe "GET create" do
+    describe "POST create" do
       before do
         Login.stub(:new).with('email' => 'some', 'password' => 'some').and_return login
         login.stub user_id: 1
