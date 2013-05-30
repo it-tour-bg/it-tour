@@ -8,6 +8,8 @@ TourConf::Application.routes.draw do
     resources :speakers
     resources :subscribers, only: [:index, :create, :update, :destroy]
 
+    resource :user, only: [:edit, :update]
+
     root to: 'conferences#index'
   end
 
