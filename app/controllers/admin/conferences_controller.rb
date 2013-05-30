@@ -26,8 +26,8 @@ class Admin::ConferencesController < Admin::BaseController
   end
 
   def destroy
-    Conference.destroy conference_id
-    redirect_to admin_conferences_path
+    @conference = Conference.destroy conference_id
+    respond_with @conference, location: admin_conferences_path
   end
 
   private

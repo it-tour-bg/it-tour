@@ -26,8 +26,8 @@ class Admin::EventsController < Admin::BaseController
   end
 
   def destroy
-    Event.destroy event_id
-    redirect_to admin_events_path
+    @event = Event.destroy event_id
+    respond_with @event, location: admin_events_path
   end
 
   private

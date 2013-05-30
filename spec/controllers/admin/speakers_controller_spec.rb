@@ -38,7 +38,7 @@ describe Admin::SpeakersController do
     end
 
     it "responds with the new speaker" do
-      controller.should_receive(:respond_with).with(speaker, location: admin_speakers_path)
+      controller.should_receive(:respond_with).with speaker, location: admin_speakers_path
       post :create, speaker: {name: 'VarnaConf'}
     end
   end
@@ -76,14 +76,14 @@ describe Admin::SpeakersController do
     end
 
     it "responds with the speaker" do
-      controller.should_receive(:respond_with).with(speaker, location: admin_speakers_path)
+      controller.should_receive(:respond_with).with speaker, location: admin_speakers_path
       patch :update, id: '1', speaker: {name: 'VarnaConf'}
     end
   end
 
   describe "DELETE destroy" do
     before do
-      Speaker.stub(:destroy).with('1')
+      Speaker.stub destroy: speaker
     end
 
     it "removes the speaker" do
@@ -92,8 +92,8 @@ describe Admin::SpeakersController do
     end
 
     it "redirects to speakers list" do
+      controller.should_receive(:respond_with).with speaker, location: admin_speakers_path
       delete :destroy, id: '1'
-      expect(controller).to redirect_to admin_speakers_path
     end
   end
 end

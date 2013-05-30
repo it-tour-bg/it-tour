@@ -26,8 +26,8 @@ class Admin::SessionsController < Admin::BaseController
   end
 
   def destroy
-    Session.destroy session_id
-    redirect_to admin_sessions_path
+    @session = Session.destroy session_id
+    respond_with @session, location: admin_event_path(@session.event)
   end
 
   private

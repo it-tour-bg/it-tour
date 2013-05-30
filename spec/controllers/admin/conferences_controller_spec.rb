@@ -38,7 +38,7 @@ describe Admin::ConferencesController do
     end
 
     it "responds with the new conference" do
-      controller.should_receive(:respond_with).with(conference, location: admin_conference_path(conference))
+      controller.should_receive(:respond_with).with conference, location: admin_conference_path(conference)
       post :create, conference: {name: 'VarnaConf'}
     end
   end
@@ -75,14 +75,14 @@ describe Admin::ConferencesController do
     end
 
     it "responds with the conference" do
-      controller.should_receive(:respond_with).with(conference, location: admin_conference_path(conference))
+      controller.should_receive(:respond_with).with conference, location: admin_conference_path(conference)
       patch :update, id: '1', conference: {name: 'VarnaConf'}
     end
   end
 
   describe "DELETE destroy" do
     before do
-      Conference.stub(:destroy).with('1')
+      Conference.stub destroy: conference
     end
 
     it "removes the conference" do
@@ -91,8 +91,8 @@ describe Admin::ConferencesController do
     end
 
     it "redirects to conferences list" do
+      controller.should_receive(:respond_with).with conference, location: admin_conferences_path
       delete :destroy, id: '1'
-      expect(controller).to redirect_to admin_conferences_path
     end
   end
 end

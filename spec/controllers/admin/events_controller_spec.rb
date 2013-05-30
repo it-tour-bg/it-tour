@@ -38,7 +38,7 @@ describe Admin::EventsController do
     end
 
     it "responds with the new event" do
-      controller.should_receive(:respond_with).with(event, location: admin_event_path(event))
+      controller.should_receive(:respond_with).with event, location: admin_event_path(event)
       post :create, event: {name: 'VarnaConf'}
     end
   end
@@ -75,14 +75,14 @@ describe Admin::EventsController do
     end
 
     it "responds with the event" do
-      controller.should_receive(:respond_with).with(event, location: admin_event_path(event))
+      controller.should_receive(:respond_with).with event, location: admin_event_path(event)
       patch :update, id: '1', event: {name: 'VarnaConf'}
     end
   end
 
   describe "DELETE destroy" do
     before do
-      Event.stub(:destroy).with('1')
+      Event.stub destroy: event
     end
 
     it "removes the event" do
@@ -91,8 +91,8 @@ describe Admin::EventsController do
     end
 
     it "redirects to events list" do
+      controller.should_receive(:respond_with).with event, location: admin_events_path
       delete :destroy, id: '1'
-      expect(controller).to redirect_to admin_events_path
     end
   end
 end

@@ -26,8 +26,8 @@ class Admin::SpeakersController < Admin::BaseController
   end
 
   def destroy
-    Speaker.destroy speaker_id
-    redirect_to admin_speakers_path
+    @speaker = Speaker.destroy speaker_id
+    respond_with @speaker, location: admin_speakers_path
   end
 
   private

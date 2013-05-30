@@ -30,7 +30,7 @@ describe Admin::SessionsController do
     end
 
     it "responds with the new session" do
-      controller.should_receive(:respond_with).with(session, location: admin_event_path(session.event))
+      controller.should_receive(:respond_with).with session, location: admin_event_path(session.event)
       post :create, session: {title: 'Opening'}
     end
   end
@@ -59,14 +59,14 @@ describe Admin::SessionsController do
     end
 
     it "responds with the session" do
-      controller.should_receive(:respond_with).with(session, location: admin_event_path(session.event))
+      controller.should_receive(:respond_with).with session, location: admin_event_path(session.event)
       patch :update, id: '1', session: {title: 'Opening'}
     end
   end
 
   describe "DELETE destroy" do
     before do
-      Session.stub(:destroy).with('1')
+      Session.stub destroy: session
     end
 
     it "removes the session" do
@@ -75,8 +75,8 @@ describe Admin::SessionsController do
     end
 
     it "redirects to sessions list" do
+      controller.should_receive(:respond_with).with session, location: admin_event_path(session.event)
       delete :destroy, id: '1'
-      expect(controller).to redirect_to admin_sessions_path
     end
   end
 end

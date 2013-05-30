@@ -11,6 +11,7 @@ module Sign
     def create
       @login = Login.new login_params
       session[:user_id] = @login.user_id
+      flash[:notice] = 'Login was successful.'
       respond_with @login, location: admin_root_path
     end
 
