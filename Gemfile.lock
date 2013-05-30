@@ -97,6 +97,7 @@ GEM
       thor (>= 0.18.1, < 2.0)
     rake (10.0.4)
     redcarpet (2.3.0)
+    responders (0.6.5)
     rspec-core (2.13.1)
     rspec-expectations (2.13.0)
       diff-lcs (>= 1.1.3, < 2.0)
@@ -166,6 +167,7 @@ DEPENDENCIES
   pry
   rails (= 4.0.0.rc1)
   redcarpet
+  responders
   rspec-rails
   sass-rails (~> 4.0.0.rc1)
   shoulda-matchers

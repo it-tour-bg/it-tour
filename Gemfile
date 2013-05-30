@@ -14,6 +14,7 @@ gem 'turbolinks'
 gem 'foreigner'
 gem 'redcarpet'
 gem 'bcrypt-ruby', '~> 3.0.0'
+gem 'responders'
 
 group :development, :test do
   gem 'rspec-rails'
