@@ -5,6 +5,7 @@
     = form.association :conference, collection: Conference.all, prompt: '- Select -', selected: params[:conference_id]
 
   = form.input :name
+  = form.input :state, collection: Event::STATES
   = form.input :date
   = form.input :publicly_announced
   = form.input :town

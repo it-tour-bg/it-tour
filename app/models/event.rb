@@ -1,7 +1,10 @@
 class Event < ActiveRecord::Base
+  STATES = %w(future current finished)
+
   validates :name, presence: true
   validates :conference, presence: true
   validates :date, presence: true
+  validates :state, presence: true, inclusion: {in: STATES}
 
   attr_readonly :conference_id
 

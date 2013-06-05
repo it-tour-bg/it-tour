@@ -44,6 +44,7 @@ class Admin::ConferencesController < Admin::BaseController
       :facebook_account,
       :twitter_account,
       :youtube_account,
+      :domain,
     )
   end
 end

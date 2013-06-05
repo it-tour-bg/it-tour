@@ -18,4 +18,8 @@ TourConf::Application.routes.draw do
     post   :in,  to: 'sessions#create'
     delete :out, to: 'sessions#destroy'
   end
+
+  get 'archive/:year', to: 'events#show', as: :archive
+
+  root to: 'events#index'
 end

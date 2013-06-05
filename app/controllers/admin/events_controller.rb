@@ -40,6 +40,7 @@ class Admin::EventsController < Admin::BaseController
     params.require(:event).permit(
       :conference_id,
       :name,
+      :state,
       :date,
       :town,
       :publicly_announced,

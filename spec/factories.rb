@@ -1,17 +1,32 @@
 FactoryGirl.define do
   sequence(:session_start_at) { |n| "#{'%02d' % (23 - n/60).abs}:#{'%02d' % (n%60)}"  }
   sequence(:email) { |n| "user-#{n}@example.org" }
+  sequence(:domain) { |n| "example-#{n}.org" }
 
   factory :conference do
     name 'Conference name'
     contact_name 'Contact person'
     contact_email 'contact@example.org'
+    domain { generate :domain }
   end
 
   factory :event do
     conference
     name 'year name'
     date Date.new(2013, 6, 20)
+    state 'finished'
+
+    factory :future_event do
+      state 'future'
+    end
+
+    factory :current_event do
+      state 'current'
+    end
+
+    factory :finished_event do
+      state 'finished'
+    end
   end
 
   factory :session do
