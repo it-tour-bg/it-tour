@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130530201733) do
+ActiveRecord::Schema.define(version: 20130605212801) do
 
   create_table "conferences", force: true do |t|
     t.string   "name"
@@ -22,13 +22,14 @@ ActiveRecord::Schema.define(version: 20130530201733) do
     t.string   "facebook_account"
     t.string   "twitter_account"
     t.string   "youtube_account"
+    t.string   "domain"
   end
 
   create_table "events", force: true do |t|
     t.integer  "conference_id"
-    t.string   "name",                                            null: false
-    t.date     "date",                                            null: false
-    t.boolean  "publicly_announced",              default: false, null: false
+    t.string   "name",                                               null: false
+    t.date     "date",                                               null: false
+    t.boolean  "publicly_announced",              default: false,    null: false
     t.string   "event_url"
     t.string   "venue_name"
     t.string   "venue_site_url"
@@ -46,6 +47,7 @@ ActiveRecord::Schema.define(version: 20130530201733) do
     t.text     "after_party_venue_map_image_url"
     t.string   "town"
     t.text     "notes"
+    t.string   "state",                           default: "future", null: false
   end
 
   create_table "sessions", force: true do |t|
