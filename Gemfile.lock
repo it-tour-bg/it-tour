@@ -1,3 +1,11 @@
+GIT
+  remote: git://github.com/milgner/compass-rails.git
+  revision: 1749c06f15dc4b058427e7969810457213647fb8
+  ref: 1749c06f15dc4b058427e7969810457213647fb8
+  specs:
+    compass-rails (1.0.3)
+      compass (>= 0.12.2, < 0.14)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -41,6 +49,7 @@ GEM
     carrierwave (0.8.0)
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
+    chunky_png (1.2.8)
     coderay (1.0.9)
     coffee-rails (4.0.0)
       coffee-script (>= 2.2.0)
@@ -49,6 +58,10 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.6.2)
+    compass (0.12.2)
+      chunky_png (~> 1.2)
+      fssm (>= 0.2.7)
+      sass (~> 3.1)
     database_cleaner (1.0.1)
     diff-lcs (1.2.4)
     dotenv (0.7.0)
@@ -74,6 +87,7 @@ GEM
     foreigner (1.4.1)
       activerecord (>= 3.0.0)
     formatador (0.2.4)
+    fssm (0.2.10)
     hike (1.2.2)
     i18n (0.6.4)
     jquery-rails (2.2.1)
@@ -180,6 +194,7 @@ DEPENDENCIES
   capybara
   carrierwave
   coffee-rails (~> 4.0.0)
+  compass-rails!
   database_cleaner
   dotenv
   factory_girl_rails

@@ -1,4 +1,6 @@
 class EventsController < ApplicationController
+  layout false
+
   def index
     @event = current_conference.current_event
     render :show

@@ -11,7 +11,7 @@ class Event < ActiveRecord::Base
   belongs_to :conference
   has_many :sessions, dependent: :destroy
 
-  delegate :facebook_account, :twitter_account, :youtube_account, to: :conference
+  delegate :facebook_account, :twitter_account, :youtube_account, :contact_name, :contact_email, to: :conference
 
   def full_name
     "#{conference.name} #{name}"
