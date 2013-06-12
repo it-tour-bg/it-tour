@@ -9,7 +9,7 @@ class Admin::SessionsController < Admin::BaseController
 
   def create
     @session = Session.create session_params
-    respond_with @session, location: admin_event_path(@session.event)
+    respond_with @session, location: return_to_path
   end
 
   def show
@@ -22,12 +22,12 @@ class Admin::SessionsController < Admin::BaseController
 
   def update
     @session = Session.update session_id, session_params
-    respond_with @session, location: admin_event_path(@session.event)
+    respond_with @session, location: return_to_path
   end
 
   def destroy
     @session = Session.destroy session_id
-    respond_with @session, location: admin_event_path(@session.event)
+    respond_with @session, location: return_to_path
   end
 
   private
@@ -46,6 +46,10 @@ class Admin::SessionsController < Admin::BaseController
       :video_url,
       :description
     )
+  end
+
+  def return_to_path
+    admin_event_path @session.event, anchor: 'sessions'
   end
 end
 

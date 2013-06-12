@@ -30,7 +30,7 @@ describe Admin::SessionsController do
     end
 
     it "responds with the new session" do
-      controller.should_receive(:respond_with).with session, location: admin_event_path(session.event)
+      controller.should_receive(:respond_with).with session, location: admin_event_path(session.event, anchor: 'sessions')
       post :create, session: {title: 'Opening'}
     end
   end
@@ -59,7 +59,7 @@ describe Admin::SessionsController do
     end
 
     it "responds with the session" do
-      controller.should_receive(:respond_with).with session, location: admin_event_path(session.event)
+      controller.should_receive(:respond_with).with session, location: admin_event_path(session.event, anchor: 'sessions')
       patch :update, id: '1', session: {title: 'Opening'}
     end
   end
@@ -75,7 +75,7 @@ describe Admin::SessionsController do
     end
 
     it "redirects to sessions list" do
-      controller.should_receive(:respond_with).with session, location: admin_event_path(session.event)
+      controller.should_receive(:respond_with).with session, location: admin_event_path(session.event, anchor: 'sessions')
       delete :destroy, id: '1'
     end
   end
