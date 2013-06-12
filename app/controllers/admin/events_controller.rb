@@ -62,6 +62,7 @@ class Admin::EventsController < Admin::BaseController
       :after_party_announced,
       :sessions_announced,
       :speakers_announced,
+      :logo,
     )
   end
 end

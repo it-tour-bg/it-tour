@@ -13,6 +13,8 @@ class Event < ActiveRecord::Base
 
   delegate :facebook_account, :twitter_account, :youtube_account, :contact_name, :contact_email, to: :conference
 
+  mount_uploader :logo, EventLogoUploader
+
   def full_name
     "#{conference.name} #{name}"
   end

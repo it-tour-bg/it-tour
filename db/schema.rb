@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130612123926) do
+ActiveRecord::Schema.define(version: 20130612133116) do
 
   create_table "conferences", force: true do |t|
     t.string   "name"
@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(version: 20130612123926) do
     t.boolean  "after_party_announced",           default: false
     t.boolean  "sessions_announced",              default: false
     t.boolean  "speakers_announced",              default: false
+    t.string   "logo"
   end
 
   create_table "sessions", force: true do |t|
