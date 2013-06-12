@@ -5,7 +5,7 @@ html
     meta charset="utf-8"
     title = @event.full_name
 
-    = stylesheet_link_tag 'varnaconf2012/application'
+    = stylesheet_link_tag 'application'
 
     /[ if lt IE 9 ]
       = javascript_include_tag 'vendor/html5shiv.js'
@@ -45,12 +45,8 @@ html
           = link_to 'Къде', '#venue'
           = link_to 'Програма', '#schedule'
           = link_to 'Лектори', '#speakers'
-          = link_to 'За контакт', '#contact'
 
     .page
-      header#about
-        h1 Kонференция за разработчици.
-
       article#when
         h1 Кога?
         h2 11 август, 2012 във Варна
@@ -86,7 +82,6 @@ html
             strong Ще се обяви на 3ти август 2012.
         - else
           section
-            h2 11 август
             ol
               - @event.sessions.each do |session|
                 li
@@ -108,7 +103,7 @@ html
           - speaker = session.speaker
           - if speaker
             section id="#{speaker.id}"
-              = link_to image_tag(speaker.photo), speaker.personal_site, :target => :blank, :class => 'avatar'
+              = link_to image_tag('http://varnaconf.com/assets/speakers/radoslav-stankov-81c78a046195ed13945fa769c031d30e.jpg'), speaker.personal_site, :target => :blank, :class => 'avatar'
               h2
                 = link_to speaker.name, speaker.personal_site, :target => :blank
                 - if speaker.company?
@@ -119,19 +114,19 @@ html
           section.empty
             strong Останалите лектори ще се обявят до 3ти август 2012.
 
-      article#contact
-        h1 За контакт
-        h3 = @event.contact_name
-        address Email: <a href="mailto:#{@event.contact_email}">#{@event.contact_email}</a>
-        address Facebook: <a href="http://www.facebook.com/groups/#{@event.facebook_account}">facebook.com/groups/#{@event.facebook_account}</a>
-        address Twitter: <a href="https://twitter.com/#{@event.twitter_account}">@#{@event.twitter_account}</a>
+  footer
+    div
+      dl
+        dt За контакт:
+        dd = link_to 'Facebook', "https://www.facebook.com/#{@event.facebook_account}"
+        dd = link_to 'Twitter', "http://twitter.com/#{@event.twitter_account}"
+        dd = link_to @event.contact_name, "mailto:#{@event.contact_email}"
+      dl
+        dt Минали издания:
+        dd 2012
+      p
+        ' Copyright © #{Date.today.year} VarnaConf.<br>
+          All rights reserved.
 
-    footer
-      div
-        ' © 2012 VarnaConf
-        span.social-buttons
-          = link_to image_tag('varnaconf2012/facebook.png'), "http://www.facebook.com/groups/#{@event.facebook_account}"
-          = link_to image_tag('varnaconf2012/twitter.png'), "https://twitter.com/#{@event.twitter_account}"
-
-    = javascript_include_tag 'application'
+  = javascript_include_tag 'application'
 

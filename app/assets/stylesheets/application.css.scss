@@ -1,0 +1,193 @@
+@import "compass/reset";
+@import "compass/css3";
+@import "compass/utilities/general/clearfix";
+
+$highlight: #2980B9;
+$header: #262626;
+$text-color: #1e1e1e;
+$contrast: #ffffff;
+$link: #000000;
+$line: $highlight;
+
+$min-width: 300px;
+$mid-width: 600px ;
+$max-width: 900px;
+
+@mixin centered-content {
+  position: relative;
+  padding: 0px 10px;
+  margin: 0px auto;
+  max-width: $max-width;
+  min-width: $min-width;
+}
+
+body {
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-size: 12pt;
+  padding-top: 50px;
+  color: $text-color;
+  letter-spacing: 1px;
+}
+
+a { color: $link; text-decoration: none; }
+
+body > header {
+  background: image-url('varnaconf2012/background_header.png');
+  border-bottom: 5px solid $highlight;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  z-index: 10;
+
+  height: 38px;
+
+  div { @include centered-content; padding-top: 5px; }
+
+  h1 { font-size: 19pt; }
+  h1 a { color: $highlight; }
+  h1 a span { color: $contrast; }
+  h1 a:hover,
+  h1 a:focus { @include opacity(0.8); }
+  h1 a:active { @include opacity(0.5); }
+
+  nav { position: absolute; top: 11px; right: 0px; }
+  nav a { @include transition(color 0.2s, background 0.2s); color: $highlight; padding: 10px; white-space: nowrap; }
+  nav a + a { margin-left: 15px; }
+  nav a.active,
+  nav a:hover,
+  nav a:focus { background: $highlight; color: $contrast; }
+  nav a:active { @include opacity(0.8); }
+
+  @media all and (max-width: 600px) {
+    position: absolute;
+    height: 32px;
+
+    h1 { display: none; }
+    nav { position: static; margin: 0 auto; width: 325px; }
+    nav a { font-size: 10pt; padding-left: 7px; padding-right: 8px; }
+    nav a + a { margin-left: 0px; }
+  }
+}
+
+footer {
+  border-top: 2px solid $line;
+  margin-top: 132px;
+  padding: 7px 0 15px;
+  font-size: 11px;
+
+  div { @include centered-content; @include pie-clearfix; }
+  dl { float: left; width: 250px; }
+  dl + dl { margin-left: 105px; }
+  dl dt { padding-bottom: 3px; }
+  dl dd { float: left; }
+  dl dd + dd:before { content: ", " }
+  p { position: absolute; top: -1px; right: 0px; width: 200px; line-height: 14px; }
+}
+
+
+.page {
+  @include centered-content;
+
+  a:focus,
+  a:hover { text-decoration: underline; }
+  a:active { @include opacity(0.8); }
+
+  article { padding-top: 60px; }
+
+  article h1 { @include border-radius(5px); background: $line; font-size: 21pt; color: $contrast; border-bottom: 5px solid $line; padding: 5px 10px 3px; margin-bottom: 20px;}
+  article h2 { font-size: 17pt; font-weight: bold; }
+  article h2 a { font-weight: normal; }
+
+  article p { line-height: 16pt; }
+}
+
+#future {
+  @include border-radius(10px);
+  border: 5px solid $line;
+  padding: 20px;
+  margin-top: 40px;
+
+  article:first-child { padding-top: 0px; }
+  article:first-child h1 { border-bottom: none; }
+}
+
+
+#when {
+  .facebook-event { @include transition(background-color 0.2s); @include border-radius(2px); background: $highlight image-url('varnaconf2012/facebook.png') no-repeat 10px 7px; font-size: 14pt; color: $contrast; padding: 5px 10px 5px 40px; }
+  .facebook-event:hover { background-color: $text-color; text-decoration: none; }
+
+  .stream { @include transition(background-color 0.2s); @include border-radius(2px); background: $highlight; font-size: 14pt; color: $contrast; padding: 5px 10px 5px 10px; float: right; }
+  .stream:hover { background-color: $text-color; text-decoration: none; }
+
+  section { @include border-radius(4px); @include clearfix; padding: 20px 20px 0px; margin: 50px 0; background: $line; }
+  section > div { float: left; margin-bottom: 20px; }
+  section strong { font-weight: bold; display: block; margin-top: 5px; font-size: 30pt; text-transform: uppercase; }
+  section .entrance { margin-right: 150px; margin-bottom: 20px;  }
+  section .timer { margin-top: 21px; font-weight: bold; text-transform: uppercase; font-size: 30pt; }
+}
+
+#venue,
+#after-party {
+  p { margin-bottom: 20px; }
+
+  a.site { font-size: 14pt; font-weight: bold; }
+
+  @media all and (max-width: 600px) {
+   a.site { font-size: 11pt; }
+  }
+
+  address { margin: 20px 0; }
+
+  .map img { @include border-radius(4px); @include box-shadow(0px 0px 0px 1px $line); @include transition(opacity 0.2s); width: 100%; }
+  .map:hover img { @include opacity(0.8); }
+}
+
+#schedule {
+  ol { margin-top: 40px; position: relative; }
+  ol:before {
+    content: ' ';
+    position: absolute;
+    width: 10px;
+    top: 0px;
+    bottom: 0px;
+    left: 22px;
+    background: $line;
+  }
+  ol li { line-height: 18pt; position: relative; padding-left: 70px; font-size: 16pt; }
+  ol li time {
+    @include border-radius(100%);
+    position: absolute;
+    left: 0px;
+    top: -14px;
+    background: $line;
+    padding: 14px 7px 14px 8px;
+    font-size: 10pt;
+    color: $contrast;
+  }
+  ol li + li { margin-top: 50px; }
+}
+
+#speakers {
+  section h2 { margin-bottom: 10px; }
+  section { position: relative; padding-left: 110px; min-height: 90px; }
+  section.empty { padding-left: 0px; margin-top: 20px; }
+  section + section { margin-top: 40px; }
+
+  a.avatar { @include transition(opacity 0.2s); position: absolute; left: 10px; top: 5px; }
+  a.avatar img { @include border-radius(100%); }
+  a.avatar:hover { @include opacity(0.9); }
+  a.company { @include border-radius(4px); background: $text-color; padding: 4px 8px; font-size: 10pt; margin-right: 10px; color: $contrast; position: relative; top: -2px; margin-left: 15px; @include text-shadow(none); @include transition(all 0.2s); white-space: nowrap; }
+  a.company:hover { background: $line; color: $text-color; text-decoration: none; }
+  p { line-height: 17pt; }
+}
+
+#contact {
+  h3 { margin-bottom: 10px; }
+  address { display: block; margin-top: 10px; }
+  address a { font-style: italic; }
+}
+
+
+
+
