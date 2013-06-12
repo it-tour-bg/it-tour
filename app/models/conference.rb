@@ -20,4 +20,8 @@ class Conference < ActiveRecord::Base
   def finished_event_named(name)
     events.find_by! state: 'finished', name: name
   end
+
+  def finished_events
+    events.where(state: 'finished').order('name ASC')
+  end
 end
