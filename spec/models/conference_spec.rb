@@ -27,4 +27,21 @@ describe Conference do
       expect(conference.current_event).to eq current
     end
   end
+
+  describe "#finished_event_named" do
+    it "finds event by given name" do
+      conference = create :conference
+
+      event = create :finished_event, conference: conference
+      other = create :finished_event, conference: conference
+
+      expect(conference.finished_event_named(event.name)).to eq event
+    end
+
+    it "finds only finished events" do
+      conference = create :conference
+      event = create :current_event, conference: conference
+      expect { conference.finished_event_named(event.name) }.to raise_error ActiveRecord::RecordNotFound
+    end
+  end
 end

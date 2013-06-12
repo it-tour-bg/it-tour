@@ -7,7 +7,7 @@ class EventsController < ApplicationController
   end
 
   def show
-    @event = current_conference.finished_event_for_year(params[:year])
+    @event = current_conference.finished_event_named(params[:year])
   end
 
   private

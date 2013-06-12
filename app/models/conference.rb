@@ -14,6 +14,10 @@ class Conference < ActiveRecord::Base
   end
 
   def current_event
-    events.where(state: 'current').first!
+    events.find_by! state: 'current'
+  end
+
+  def finished_event_named(name)
+    events.find_by! state: 'finished', name: name
   end
 end

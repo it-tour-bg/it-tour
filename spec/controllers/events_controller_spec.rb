@@ -25,7 +25,7 @@ describe EventsController do
 
   describe "GET show" do
     it "assign a finished conference event for given domain for year" do
-      conference.stub(:finished_event_for_year).with('2012').and_return event
+      conference.stub(:finished_event_named).with('2012').and_return event
       get :show, year: '2012'
       expect(assigns[:event]).to eq event
     end
