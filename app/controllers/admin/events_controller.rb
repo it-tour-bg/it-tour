@@ -57,6 +57,11 @@ class Admin::EventsController < Admin::BaseController
       :after_party_venue_map_url,
       :after_party_venue_map_image_url,
       :after_party_venue_notes,
+      :dates_announced,
+      :venue_announced,
+      :after_party_announced,
+      :sessions_announced,
+      :speakers_announced,
     )
   end
 end
