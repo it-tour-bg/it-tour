@@ -4,9 +4,15 @@
 #= require 'vendor/jquery.scroll_to'
 #= require_self
 
-$('[data-counter]').each ->
-  element = $(this)
+$.fn.eachWithElement = (callback) -> @each (i) -> callback $(this), i
+
+$('[data-counter]').eachWithElement (element) ->
   element.countdown until: new Date(element.data('counter'))
+
+$('[data-header-top]').eachWithElement (element) ->
+  top = element.data('header-top')
+  win = $(window)
+  win.scroll -> element.toggleClass 'visible', win.scrollTop() > top
 
 $('body')
   .scrollspy(selector: '> header a')

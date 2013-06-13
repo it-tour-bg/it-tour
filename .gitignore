@@ -17,3 +17,6 @@
 
 # Don't include env private keys
 .env
+
+# Ignore local uploads
+public/uploads

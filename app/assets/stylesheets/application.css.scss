@@ -2,7 +2,7 @@
 @import "compass/css3";
 @import "compass/utilities/general/clearfix";
 
-$highlight: #2980B9;
+$highlight: #6785B8;
 $header: #262626;
 $text-color: #1e1e1e;
 $contrast: #ffffff;
@@ -10,7 +10,7 @@ $link: #000000;
 $line: $highlight;
 
 $min-width: 300px;
-$mid-width: 600px ;
+$mid-width: 600px;
 $max-width: 900px;
 
 @mixin centered-content {
@@ -22,31 +22,34 @@ $max-width: 900px;
 }
 
 body {
-  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-family: "Lucida Grande", tahoma, verdana, arial, sans-serif;;
   font-size: 12pt;
   padding-top: 50px;
   color: $text-color;
-  letter-spacing: 1px;
 }
 
 a { color: $link; text-decoration: none; }
 
-body > header {
-  background: image-url('varnaconf2012/background_header.png');
+header {
+  @include opacity(0);
+  @include transition(height 0.2s, opacity 0.3s);
+
+  overflow: hidden;
+  background: $text-color;
   border-bottom: 5px solid $highlight;
   position: fixed;
   top: 0px;
   left: 0px;
   right: 0px;
   z-index: 10;
+  height: 0px;
 
-  height: 38px;
+  &.visible { @include opacity(1); height: 38px; }
 
   div { @include centered-content; padding-top: 5px; }
 
   h1 { font-size: 19pt; }
-  h1 a { color: $highlight; }
-  h1 a span { color: $contrast; }
+  h1 a { color: $contrast; }
   h1 a:hover,
   h1 a:focus { @include opacity(0.8); }
   h1 a:active { @include opacity(0.5); }
@@ -70,6 +73,24 @@ body > header {
   }
 }
 
+body > mark {
+  position: fixed;
+  bottom: 0px;
+  background: black;
+  cursor: pointer;
+  left: 0px;
+  right: 0px;
+  text-align: center;
+  z-index: 10;
+  color: $contrast;
+  font-size: 30pt;
+  padding: 20px;
+  border-top: 10px solid $line;
+
+  &.alert { border-color: red; color: red; }
+  &.notice { border-color: green; color: green; }
+}
+
 footer {
   border-top: 2px solid $line;
   margin-top: 132px;
@@ -85,7 +106,6 @@ footer {
   p { position: absolute; top: -1px; right: 0px; width: 200px; line-height: 14px; }
 }
 
-
 .page {
   @include centered-content;
 
@@ -93,29 +113,33 @@ footer {
   a:hover { text-decoration: underline; }
   a:active { @include opacity(0.8); }
 
-  article { padding-top: 60px; }
-
-  article h1 { @include border-radius(5px); background: $line; font-size: 21pt; color: $contrast; border-bottom: 5px solid $line; padding: 5px 10px 3px; margin-bottom: 20px;}
-  article h2 { font-size: 17pt; font-weight: bold; }
-  article h2 a { font-weight: normal; }
-
+  article + article { padding-top: 60px; }
+  article h1 { @include text-shadow(1px 1px 1px $contrast); font-size: 21pt; color: $text-color; border-bottom: 5px solid $line; padding-bottom: 5px; margin-bottom: 20px; }
+  article h2 { @include text-shadow(1px 1px 1px $contrast); font-size: 17pt; font-weight: bold; }
   article p { line-height: 16pt; }
 }
 
-#future {
-  @include border-radius(10px);
-  border: 5px solid $line;
-  padding: 20px;
-  margin-top: 40px;
-
-  article:first-child { padding-top: 0px; }
-  article:first-child h1 { border-bottom: none; }
+#logo {
+  img { display: block; margin: 0 auto; }
 }
 
+#about {
+  h1 { font-size: 22pt; line-height: 28pt; font-weight: normal; font-weight: bold; }
+}
+
+#subscribe {
+  form { @include clearfix; margin-top: 20px; }
+  form .input { float: left; margin-right: 10px; }
+  form .input label { font-weight: bold; margin-right: 10px; }
+  form .input input { @include border-radius(2px); border: 1px solid $text-color; font-size: 16px; padding: 6px 5px 6px 5px; width: 300px; }
+  form .input input:focus { border-color: $line; }
+  form .btn { @include transition(background-color 0.2s); @include border-radius(2px); background: $highlight; border: none; font-size: 14pt; float: left; color: $contrast; padding: 5px 10px 5px 10px; }
+  form .btn:hover { background-color: $text-color; text-decoration: none; }
+}
 
 #when {
-  .facebook-event { @include transition(background-color 0.2s); @include border-radius(2px); background: $highlight image-url('varnaconf2012/facebook.png') no-repeat 10px 7px; font-size: 14pt; color: $contrast; padding: 5px 10px 5px 40px; }
-  .facebook-event:hover { background-color: $text-color; text-decoration: none; }
+  .facebook-event { @include transition(all 0.2s); @include border-radius(2px); background: image-url('facebook.png') no-repeat 10px 6px; font-size: 14pt; padding: 5px 10px 5px 40px; }
+  .facebook-event:hover { background-color: $text-color; color: $contrast; text-decoration: none; }
 
   .stream { @include transition(background-color 0.2s); @include border-radius(2px); background: $highlight; font-size: 14pt; color: $contrast; padding: 5px 10px 5px 10px; float: right; }
   .stream:hover { background-color: $text-color; text-decoration: none; }
@@ -144,37 +168,20 @@ footer {
 }
 
 #schedule {
-  ol { margin-top: 40px; position: relative; }
-  ol:before {
-    content: ' ';
-    position: absolute;
-    width: 10px;
-    top: 0px;
-    bottom: 0px;
-    left: 22px;
-    background: $line;
-  }
-  ol li { line-height: 18pt; position: relative; padding-left: 70px; font-size: 16pt; }
-  ol li time {
-    @include border-radius(100%);
-    position: absolute;
-    left: 0px;
-    top: -14px;
-    background: $line;
-    padding: 14px 7px 14px 8px;
-    font-size: 10pt;
-    color: $contrast;
-  }
-  ol li + li { margin-top: 50px; }
+  ol { margin-top: 20px; }
+  ol li { line-height: 18pt; position: relative; padding-left: 60px; }
+  ol li time { position: absolute; left: 0px; top: -1px; }
+  ol li + li { margin-top: 30px; }
+  time { @include border-radius(4px); background: $line; padding: 2px 5px; font-size: 10pt; color: $contrast; }
 }
 
 #speakers {
+  h1 + section { margin-top: -40px; }
   section h2 { margin-bottom: 10px; }
-  section { position: relative; padding-left: 110px; min-height: 90px; }
+  section { position: relative; padding-left: 110px; padding-top: 50px; min-height: 90px; }
   section.empty { padding-left: 0px; margin-top: 20px; }
-  section + section { margin-top: 40px; }
 
-  a.avatar { @include transition(opacity 0.2s); position: absolute; left: 10px; top: 5px; }
+  a.avatar { @include transition(opacity 0.2s); position: absolute; left: 10px; top: 55px; }
   a.avatar img { @include border-radius(100%); }
   a.avatar:hover { @include opacity(0.9); }
   a.company { @include border-radius(4px); background: $text-color; padding: 4px 8px; font-size: 10pt; margin-right: 10px; color: $contrast; position: relative; top: -2px; margin-left: 15px; @include text-shadow(none); @include transition(all 0.2s); white-space: nowrap; }
@@ -187,7 +194,6 @@ footer {
   address { display: block; margin-top: 10px; }
   address a { font-style: italic; }
 }
-
 
 
 

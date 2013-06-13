@@ -36,10 +36,10 @@ html
         })();
 
   body
-    header
+    header data-header-top="600"
       div
         h1
-          = link_to "Varna<span>Conf</span>".html_safe, '#about'
+          = link_to @event.conference.name, '#about'
         nav
           = link_to 'Кога', '#when'
           = link_to 'Къде', '#venue'
@@ -47,6 +47,10 @@ html
           = link_to 'Лектори', '#speakers'
 
     .page
+
+      article#logo
+        = image_tag @event.logo, alt: @event.conference.name
+
       article#when
         h1 Кога?
         h2 11 август, 2012 във Варна
@@ -69,12 +73,6 @@ html
         address = @event.venue_notes
         = link_to image_tag(@event.venue_map_image_url), @event.venue_map_url, :target => :blank, :class => 'map'
 
-      article#after-party
-        h1 After Party
-        p Ще започне от 7:00 в пицария "Бънди"
-        address ул. "Генерал Колев" 1 /до Централна поща /
-        = link_to image_tag('https://mts0.google.com/vt/data=9bpo6oBUu8wggrP9BPxHGcyQr1qvUbrkDzNE2oPy8sbU1xmshdTt_ZNrAtYBxYsH4hV_B4yNMUU58uroDa5QUFYnU7o8plzV'), 'https://maps.google.bg/maps?q=maps.google.com+%D0%9F%D0%B8%D1%86%D0%B0%D1%80%D0%B8%D1%8F+%D0%91%D1%8A%D0%BD%D0%B4%D0%B8+%D0%B2%D0%B0%D1%80%D0%BD%D0%B0&ie=UTF8&fb=1&gl=bg&hq=.google.com+%D0%9F%D0%B8%D1%86%D0%B0%D1%80%D0%B8%D1%8F+%D0%91%D1%8A%D0%BD%D0%B4%D0%B8&hnear=0x40a4538baaf3d7a1:0x5727941c71a58b7c,%D0%92%D0%B0%D1%80%D0%BD%D0%B0&cid=0,0,16103792132349068513&t=h&z=16&iwloc=A', target: :blank, class: 'map'
-
       article#schedule
         h1 Програма
         - if @event.sessions.empty?
@@ -96,7 +94,6 @@ html
                   | )
 
 
-
       article#speakers
         h1 Лектори
         - @event.sessions.each do |session|
@@ -114,6 +111,19 @@ html
           section.empty
             strong Останалите лектори ще се обявят до 3ти август 2012.
 
+      article#after-party
+        h1 After Party
+        p Ще започне от 7:00 в пицария "Бънди"
+        address ул. "Генерал Колев" 1 /до Централна поща /
+        = link_to image_tag('https://mts0.google.com/vt/data=9bpo6oBUu8wggrP9BPxHGcyQr1qvUbrkDzNE2oPy8sbU1xmshdTt_ZNrAtYBxYsH4hV_B4yNMUU58uroDa5QUFYnU7o8plzV'), 'https://maps.google.bg/maps?q=maps.google.com+%D0%9F%D0%B8%D1%86%D0%B0%D1%80%D0%B8%D1%8F+%D0%91%D1%8A%D0%BD%D0%B4%D0%B8+%D0%B2%D0%B0%D1%80%D0%BD%D0%B0&ie=UTF8&fb=1&gl=bg&hq=.google.com+%D0%9F%D0%B8%D1%86%D0%B0%D1%80%D0%B8%D1%8F+%D0%91%D1%8A%D0%BD%D0%B4%D0%B8&hnear=0x40a4538baaf3d7a1:0x5727941c71a58b7c,%D0%92%D0%B0%D1%80%D0%BD%D0%B0&cid=0,0,16103792132349068513&t=h&z=16&iwloc=A', target: :blank, class: 'map'
+
+      article#subscribe
+        h1 Записвания
+        p Aко искате да сте едни от първите уведомени за новини свързани с IT Tour, моля оставете email за контакт.
+
+        = simple_form_for Subscriber.new, url: '' do |form|
+          = form.input :email, label: 'E-mail адрес'
+          = form.button :submit, 'Добави'
   footer
     div
       dl
@@ -125,7 +135,7 @@ html
         dt Минали издания:
         dd 2012
       p
-        ' Copyright © #{Date.today.year} VarnaConf.<br>
+        ' Copyright © #{Date.today.year} IT Tour.<br>
           All rights reserved.
 
   = javascript_include_tag 'application'
