@@ -7,9 +7,9 @@ html
     = javascript_include_tag 'admin'
     = csrf_meta_tags
   body
-    .navbar.navbar-inverse.navbar-fixed-top
-      .navbar-inner
-        .container
+    .container-fluid
+      .navbar.navbar-inverse
+        .navbar-inner
           = link_to 'The Tour', '#', class: 'brand'
           ul.nav
             li = link_to 'Conferences', admin_conferences_path
@@ -20,7 +20,6 @@ html
             li = link_to 'Profile', edit_admin_user_path
             li = link_to 'Sign out', sign_out_path, method: :delete
 
-    .container
       - if alert
         .alert.alert-error
           button type="button" class="close" data-dismiss="alert" &times;

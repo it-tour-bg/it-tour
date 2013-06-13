@@ -1,7 +1,9 @@
+@import "compass/reset";
+@import "compass/css3";
+@import "compass/utilities/general/clearfix";
 @import "bootstrap";
-@import "mixins";
 
-body { padding-top: 60px; }
+.container-fluid { min-width: 700px; padding-top: 20px; }
 
 .simple_form {
   .boolean { @include clearfix; }
@@ -17,6 +19,12 @@ body { padding-top: 60px; }
   .field_with_errors { color: #b94a48 }
   .field_with_errors input { border-color: #b94a48 }
 
+  input[type="text"],
+  input[type="email"],
+  input[type="url"],
+  input[type="password"] { width: 97%; min-width: 600px; }
+  textarea { resize: vertical; width: 97%; min-width: 600px; }
+
   &.form-inline {
     padding: 20px;
     background: #f5f5f5;
@@ -27,6 +35,11 @@ body { padding-top: 60px; }
     label { margin-right: 10px; }
     .btn { margin-left: 20px; }
   }
+}
+
+#new_subscriber {
+  select,
+  input[type="email"] { width: 150px; min-width: 150px; }
 }
 
 .table {
