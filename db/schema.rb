@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130612133116) do
+ActiveRecord::Schema.define(version: 20130614080808) do
 
   create_table "conferences", force: true do |t|
     t.string   "name"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20130612133116) do
     t.string   "twitter_account"
     t.string   "youtube_account"
     t.string   "domain"
+    t.string   "slogan"
   end
 
   create_table "events", force: true do |t|
