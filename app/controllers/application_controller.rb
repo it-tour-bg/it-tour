@@ -9,9 +9,15 @@ class ApplicationController < ActionController::Base
 
   self.responder = ApplicationResponder
 
+  before_filter :set_locale
+
   helper_method :current_conference
 
   private
+
+  def set_locale
+    I18n.locale = :bg
+  end
 
   def current_conference
     @current_conference ||= Conference.find_for_domain('varnaconf.com')#request.domain)

@@ -10,6 +10,10 @@ class Admin::BaseController < ApplicationController
 
   private
 
+  def set_locale
+    I18n.locale = :en
+  end
+
   def require_user
     if current_user.blank?
       redirect_to sign_in_path
