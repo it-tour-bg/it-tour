@@ -62,3 +62,10 @@
 
 a + span.label.label-info { margin-left: 10px; }
 
+#event-show {
+  article { @include border-radius(5px); padding: 0 10px 10px; margin: 20px 0 40px; border: 1px solid #e5e5e5; }
+  article .actions { margin: -5px -5px 0 0; }
+  article h4 { @include border-radius(5px 5px 0 0); padding: 10px; background: #e5e5e5; margin: -11px -11px 11px -11px }
+  article h4 .label { position: relative; top: -2px; }
+  article h4 .label + .label { margin-left: 10px; }
+}

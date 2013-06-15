@@ -6,66 +6,84 @@
   = link_to 'Edit', edit_admin_event_path(@event), class: 'btn'
   = link_to 'Delete', admin_event_path(@event), method: :delete, confirm: 'Are you sure?', class: 'btn'
 
-article
-  p Date: #{l @event.date, format: :long}
-  p Town: #{@event.town}
-  - if @event.event_url?
-    p Facebook event: #{link_to @event.event_url}
-
-- if @event.venue_name?
+#event-show
   article
-  h4 Venue
-  p = link_to @event.venue_name, @event.venue_site_url
-  p
-    ' #{@event.venue_address}<br>
-      #{@event.venue_notes}
+    h4
+      ' Dates
+      ' Venue
+      - unless @event.dates_announced?
+          span.label.label-important Not announced
 
-  - if @event.venue_map_url?
-    p = link_to 'Map', @event.venue_map_url, target: :blank
+    p #{l @event.date, format: :long}
+    p #{@event.town}
+    = link_to @event.event_url if @event.event_url
 
-- if @event.venue_name?
+  - if @event.venue_name?
+    article
+      h4
+        ' Venue
+        - unless @event.venue_announced?
+          span.label.label-important Not announced
+      p
+        ' #{link_to @event.venue_name, @event.venue_site_url}
+          #{raw "( #{link_to 'Map', @event.venue_map_url, target: :blank} )" if @event.venue_map_url?}
+      p
+        ' #{@event.venue_address}<br>
+          #{@event.venue_notes}
+
+  - if @event.after_party_venue_name?
+    article
+      h4
+        ' After party
+        - unless @event.after_party_announced?
+          span.label.label-important Not announced
+
+      p
+        ' #{link_to @event.after_party_venue_name, @event.after_party_venue_site_url}
+          #{raw "( #{link_to 'Map', @event.after_party_venue_map_url, target: :blank} )" if @event.after_party_venue_map_url?}
+
+      p
+        ' #{@event.after_party_venue_address}<br>
+          #{@event.after_party_venue_notes}
+
+
   article
-    h4 After party
-    p = link_to @event.after_party_venue_name, @event.after_party_venue_site_url
-    p
-      ' #{@event.after_party_venue_address}<br>
-        #{@event.after_party_venue_notes}
+    h4
+      ' Sessions
+      - unless @event.sessions_announced?
+        span.label.label-important Session not announced
 
-    - if @event.after_party_venue_map_url?
-      p = link_to 'Map', @event.after_party_venue_map_url, target: :blank
+      - unless @event.speakers_announced?
+        span.label.label-important Speakers not announced
 
-article#sessions
-  h4 Sessions
-
-
-  table.table
-    thead
-      tr
-        th width="1%" Start
-        th Name
-        th Speaker
-        th Slides
-        th Video
-        td width="60px"
-    tbody
-      - @event.sessions.each do |session|
+    table.table
+      thead
         tr
-          td = session.start_at
-          td = session.title
-          td = session.speaker && link_to(session.speaker.name, admin_speaker_path(session.speaker))
-          td = session.slides_url
-          td = session.video_url
-          td
-            = link_to 'Edit', edit_admin_session_path(session)
-            = link_to 'Delete', admin_session_path(session), method: :delete, confirm: 'Are you sure?'
-    tfoot
-      tr
-        th colspan="6" = link_to '+ session', new_admin_session_path(event_id: @event.id), class: 'btn'
+          th width="1%" Start
+          th Name
+          th Speaker
+          th Slides
+          th Video
+          td width="60px"
+      tbody
+        - @event.sessions.each do |session|
+          tr
+            td = session.start_at
+            td = session.title
+            td = session.speaker && link_to(session.speaker.name, admin_speaker_path(session.speaker))
+            td = session.slides_url
+            td = session.video_url
+            td
+              = link_to 'Edit', edit_admin_session_path(session)
+              = link_to 'Delete', admin_session_path(session), method: :delete, confirm: 'Are you sure?'
+      tfoot
+        tr
+          th colspan="6" = link_to '+ session', new_admin_session_path(event_id: @event.id), class: 'btn'
 
-article
-  .actions
-    = link_to 'Edit', edit_admin_event_notes_path(@event), class: 'btn'
+  article
+    .actions
+      = link_to 'Edit', edit_admin_event_notes_path(@event), class: 'btn'
 
-  h4 Notes
+    h4 Notes
 
-  = markdown @event.notes
+    = markdown @event.notes
