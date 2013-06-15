@@ -11,10 +11,4 @@ class EventsController < ApplicationController
       redirect_to root_path
     end
   end
-
-  private
-
-  def current_conference
-    Conference.find_for_domain('varnaconf.com')#request.domain)
-  end
 end

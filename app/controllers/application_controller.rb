@@ -8,4 +8,12 @@ class ApplicationController < ActionController::Base
   respond_to :html
 
   self.responder = ApplicationResponder
+
+  helper_method :current_conference
+
+  private
+
+  def current_conference
+    @current_conference ||= Conference.find_for_domain('varnaconf.com')#request.domain)
+  end
 end

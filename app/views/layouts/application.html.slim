@@ -3,19 +3,17 @@ doctype html
 html
   head
     meta charset="utf-8"
-    title = title_value
+    title = title_value || current_conference.name
 
     = stylesheet_link_tag 'application'
 
     /[ if lt IE 9 ]
       = javascript_include_tag 'vendor/html5shiv.js'
 
-
     meta content="index,follow,noydir,noodp" name="robots"
     meta content="initial-scale = 1.0" name="viewport"
 
     = yield :meta_data
-
 
     - if Rails.env.production?
       javascript:
