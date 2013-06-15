@@ -19,8 +19,9 @@ article
   p
     ' #{@event.venue_address}<br>
       #{@event.venue_notes}
-  = link_to @event.venue_map_url, target: :blank do
-    = image_tag @event.venue_map_image_url
+
+  - if @event.venue_map_url?
+    p = link_to 'Map', @event.venue_map_url, target: :blank
 
 - if @event.venue_name?
   article
@@ -29,8 +30,9 @@ article
     p
       ' #{@event.after_party_venue_address}<br>
         #{@event.after_party_venue_notes}
-    = link_to @event.after_party_venue_map_url, target: :blank do
-      = image_tag @event.after_party_venue_map_image_url
+
+    - if @event.after_party_venue_map_url?
+      p = link_to 'Map', @event.after_party_venue_map_url, target: :blank
 
 article#sessions
   h4 Sessions
