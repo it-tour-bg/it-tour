@@ -17,10 +17,10 @@ header
     h1
       = link_to @event.conference.name, '#about'
     nav
-      = link_to 'Кога', '#when'
-      = link_to 'Къде', '#venue'
-      = link_to 'Програма', '#schedule'
-      = link_to 'Лектори', '#speakers'
+      = link_to 'Кога', '#when' if @event.dates_announced?
+      = link_to 'Къде', '#venue' if @event.venue_announced?
+      = link_to 'Програма', '#schedule' if @event.sessions_announced?
+      = link_to 'Лектори', '#speakers' if @event.speakers_announced?
 
 .page
 
