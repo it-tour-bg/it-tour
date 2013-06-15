@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130614080808) do
+ActiveRecord::Schema.define(version: 20130615131401) do
 
   create_table "conferences", force: true do |t|
     t.string   "name"
@@ -28,15 +28,14 @@ ActiveRecord::Schema.define(version: 20130614080808) do
 
   create_table "events", force: true do |t|
     t.integer  "conference_id"
-    t.string   "name",                                               null: false
-    t.date     "date",                                               null: false
-    t.boolean  "publicly_announced",              default: false,    null: false
+    t.string   "name",                                          null: false
+    t.date     "date",                                          null: false
+    t.boolean  "publicly_announced",         default: false,    null: false
     t.string   "event_url"
     t.string   "venue_name"
     t.string   "venue_site_url"
     t.string   "venue_address"
     t.string   "venue_map_url"
-    t.string   "venue_map_image_url"
     t.string   "venue_notes"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -45,15 +44,14 @@ ActiveRecord::Schema.define(version: 20130614080808) do
     t.string   "after_party_venue_address"
     t.string   "after_party_venue_notes"
     t.text     "after_party_venue_map_url"
-    t.text     "after_party_venue_map_image_url"
     t.string   "town"
     t.text     "notes"
-    t.string   "state",                           default: "future", null: false
-    t.boolean  "dates_announced",                 default: false
-    t.boolean  "venue_announced",                 default: false
-    t.boolean  "after_party_announced",           default: false
-    t.boolean  "sessions_announced",              default: false
-    t.boolean  "speakers_announced",              default: false
+    t.string   "state",                      default: "future", null: false
+    t.boolean  "dates_announced",            default: false
+    t.boolean  "venue_announced",            default: false
+    t.boolean  "after_party_announced",      default: false
+    t.boolean  "sessions_announced",         default: false
+    t.boolean  "speakers_announced",         default: false
     t.string   "logo"
   end
 
