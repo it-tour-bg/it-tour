@@ -10,7 +10,7 @@ TourConf::Application.routes.draw do
 
     resource :user, only: [:edit, :update]
 
-    root to: 'conferences#index'
+    root to: redirect('/admin/conferences')
   end
 
   namespace :sign do

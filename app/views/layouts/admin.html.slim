@@ -10,7 +10,7 @@ html
     .container-fluid
       .navbar.navbar-inverse
         .navbar-inner
-          = link_to 'The Tour', '#', class: 'brand'
+          = link_to 'The Tour', admin_root_path, class: 'brand'
           ul.nav
             li = link_to 'Conferences', admin_conferences_path
             li = link_to 'Events', admin_events_path
