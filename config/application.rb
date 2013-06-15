@@ -7,7 +7,7 @@ require 'rails/all'
 Bundler.require(:default, Rails.env)
 
 # load the .env file
-Dotenv.load
+Dotenv.load unless Rails.env.production?
 
 module TourConf
   class Application < Rails::Application
