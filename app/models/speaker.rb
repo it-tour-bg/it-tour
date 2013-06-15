@@ -4,4 +4,6 @@ class Speaker < ActiveRecord::Base
   validates :name, presence: true
 
   mount_uploader :photo, SpeakerPhotoUploader
+
+  default_scope ->{ order 'name ASC' }
 end
