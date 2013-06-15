@@ -94,12 +94,17 @@ footer
   div
     dl
       dt За контакт:
-      dd = link_to 'Facebook', @event.facebook_account_url
-      dd = link_to 'Twitter', @event.twitter_account_url
-      dd = link_to @event.contact_name, "mailto:#{@event.contact_email}"
+      - if current_conference.facebook_account?
+        dd = link_to 'Facebook', "https://www.facebook.com/#{current_conference.facebook_account}"
+      - if current_conference.twitter_account?
+        dd = link_to 'Twitter', "http://twitter.com/#{current_conference.twitter_account}"
+      - if current_conference.youtube_account?
+        dd = link_to 'Twitter', "http://youtube.com/#{current_conference.youtube_account}"
+      - if current_conference.contact_name?
+        dd = link_to current_conference.contact_name, "mailto:#{current_conference.contact_email}"
     dl
       dt Издания:
-      - @event.conference.events.publicly_announced.each do |event|
+      - current_conference.events.publicly_announced.each do |event|
         dd = link_to event.name, archive_path(event.name)
     p
       ' Copyright #{copywrite}<br>

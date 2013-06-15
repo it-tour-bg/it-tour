@@ -17,14 +17,6 @@ class EventDecorator < Draper::Decorator
     sessions.map(&:speaker).compact
   end
 
-  def facebook_account_url
-    "https://www.facebook.com/#{facebook_account}"
-  end
-
-  def twitter_account_url
-    "http://twitter.com/#{twitter_account}"
-  end
-
   def start_time
     session_time_in_seconds sessions.first
   end

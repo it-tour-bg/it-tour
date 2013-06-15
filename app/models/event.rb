@@ -11,8 +11,6 @@ class Event < ActiveRecord::Base
   belongs_to :conference
   has_many :sessions, dependent: :destroy
 
-  delegate :facebook_account, :twitter_account, :youtube_account, :contact_name, :contact_email, to: :conference
-
   mount_uploader :logo, EventLogoUploader
 
   scope :publicly_announced, ->{ where publicly_announced: true }
