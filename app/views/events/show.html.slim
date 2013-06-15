@@ -1,138 +1,113 @@
-doctype html
+- title @event.full_name
 
-html
-  head
-    meta charset="utf-8"
-    title = @event.full_name
+- content_for :meta do
+  link href="#{@event.favicon}" rel="shortcut icon" type="image/vnd.microsoft.icon"
 
-    = stylesheet_link_tag 'application'
+  meta content="#{copywrite}" name="copyright"
+  meta content="#{@event.conference_name}" property="og:site_name"
+  meta content="#{@event.conference_name}" property="og:title"
+  meta content="website" property="og:type"
+  meta content="#{root_url}" property="og:url"
+  meta content="#{@event.logo}" property="og:image"
+  meta content="#{@event.conference_slogan}" property="og:description"
+  meta content="#{@event.conference_slogan}" name="description"
 
-    /[ if lt IE 9 ]
-      = javascript_include_tag 'vendor/html5shiv.js'
+header
+  div
+    h1
+      = link_to @event.conference.name, '#about'
+    nav
+      = link_to 'Кога', '#when'
+      = link_to 'Къде', '#venue'
+      = link_to 'Програма', '#schedule'
+      = link_to 'Лектори', '#speakers'
 
-    link href="#{@event.favicon}" rel="shortcut icon" type="image/vnd.microsoft.icon"
+.page
 
-    meta content="index,follow,noydir,noodp" name="robots"
-    meta content="#{copywrite}" name="copyright"
-    meta content="#{@event.conference_name}" property="og:site_name"
-    meta content="#{@event.conference_name}" property="og:title"
-    meta content="website" property="og:type"
-    meta content="#{root_url}" property="og:url"
-    meta content="#{@event.logo}" property="og:image"
-    meta content="#{@event.conference_slogan}" property="og:description"
-    meta content="#{@event.conference_slogan}" name="description"
-    meta content="initial-scale = 1.0" name="viewport"
+  - if @event.dates_announced?
+    article#when
+      h1 Кога?
+      h2 = @event.formatted_date
 
-    - if Rails.env.production?
-      javascript:
-        var _gaq = _gaq || [];
-        _gaq.push(['_setAccount', 'UA-33727462-1']);
-        _gaq.push(['_trackPageview']);
+      section
+        .entrance
+          ' Вход:
+          strong свободен
 
-        (function() {
-          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-          ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-        })();
+        .timer
+          - if @event.finished?
+            ' Събитието завърши
+          - elsif @event.ongoing?
+            ' Събитието тече в момента
+          - else
+            ' Остават:
+            div data-countdown="#{@event.start_time}"
 
-  body
-    header
-      div
-        h1
-          = link_to @event.conference.name, '#about'
-        nav
-          = link_to 'Кога', '#when'
-          = link_to 'Къде', '#venue'
-          = link_to 'Програма', '#schedule'
-          = link_to 'Лектори', '#speakers'
+      - if @event.event_url?
+        = link_to 'Събитието във Facebook', @event.event_url, class: 'facebook-event', target: 'blank'
 
-    .page
+  - if @event.venue_announced?
+    article#venue
+      h1 Къде?
 
-      - if @event.dates_announced?
-        article#when
-          h1 Кога?
-          h2 = @event.formatted_date
+      p Събитието ще се проведе във:
+      = link_to @event.venue_name, @event.venue_site_url, target: 'black', class: 'site'
+      address = @event.venue_address
+      address = @event.venue_notes
+      = link_to image_tag(@event.venue_map_image_url), @event.venue_map_url, target: :blank, class: 'map'
 
-          section
-            .entrance
-              ' Вход:
-              strong свободен
-
-            .timer
-              - if @event.finished?
-                ' Събитието завърши
-              - elsif @event.ongoing?
-                ' Събитието тече в момента
-              - else
-                ' Остават:
-                div data-countdown="#{@event.start_time}"
-
-          - if @event.event_url?
-            = link_to 'Събитието във Facebook', @event.event_url, class: 'facebook-event', target: 'blank'
-
-      - if @event.venue_announced?
-        article#venue
-          h1 Къде?
-
-          p Събитието ще се проведе във:
-          = link_to @event.venue_name, @event.venue_site_url, target: 'black', class: 'site'
-          address = @event.venue_address
-          address = @event.venue_notes
-          = link_to image_tag(@event.venue_map_image_url), @event.venue_map_url, target: :blank, class: 'map'
-
-      - if @event.sessions_announced?
-        article#schedule
-          h1 Програма
-          section
-            ol
-              - @event.sessions.each do |session|
-                li
-                  time = session.start_at
-                  = render_session session
+  - if @event.sessions_announced?
+    article#schedule
+      h1 Програма
+      section
+        ol
+          - @event.sessions.each do |session|
+            li
+              time = session.start_at
+              = render_session session
 
 
-      - if @event.speakers_announced?
-        article#speakers
-          h1 Лектори
-          - @event.speakers.each do |speaker|
-            section id="speaker-#{speaker.id}"
-              - if speaker.photo?
-                = link_to image_tag(speaker.photo), speaker.personal_site, target: :blank, class: 'avatar'
-              h2
-                = link_to speaker.name, speaker.personal_site, target: :blank
-                - if speaker.company?
-                  = link_to speaker.company, speaker.company_site, target: :blank, class: 'company'
-              p = markdown speaker.description
+  - if @event.speakers_announced?
+    article#speakers
+      h1 Лектори
+      - @event.speakers.each do |speaker|
+        section id="speaker-#{speaker.id}"
+          - if speaker.photo?
+            = link_to image_tag(speaker.photo), speaker.personal_site, target: :blank, class: 'avatar'
+          h2
+            = link_to speaker.name, speaker.personal_site, target: :blank
+            - if speaker.company?
+              = link_to speaker.company, speaker.company_site, target: :blank, class: 'company'
+          p = markdown speaker.description
 
-      - if @event.after_party_announced?
-        article#after-party
-          h1 After Party
-          = link_to @event.after_party_venue_name, @event.after_party_venue_site_url, target: 'black', class: 'site'
-          address = @event.after_party_venue_address
-          address = @event.after_party_venue_notes
-          = link_to image_tag(@event.after_party_venue_map_image_url), @event.after_party_venue_map_url, target: :blank, class: 'map'
+  - if @event.after_party_announced?
+    article#after-party
+      h1 After Party
+      = link_to @event.after_party_venue_name, @event.after_party_venue_site_url, target: 'black', class: 'site'
+      address = @event.after_party_venue_address
+      address = @event.after_party_venue_notes
+      = link_to image_tag(@event.after_party_venue_map_image_url), @event.after_party_venue_map_url, target: :blank, class: 'map'
 
-      article#subscribe
-        h1 Записвания
-        p Aко искате да сте едни от първите уведомени за новини свързани с IT Tour, моля оставете email за контакт.
+  article#subscribe
+    h1 Записвания
+    p Aко искате да сте едни от първите уведомени за новини свързани с IT Tour, моля оставете email за контакт.
 
-        = simple_form_for Subscriber.new, url: '' do |form|
-          = form.input :email, label: 'E-mail адрес'
-          = form.button :submit, 'Добави'
-  footer
-    div
-      dl
-        dt За контакт:
-        dd = link_to 'Facebook', @event.facebook_account_url
-        dd = link_to 'Twitter', @event.twitter_account_url
-        dd = link_to @event.contact_name, "mailto:#{@event.contact_email}"
-      dl
-        dt Издания:
-        - @event.conference.events.publicly_announced.each do |event|
-          dd = link_to event.name, archive_path(event.name)
-      p
-        ' Copyright #{copywrite}<br>
-          All rights reserved.
+    = simple_form_for Subscriber.new, url: '' do |form|
+      = form.input :email, label: 'E-mail адрес'
+      = form.button :submit, 'Добави'
 
-  = javascript_include_tag 'application'
+footer
+  div
+    dl
+      dt За контакт:
+      dd = link_to 'Facebook', @event.facebook_account_url
+      dd = link_to 'Twitter', @event.twitter_account_url
+      dd = link_to @event.contact_name, "mailto:#{@event.contact_email}"
+    dl
+      dt Издания:
+      - @event.conference.events.publicly_announced.each do |event|
+        dd = link_to event.name, archive_path(event.name)
+    p
+      ' Copyright #{copywrite}<br>
+        All rights reserved.
 

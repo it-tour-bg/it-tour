@@ -1,6 +1,4 @@
 class EventsController < ApplicationController
-  layout false
-
   def index
     @event = EventDecorator.decorate current_conference.current_event
     render :show
