@@ -16,7 +16,7 @@ describe EventLogoUploader do
     FileUtils.rm_r Rails.root.join('public', uploader.store_dir)
   end
 
-  it "has a version - thumb 100x100" do
+  it "has a version - thumb 50x50" do
     expect(uploader.favicon).to have_dimensions 50, 50
   end
 end

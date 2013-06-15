@@ -16,7 +16,7 @@ describe SpeakerPhotoUploader do
     FileUtils.rm_r Rails.root.join('public', uploader.store_dir)
   end
 
-  it "has a version - thumb 100x100" do
-    expect(uploader.thumb).to have_dimensions 100, 100
+  it "has a version - thumb 80x80" do
+    expect(uploader.thumb).to have_dimensions 80, 80
   end
 end

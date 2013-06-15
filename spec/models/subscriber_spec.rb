@@ -7,7 +7,7 @@ describe Subscriber do
   it "can returns its first error message" do
     subscriber = Subscriber.new
     subscriber.valid?
-    expect(subscriber.error_message).to eq "Email can't be blank"
+    expect(subscriber.error_message).to include 'Email'
   end
 
   it "can select only active subscribers" do

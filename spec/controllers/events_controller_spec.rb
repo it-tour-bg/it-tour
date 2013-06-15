@@ -5,8 +5,8 @@ describe EventsController do
   let(:conference) { double 'conference' }
 
   before do
-    Conference.stub(:find_for_domain).with('varnaconf.com').and_return conference
-    request.host = 'varnaconf.com'
+    Conference.stub(:find_for_domain).with('exampleconf.com').and_return conference
+    request.host = 'exampleconf.com'
   end
 
   describe "GET index" do
