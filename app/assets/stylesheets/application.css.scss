@@ -24,27 +24,18 @@ $max-width: 900px;
 body {
   font-family: "Lucida Grande", tahoma, verdana, arial, sans-serif;;
   font-size: 12pt;
-  padding-top: 50px;
   color: $text-color;
 }
 
 a { color: $link; text-decoration: none; }
 
 header {
-  @include opacity(0);
   @include transition(height 0.2s, opacity 0.3s);
 
-  overflow: hidden;
   background: $text-color;
   border-bottom: 5px solid $highlight;
-  position: fixed;
-  top: 0px;
-  left: 0px;
-  right: 0px;
-  z-index: 10;
-  height: 0px;
-
-  &.visible { @include opacity(1); height: 38px; }
+  height: 38px;
+  margin-bottom: 50px;
 
   div { @include centered-content; padding-top: 5px; }
 
@@ -113,7 +104,7 @@ footer {
   a:hover { text-decoration: underline; }
   a:active { @include opacity(0.8); }
 
-  article + article { padding-top: 60px; }
+  article + article { padding-top: 20px; margin-top: 20px; }
   article h1 { @include text-shadow(1px 1px 1px $contrast); font-size: 21pt; color: $text-color; border-bottom: 5px solid $line; padding-bottom: 5px; margin-bottom: 20px; }
   article h2 { @include text-shadow(1px 1px 1px $contrast); font-size: 17pt; font-weight: bold; }
   article p { line-height: 16pt; }
@@ -147,8 +138,25 @@ footer {
   section { @include border-radius(4px); @include clearfix; padding: 20px 20px 0px; margin: 50px 0; background: $line; }
   section > div { float: left; margin-bottom: 20px; }
   section strong { font-weight: bold; display: block; margin-top: 5px; font-size: 30pt; text-transform: uppercase; }
-  section .entrance { margin-right: 150px; margin-bottom: 20px;  }
-  section .timer { margin-top: 21px; font-weight: bold; text-transform: uppercase; font-size: 30pt; }
+  // section .entrance { margin-right: 150px; margin-bottom: 20px;  }
+  // section .timer { margin-top: 21px; font-weight: bold; text-transform: uppercase; font-size: 30pt; }
+  section .entrance { margin-right: 200px; margin-bottom: 20px;  }
+  section .timer div { margin-top: 5px; }
+
+  .hasCountdown { width: 200px;}
+  .hasCountdown .countdown_rtl { direction: rtl; }
+  .hasCountdown .countdown_row { clear: both; width: 100%; padding: 0px 2px; text-align: center; }
+  .hasCountdown .countdown_show1 .countdown_section { width: 95%; }
+  .hasCountdown .countdown_show2 .countdown_section { width: 46%; }
+  .hasCountdown .countdown_show3 .countdown_section { width: 29.5%; }
+  .hasCountdown .countdown_show4 .countdown_section { width: 20.5%; }
+  .hasCountdown .countdown_show5 .countdown_section { width: 16.5%; }
+  .hasCountdown .countdown_show6 .countdown_section { width: 13.25%; }
+  .hasCountdown .countdown_show7 .countdown_section { width: 10%; }
+  .hasCountdown .countdown_section { display: block; float: left; font-size: 75%; text-align: center; }
+  .hasCountdown .countdown_section + .countdown_section { margin-left: 10px; }
+  .hasCountdown .countdown_amount { font-size: 18pt; font-weight: bold; }
+  .hasCountdown .countdown_descr { display: block; width: 100%; }
 }
 
 #venue,

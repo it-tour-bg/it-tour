@@ -14,14 +14,10 @@ class Conference < ActiveRecord::Base
   end
 
   def current_event
-    events.find_by! state: 'current'
+    events.publicly_announced.find_by! state: 'current'
   end
 
-  def finished_event_named(name)
-    events.find_by! state: 'finished', name: name
-  end
-
-  def finished_events
-    events.where(state: 'finished').order('name ASC')
+  def announced_event_named(name)
+    events.publicly_announced.find_by! name: name
   end
 end

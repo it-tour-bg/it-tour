@@ -10,18 +10,18 @@ html
     /[ if lt IE 9 ]
       = javascript_include_tag 'vendor/html5shiv.js'
 
-    link href="#{raw image_path('varnaconf2012/favicon.png')}" rel="shortcut icon" type="image/vnd.microsoft.icon"
+    link href="#{@event.favicon}" rel="shortcut icon" type="image/vnd.microsoft.icon"
 
-    meta content="VarnaConf" property="og:site_name"
     meta content="index,follow,noydir,noodp" name="robots"
-    meta content="(c) 2012 Copyright: VarnaConf" name="copyright"
-    meta content="VarnaConf" property="og:title"
+    meta content="#{copywrite}" name="copyright"
+    meta content="#{@event.conference_name}" property="og:site_name"
+    meta content="#{@event.conference_name}" property="og:title"
     meta content="website" property="og:type"
-    meta content="http://varnaconf.com" property="og:url"
-    meta content="http://varnaconf.com#{raw image_path('varnaconf2012/logo.png')}" property="og:image"
-    meta content="Developer conference in Varna" property="og:description"
-    meta content="Developer conference in Varna" name="description"
-    meta name="viewport" content="initial-scale = 1.0"
+    meta content="#{root_url}" property="og:url"
+    meta content="#{@event.logo}" property="og:image"
+    meta content="#{@event.conference_slogan}" property="og:description"
+    meta content="#{@event.conference_slogan}" name="description"
+    meta content="initial-scale = 1.0" name="viewport"
 
     - if Rails.env.production?
       javascript:
@@ -36,7 +36,7 @@ html
         })();
 
   body
-    header data-header-top="600"
+    header
       div
         h1
           = link_to @event.conference.name, '#about'
@@ -48,74 +48,69 @@ html
 
     .page
 
-      article#logo
-        = image_tag @event.logo, alt: @event.conference.name
+      - if @event.dates_announced?
+        article#when
+          h1 Кога?
+          h2 = @event.formatted_date
 
-      article#when
-        h1 Кога?
-        h2 11 август, 2012 във Варна
+          section
+            .entrance
+              ' Вход:
+              strong свободен
 
-        section
-          .entrance
-            ' Вход:
-            strong свободен
-          .timer
-            ' Събитието завърши
+            .timer
+              - if @event.finished?
+                ' Събитието завърши
+              - elsif @event.ongoing?
+                ' Събитието тече в момента
+              - else
+                ' Остават:
+                div data-countdown="#{@event.start_time}"
 
-        = link_to 'Събитието във Facebook', @event.event_url, :class => 'facebook-event', :target => 'blank'
+          - if @event.event_url?
+            = link_to 'Събитието във Facebook', @event.event_url, class: 'facebook-event', target: 'blank'
 
-      article#venue
-        h1 Къде?
+      - if @event.venue_announced?
+        article#venue
+          h1 Къде?
 
-        p Събитието ще се проведе във:
-        = link_to @event.venue_name, @event.venue_site_url, :target => 'black', :class => 'site'
-        address = @event.venue_address
-        address = @event.venue_notes
-        = link_to image_tag(@event.venue_map_image_url), @event.venue_map_url, :target => :blank, :class => 'map'
+          p Събитието ще се проведе във:
+          = link_to @event.venue_name, @event.venue_site_url, target: 'black', class: 'site'
+          address = @event.venue_address
+          address = @event.venue_notes
+          = link_to image_tag(@event.venue_map_image_url), @event.venue_map_url, target: :blank, class: 'map'
 
-      article#schedule
-        h1 Програма
-        - if @event.sessions.empty?
-          section.empty
-            strong Ще се обяви на 3ти август 2012.
-        - else
+      - if @event.sessions_announced?
+        article#schedule
+          h1 Програма
           section
             ol
               - @event.sessions.each do |session|
                 li
                   time = session.start_at
-                  = session.title
-                  - if session.speaker.present?
-                    '  -
-                    = link_to session.speaker.name, "##{session.speaker_id}"
-                  |  (#{link_to 'видео', session.video_url, target: :blank}
-                  - if session.slides_url
-                    | , #{link_to 'слайдове', session.slides_url, target: :blank}
-                  | )
+                  = render_session session
 
 
-      article#speakers
-        h1 Лектори
-        - @event.sessions.each do |session|
-          - speaker = session.speaker
-          - if speaker
-            section id="#{speaker.id}"
-              = link_to image_tag('http://varnaconf.com/assets/speakers/radoslav-stankov-81c78a046195ed13945fa769c031d30e.jpg'), speaker.personal_site, :target => :blank, :class => 'avatar'
+      - if @event.speakers_announced?
+        article#speakers
+          h1 Лектори
+          - @event.speakers.each do |speaker|
+            section id="speaker-#{speaker.id}"
+              - if speaker.photo?
+                = link_to image_tag(speaker.photo), speaker.personal_site, target: :blank, class: 'avatar'
               h2
-                = link_to speaker.name, speaker.personal_site, :target => :blank
+                = link_to speaker.name, speaker.personal_site, target: :blank
                 - if speaker.company?
-                  = link_to speaker.company, speaker.company_site, :target => :blank, :class => 'company'
-              p = raw speaker.description
+                  = link_to speaker.company, speaker.company_site, target: :blank, class: 'company'
+              p = markdown speaker.description
 
-        - if @event.sessions.empty?
-          section.empty
-            strong Останалите лектори ще се обявят до 3ти август 2012.
-
-      article#after-party
-        h1 After Party
-        p Ще започне от 7:00 в пицария "Бънди"
-        address ул. "Генерал Колев" 1 /до Централна поща /
-        = link_to image_tag('https://mts0.google.com/vt/data=9bpo6oBUu8wggrP9BPxHGcyQr1qvUbrkDzNE2oPy8sbU1xmshdTt_ZNrAtYBxYsH4hV_B4yNMUU58uroDa5QUFYnU7o8plzV'), 'https://maps.google.bg/maps?q=maps.google.com+%D0%9F%D0%B8%D1%86%D0%B0%D1%80%D0%B8%D1%8F+%D0%91%D1%8A%D0%BD%D0%B4%D0%B8+%D0%B2%D0%B0%D1%80%D0%BD%D0%B0&ie=UTF8&fb=1&gl=bg&hq=.google.com+%D0%9F%D0%B8%D1%86%D0%B0%D1%80%D0%B8%D1%8F+%D0%91%D1%8A%D0%BD%D0%B4%D0%B8&hnear=0x40a4538baaf3d7a1:0x5727941c71a58b7c,%D0%92%D0%B0%D1%80%D0%BD%D0%B0&cid=0,0,16103792132349068513&t=h&z=16&iwloc=A', target: :blank, class: 'map'
+      - if @event.after_party_announced?
+        article#after-party
+          h1 After Party
+          = link_to @event.after_party_venue_name, @event.after_party_venue_site_url, target: 'black', class: 'site'
+          address = @event.after_party_venue_address
+          address = @event.after_party_venue_notes
+          = link_to image_tag(@event.after_party_venue_map_image_url), @event.after_party_venue_map_url, target: :blank, class: 'map'
 
       article#subscribe
         h1 Записвания
@@ -128,14 +123,15 @@ html
     div
       dl
         dt За контакт:
-        dd = link_to 'Facebook', "https://www.facebook.com/#{@event.facebook_account}"
-        dd = link_to 'Twitter', "http://twitter.com/#{@event.twitter_account}"
+        dd = link_to 'Facebook', @event.facebook_account_url
+        dd = link_to 'Twitter', @event.twitter_account_url
         dd = link_to @event.contact_name, "mailto:#{@event.contact_email}"
       dl
-        dt Минали издания:
-        dd 2012
+        dt Издания:
+        - @event.conference.events.publicly_announced.each do |event|
+          dd = link_to event.name, archive_path(event.name)
       p
-        ' Copyright © #{Date.today.year} IT Tour.<br>
+        ' Copyright #{copywrite}<br>
           All rights reserved.
 
   = javascript_include_tag 'application'

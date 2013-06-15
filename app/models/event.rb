@@ -15,7 +15,19 @@ class Event < ActiveRecord::Base
 
   mount_uploader :logo, EventLogoUploader
 
+  scope :publicly_announced, ->{ where publicly_announced: true }
+
+  default_scope ->{ order('name DESC') }
+
   def full_name
     "#{conference.name} #{name}"
+  end
+
+  def finished?
+    state == 'finished'
+  end
+
+  def current?
+    state == 'current'
   end
 end

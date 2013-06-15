@@ -9,4 +9,6 @@ class Session < ActiveRecord::Base
   belongs_to :speaker
 
   default_scope -> { order 'start_at ASC' }
+
+  delegate :name, to: :speaker, prefix: true
 end

@@ -19,6 +19,7 @@ gem 'responders'
 gem 'fog', '~> 1.3.1'
 gem 'carrierwave'
 gem 'rmagick'
+gem 'draper'
 
 group :development, :test do
   gem 'rspec-rails'

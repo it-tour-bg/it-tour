@@ -6,16 +6,12 @@
 
 $.fn.eachWithElement = (callback) -> @each (i) -> callback $(this), i
 
-$('[data-counter]').eachWithElement (element) ->
-  element.countdown until: new Date(element.data('counter'))
-
-$('[data-header-top]').eachWithElement (element) ->
-  top = element.data('header-top')
-  win = $(window)
-  win.scroll -> element.toggleClass 'visible', win.scrollTop() > top
+$('[data-countdown]').eachWithElement (element) ->
+  date = new Date(element.data('countdown') * 1000)
+  console.log date
+  element.countdown until: date
 
 $('body')
-  .scrollspy(selector: '> header a')
   .on 'click', 'a[href*=#]', (e) ->
     hash  = $(e.target).closest('a').attr('href')
     target = $(hash)

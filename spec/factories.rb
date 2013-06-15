@@ -15,6 +15,7 @@ FactoryGirl.define do
     name 'year name'
     date Date.new(2013, 6, 20)
     state 'finished'
+    publicly_announced true
 
     factory :future_event do
       state 'future'

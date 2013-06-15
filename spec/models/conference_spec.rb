@@ -28,33 +28,22 @@ describe Conference do
     end
   end
 
-  describe "#finished_event_named" do
+  describe "#announced_event_named" do
     it "finds event by given name" do
       conference = create :conference
 
-      event = create :finished_event, conference: conference
-      other = create :finished_event, conference: conference
+      event = create :event, conference: conference
+      other = create :event, conference: conference
 
-      expect(conference.finished_event_named(event.name)).to eq event
+      expect(conference.announced_event_named(event.name)).to eq event
     end
 
-    it "finds only finished events" do
-      conference = create :conference
-      event = create :current_event, conference: conference
-      expect { conference.finished_event_named(event.name) }.to raise_error ActiveRecord::RecordNotFound
-    end
-  end
-
-  describe "#finished_events" do
-    it "lists all finished events" do
+    it "finds only publicly_announced events" do
       conference = create :conference
 
-      future    = create :future_event, conference: conference
-      current   = create :current_event, conference: conference
-      finished1 = create :finished_event, conference: conference, name: '2012'
-      finished2 = create :finished_event, conference: conference, name: '2013'
+      event = create :event, conference: conference, publicly_announced: false
 
-      expect(conference.finished_events).to eq [finished1, finished2]
+      expect { conference.announced_event_named(event.name) }.to raise_error ActiveRecord::RecordNotFound
     end
   end
 end

@@ -2,12 +2,16 @@ class EventsController < ApplicationController
   layout false
 
   def index
-    @event = current_conference.current_event
+    @event = EventDecorator.decorate current_conference.current_event
     render :show
   end
 
   def show
-    @event = current_conference.finished_event_named(params[:year])
+    @event = EventDecorator.decorate current_conference.announced_event_named(params[:year])
+
+    if @event.current?
+      redirect_to root_path
+    end
   end
 
   private
