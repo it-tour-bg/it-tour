@@ -13,6 +13,11 @@ class ApplicationController < ActionController::Base
 
   before_filter :set_locale
 
+  # TODO: remove when the site goes public
+  if Rails.env.production?
+    http_basic_authenticate_with name: 'ITTour', password: 'starts!'
+  end
+
   private
 
   def set_locale

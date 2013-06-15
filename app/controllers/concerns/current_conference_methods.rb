@@ -8,6 +8,12 @@ module CurrentConferenceMethods
   private
 
   def current_conference
-    @current_conference ||= Conference.find_for_domain('varnaconf.com')#request.domain)
+    @current_conference ||= begin
+      domain = request.domain
+      domain = params[:domain] || 'varnaconf.com' # TODO remove when site goes public
+      domain = 'exampleconf.com' unless Rails.env.production?
+
+      Conference.find_for_domain(domain)
+    end
   end
 end
