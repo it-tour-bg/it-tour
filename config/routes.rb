@@ -19,6 +19,8 @@ TourConf::Application.routes.draw do
     delete :out, to: 'sessions#destroy'
   end
 
+  resource :subscribers, only: [:new, :create]
+
   get 'archive/:year', to: 'events#show', as: :archive
 
   root to: 'events#index'

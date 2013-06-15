@@ -88,13 +88,7 @@ header
       address = @event.after_party_venue_notes
       = link_to image_tag(@event.after_party_venue_map_image_url), @event.after_party_venue_map_url, target: :blank, class: 'map'
 
-  article#subscribe
-    h1 Записвания
-    p Aко искате да сте едни от първите уведомени за новини свързани с IT Tour, моля оставете email за контакт.
-
-    = simple_form_for Subscriber.new, url: '' do |form|
-      = form.input :email, label: 'E-mail адрес'
-      = form.button :submit, 'Добави'
+  = render 'subscribers/form'
 
 footer
   div
