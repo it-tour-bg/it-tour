@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130615131401) do
+ActiveRecord::Schema.define(version: 20130615161007) do
 
   create_table "conferences", force: true do |t|
     t.string   "name"
@@ -76,6 +76,7 @@ ActiveRecord::Schema.define(version: 20130615131401) do
     t.datetime "updated_at"
     t.string   "twitter_account"
     t.string   "photo"
+    t.string   "tshirt_size"
   end
 
   create_table "subscribers", force: true do |t|
