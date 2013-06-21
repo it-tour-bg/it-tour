@@ -13,12 +13,19 @@ class ApplicationController < ActionController::Base
 
   before_filter :set_locale
 
-  # TODO: remove when the site goes public
+  # TODO: remove when the all sites are public
   if Rails.env.production?
-    http_basic_authenticate_with name: 'ITTour', password: 'starts!'
+    before_filter :hide_non_public_confernecs
   end
 
   private
+
+  def hide_non_public_confernecs
+    return if request.domain == 'varnaconf.com'
+    authenticate_or_request_with_http_basic do |name, password|
+      name == 'ITTour' && password == 'starts!'
+    end
+  end
 
   def set_locale
     I18n.locale = :bg
