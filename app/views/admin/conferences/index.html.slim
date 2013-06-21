@@ -15,7 +15,9 @@ table.table
       tr
         td = link_to conference.name, admin_conference_path(conference)
         td = link_to conference.domain, root_url(domain: conference.domain) if conference.domain?
-        td #{conference.contact_name} (#{conference.contact_email})
+        td
+          - if conference.contact_name?
+            ' #{conference.contact_name} (#{conference.contact_email})
         td width="1%"
           = link_to 'Edit', edit_admin_conference_path(conference), class: 'btn'
 
