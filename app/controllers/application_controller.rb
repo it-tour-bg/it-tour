@@ -21,7 +21,7 @@ class ApplicationController < ActionController::Base
   private
 
   def hide_non_public_confernecs
-    return if request.domain == 'varnaconf.com'
+    return if %[varnaconf.com plovdivconf.com].include? request.domain
     authenticate_or_request_with_http_basic do |name, password|
       name == 'ITTour' && password == 'starts!'
     end
