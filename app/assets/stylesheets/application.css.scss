@@ -55,13 +55,7 @@ header {
   nav a:active { @include opacity(0.8); }
 
   @media all and (max-width: 600px) {
-    position: absolute;
-    height: 32px;
-
-    h1 { display: none; }
-    nav { position: static; margin: 0 auto; width: 325px; }
-    nav a { font-size: 10pt; padding-left: 7px; padding-right: 8px; }
-    nav a + a { margin-left: 0px; }
+    nav { display: none; }
   }
 }
 
@@ -78,6 +72,13 @@ footer {
   dl dd { float: left; }
   dl dd + dd:before { content: ", " }
   p { position: absolute; top: -1px; right: 0px; width: 200px; line-height: 14px; }
+
+
+  @media all and (max-width: 680px) {
+    dl { clear: both; }
+    dl + dl { margin: 10px 0; }
+    p { position: relative; }
+  }
 }
 
 .page {
@@ -107,9 +108,9 @@ footer {
   form { @include clearfix; margin-top: 20px; }
   form .input { float: left; margin-right: 10px; }
   form .input label { font-weight: bold; margin-right: 10px; }
-  form .input input { @include border-radius(2px); border: 1px solid $text-color; font-size: 16px; padding: 6px 5px 6px 5px; width: 300px; }
+  form .input input { @include border-radius(2px); border: 1px solid $text-color; font-size: 16px; margin: 10px 0; padding: 6px 5px 6px 5px; width: 300px; }
   form .input input:focus { border-color: $line; }
-  form .btn { @include transition(background-color 0.2s); @include border-radius(2px); background: $highlight; border: none; font-size: 14pt; float: left; color: $contrast; padding: 5px 10px 5px 10px; }
+  form .btn { @include transition(background-color 0.2s); @include border-radius(2px); background: $highlight; border: none; font-size: 14pt; float: left; color: $contrast; padding: 5px 10px 5px 10px; margin: 10px 0; }
   form .btn:hover { background-color: $text-color; text-decoration: none; }
   form .error { padding-left: 20px; color: $error; }
 }
@@ -143,6 +144,10 @@ footer {
   .hasCountdown .countdown_section + .countdown_section { margin-left: 10px; }
   .hasCountdown .countdown_amount { font-size: 18pt; font-weight: bold; }
   .hasCountdown .countdown_descr { display: block; width: 100%; }
+}
+
+#coverart {
+  img { width: 100%; max-width: 900px; }
 }
 
 #venue,
@@ -181,6 +186,13 @@ footer {
   .company { @include border-radius(4px); background: $text-color; padding: 4px 8px; font-size: 10pt; margin-right: 10px; color: $contrast; position: relative; top: -2px; margin-left: 15px; @include text-shadow(none); @include transition(all 0.2s); white-space: nowrap; }
   a.company:hover { background: $line; color: $text-color; text-decoration: none; }
   p { line-height: 17pt; }
+
+  @media all and (max-width: 600px) {
+    p { display: none; }
+    a.name { display: block; margin-bottom: 15px; }
+    a.avatar { top: 45px; }
+    .company { margin-left: 0px; }
+  }
 }
 
 #contact {
@@ -188,6 +200,3 @@ footer {
   address { display: block; margin-top: 10px; }
   address a { font-style: italic; }
 }
-
-
-

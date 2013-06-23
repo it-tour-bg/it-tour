@@ -78,7 +78,7 @@ header
           - if speaker.photo?
             = link_to image_tag(speaker.photo.url(:thumb)), speaker.personal_site, target: :blank, class: 'avatar'
           h2
-            = link_to speaker.name, speaker.personal_site, target: :blank
+            = link_to speaker.name, speaker.personal_site, target: :blank, class: 'name'
             - if speaker.company?
               - if speaker.company_site?
                 = link_to speaker.company, speaker.company_site, target: :blank, class: 'company'
