@@ -11,7 +11,10 @@ table.table
   tbody
     - @events.each do |event|
       tr
-        td = link_to event.full_name, admin_event_path(event)
+        td
+          = link_to event.full_name, admin_event_path(event)
+          = raw ' <mark class="label label-important">current</mark>' if event.current?
+          = raw ' <mark class="label label-notice">hidden</mark>' unless event.publicly_announced?
         td width="1%"
           = link_to 'Edit', edit_admin_event_path(event), class: 'btn'
 

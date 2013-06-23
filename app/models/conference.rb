@@ -12,7 +12,7 @@ class Conference < ActiveRecord::Base
   end
 
   def current_event
-    events.publicly_announced.find_by! state: 'current'
+    events.publicly_announced.order('current DESC').first!
   end
 
   def announced_event_named(name)

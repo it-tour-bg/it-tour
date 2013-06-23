@@ -10,6 +10,9 @@
   .boolean label { @include inline-block; }
   .boolean .controls { @include inline-block; float: left; }
 
+  .boolean .error { position: relative; top: -1px; }
+  .boolean .error:before { content: " - " }
+
   textarea { resize: vertical; }
 
   h1 + & { border-top: 1px solid #e5e5e5; margin-top: 20px; padding-top: 20px; }

@@ -24,6 +24,15 @@ describe Conference do
 
       expect(conference.current_event).to eq current
     end
+
+    it "fallbacks to previous events there isn't a current event" do
+      conference = create :conference
+
+      future   = create :future_event, conference: conference
+      finished = create :finished_event, conference: conference
+
+      expect(conference.current_event).to eq finished
+    end
   end
 
   describe "#announced_event_named" do
@@ -36,7 +45,7 @@ describe Conference do
       expect(conference.announced_event_named(event.name)).to eq event
     end
 
-    it "finds only publicly_announced events" do
+    it "finds only publicly announced events" do
       conference = create :conference
 
       event = create :event, conference: conference, publicly_announced: false

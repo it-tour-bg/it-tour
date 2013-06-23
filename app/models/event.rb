@@ -1,15 +1,17 @@
 class Event < ActiveRecord::Base
-  STATES = %w(future current finished)
-
   validates :name, presence: true
   validates :conference, presence: true
   validates :date, presence: true
-  validates :state, presence: true, inclusion: {in: STATES}
+
+  validate :ensure_current_event_is_visible
+
+  after_save :ensure_only_one_current_event_in_conference, if: :current?
 
   attr_readonly :conference_id
 
   belongs_to :conference
   has_many :sessions, dependent: :destroy
+
 
   mount_uploader :logo, EventLogoUploader
   mount_uploader :coverart, EventCoverartUploader
@@ -22,11 +24,13 @@ class Event < ActiveRecord::Base
     "#{conference.name} #{name}"
   end
 
-  def finished?
-    state == 'finished'
+  private
+
+  def ensure_current_event_is_visible
+    errors.add :current, 'should be publicly announced' if current? and not publicly_announced?
   end
 
-  def current?
-    state == 'current'
+  def ensure_only_one_current_event_in_conference
+    conference.events.where('id != ? AND current', id).update_all current: false
   end
 end

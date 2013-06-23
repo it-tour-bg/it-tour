@@ -14,19 +14,19 @@ FactoryGirl.define do
     conference
     name 'year name'
     date Date.new(2013, 6, 20)
-    state 'finished'
     publicly_announced true
+    current false
 
     factory :future_event do
-      state 'future'
+      publicly_announced false
     end
 
     factory :current_event do
-      state 'current'
+      current true
     end
 
     factory :finished_event do
-      state 'finished'
+      date { 1.year.ago }
     end
   end
 
