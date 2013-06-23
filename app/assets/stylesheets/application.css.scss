@@ -177,7 +177,8 @@ footer {
   a.avatar { @include transition(opacity 0.2s); position: absolute; left: 10px; top: 55px; }
   a.avatar img { @include border-radius(100%); }
   a.avatar:hover { @include opacity(0.9); }
-  a.company { @include border-radius(4px); background: $text-color; padding: 4px 8px; font-size: 10pt; margin-right: 10px; color: $contrast; position: relative; top: -2px; margin-left: 15px; @include text-shadow(none); @include transition(all 0.2s); white-space: nowrap; }
+
+  .company { @include border-radius(4px); background: $text-color; padding: 4px 8px; font-size: 10pt; margin-right: 10px; color: $contrast; position: relative; top: -2px; margin-left: 15px; @include text-shadow(none); @include transition(all 0.2s); white-space: nowrap; }
   a.company:hover { background: $line; color: $text-color; text-decoration: none; }
   p { line-height: 17pt; }
 }

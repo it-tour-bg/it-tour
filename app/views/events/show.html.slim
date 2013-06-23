@@ -77,7 +77,10 @@ header
           h2
             = link_to speaker.name, speaker.personal_site, target: :blank
             - if speaker.company?
-              = link_to speaker.company, speaker.company_site, target: :blank, class: 'company'
+              - if speaker.company_site?
+                = link_to speaker.company, speaker.company_site, target: :blank, class: 'company'
+              - else
+                span.company = speaker.company
           p = markdown speaker.description
 
   - if @event.after_party_announced?
