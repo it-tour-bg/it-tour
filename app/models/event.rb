@@ -12,6 +12,7 @@ class Event < ActiveRecord::Base
   has_many :sessions, dependent: :destroy
 
   mount_uploader :logo, EventLogoUploader
+  mount_uploader :coverart, EventCoverartUploader
 
   scope :publicly_announced, ->{ where publicly_announced: true }
 

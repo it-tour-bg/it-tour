@@ -23,6 +23,9 @@ header
       = link_to 'Лектори', '#speakers' if @event.speakers_announced?
 
 .page
+  - if @event.coverart?
+    article#coverart
+      = image_tag @event.coverart.url(:default), alt: @event.full_name
 
   - if @event.dates_announced?
     article#when

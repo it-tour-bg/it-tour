@@ -9,6 +9,14 @@
 
 #event-show
   article
+    h4 Media
+    - if @event.coverart?
+      = image_tag @event.coverart.url(:default)
+
+    - if @event.logo?
+      = image_tag @event.logo.url
+
+  article
     h4
       ' Dates
       ' Venue

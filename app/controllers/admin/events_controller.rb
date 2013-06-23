@@ -61,6 +61,7 @@ class Admin::EventsController < Admin::BaseController
       :sessions_announced,
       :speakers_announced,
       :logo,
+      :coverart,
     )
   end
 end

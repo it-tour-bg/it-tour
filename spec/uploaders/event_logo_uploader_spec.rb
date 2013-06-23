@@ -4,7 +4,7 @@ describe EventLogoUploader do
   include CarrierWave::Test::Matchers
 
   let(:event)  { create :event }
-  let(:uploader) { EventLogoUploader.new event, :photo }
+  let(:uploader) { EventLogoUploader.new event, :logo }
 
   before do
     EventLogoUploader.enable_processing = true
