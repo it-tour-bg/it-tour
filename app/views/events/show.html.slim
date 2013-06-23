@@ -37,12 +37,12 @@ header
           ' Вход:
           strong свободен
 
-        .timer
-          - if @event.finished?
-            ' Събитието завърши
-          - elsif @event.ongoing?
-            ' Събитието тече в момента
-          - else
+        - if @event.finished?
+          .state Събитието завърши
+        - elsif @event.ongoing?
+          .state Събитието тече в момента
+        - else
+          .timer
             ' Остават:
             div data-countdown="#{@event.start_time}"
 

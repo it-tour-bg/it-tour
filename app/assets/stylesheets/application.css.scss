@@ -125,9 +125,8 @@ footer {
   section { @include border-radius(4px); @include clearfix; padding: 20px 20px 0px; margin: 50px 0; background: $line; }
   section > div { float: left; margin-bottom: 20px; }
   section strong { font-weight: bold; display: block; margin-top: 5px; font-size: 30pt; text-transform: uppercase; }
-  // section .entrance { margin-right: 150px; margin-bottom: 20px;  }
-  // section .timer { margin-top: 21px; font-weight: bold; text-transform: uppercase; font-size: 30pt; }
-  section .entrance { margin-right: 200px; margin-bottom: 20px;  }
+  section .entrance { margin-right: 150px; margin-bottom: 20px;  }
+  section .state { margin-top: 21px; font-weight: bold; text-transform: uppercase; font-size: 30pt; }
   section .timer div { margin-top: 5px; }
 
   .hasCountdown { width: 200px;}
