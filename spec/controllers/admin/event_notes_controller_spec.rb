@@ -30,7 +30,7 @@ describe Admin::EventNotesController do
     end
 
     it "responds with the event" do
-      controller.should_receive(:respond_with).with(event, location: admin_event_path(event))
+      controller.should_receive(:respond_with).with(event, location: admin_event_path(event, anchor: 'notes'))
       patch :update, event_id: '1', event: {notes: 'text'}
     end
   end
