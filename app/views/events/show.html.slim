@@ -1,16 +1,19 @@
 - title @event.full_name
 
 - content_for :meta_data do
-  link href="#{@event.favicon}" rel="shortcut icon" type="image/vnd.microsoft.icon"
-
   meta content="#{copywrite}" name="copyright"
   meta content="#{@event.conference_name}" property="og:site_name"
   meta content="#{@event.conference_name}" property="og:title"
   meta content="website" property="og:type"
   meta content="#{root_url}" property="og:url"
-  meta content="#{@event.logo}" property="og:image"
-  meta content="#{@event.conference_slogan}" property="og:description"
-  meta content="#{@event.conference_slogan}" name="description"
+
+  - if @event.logo?
+    link href="#{@event.favicon}" rel="shortcut icon" type="image/vnd.microsoft.icon"
+    meta content="#{@event.logo}" property="og:image"
+
+  - if @event.conference_slogan.present?
+    meta content="#{@event.conference_slogan}" property="og:description"
+    meta content="#{@event.conference_slogan}" name="description"
 
 header
   div
