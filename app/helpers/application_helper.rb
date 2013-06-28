@@ -8,7 +8,7 @@ module ApplicationHelper
     RenderMarkdown.to_html(text).html_safe
   end
 
-  def copywrite
+  def copyright
     "© #{Date.today.year} IT Tour."
   end
 

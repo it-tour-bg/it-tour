@@ -1,7 +1,7 @@
 - title @event.full_name
 
 - content_for :meta_data do
-  meta content="#{copywrite}" name="copyright"
+  meta content="#{copyright}" name="copyright"
   meta content="#{@event.conference_name}" property="og:site_name"
   meta content="#{@event.conference_name}" property="og:title"
   meta content="website" property="og:type"
@@ -121,6 +121,6 @@ footer
       - current_conference.events.publicly_announced.each do |event|
         dd = link_to event.name, archive_path(event.name)
     p
-      ' Copyright #{copywrite}<br>
+      ' Copyright #{copyright}<br>
         All rights reserved.
 
