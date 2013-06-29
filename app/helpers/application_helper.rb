@@ -22,4 +22,8 @@ module ApplicationHelper
     session_info << " (#{links.join(', ')})" if links.present?
     session_info.html_safe
   end
+
+  def back_link
+    content_tag :article, link_to("Обратно към #{current_conference.name}", root_url)
+  end
 end
