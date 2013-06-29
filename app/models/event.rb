@@ -11,6 +11,7 @@ class Event < ActiveRecord::Base
 
   belongs_to :conference
   has_many :sessions, dependent: :destroy
+  has_many :feedbacks, dependent: :destroy
 
 
   mount_uploader :logo, EventLogoUploader
