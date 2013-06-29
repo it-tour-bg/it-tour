@@ -7,6 +7,7 @@ TourConf::Application.routes.draw do
     resources :sessions, only: [:new, :create, :edit, :update, :destroy]
     resources :speakers
     resources :subscribers, only: [:index, :create, :update, :destroy]
+    resources :feedbacks, only: [:index, :destroy]
 
     resource :user, only: [:edit, :update]
 

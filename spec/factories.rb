@@ -51,4 +51,9 @@ FactoryGirl.define do
   factory :subscriber do
     email { generate :email }
   end
+
+  factory :feedback do
+    event
+    comment "I liked the event"
+  end
 end
