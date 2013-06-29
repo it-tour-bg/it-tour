@@ -1,7 +1,7 @@
 - title 'Feedback'
 
 = form_tag admin_feedbacks_path, class: 'simple_form form-inline', method: 'get' do
-  = label_tag :filter_event_id, 'Event id:'
+  = label_tag :filter_event_id, 'Event:'
   = collection_select :filter, :event_id, Event.all, :id, :full_name, prompt: true, selected: params[:filter] && params[:filter][:event_id]
   = submit_tag 'Filter', class: 'btn'
 
