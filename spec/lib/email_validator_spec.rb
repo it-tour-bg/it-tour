@@ -21,7 +21,7 @@ describe EmailValidator do
     expect(new_model('valid-email@example.com')).to be_valid
   end
 
-  it "returns false if mails is valid" do
+  it "returns false if mails is invalid" do
     expect(new_model('this is no an email')).to_not be_valid
   end
 end

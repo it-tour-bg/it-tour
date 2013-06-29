@@ -10,7 +10,7 @@ describe EmailToken do
     user  = create :subscriber
     other = create :subscriber
 
-    expect(EmailToken.for(user).user_id).not_to eq EmailToken.for(other)
+    expect(EmailToken.for(user)).not_to eq EmailToken.for(other)
   end
 
   it "can be compared" do
