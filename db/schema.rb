@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130629211305) do
+ActiveRecord::Schema.define(version: 20130629220746) do
 
   create_table "conferences", force: true do |t|
     t.string   "name"
@@ -54,6 +54,7 @@ ActiveRecord::Schema.define(version: 20130629211305) do
     t.string   "logo"
     t.string   "coverart"
     t.boolean  "current",                    default: false, null: false
+    t.boolean  "show_feedback_form",         default: false, null: false
   end
 
   create_table "feedbacks", force: true do |t|
