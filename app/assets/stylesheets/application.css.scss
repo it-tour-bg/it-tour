@@ -115,6 +115,17 @@ footer {
   form .error { padding-left: 20px; color: $error; }
 }
 
+
+#feedback {
+ form .input { margin-bottom: 20px; }
+ form .input label { display: block; margin-bottom: 10px; }
+ form .input textarea { @include border-radius(2px); border: 1px solid $text-color; font-size: 16px; padding: 6px 5px 6px 5px; width: 99%; height: 150px; }
+ form .input textarea:focus { border-color: $line; }
+ form .btn { @include transition(background-color 0.2s); @include border-radius(2px); background: $highlight; border: none; font-size: 14pt; color: $contrast; padding: 5px 10px 5px 10px; }
+ form .btn:hover { background-color: $text-color; text-decoration: none; }
+ form .error { color: $error; }
+}
+
 #when {
   .facebook-event { @include transition(all 0.2s); @include border-radius(2px); background: image-url('facebook.png') no-repeat 10px 6px; font-size: 14pt; padding: 5px 10px 5px 40px; }
   .facebook-event:hover { background-color: $text-color; color: $contrast; text-decoration: none; }

@@ -20,6 +20,7 @@ TourConf::Application.routes.draw do
   end
 
   resource :subscribers, only: [:new, :create]
+  resource :feedbacks, only: [:new, :create]
 
   get 'archive/:year', to: 'events#show', as: :archive
 
