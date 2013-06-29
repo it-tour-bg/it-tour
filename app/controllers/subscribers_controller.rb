@@ -3,7 +3,7 @@ class SubscribersController < ApplicationController
   end
 
   def create
-    @subscriber = Subscriber.create conference: current_conference, email: params[:subscriber][:email]
+    @subscriber = Subscriber.subscribe params[:subscriber][:email], current_conference
 
     if @subscriber.valid?
       render :create

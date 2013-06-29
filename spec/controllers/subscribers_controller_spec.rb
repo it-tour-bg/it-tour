@@ -14,11 +14,11 @@ describe SubscribersController do
 
     before do
       controller.stub current_conference: conference
-      Subscriber.stub create: subscriber
+      Subscriber.stub subscribe: subscriber
     end
 
     it "creates a new subscriber" do
-      Subscriber.should_receive(:create).with(email: 'email@example.org', conference: conference)
+      Subscriber.should_receive(:subscribe).with('email@example.org', conference)
       post :create, subscriber: {email: 'email@example.org'}
     end
 

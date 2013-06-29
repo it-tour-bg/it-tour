@@ -18,6 +18,12 @@ class Subscriber < ActiveRecord::Base
       scope = scope.active unless params[:active].blank?
       scope
     end
+
+    def subscribe(email, conference = nil)
+      subscriber = where(email: email, conference_id: conference.try(:id)).first_or_initialize
+      subscriber.update active: true
+      subscriber
+    end
   end
 
   def error_message

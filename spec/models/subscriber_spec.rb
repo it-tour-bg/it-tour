@@ -52,4 +52,26 @@ describe Subscriber do
       expect(Subscriber.filter(active: true)).to eq 'filter by active'
     end
   end
+
+  describe ".subscribe" do
+    it "can create a new subscriber" do
+      conference = create :conference
+      subscriber = Subscriber.subscribe('mail@example.org', conference)
+
+      expect(subscriber).to_not be_new_record
+      expect(subscriber.email).to eq 'mail@example.org'
+      expect(subscriber.conference).to eq conference
+      expect(subscriber).to be_active
+    end
+
+    it "activates subscribe if he is inactive" do
+      subscriber = Subscriber.subscribe create(:subscriber, active: false).email
+      expect(subscriber).to be_active
+    end
+
+    it "can return invalid subscriber" do
+      subscriber = Subscriber.subscribe 'invalid-email'
+      expect(subscriber).to_not be_valid
+    end
+  end
 end
