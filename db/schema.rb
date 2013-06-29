@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130623170555) do
+ActiveRecord::Schema.define(version: 20130629211305) do
 
   create_table "conferences", force: true do |t|
     t.string   "name"
@@ -54,6 +54,13 @@ ActiveRecord::Schema.define(version: 20130623170555) do
     t.string   "logo"
     t.string   "coverart"
     t.boolean  "current",                    default: false, null: false
+  end
+
+  create_table "feedbacks", force: true do |t|
+    t.integer  "event_id",   null: false
+    t.text     "comment",    null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "sessions", force: true do |t|
@@ -100,6 +107,8 @@ ActiveRecord::Schema.define(version: 20130623170555) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
 
   add_foreign_key "events", "conferences", :name => "events_conference_id_fk"
+
+  add_foreign_key "feedbacks", "events", :name => "feedbacks_event_id_fk"
 
   add_foreign_key "sessions", "events", :name => "sessions_event_id_fk"
   add_foreign_key "sessions", "speakers", :name => "sessions_speaker_id_fk"
