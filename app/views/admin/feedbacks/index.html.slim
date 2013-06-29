@@ -10,4 +10,5 @@
   article
     h5 #{feedback.event_name} - #{l feedback.created_at, format: :short}
     p = new_line_to_break feedback.comment
+    p = link_to 'Delete', admin_feedback_path(feedback.id), class: 'btn', method: :delete, confirm: 'Are you sure?'
     hr

@@ -26,7 +26,7 @@ describe Admin::FeedbacksController do
 
     it "redirects to feedbacks list" do
       delete :destroy, id: '1'
-      expect(controller).to redirect_to admin_feedbacks_path(event_id: '2')
+      expect(controller).to redirect_to admin_feedbacks_path(filter: {event_id: '2'})
     end
   end
 end

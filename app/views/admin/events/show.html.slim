@@ -58,6 +58,13 @@
         ' #{@event.after_party_venue_address}<br>
           #{@event.after_party_venue_notes}
 
+  article
+    h4
+      ' Feedbacks
+      - unless @event.show_feedback_form?
+        span.label.label-important hidden
+    p Number of feedbacks given: #{link_to @event.feedbacks.count, admin_feedbacks_path(filter: {event_id: @event.id})}
+
 
   article#sessions
     h4

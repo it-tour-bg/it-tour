@@ -27,12 +27,13 @@
     = form.input :after_party_venue_notes
     = form.input :after_party_venue_map_url
 
-  = field_set_tag "Announcements"
+  = field_set_tag "Announcements & Layout"
     = form.input :dates_announced
     = form.input :venue_announced
     = form.input :after_party_announced
     = form.input :sessions_announced
     = form.input :speakers_announced
+    = form.input :show_feedback_form
 
   .form-actions
     = form.button :submit, class: 'btn-primary'

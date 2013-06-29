@@ -62,6 +62,7 @@ class Admin::EventsController < Admin::BaseController
       :speakers_announced,
       :logo,
       :coverart,
+      :show_feedback_form,
     )
   end
 end
