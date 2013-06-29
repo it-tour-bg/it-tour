@@ -1,6 +1,5 @@
 #= require jquery
 #= require 'vendor/jquery.countdown'
-#= require 'vendor/jquery.scrollspy'
 #= require 'vendor/jquery.scroll_to'
 #= require_self
 
