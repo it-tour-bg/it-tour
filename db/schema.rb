@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130629220746) do
+ActiveRecord::Schema.define(version: 20130630121555) do
 
   create_table "conferences", force: true do |t|
     t.string   "name"
@@ -55,11 +55,20 @@ ActiveRecord::Schema.define(version: 20130629220746) do
     t.string   "coverart"
     t.boolean  "current",                    default: false, null: false
     t.boolean  "show_feedback_form",         default: false, null: false
+    t.boolean  "show_photo_gallery",         default: false, null: false
   end
 
   create_table "feedbacks", force: true do |t|
     t.integer  "event_id",   null: false
     t.text     "comment",    null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "photos", force: true do |t|
+    t.integer  "event_id",   null: false
+    t.integer  "position",   null: false
+    t.string   "asset",      null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -110,6 +119,8 @@ ActiveRecord::Schema.define(version: 20130629220746) do
   add_foreign_key "events", "conferences", :name => "events_conference_id_fk"
 
   add_foreign_key "feedbacks", "events", :name => "feedbacks_event_id_fk"
+
+  add_foreign_key "photos", "events", :name => "photos_event_id_fk"
 
   add_foreign_key "sessions", "events", :name => "sessions_event_id_fk"
   add_foreign_key "sessions", "speakers", :name => "sessions_speaker_id_fk"
