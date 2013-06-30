@@ -63,6 +63,7 @@ class Admin::EventsController < Admin::BaseController
       :logo,
       :coverart,
       :show_feedback_form,
+      :show_photo_gallery,
     )
   end
 end

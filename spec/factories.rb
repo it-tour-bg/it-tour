@@ -56,4 +56,9 @@ FactoryGirl.define do
     event
     comment "I liked the event"
   end
+
+  factory :photo do
+    event
+    asset { Rack::Test::UploadedFile.new(Rails.root.join('spec/fixtures/photo_asset.jpg').to_s) }
+  end
 end

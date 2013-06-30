@@ -3,6 +3,7 @@ TourConf::Application.routes.draw do
     resources :conferences
     resources :events do
       resource :notes, controller: 'event_notes', only: [:edit, :update]
+      resources :photos, controller: 'photos', only: [:index, :create, :destroy]
     end
     resources :sessions, only: [:new, :create, :edit, :update, :destroy]
     resources :speakers

@@ -1,6 +1,7 @@
 #= require jquery
 #= require jquery_ujs
 #= require bootstrap-alert
+#= require_tree ./admin
 
 $(document).on 'focus', 'textarea', ->
     namespace = 'sizer'
@@ -16,4 +17,5 @@ $(document).on 'focus', 'textarea', ->
       textarea.height 1
       textarea.height textarea.prop('scrollHeight') - padding
       textarea.off ".#{namespace}"
+
 

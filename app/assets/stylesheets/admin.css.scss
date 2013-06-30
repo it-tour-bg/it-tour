@@ -56,6 +56,10 @@
   input[type="checkbox"] { margin-bottom: 10px; }
 
   tr:hover { background-color: #f5f5f5; }
+
+  th.number,
+  td.number,
+  td.actions { text-align: right; }
 }
 
 .table a + a,
@@ -73,4 +77,12 @@ a + span.label.label-info { margin-left: 10px; }
   article h4 { @include border-radius(5px 5px 0 0); padding: 10px; background: #e5e5e5; margin: -11px -11px 11px -11px }
   article h4 .label { position: relative; top: -2px; }
   article h4 .label + .label { margin-left: 10px; }
+}
+
+#photos-list {
+  @include clearfix;
+
+  div { @include border-radius(5px); position: relative; float: left; width: 250px; height: 285px; padding: 5px; margin: 10px; text-align: center; background: #f5f5f5; border: 1px solid #e5e5e5; }
+  div img { margin-bottom: 5px; }
+  div mark { position: absolute; top: 0px; left: 0px; right: 0px; bottom: 0px; background: image-url('admin/loading.gif') center no-repeat; }
 }

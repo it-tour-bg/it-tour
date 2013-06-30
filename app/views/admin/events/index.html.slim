@@ -7,7 +7,9 @@ table.table
   thead
     tr
       th Name
-      th
+      th.number width="80px" Feedback
+      th.number width="80px" Photos
+      th width="300px"
   tbody
     - @events.each do |event|
       tr
@@ -15,7 +17,10 @@ table.table
           = link_to event.full_name, admin_event_path(event)
           = raw ' <mark class="label label-important">current</mark>' if event.current?
           = raw ' <mark class="label label-notice">hidden</mark>' unless event.publicly_announced?
-        td width="170px"
-          = link_to 'Feedbacks', admin_feedbacks_path(filter: {event_id: event}), class: 'btn'
+        td.number = link_to event.feedbacks.count, admin_feedbacks_path(filter: {event_id: event})
+        td.number = link_to event.photos.count, admin_event_photos_path(event)
+        td.actions width="300px"
           = link_to 'Edit', edit_admin_event_path(event), class: 'btn'
+          = link_to 'Feedbacks', admin_feedbacks_path(filter: {event_id: event}), class: 'btn'
+          = link_to 'Photos', admin_event_photos_path(event), class: 'btn'
 
