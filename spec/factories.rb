@@ -59,6 +59,6 @@ FactoryGirl.define do
 
   factory :photo do
     event
-    asset { Rack::Test::UploadedFile.new(Rails.root.join('spec/fixtures/photo_asset.jpg').to_s) }
+    asset { 'some_file' }
   end
 end
