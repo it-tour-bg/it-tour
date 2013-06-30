@@ -14,6 +14,7 @@ RSpec.configure do |config|
   config.infer_base_class_for_anonymous_controllers = false
 
   config.include FactoryGirl::Syntax::Methods
-  config.include SpecSupport::Controllers::StubRendering
-  config.extend  SpecSupport::Controllers::StubCurrentUser
+  config.include SpecSupport::Controllers::StubRendering, type: :controller
+  config.extend  SpecSupport::Controllers::StubCurrentUser, type: :controller
+  config.include  SpecSupport::UploaderHelper, type: :uploader
 end
