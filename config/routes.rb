@@ -4,11 +4,11 @@ TourConf::Application.routes.draw do
     resources :events do
       resource :notes, controller: 'event_notes', only: [:edit, :update]
       resources :photos, controller: 'photos', only: [:index, :create, :destroy]
+      resources :feedbacks, only: [:index, :destroy], shallow: true
     end
     resources :sessions, only: [:new, :create, :edit, :update, :destroy]
     resources :speakers
     resources :subscribers, only: [:index, :create, :update, :destroy]
-    resources :feedbacks, only: [:index, :destroy]
 
     resource :user, only: [:edit, :update]
 

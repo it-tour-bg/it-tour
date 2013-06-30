@@ -85,7 +85,7 @@
 
   article
     h4 Media
-    p Number of feedbacks given: #{link_to @event.feedbacks.count, admin_feedbacks_path(filter: {event_id: @event.id})} #{raw '<span class="label label-important">hidden</span>' unless @event.show_feedback_form?}
+    p Number of feedbacks given: #{link_to @event.feedbacks.count, admin_event_feedbacks_path(@event)} #{raw '<span class="label label-important">hidden</span>' unless @event.show_feedback_form?}
     p Number of photos: #{link_to @event.photos.count, admin_event_photos_path(@event)} #{raw '<span class="label label-important">hidden</span>' unless @event.show_photo_gallery?}
 
     - if @event.coverart?

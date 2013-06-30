@@ -1,14 +1,13 @@
 - title 'Feedback'
 
-= form_tag admin_feedbacks_path, class: 'simple_form form-inline', method: 'get' do
-  = label_tag :filter_event_id, 'Event:'
-  = collection_select :filter, :event_id, Event.all, :id, :full_name, prompt: true, selected: params[:filter] && params[:filter][:event_id]
-  = submit_tag 'Filter', class: 'btn'
+- breadcrumbs ['Events', admin_events_path], [@event.conference.name, admin_conference_path(@event.conference)], [@event.name, admin_event_path(@event)]
 
-
-- @feedbacks.each do |feedback|
-  article
-    h5 #{feedback.event_name} - #{l feedback.created_at, format: :short}
-    p = new_line_to_break feedback.comment
-    p = link_to 'Delete', admin_feedback_path(feedback.id), class: 'btn', method: :delete, confirm: 'Are you sure?'
-    hr
+- if @event.feedbacks.empty?
+  p No feedback has been given yet
+- else
+  - @event.feedbacks.each do |feedback|
+      article
+      h5 = l feedback.created_at, format: :short
+      p = new_line_to_break feedback.comment
+      p = link_to 'Delete', admin_feedback_path(feedback.id), class: 'btn', method: :delete, confirm: 'Are you sure?'
+      hr
