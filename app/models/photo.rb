@@ -9,7 +9,7 @@ class Photo < ActiveRecord::Base
   before_create :set_position
   after_destroy :remove_position
 
-  scope :ordered, -> { order 'position DESC' }
+  scope :ordered, -> { order 'position ASC' }
 
   def as_json(options = {})
     {id: id, asset_url: asset.url(:thumb)}
