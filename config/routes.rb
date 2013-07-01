@@ -3,7 +3,9 @@ TourConf::Application.routes.draw do
     resources :conferences
     resources :events do
       resource :notes, controller: 'event_notes', only: [:edit, :update]
-      resources :photos, controller: 'photos', only: [:index, :create, :destroy]
+      resources :photos, controller: 'photos', only: [:index, :create, :destroy] do
+        patch :reorder, on: :collection
+      end
       resources :feedbacks, only: [:index, :destroy], shallow: true
     end
     resources :sessions, only: [:new, :create, :edit, :update, :destroy]

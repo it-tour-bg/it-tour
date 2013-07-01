@@ -11,7 +11,16 @@ class Photo < ActiveRecord::Base
   before_create :set_position
   after_destroy :remove_position
 
-  scope :ordered, -> { order 'position ASC' }
+  scope :ordered, -> { order 'position DESC' }
+
+  class << self
+    def change_position_of(ids, scope = {})
+      position = where(id: ids).minimum('position').to_i
+      Array(ids).reverse.each_with_index do |id, i|
+        where(scope.merge id: id).update_all position: position + i
+      end
+    end
+  end
 
   def as_json(options = {})
     {id: id, asset_url: asset.url(:thumb)}
@@ -20,7 +29,7 @@ class Photo < ActiveRecord::Base
   private
 
   def set_position
-    self.position = event.photos.pluck('MAX(position)').first.to_i + 1 if position.blank?
+    self.position = event.photos.maximum('position').to_i + 1 if position.blank?
   end
 
   def remove_position

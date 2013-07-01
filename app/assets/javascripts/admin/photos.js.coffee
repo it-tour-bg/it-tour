@@ -1,3 +1,4 @@
+#= require vendor/jquery.ui.sortable
 #= require vendor/plupload
 #= require vendor/underscore
 #= require vendor/backbone
@@ -27,8 +28,15 @@ $('#js-photos').each ->
       @$('script[type="text/json"]').each (i, el) =>
         script = $(el)
         photos = JSON.parse(script.html())
-        @$('article').prepend @photoHtml(photo) for photo in photos
+        @$('article').append @photoHtml(photo) for photo in photos
         script.remove()
+
+      @$('article').sortable
+        placeholder: "ui-state-highlight"
+        update:      (e, ui) =>
+          ids = @$('article > div').map(-> $(this).data('id')).toArray()
+          $.ajax @$el.data('url') + '/reorder', {data: {ids: ids}, type: 'patch'}
+
 
     addPlaceholder: (file) ->
       @$('article').prepend """
@@ -50,5 +58,7 @@ $('#js-photos').each ->
       element = $(e.target).closest('div')
       $.ajax(@$el.data('url') + '/' + element.data('id'), {type: 'delete'})
       element.hide 'fast', -> element.remove()
+
+
 
   new PhotosView el: this

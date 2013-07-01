@@ -35,4 +35,11 @@ describe Admin::PhotosController do
       delete :destroy, id: '1'
     end
   end
+
+  describe "PATCH reorder" do
+    it "reorders photos from the given event" do
+      Photo.should_receive(:change_position_of).with %w(1 2 3), event_id: '1'
+      patch :reorder, event_id: '1', ids: %w(1 2 3)
+    end
+  end
 end
