@@ -16,7 +16,7 @@ class Admin::PhotosController < Admin::BaseController
   end
 
   def reorder
-    Photo.change_position_of params[:ids], event_id: '1'
+    Photo.change_position_of params[:ids], event_id: params[:event_id]
     head :ok
   end
 
