@@ -20,7 +20,8 @@ $('#js-photos').each ->
         uploader.start()
       @uploader.bind 'FileUploaded', (uploader, file, xhr) =>
         @addPhoto file, JSON.parse(xhr.response)
-      @uploader.bind 'Error', ->
+      @uploader.bind 'Error', (uploader, response) =>
+        @$("#photo-#{response.file.id}").remove()
         alert 'File transfer failed'
 
       @$('script[type="text/json"]').each (i, el) =>
