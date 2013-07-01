@@ -4,6 +4,7 @@ module ImageUploader
     base.send :include, CarrierWave::MimeTypes
     base.send :process, :set_content_type
     base.send :storage, Features.s3_uploads? ? :fog : :file
+    base.send :version, :original
   end
 
   def store_dir
