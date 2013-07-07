@@ -24,6 +24,11 @@ header
       = link_to 'Къде', '#venue' if @event.venue_announced?
       = link_to 'Програма', '#schedule' if @event.sessions_announced?
       = link_to 'Лектори', '#speakers' if @event.speakers_announced?
+      span
+        ' Други конференции
+        div
+          - @event.other_conferences.each do |conference|
+            = link_to conference.name, "http://#{conference.domain}"
 
 .page
   - if @event.coverart?
@@ -114,13 +119,17 @@ footer
       - if current_conference.twitter_account?
         dd = link_to 'Twitter', "http://twitter.com/#{current_conference.twitter_account}"
       - if current_conference.youtube_account?
-        dd = link_to 'Twitter', "http://youtube.com/#{current_conference.youtube_account}"
+        dd = link_to 'YouTube', "http://youtube.com/#{current_conference.youtube_account}"
       - if current_conference.contact_name?
         dd = link_to current_conference.contact_name, "mailto:#{current_conference.contact_email}"
-    dl
+    dl.events
       dt Издания:
       - current_conference.events.publicly_announced.each do |event|
         dd = link_to event.name, archive_path(event.name)
+    dl.other-conferences
+      dt Други конференции:
+      - @event.other_conferences.each do |conference|
+        dd = link_to conference.name, "http://#{conference.domain}"
     p
       ' Copyright #{copyright}<br>
         All rights reserved.

@@ -35,10 +35,10 @@ header {
 
   background: $text-color;
   border-bottom: 5px solid $highlight;
-  height: 38px;
+  height: 36px;
   margin-bottom: 50px;
 
-  div { @include centered-content; padding-top: 5px; }
+  > div { @include centered-content; padding-top: 5px; }
 
   h1 { font-size: 19pt; }
   h1 a { color: $contrast; }
@@ -46,13 +46,24 @@ header {
   h1 a:focus { @include opacity(0.8); }
   h1 a:active { @include opacity(0.5); }
 
-  nav { position: absolute; top: 11px; right: 0px; }
-  nav a { @include transition(color 0.2s, background 0.2s); color: $highlight; padding: 10px; white-space: nowrap; }
+  nav { position: absolute; top: 0px; right: 0px; }
+  nav a { @include inline-block; @include transition(color 0.2s, background 0.2s); color: $highlight; padding: 10px; white-space: nowrap; }
   nav a + a { margin-left: 15px; }
+
   nav a.active,
   nav a:hover,
   nav a:focus { background: $highlight; color: $contrast; }
   nav a:active { @include opacity(0.8); }
+
+  nav span { @include inline-block; position: relative; color: $highlight; padding: 10px; white-space: nowrap; }
+  nav span div { z-index: 1; position: absolute; display: none; background: $text-color; left: 0px; right: 0px; top: 36px; border: 2px solid $highlight; }
+  nav span:hover { color: $contrast; background: $highlight; }
+  nav span:hover div { display: block; }
+  nav span div a { display: block; margin: 0px; }
+
+  @media all and (max-width: 650px) {
+    nav a { display: none; }
+  }
 
   @media all and (max-width: 600px) {
     nav { display: none; }
@@ -66,16 +77,30 @@ footer {
   font-size: 11px;
 
   div { @include centered-content; @include pie-clearfix; }
+
+
   dl { float: left; width: 250px; }
-  dl + dl { margin-left: 105px; }
+  dl + dl { margin-left: 10px; }
   dl dt { padding-bottom: 3px; }
   dl dd { float: left; }
   dl dd + dd:before { content: ", " }
-  p { position: absolute; top: -1px; right: 0px; width: 200px; line-height: 14px; }
+  dl.events { width: 80px; }
+  dl.other-conferences { width: 380px; }
 
+
+  p { position: absolute; top: -1px; right: 0px; width: 150px; line-height: 14px; }
+
+  a:hover { text-decoration: underline; }
+
+  @media all and (max-width: 860px) {
+    dl.other-conferences {
+      display: none;
+    }
+  }
 
   @media all and (max-width: 680px) {
-    dl { clear: both; }
+    dl { clear: both; width: 100% !important; }
+    dl.other-conferences { display: block !important; margin-bottom: 20px; }
     dl + dl { margin: 10px 0; }
     p { position: relative; }
   }
