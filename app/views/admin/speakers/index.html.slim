@@ -7,11 +7,13 @@ table.table
   thead
     tr
       th Name
+      th T-shirt size
       th
   tbody
     - @speakers.each do |speaker|
       tr
         td = link_to speaker.name, admin_speaker_path(speaker)
+        td = speaker.tshirt_size
         td width="1%"
           = link_to 'Edit', edit_admin_speaker_path(speaker), class: 'btn'
 

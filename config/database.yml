@@ -2,7 +2,7 @@ development: &default
   adapter: postgresql
   host: localhost
   database: tour_conf_development
-  username: root
+  username: rstankov
   password:
   min_messages: WARNING
   template: template0
