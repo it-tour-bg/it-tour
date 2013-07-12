@@ -55,18 +55,8 @@ header {
   nav a:focus { background: $highlight; color: $contrast; }
   nav a:active { @include opacity(0.8); }
 
-  nav span { @include inline-block; position: relative; color: $highlight; padding: 10px; white-space: nowrap; }
-  nav span div { z-index: 1; position: absolute; display: none; background: $text-color; left: 0px; right: 0px; top: 36px; border: 2px solid $highlight; }
-  nav span:hover { color: $contrast; background: $highlight; }
-  nav span:hover div { display: block; }
-  nav span div a { display: block; margin: 0px; }
-
-  @media all and (max-width: 650px) {
+  @media all and (max-width: 820px) {
     nav a { display: none; }
-  }
-
-  @media all and (max-width: 600px) {
-    nav { display: none; }
   }
 }
 
@@ -85,22 +75,13 @@ footer {
   dl dd { float: left; }
   dl dd + dd:before { content: ", " }
   dl.events { width: 80px; }
-  dl.other-conferences { width: 380px; }
-
 
   p { position: absolute; top: -1px; right: 0px; width: 150px; line-height: 14px; }
 
   a:hover { text-decoration: underline; }
 
-  @media all and (max-width: 860px) {
-    dl.other-conferences {
-      display: none;
-    }
-  }
-
   @media all and (max-width: 680px) {
     dl { clear: both; width: 100% !important; }
-    dl.other-conferences { display: block !important; margin-bottom: 20px; }
     dl + dl { margin: 10px 0; }
     p { position: relative; }
   }

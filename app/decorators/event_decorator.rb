@@ -33,10 +33,6 @@ class EventDecorator < Draper::Decorator
     Time.now > Time.at(finish_time)
   end
 
-  def other_conferences
-    @other_conferences ||= Conference.where('id != ?', conference_id).order('name DESC')
-  end
-
   private
 
   def session_time_in_seconds(session)
