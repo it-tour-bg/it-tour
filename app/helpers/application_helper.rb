@@ -32,4 +32,9 @@ module ApplicationHelper
     text = h(text)
     raw text.gsub(/[\r]*[\n]/, '<br>').strip
   end
+
+  def render_in_layout(&block)
+    content_for :content, &block
+    render template: 'layouts/application'
+  end
 end

@@ -15,111 +15,82 @@
     meta content="#{@event.conference_slogan}" property="og:description"
     meta content="#{@event.conference_slogan}" name="description"
 
-header
-  div
-    h1
-      = link_to 'IT Tour', '#about'
-    nav
-      - Conference.all.each do |conference|
-        = link_to conference.name, "http://#{conference.domain}", class: conference == current_conference && 'active'
+- if @event.coverart?
+  article#coverart
+    = image_tag @event.coverart.url(:default), alt: @event.full_name
 
-.page
-  - if @event.coverart?
-    article#coverart
-      = image_tag @event.coverart.url(:default), alt: @event.full_name
+- if @event.dates_announced?
+  article#when
+    h1 Кога?
+    h2 = @event.formatted_date
 
-  - if @event.dates_announced?
-    article#when
-      h1 Кога?
-      h2 = @event.formatted_date
+    section
+      .entrance
+        ' Вход:
+        strong свободен
 
-      section
-        .entrance
-          ' Вход:
-          strong свободен
+      - if @event.finished?
+        .state Събитието завърши
+      - elsif @event.ongoing?
+        .state Събитието тече в момента
+      - else
+        .timer
+          ' Остават:
+          div data-countdown="#{@event.start_time}"
 
-        - if @event.finished?
-          .state Събитието завърши
-        - elsif @event.ongoing?
-          .state Събитието тече в момента
-        - else
-          .timer
-            ' Остават:
-            div data-countdown="#{@event.start_time}"
+    - if @event.event_url?
+      = link_to 'Събитието във Facebook', @event.event_url, class: 'facebook-event', target: 'blank'
 
-      - if @event.event_url?
-        = link_to 'Събитието във Facebook', @event.event_url, class: 'facebook-event', target: 'blank'
+- if @event.venue_announced?
+  article#venue
+    h1 Къде?
 
-  - if @event.venue_announced?
-    article#venue
-      h1 Къде?
+    p Събитието ще се проведе във:
+    = link_to @event.venue_name, @event.venue_site_url, target: 'black', class: 'site'
+    address = @event.venue_address
+    address = @event.venue_notes
+    iframe width="100%" height="350" scrolling="no" src="#{@event.venue_map_url}"
 
-      p Събитието ще се проведе във:
-      = link_to @event.venue_name, @event.venue_site_url, target: 'black', class: 'site'
-      address = @event.venue_address
-      address = @event.venue_notes
-      iframe width="100%" height="350" scrolling="no" src="#{@event.venue_map_url}"
-
-  - if @event.sessions_announced?
-    article#schedule
-      h1 Програма
-      section
-        ol
-          - @event.sessions.each do |session|
-            li
-              time = session.start_at
-              = render_session session
+- if @event.sessions_announced?
+  article#schedule
+    h1 Програма
+    section
+      ol
+        - @event.sessions.each do |session|
+          li
+            time = session.start_at
+            = render_session session
 
 
-  - if @event.speakers_announced?
-    article#speakers
-      h1 Лектори
-      - @event.speakers.each do |speaker|
-        section id="speaker-#{speaker.id}"
-          - if speaker.photo?
-            = link_to image_tag(speaker.photo.url(:thumb)), speaker.personal_site, target: :blank, class: 'avatar'
-          h2
-            - if speaker.personal_site?
-              = link_to speaker.name, speaker.personal_site, target: :blank, class: 'name'
+- if @event.speakers_announced?
+  article#speakers
+    h1 Лектори
+    - @event.speakers.each do |speaker|
+      section id="speaker-#{speaker.id}"
+        - if speaker.photo?
+          = link_to image_tag(speaker.photo.url(:thumb)), speaker.personal_site, target: :blank, class: 'avatar'
+        h2
+          - if speaker.personal_site?
+            = link_to speaker.name, speaker.personal_site, target: :blank, class: 'name'
+          - else
+            span.name = speaker.name
+
+          - if speaker.company?
+            - if speaker.company_site?
+              = link_to speaker.company, speaker.company_site, target: :blank, class: 'company'
             - else
-              span.name = speaker.name
+              span.company = speaker.company
 
-            - if speaker.company?
-              - if speaker.company_site?
-                = link_to speaker.company, speaker.company_site, target: :blank, class: 'company'
-              - else
-                span.company = speaker.company
+        p = markdown speaker.description
 
-          p = markdown speaker.description
+- if @event.after_party_announced?
+  article#after-party
+    h1 After Party
+    = link_to @event.after_party_venue_name, @event.after_party_venue_site_url, target: 'black', class: 'site'
+    address = @event.after_party_venue_address
+    address = @event.after_party_venue_notes
+    iframe width="100%" height="350" scrolling="no" src="#{@event.after_party_venue_map_url}"
 
-  - if @event.after_party_announced?
-    article#after-party
-      h1 After Party
-      = link_to @event.after_party_venue_name, @event.after_party_venue_site_url, target: 'black', class: 'site'
-      address = @event.after_party_venue_address
-      address = @event.after_party_venue_notes
-      iframe width="100%" height="350" scrolling="no" src="#{@event.after_party_venue_map_url}"
-
-  = render 'subscribers/form'
-  = render 'feedbacks/form' if @event.show_feedback_form?
-
-footer
-  div
-    dl
-      dt За контакт:
-      - if current_conference.facebook_account?
-        dd = link_to 'Facebook', "https://www.facebook.com/#{current_conference.facebook_account}"
-      - if current_conference.twitter_account?
-        dd = link_to 'Twitter', "http://twitter.com/#{current_conference.twitter_account}"
-      - if current_conference.youtube_account?
-        dd = link_to 'YouTube', "http://youtube.com/#{current_conference.youtube_account}"
-      - if current_conference.contact_name?
-        dd = link_to current_conference.contact_name, "mailto:#{current_conference.contact_email}"
-    dl.events
-      dt Издания:
-      - current_conference.events.publicly_announced.each do |event|
-        dd = link_to event.name, archive_path(event.name)
-    p
-      ' Copyright #{copyright}<br>
-        All rights reserved.
+= render 'subscribers/form'
+= render 'feedbacks/form' if @event.show_feedback_form?
 
