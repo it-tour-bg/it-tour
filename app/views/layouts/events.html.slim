@@ -1,32 +1,42 @@
 = render_in_layout do
   header
-    div
-      h1
-        = link_to 'IT Tour', '#about'
-      nav
+    h1 = link_to 'IT Tour', '#about'
+    .container
+      nav.main-nav
         - Conference.all.each do |conference|
-          = link_to conference.name, "http://#{conference.domain}", class: conference == current_conference && 'active'
+          = link_to conference.name, "http://#{conference.domain}", class: conference == current_conference && 'selected'
+    .sub-nav-menu#sub-nav-menu
+      .container
+        a href="#when" Кога?
+        a href="#where" Къде?
+        a href="#schedule" Програма
+        a href="#speakers" Лектори
+        a href="#after-party" After party
+        a href="#subscribe" Записвания
+        a href="#feedback" Идеи и препоръки
+        br.clear
 
-  .page
-    = yield
+  = yield
 
   footer
-    div
-      dl
-        dt За контакт:
-        - if current_conference.facebook_account?
-          dd = link_to 'Facebook', "https://www.facebook.com/#{current_conference.facebook_account}"
-        - if current_conference.twitter_account?
-          dd = link_to 'Twitter', "http://twitter.com/#{current_conference.twitter_account}"
-        - if current_conference.youtube_account?
-          dd = link_to 'YouTube', "http://youtube.com/#{current_conference.youtube_account}"
-        - if current_conference.contact_name?
-          dd = link_to current_conference.contact_name, "mailto:#{current_conference.contact_email}"
-      dl.events
-        dt Издания:
+    .container
+      p
+        ' За контакт:
+        br
+        = link_to 'Facebook', "https://www.facebook.com/#{current_conference.facebook_account}" if current_conference.facebook_account?
+        = link_to 'Twitter', "http://twitter.com/#{current_conference.twitter_account}" if current_conference.twitter_account?
+        = link_to 'YouTube', "http://youtube.com/#{current_conference.youtube_account}" if current_conference.youtube_account?
+        = link_to current_conference.contact_name, "mailto:#{current_conference.contact_email}" if current_conference.contact_name?
+      p
+        ' Издания:
+        br
         - current_conference.events.publicly_announced.each do |event|
-          dd = link_to event.name, archive_path(event.name)
+          = link_to event.name, archive_path(event.name)
+      p
+        - Conference.all.each do |conference|
+          = link_to conference.name, "http://#{conference.domain}", class: conference == current_conference && 'selected'
+
       p
         ' Copyright #{copyright}<br>
           All rights reserved.
-
+      br.clear

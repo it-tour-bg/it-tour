@@ -1,0 +1,569 @@
+@import "compass/reset";
+@import "compass/css3";
+@import "compass/utilities/general/clearfix";
+
+$color-a: #4f51a4;
+$color-a-invert: #FFF;
+$color-b: #DAD6CA;
+$color-c: #1BB0CE;
+$sectionTextColor: #000;
+
+
+$bodyBackground: #FFF;
+$headerAndFooterFont: Arial;
+
+$headerBackground: $color-a;
+$headerTextColor: #FFF;
+$headerShadowColor: #000;
+
+$color-a: #4f51a4;
+$headerBackground: $color-a;
+
+html, body {
+	margin: 0;
+	padding: 34px 0 0 0;
+	font-family: 'Open Sans';
+	font-size: 14px;
+	background: $bodyBackground;
+	@media all and (max-width: 640px) {
+		padding: 30px 0 0 0;
+	}
+	@media all and (max-width: 480px) {
+		padding: 0;
+	}
+}
+.container {
+	max-width: 960px;
+	margin: 0 auto;
+}
+.container-short {
+	max-width: 600px;
+	margin: 0 auto;
+}
+.container-centered {
+	text-align: center;
+}
+
+.clear {
+  clear: both;
+}
+
+header {
+  @include box-shadow(0 1px 10px #000);
+
+  font-family: $headerAndFooterFont;
+  background-color: $headerBackground;
+  padding: 0;
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  width: 100%;
+  border-bottom: solid 1px lighten($headerBackground, 20%);
+
+  @media all and (max-width: 450px) {
+    padding: 0;
+    position: relative;
+    margin: -10px 0 0 0;
+  }
+
+  a {
+    // .tween();
+    color: $headerTextColor;
+    text-decoration: none;
+  }
+
+  h1 {
+    @include opacity(0.2);
+
+    font-size: 2em;
+    // .tween();
+    margin: 0;
+    padding: 10px 0 0 10px;
+    color: $headerTextColor;
+    float: left;
+    font-weight: bold;
+    display: block;
+
+    &:hover {
+      @include opacity(1);
+      text-shadow: 2px 2px $headerShadowColor;
+    }
+
+    @media all and (max-width: 750px) {
+      display: none;
+    }
+  }
+
+  .main-nav {
+    // .tween-short();
+    margin: 10px 0 0 0;
+    height: 42px;
+    overflow: hidden;
+    text-align: center;
+
+    @media all and (max-width: 480px) {;
+      float: none;
+    }
+
+    a {
+      margin: 0 15px 0 0;
+      display: inline-block;
+      padding: 10px;
+      border-top-left-radius: 6px;
+      border-top-right-radius: 6px;
+      border-bottom-right-radius: 0;
+      border-bottom-left-radius: 0;
+      font-size: 18px;
+
+      &:hover {;
+        background-color: lighten($headerBackground, 10%);
+      }
+
+      @media all and (max-width: 600px) {;
+        font-size: 14px;
+        margin: 0 2px 0 0;
+      }
+
+      @media all and (max-width: 450px) {;
+        font-size: 12px;
+        padding: 2px 4px;
+      }
+
+      @media all and (max-width: 405px) {;
+        display: block;
+        padding: 6px;
+        font-size: 16px;
+      }
+    }
+
+    a.selected {
+      position: relative;
+      color: $color-a;
+      background-color: lighten($color-b, 10%);
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+      border-bottom-right-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+  }
+  .sub-nav-menu {
+    // .tween();
+    background-color: lighten($color-b, 10%);
+    border-radius: 2px;
+    margin: 0;
+    text-align: center;
+    @media all and (max-width: 750px) {;
+      text-align: left;
+    }
+    @media all and (max-width: 450px) {;
+      display: none;
+    }
+    a {
+      // .tween();
+      display: inline-block;
+      padding: 8px 6px 6px 6px;
+      text-align: left;
+      color: lighten($sectionTextColor, 50%);
+      font-size: 14px;
+      font-weight: bold;
+      &:hover {;
+        color: $sectionTextColor;
+        background: lighten($color-b, 30%);
+      }
+    }
+  }
+}
+
+.hide-nav {
+  margin-top: -10px;
+  .main-nav { height: 0px; }
+}
+
+.banner {
+  display: none;
+  .logo {
+    width: 200px;
+    height: 200px;
+    margin: 0 auto 0 auto;
+  }
+  @media all and (min-width: 520px) {
+    padding: 75px 0 0 0;
+    display: block;
+    width: 100%;
+    height: 250px;
+    background-size: cover;
+  }
+}
+.anchor { display: block;
+	padding: 70px 0 0 0;
+	margin: -70px 0 0 0;
+	clear: both;
+}
+
+section {
+  padding: 30px 10px 30px 10px;
+  margin: 40px 0 0 0;
+  clear: both;
+  @extend .container;
+
+  h2 {
+    font-size: 36px;
+    margin: 0;
+    padding: 0;
+    color: $color-a;
+    text-shadow: 3px 3px $color-b;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  h2:after {
+    display: inline-block;
+    margin: 0 0 8px 20px;
+    height: 3px;
+    content: " ";
+    text-shadow: none;
+    background-color: $color-b;
+    width: 140px;
+    @media all and (max-width: 450px) {
+      width: 20px;
+    }
+  }
+
+  h2:before {
+    display: inline-block;
+    margin: 0 20px 8px 0;
+    height: 3px;
+    content: " ";
+    text-shadow: none;
+    background-color: $color-b;
+    width: 140px;
+    @media all and (max-width: 450px) {
+      width: 20px;
+    }
+  }
+
+  h3 {
+    font-size: 24px;
+    font-weight: normal;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+  }
+
+  h4 {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 10px 0 0 0;
+    padding: 0;
+  }
+
+  p {
+    margin: 0;
+    padding: 0;
+  }
+
+  a {
+    color: darken($color-a, 100%);
+    &:hover { color: $color-a; }
+  }
+}
+
+.section-icon {
+  width: 100%;
+  display: block;
+  margin: 0 auto 20px auto;
+  text-align: center;
+}
+
+.span3 {
+  width: 30%;
+  float: left;
+  @media all and (max-width: 650px) {
+    float: none;
+    width: auto;
+  }
+}
+
+.span7 {
+  width: 70%;
+  float: right;
+  @media all and (max-width: 650px) {
+    float: none;
+    width: auto;
+  }
+}
+
+.event-fb {
+  @include box-sizing(border-box);
+  display: block;
+  font-size: 14px;
+  line-height: 20px;
+  background: image-url("facebook.jpg") no-repeat 0 4px;
+  padding: 0 0 0 40px;
+  text-align: right;
+  margin: 16px auto 0 auto;
+  width: 133px;
+}
+
+.time-left {
+  text-align: right;
+  @media all and (max-width: 650px) {
+    text-align: left;
+    margin: 20px auto 0 auto;
+    width: 282px;
+  }
+
+  h3 {
+    text-align: right;
+    margin: 0 4px 8px 0;
+  }
+
+  .countdown_section {
+    float: right;
+    margin-left: 12px;
+    text-align: center;
+    @media all and (max-width: 650px) {
+      margin-right: 12px;
+      margin-left: 0px;
+      float: left;
+    }
+    .countdown_amount {
+      font-size: 36px;
+      display: inline-block;
+      background: $color-a;
+      padding: 2px 6px 2px 6px;
+      border-radius: 6px;
+      color: $color-a-invert;
+    }
+  }
+}
+.schedule {
+  article {
+    clear: both;
+    time {
+      width: 20%;
+      float: left;
+      text-align: center;
+      font-size: 30px;
+      padding: 6px 12px 6px 12px;
+      border-top: dotted 2px $color-b;
+
+      @include box-sizing(border-box);
+
+      @media all and (max-width: 525px) {
+        width: 30%;
+        font-size: 16px;
+        padding: 12px 12px 6px 12px;;
+      }
+    }
+
+    p {
+      width: 80%;
+      float: left;
+      padding: 10px 0 0 20px;
+      margin: 0;
+      font-size: 20px;
+      min-height: 115px;
+      @include box-sizing(border-box);
+      border-left: solid 7px $color-b;
+      @media all and (max-width: 525px) {
+        width: 70%;
+      }
+    }
+
+    .external-resource {
+      //.tween();
+      text-decoration: none;
+      font-size: 13px;
+      @include opacity(0.5);
+      &:hover {
+        @include opacity(1);
+      }
+      i {
+        font-size: 15px;
+        color: darken($color-b, 10%);
+      }
+    }
+  }
+  article:first-child time {
+    border-top: none;
+  }
+}
+.external-resource {
+  // .tween();
+  text-decoration: none;
+  @include opacity(0.25);
+  &:hover { @include opacity(1); }
+  i { font-size: 16px; }
+}
+
+.speakers {
+  article {
+    margin: 30px 0 0 0;
+    padding: 20px 0 0 0;
+    border-top: dotted 2px $color-b;
+    .avatar {
+      float: left;
+      width: 20%;
+      text-align: center;
+      @include box-sizing(border-box);
+      img {
+        display: block;
+        width: 80px;
+        height: 80px;
+        border-radius: 40px;
+        margin: 0 auto 10px auto;
+      }
+      @media all and (max-width: 660px) {
+        display: none;
+      }
+    }
+    .speaker {
+      float: left;
+      width: 80%;
+      padding: 0 0 0 20px;
+      @include box-sizing(border-box);
+      h3 {
+        text-align: left;
+        a { text-decoration: none; }
+        small { font-size: 14px; }
+        small:before { content: " / "; }
+      }
+      p {
+        margin: 10px 0 0 0;
+        line-height: 24px;
+      }
+      @media all and (max-width: 660px) {
+        width: 100%;
+      }
+    }
+  }
+  article:nth-child(1) {
+    border: none;
+  }
+}
+footer {
+  font-family: $headerAndFooterFont;
+  background-color: $headerBackground;
+  border-top: solid 10px $color-b;
+  margin: 30px 0 0 0;
+  clear: both;
+  color: $headerTextColor;
+  padding: 20px 0 20px 0;
+  p {
+    width: 25%;
+    float: left;
+    text-align: center;
+    @include box-sizing(border-box);
+    margin: 0;
+    padding: 0;
+    @media all and (max-width: 400px) {
+      float: none;
+      width: auto;
+    }
+  }
+
+  a {
+    // .tween();
+    display: inline-block;
+    color: $headerTextColor;
+    text-decoration: none;
+    background: lighten($headerBackground, 5%);
+    padding: 2px 4px;
+    margin: 3px 0 0 0;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: bold;
+    &:hover { background: lighten($headerBackground, 20%); }
+  }
+
+  hr {
+    width: 80%;
+    border-top: dotted 1px lighten($headerBackground, 30%);
+    border-bottom: none;
+    margin: 30px auto 30px auto;
+  }
+}
+
+
+
+.form {
+  p {
+    float: left;
+    width: 35%;
+    @include box-sizing(border-box);
+    font-size: 18px;
+    @media all and (max-width: 690px) {
+      width: auto;
+      float: none;
+    }
+  }
+
+  form {
+    width: 65%;
+    float: left;
+    padding: 0 0 0 30px;
+    @include box-sizing(border-box);
+
+    @media all and (max-width: 690px) {
+      width: auto;
+      float: none;
+      padding: 0;
+    }
+
+  .error {
+    display: block;
+    color: #F00;
+    font-weight: bold;
+    background: $color-b;
+    padding: 10px;
+    border-radius: 6px;
+    margin: 17px 0 10px 0;
+    width: 100%;
+    @include box-sizing(border-box);
+
+    .arrow {
+        margin: -19px 0 0 0;
+        content: "";
+        display: block;
+        width: 0;
+        height: 0;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-bottom: 10px solid $color-b;
+        position: absolute;
+      }
+    }
+  }
+
+  input[type="email"], textarea {
+    border: solid 2px lighten($color-a, 30%);
+    padding: 4px;
+    font-family: 'Open Sans';
+    border-radius: 2px;
+    display: block;
+    width: 100%;
+    margin: 10px auto 10px auto;
+    @include box-sizing(border-box);
+    @media all and (max-width: 690px) {
+      width: 90%;
+      margin: 10px 0 10px 0;
+    }
+  }
+
+  textarea { height: 140px; }
+
+  input[type="submit"] {
+    @include box-sizing(border-box);
+    background: $color-a;
+    border: solid 3px $color-b;
+    padding: 8px 10px 8px 10px;
+    border-radius: 8px;
+    color: $headerTextColor;
+    font-size: 16px;
+    font-weight: bold;
+  }
+}
+
+
