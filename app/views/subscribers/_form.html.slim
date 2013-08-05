@@ -1,11 +1,7 @@
-section
-  .section-icon
-    h2 Записвания
-  .container-short.form
-    p Aко искате да сте едни от първите уведомени за новини свързани с IT Tour, моля оставете email за контакт.
+article#subscribe
+  h1 Записвания
+  p Aко искате да сте едни от първите уведомени за новини свързани с IT Tour, моля оставете email за контакт.
 
-    = simple_form_for @subscriber || Subscriber.new do |form|
-      = form.input :email, label: 'E-mail адрес'
-      = form.button :submit, 'Добави'
-
-    br.clear
+  = simple_form_for @subscriber || Subscriber.new do |form|
+    = form.input :email, label: 'E-mail адрес'
+    = form.button :submit, 'Добави'

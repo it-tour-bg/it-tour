@@ -1,25 +1,22 @@
 = render_in_layout do
   header
     h1 = link_to 'IT Tour', '#about'
-    .container
-      nav.main-nav
-        - Conference.all.each do |conference|
-          = link_to conference.name, "http://#{conference.domain}", class: conference == current_conference && 'selected'
-    .sub-nav-menu#sub-nav-menu
-      .container
-        a href="#when" Кога?
-        a href="#where" Къде?
-        a href="#schedule" Програма
-        a href="#speakers" Лектори
-        a href="#after-party" After party
-        a href="#subscribe" Записвания
-        a href="#feedback" Идеи и препоръки
-        br.clear
+    nav.main
+      - Conference.all.each do |conference|
+        = link_to conference.name, "http://#{conference.domain}", class: conference == current_conference && 'selected'
+    nav.sub
+      a href="#when" Кога?
+      a href="#where" Къде?
+      a href="#schedule" Програма
+      a href="#speakers" Лектори
+      a href="#after-party" After party
+      a href="#subscribe" Записвания
+      a href="#feedback" Идеи и препоръки
 
   = yield
 
   footer
-    .container
+    div
       p
         ' За контакт:
         br
@@ -39,4 +36,3 @@
       p
         ' Copyright #{copyright}<br>
           All rights reserved.
-      br.clear

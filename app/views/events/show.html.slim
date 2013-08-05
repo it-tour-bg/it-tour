@@ -16,96 +16,74 @@
     meta content="#{@event.conference_slogan}" name="description"
 
 - if @event.coverart?
-  .banner style="background-image: url(#{image_path @event.coverart.url(:default)})"
-    .logo style="background-image: url(#{image_path @event.logo.url})"
+  #coverart style="background-image: url(#{image_path @event.coverart.url(:default)})"
+    = image_tag @event.logo.url, alt: @event.full_name
 
-- if @event.show_streaming?
-  article#streaming
-    h1 Live Streaming
+.page
+  - if @event.dates_announced?
+    article#when
+      h1 Кога?
+      .date
+        strong #{@event.formatted_date}
+        strong Вход: СВОБОДЕН
+        - if @event.event_url?
+          = link_to 'Събитието във Facebook', @event.event_url, class: 'facebook-event', target: 'blank'
 
-    section
-      = raw @event.streaming_code
-
-- if @event.dates_announced?
-  a name="when" class="anchor"
-  section
-    .section-icon
-      h2 Кога?
-    .container-short
-      .span3
-        h3
-          ' #{@event.formatted_date}<br>
-          small
-            ' Вход: СВОБОДЕН
-            - if @event.event_url?
-              = link_to 'Събитието във Facebook', @event.event_url, class: 'event-fb', target: 'blank'
-      .span7.time-left
+      .timer
         - if @event.finished?
-          h3 Събитието завърши
+          strong Събитието завърши
         - elsif @event.ongoing?
-          h3 Събитието тече в момента
+          strong Събитието тече в момента
         - else
-          h3 Остават:
+          strong Остават:
           div data-countdown="#{@event.start_time}"
-        br.clear
 
-- if @event.venue_announced?
-  section
-    .section-icon
-      h2 Къде?
-    .container-centered
-      h3
-        = link_to @event.venue_name, @event.venue_site_url, target: 'black', class: 'site'
-        small
-          address = @event.venue_address
-          address = @event.venue_notes
-    br
-    br
-    iframe width="100%" height="350" scrolling="no" src="#{@event.venue_map_url}"
+  - if @event.venue_announced?
+    article#venue.venue
+      h1 Къде?
+      address = link_to @event.venue_name, @event.venue_site_url, target: 'black', class: 'site'
 
-- if @event.sessions_announced?
-  a name="schedule" class="anchor"
+      - if @event.venue_address?
+        address = @event.venue_address
 
-  section
-    .section-icon
-      h2 Програма
+      - if @event.venue_notes?
+        address = @event.venue_notes
 
-    .container-short.schedule
-      - @event.sessions.each do |session|
-        article
-          time = session.start_at
-          p
+      iframe width="100%" height="350" scrolling="no" src="#{@event.venue_map_url}"
+
+  - if @event.sessions_announced?
+    article#schedule
+      h1 Програма
+
+      ol
+        - @event.sessions.each do |session|
+          li
+            time = session.start_at
             ' #{session.title} - #{link_to session.speaker_name}<br>
             - if session.video_url?
-              = link_to session.video_url, class: 'external-resource' do
+              = link_to session.video_url, class: 'talk-link' do
                 i.icon-video-circled
                 ' Видео
             - if session.video_url? && session.slides_url?
               ' /
             - if session.slides_url?
-              = link_to session.slides_url, class: 'external-resource' do
+              = link_to session.slides_url, class: 'talk-link' do
                 i.icon-folder-open
                 ' Презентация
-          br class="clear"
-    br.clear
 
-- if @event.speakers_announced?
-  a name="speakers" class="anchor"
-
-  section
-    .section-icon
-      h2 Лектори
-    .container-short.speakers
+  - if @event.speakers_announced?
+    article#speakers
+      h1 Лектори
       - @event.speakers.each do |speaker|
-        article
+        section
           .avatar
             - if speaker.photo?
               = link_to image_tag(speaker.photo.url(:thumb)), speaker.personal_site, target: :blank
-            /* <a href="#" class="external-resource"><i class="icon-github"></i></a> */
+            /* <a href="#" class="icon"><i class="icon-github"></i></a> */
             - if speaker.twitter_account?
-              = link_to "http://twitter.com/#{speaker.twitter_account}", class: "external-resource" do
+              = link_to "http://twitter.com/#{speaker.twitter_account}", class: "icon" do
                 i.icon-twitter
-            /* <a href="#" class="external-resource"><i class="icon-facebook-squared"></i></a> */
+            /* <a href="#" class="icon"><i class="icon-facebook-squared"></i></a> */
           .speaker
             h3
               - if speaker.personal_site?
@@ -118,25 +96,17 @@
                 - else
                   small = speaker.company
             = markdown speaker.description
-          .clear
 
-- if @event.after_party_announced?
-  a name="after-party" class="anchor"
+  - if @event.after_party_announced?
+    article#after-party.venue
+      h1 After Party
+      address = link_to @event.after_party_venue_name, @event.after_party_venue_site_url, target: 'black', class: 'site'
+      - if @event.after_party_venue_address?
+        address = @event.after_party_venue_address
+      - if @event.after_party_venue_notes
+        address = @event.after_party_venue_notes
+      iframe width="100%" height="350" scrolling="no" src="#{@event.after_party_venue_map_url}"
 
-  section
-    .section-icon
-      h2 After Party
-
-    .container-centered
-      h3
-        = link_to @event.after_party_venue_name, @event.after_party_venue_site_url, target: 'black', class: 'site'
-        small
-          address = @event.after_party_venue_address
-          address = @event.after_party_venue_notes
-    br
-    br
-    iframe width="100%" height="350" scrolling="no" src="#{@event.after_party_venue_map_url}"
-
-= render 'subscribers/form'
-= render 'feedbacks/form' if @event.show_feedback_form?
+  = render 'subscribers/form'
+  = render 'feedbacks/form' if @event.show_feedback_form?
 
