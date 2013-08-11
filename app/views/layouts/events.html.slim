@@ -5,13 +5,13 @@
       - Conference.all.each do |conference|
         = link_to conference.name, "http://#{conference.domain}", class: conference == current_conference && 'selected'
     nav.sub
-      a href="#when" Кога?
-      a href="#where" Къде?
-      a href="#schedule" Програма
-      a href="#speakers" Лектори
-      a href="#after-party" After party
-      a href="#subscribe" Записвания
-      a href="#feedback" Идеи и препоръки
+      = link_to 'Кога?', '#when' if @event.dates_announced?
+      = link_to 'Къде?', '#venue' if @event.venue_announced?
+      = link_to 'Програма', '#schedule' if @event.sessions_announced?
+      = link_to 'Лектори', '#speakers' if @event.speakers_announced?
+      = link_to 'After party', '#after-party' if @event.after_party_announced?
+      = link_to 'Записвания', '#subscribe'
+      = link_to 'Идеи и препоръки', '#feedback' if @event.show_feedback_form?
 
   = yield
 

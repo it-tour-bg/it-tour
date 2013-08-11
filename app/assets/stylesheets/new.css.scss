@@ -1,24 +1,27 @@
 @import "compass/reset";
 @import "compass/css3";
 @import "compass/utilities/general/clearfix";
+@import "application/fontello";
 
 $color-a: #4f51a4;
 $color-a-invert: #FFF;
 $color-b: #DAD6CA;
 $color-c: #1BB0CE;
-$sectionTextColor: #000;
 
 
-$headerAndFooterFont: Arial;
-
-$headerTextColor: #FFF;
-
-$color-a: #4f51a4;
-$headerBackground: $color-a;
-
-@mixin centered-content {
-  max-width: 960px;
+@mixin centered-content($width: 960px) {
+  width: $width;
   margin: 0 auto;
+}
+
+@mixin icon($margin-right: 0) {
+  @include opacity(0.5);
+  @include transition(all 0.2s);
+
+  text-decoration: none;
+
+  &:hover { @include opacity(1); }
+  i { margin-right: $margin-right; font-size: 16px; color: darken($color-b, 10%); }
 }
 
 body {
@@ -27,25 +30,90 @@ body {
   background: #fff;
 }
 
-.page {
-  @include centered-content;
+a { color: inherit; }
 
-  a {
-    color: darken($color-a, 100%);
-    &:hover { color: $color-a; }
-  }
+header, footer {
+  font-family: Arial;
+  background-color: $color-a;
+  color: #ffffff;
 }
 
-article + article { padding-top: 70px; }
+header {
+  @include box-shadow(0 1px 10px #000);
+  @include transition(margin-top 0.2s);
+
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  margin-top: 0px;
+  padding-top: 10px;
+  z-index: 1;
+  text-align: center;
+
+  &.hide-nav { margin-top: -50px; }
+
+  h1 { @include opacity(0.2); @include transition(opacity 0.2s); float: left; margin-left: 12px; font-size: 2em; font-weight: bold; }
+  h1:hover { @include opacity(1); @include text-shadow(2px 2px #000); }
+
+  a { @include inline-block; @include transition(all 0.2s); text-decoration: none; }
+
+  .main { font-size: 18px; }
+  .main a { @include border-radius(10px 10px 0 0); padding: 10px 12px; }
+  .main a.selected { color: $color-a; background-color: lighten($color-b, 10%); }
+  .main a + a { margin-left: 15px; }
+  .main a:hover { background-color: lighten($color-a, 10%); }
+  .main a.selected:hover { background-color: lighten($color-b, 10%); }
+
+  .sub { font-size: 14px; font-weight: bold; }
+  .sub { background-color: lighten($color-b, 10%); }
+  .sub a { @include border-radius(6px); padding: 6px; margin: 6px 0; color: lighten(#000000, 50%); }
+  .sub a + a { margin-left: 6px; }
+  .sub a.active,
+  .sub a:hover { color: #000000; background: lighten($color-b, 30%); }
+}
+
+footer {
+  border-top: solid 10px $color-b;
+  margin-top: 30px;
+  padding: 20px;
+  font-size: 13px;
+  line-height: 16px;
+  text-align: center;
+
+  > div  { @include clearfix; @include centered-content; }
+
+  p { width: 25%; float: left; }
+
+  strong { display: block; }
+
+  a { @include transition(all 0.2s); @include inline-block; @include border-radius(4px); padding: 2px 4px; margin-top: 4px; text-decoration: none; background: lighten($color-a, 5%); font-size: 11px; line-height: 13px; font-weight: bold; }
+  a:hover { background: lighten($color-a, 20%); }
+  a + a { margin-left: 5px; }
+}
+
 article {
+  @include centered-content(600px);
   @include clearfix;
-  padding: 0 10px;
-  margin: 0 auto;
-  width: 600px;
+
+  padding: 70px 10px 0;
 
   h1 { @include text-shadow(3px 3px $color-b); margin-bottom: 20px; font-size: 36px; font-weight: bold; color: $color-a; text-align: center; text-transform: uppercase; }
-  h1:after { display: inline-block; margin: 0 0 8px 20px; height: 3px; content: " "; text-shadow: none; background-color: $color-b; width: 140px; @media all and (max-width: 450px) { width: 20px; }; }
-  h1:before { display: inline-block; margin: 0 20px 8px 0; height: 3px; content: " "; text-shadow: none; background-color: $color-b; width: 140px; @media all and (max-width: 450px) { width: 20px; }; }
+
+  h1:after,
+  h1:before { @include inline-block; width: 140px; height: 3px; margin: 0 20px 8px; content: " "; background-color: $color-b; }
+
+  a { @include transition(color opacity 0.2s); color: darken($color-a, 100%); }
+  a:hover { color: $color-a; text-decoration: none; }
+}
+
+#coverart {
+  position: relative;
+  height: 325px;
+  margin-top: 85px;
+  background-size: cover;
+
+  img { width: 200px; height: 200px; position: absolute; left: 50%; top: 50%; margin: -100px 0 0 -100px; }
 }
 
 #when {
@@ -62,7 +130,7 @@ article {
 }
 
 .venue {
-  width: 100%;
+  @include centered-content;
   text-align: center;
 
   address { font-size: 24px; line-height: 26px; }
@@ -76,352 +144,51 @@ article {
 
   time { float: left; width: 96px; height: 97px; padding: 6px 12px 6px 12px; margin-top: -12px; margin-right: 20px; border-right: solid 7px $color-b; text-align: center; font-size: 30px; line-height: 32px; }
 
-  // TODO
-  .talk-link {
-    //.tween();
-    text-decoration: none;
-    font-size: 13px;
-    @include opacity(0.5);
-    &:hover {
-      @include opacity(1);
-    }
-    i {
-      font-size: 15px;
-      color: darken($color-b, 10%);
-    }
-  }
+  .talk-link { @include icon(5px); font-size: 13px; }
 }
 
 #speakers {
-  width: 600px; margin: 0 auto;
+  section { @include clearfix; margin: 30px 0 0 0; padding: 20px 0 0 0; }
+  section + section { border-top: dotted 2px $color-b; }
 
-  section {
-    margin: 30px 0 0 0;
-    padding: 20px 0 0 0;
-    @include clearfix;
-    .avatar {
-      float: left;
-      width: 20%;
-      text-align: center;
-      @include box-sizing(border-box);
-      img {
-        display: block;
-        width: 80px;
-        height: 80px;
-        border-radius: 40px;
-        margin: 0 auto 10px auto;
-      }
-      @media all and (max-width: 660px) {
-        display: none;
-      }
-    }
-    .speaker {
-      float: left;
-      width: 80%;
-      padding: 0 0 0 20px;
-      @include box-sizing(border-box);
-      h3 {
-        font-size: 23px;
-        text-align: left;
-        a { text-decoration: none; }
-        small { font-size: 14px; }
-        small:before { content: " / "; }
-      }
-      p {
-        margin: 10px 0;
-        line-height: 24px;
-      }
-      @media all and (max-width: 660px) {
-        width: 100%;
-      }
-    }
+  .avatar { @include box-sizing(border-box); float: left; width: 20%; text-align: center; }
+  .avatar img { display: block; width: 80px; height: 80px; border-radius: 40px; margin: 0 auto 10px auto; }
+  .avatar .icon { @include icon }
 
-    & + section { border-top: dotted 2px $color-b; }
-  }
+  .speaker { @include box-sizing(border-box); float: left; width: 80%; padding: 0 0 0 20px; }
+  .speaker h3 { font-size: 23px; text-align: left; }
+  .speaker h3 a { text-decoration: none; }
+  .speaker h3 small { font-size: 14px; }
+  .speaker h3 small:before { content: " / "; }
+  .speaker p { margin: 10px 0; line-height: 24px; }
+  .speaker p a { text-decoration: none; }
 }
-
-
-header {
-  @include box-shadow(0 1px 10px #000);
-
-  font-family: $headerAndFooterFont;
-  background-color: $headerBackground;
-  padding: 0;
-  position: fixed;
-  z-index: 1000;
-  top: 0;
-  left: 0;
-  width: 100%;
-  border-bottom: solid 1px lighten($headerBackground, 20%);
-
-  @media all and (max-width: 450px) {
-    padding: 0;
-    position: relative;
-    margin: -10px 0 0 0;
-  }
-
-  a {
-    // .tween();
-    color: $headerTextColor;
-    text-decoration: none;
-  }
-
-  h1 {
-    @include opacity(0.2);
-
-    font-size: 2em;
-    // .tween();
-    margin: 0;
-    padding: 10px 0 0 10px;
-    color: $headerTextColor;
-    float: left;
-    font-weight: bold;
-    display: block;
-
-    &:hover {
-      @include opacity(1);
-      text-shadow: 2px 2px #000;
-    }
-
-    @media all and (max-width: 750px) {
-      display: none;
-    }
-  }
-
-  .main {
-    width: 800px;
-    margin: 10px auto 0;
-    // .tween-short();
-    height: 38px;
-    overflow: hidden;
-    text-align: center;
-
-    @media all and (max-width: 480px) {;
-      float: none;
-    }
-
-    a {
-      margin: 0 15px 0 0;
-      display: inline-block;
-      padding: 10px;
-      border-top-left-radius: 6px;
-      border-top-right-radius: 6px;
-      border-bottom-right-radius: 0;
-      border-bottom-left-radius: 0;
-      font-size: 18px;
-
-      &:hover {;
-        background-color: lighten($headerBackground, 10%);
-      }
-
-      @media all and (max-width: 600px) {;
-        font-size: 14px;
-        margin: 0 2px 0 0;
-      }
-
-      @media all and (max-width: 450px) {;
-        font-size: 12px;
-        padding: 2px 4px;
-      }
-
-      @media all and (max-width: 405px) {;
-        display: block;
-        padding: 6px;
-        font-size: 16px;
-      }
-    }
-
-    a.selected {
-      position: relative;
-      color: $color-a;
-      background-color: lighten($color-b, 10%);
-      border-top-left-radius: 10px;
-      border-top-right-radius: 10px;
-      border-bottom-right-radius: 0;
-      border-bottom-left-radius: 0;
-    }
-  }
-  .sub {
-    // .tween();
-    background-color: lighten($color-b, 10%);
-    border-radius: 2px;
-    margin: 0;
-    text-align: center;
-    @media all and (max-width: 750px) {;
-      text-align: left;
-    }
-    @media all and (max-width: 450px) {;
-      display: none;
-    }
-    a {
-      // .tween();
-      display: inline-block;
-      padding: 8px 6px 6px 6px;
-      text-align: left;
-      color: lighten($sectionTextColor, 50%);
-      font-size: 14px;
-      font-weight: bold;
-      &:hover {;
-        color: $sectionTextColor;
-        background: lighten($color-b, 30%);
-      }
-    }
-  }
-}
-
-#coverart {
-  display: none;
-  position: relative;
-
-  img {
-    width: 200px;
-    height: 200px;
-    position: absolute;
-    left: 50%;
-    margin-left: -100px;
-  }
-  @media all and (min-width: 520px) {
-    padding: 75px 0 0 0;
-    display: block;
-    width: 100%;
-    height: 250px;
-    background-size: cover;
-  }
-}
-
-.icon {
-  // .tween();
-  text-decoration: none;
-  @include opacity(0.25);
-  &:hover { @include opacity(1); }
-  i { font-size: 16px; }
-}
-
-footer {
-  > div  {
-    @include clearfix;
-    max-width: 960px;
-    margin: 0 auto;
-  }
-  font-family: $headerAndFooterFont;
-  background-color: $headerBackground;
-  border-top: solid 10px $color-b;
-  margin: 30px 0 0 0;
-  clear: both;
-  color: $headerTextColor;
-  padding: 20px 0 20px 0;
-  p {
-    width: 25%;
-    float: left;
-    font-size: 13px;
-    line-height: 16px;
-    text-align: center;
-    @include box-sizing(border-box);
-    margin: 0;
-    padding: 0;
-    @media all and (max-width: 400px) {
-      float: none;
-      width: auto;
-    }
-  }
-
-  strong { display: block; }
-
-  a {
-    // .tween();
-    display: inline-block;
-    color: $headerTextColor;
-    text-decoration: none;
-    background: lighten($headerBackground, 5%);
-    padding: 2px 4px;
-    margin: 3px 0 0 0;
-    border-radius: 4px;
-    font-size: 11px;
-    font-weight: bold;
-    &:hover { background: lighten($headerBackground, 20%); }
-  }
-
-  a + a { margin-left: 5px; }
-}
-
-
 
 #subscribe, #feedback {
-  p {
-    float: left;
-    width: 35%;
-    @include box-sizing(border-box);
-    font-size: 18px;
-    @media all and (max-width: 690px) {
-      width: auto;
-      float: none;
-    }
-  }
+  @include centered-content(800px);
+  text-align: center;
 
-  form {
-    width: 65%;
-    float: left;
-    padding: 0 0 0 30px;
-    @include box-sizing(border-box);
 
-    @media all and (max-width: 690px) {
-      width: auto;
-      float: none;
-      padding: 0;
-    }
+  form { @include clearfix; margin-top: 20px; }
 
-  .error {
-    display: block;
-    color: #F00;
-    font-weight: bold;
-    background: $color-b;
-    padding: 10px;
-    border-radius: 6px;
-    margin: 17px 0 10px 0;
-    width: 100%;
-    @include box-sizing(border-box);
+  form label { display: block; margin-bottom: 10px }
+  form label abbr { display: none; }
 
-    .arrow {
-        margin: -19px 0 0 0;
-        content: "";
-        display: block;
-        width: 0;
-        height: 0;
-        border-left: 10px solid transparent;
-        border-right: 10px solid transparent;
-        border-bottom: 10px solid $color-b;
-        position: absolute;
-      }
-    }
-  }
+  form .input { margin-bottom: 10px; }
 
-  input[type="email"], textarea {
-    border: solid 2px lighten($color-a, 30%);
-    padding: 4px;
-    font-family: 'Open Sans';
-    border-radius: 2px;
-    display: block;
-    width: 100%;
-    margin: 10px auto 10px auto;
-    @include box-sizing(border-box);
-    @media all and (max-width: 690px) {
-      width: 90%;
-      margin: 10px 0 10px 0;
-    }
-  }
+  form .input input,
+  form .input textarea { @include border-radius(2px); padding: 7px 10px; width: 700px; border: 3px solid $color-b; font-size: 16px; }
+  form .input textarea { height: 100px; }
 
-  textarea { height: 140px; }
+  form .input input:focus,
+  form .input textarea:focus { border-color: $color-a; outline: none; }
 
-  input[type="submit"] {
-    @include box-sizing(border-box);
-    background: $color-a;
-    border: solid 3px $color-b;
-    padding: 8px 10px 8px 10px;
-    border-radius: 8px;
-    color: $headerTextColor;
-    font-size: 16px;
-    font-weight: bold;
-  }
+  form .btn { @include border-radius(8px); @include transition(all 0.2s); background: $color-a; border: solid 3px $color-b; padding: 8px 10px 8px 10px; color: #ffffff; font-size: 16px; font-weight: bold; }
+  form .btn:hover,
+  form .btn:focus { background: $color-b; text-decoration: none; outline: none; }
+  form .btn:active { color: $color-a; text-decoration: none; }
+
+  form .error { @include inline-block; @include border-radius(6px); width: 700px; padding: 10px 13px; margin: 17px 0 10px 0; color: #F00; background: $color-b; font-weight: bold; }
+  form .error:before { margin: -19px 0 0 0; display: block; content: ""; width: 0; height: 0; position: absolute; border-left: 10px solid transparent; border-right: 10px solid transparent; border-bottom: 10px solid $color-b; }
 }
-
 
