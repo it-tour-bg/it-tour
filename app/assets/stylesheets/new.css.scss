@@ -21,6 +21,12 @@ $headerBackground: $color-a;
   margin: 0 auto;
 }
 
+body {
+  font-family: 'Open Sans';
+  font-size: 14px;
+  background: #fff;
+}
+
 .page {
   @include centered-content;
 
@@ -28,199 +34,112 @@ $headerBackground: $color-a;
     color: darken($color-a, 100%);
     &:hover { color: $color-a; }
   }
+}
 
-  article {
+article + article { padding-top: 70px; }
+article {
+  @include clearfix;
+  padding: 0 10px;
+  margin: 0 auto;
+  width: 600px;
+
+  h1 { @include text-shadow(3px 3px $color-b); margin-bottom: 20px; font-size: 36px; font-weight: bold; color: $color-a; text-align: center; text-transform: uppercase; }
+  h1:after { display: inline-block; margin: 0 0 8px 20px; height: 3px; content: " "; text-shadow: none; background-color: $color-b; width: 140px; @media all and (max-width: 450px) { width: 20px; }; }
+  h1:before { display: inline-block; margin: 0 20px 8px 0; height: 3px; content: " "; text-shadow: none; background-color: $color-b; width: 140px; @media all and (max-width: 450px) { width: 20px; }; }
+}
+
+#when {
+  .date { float: left; width: 200px; text-align: center; }
+  .timer { float: right; width: 300px; text-align: right; }
+
+  .countdown_section { @include inline-block; margin-left: 12px; text-align: center; }
+  .countdown_section .countdown_amount { @include inline-block; @include border-radius(6px); margin-bottom: 5px; padding: 2px 6px; font-size: 36px; line-height: 38px; background: $color-a; color: $color-a-invert; }
+
+  strong { display: block; font-size: 24px; line-height: 28px; }
+
+  .facebook-event { @include inline-block; width: 130px; margin-top: 18px; padding-right: 3px; font-size: 14px; line-height: 16px; background: image-url("facebook.jpg") no-repeat 0 0px; text-align: right; }
+  .facebook-event:hover { background-color: #2d4387; color: #fff; text-decoration: none; }
+}
+
+.venue {
+  width: 100%;
+  text-align: center;
+
+  address { font-size: 24px; line-height: 26px; }
+  address + address { font-size: 20px; line-height: 22px; font-style: italic; }
+  address + iframe { margin-top: 20px; }
+}
+
+#schedule {
+  li { @include clearfix; padding-top: 12px; font-size: 20px; line-height: 22px; }
+  li + li time { border-top: dotted 2px $color-b; }
+
+  time { float: left; width: 96px; height: 97px; padding: 6px 12px 6px 12px; margin-top: -12px; margin-right: 20px; border-right: solid 7px $color-b; text-align: center; font-size: 30px; line-height: 32px; }
+
+  // TODO
+  .talk-link {
+    //.tween();
+    text-decoration: none;
+    font-size: 13px;
+    @include opacity(0.5);
+    &:hover {
+      @include opacity(1);
+    }
+    i {
+      font-size: 15px;
+      color: darken($color-b, 10%);
+    }
+  }
+}
+
+#speakers {
+  width: 600px; margin: 0 auto;
+
+  section {
+    margin: 30px 0 0 0;
+    padding: 20px 0 0 0;
     @include clearfix;
-    padding: 70px 10px 30px 10px;
-    margin: 0 auto;
-    width: 900px;
-
-    h1 {
-      font-size: 36px;
-      margin-bottom: 20px;
-      color: $color-a;
-      text-shadow: 3px 3px $color-b;
-      text-align: center;
-      text-transform: uppercase;
-    }
-    h1:after { display: inline-block; margin: 0 0 8px 20px; height: 3px; content: " "; text-shadow: none; background-color: $color-b; width: 140px; @media all and (max-width: 450px) { width: 20px; }; }
-    h1:before { display: inline-block; margin: 0 20px 8px 0; height: 3px; content: " "; text-shadow: none; background-color: $color-b; width: 140px; @media all and (max-width: 450px) { width: 20px; }; }
-  }
-
-  #when {
-    .date {
-      width: 240px;
+    .avatar {
       float: left;
-      @media all and (max-width: 650px) {
-        float: none;
-        width: auto;
-      }
-    }
-
-    .timer {
-      width: 300px;
-      float: right;
-      @media all and (max-width: 650px) {
-        float: none;
-        width: auto;
-      }
-    }
-    .countdown_section {
-      float: left;
-      margin-left: 12px;
+      width: 20%;
       text-align: center;
-      @media all and (max-width: 650px) {
-        margin-right: 12px;
-        margin-left: 0px;
-        float: left;
-      }
-      .countdown_amount {
-        font-size: 36px;
-        display: inline-block;
-        background: $color-a;
-        padding: 2px 6px 2px 6px;
-        border-radius: 6px;
-        color: $color-a-invert;
-      }
-    }
-    .facebook-event {
       @include box-sizing(border-box);
-      display: block;
-      font-size: 14px;
-      line-height: 20px;
-      background: image-url("facebook.jpg") no-repeat 0 4px;
-      padding: 0 0 0 40px;
-      text-align: right;
-      margin: 16px auto 0 auto;
-      width: 133px;
-    }
-    strong {
-      display: block;
-      font-size: 24px;
-      font-weight: normal;
-      margin: 0;
-      padding: 0;
-      text-align: center;
-      margin-bottom: 10px;
-    }
-
-    .timer > strong {
-      text-align: right;
-    }
-  }
-
-  .venue {
-    address {
-      font-size: 24px;
-      font-weight: normal;
-      margin: 0;
-      padding: 0;
-      text-align: center;
-    }
-
-    address + address { font-style: italic; }
-    address + iframe { margin-top: 20px; }
-  }
-
-  #schedule {
-    ol { width: 600px; margin: 0 auto; }
-    li {
-      @include clearfix;
-      font-size: 20px;
-
-      time {
-        width: 20%;
-        float: left;
-        text-align: center;
-        font-size: 30px;
-        padding: 6px 12px 6px 12px;
-        border-right: solid 7px $color-b;
-        height: 115px;
-        margin-right: 20px;
-
-        @include box-sizing(border-box);
-
-        @media all and (max-width: 525px) {
-          width: 30%;
-          font-size: 16px;
-          padding: 12px 12px 6px 12px;;
-        }
+      img {
+        display: block;
+        width: 80px;
+        height: 80px;
+        border-radius: 40px;
+        margin: 0 auto 10px auto;
       }
-
-      .talk-link {
-        //.tween();
-        text-decoration: none;
-        font-size: 13px;
-        @include opacity(0.5);
-        &:hover {
-          @include opacity(1);
-        }
-        i {
-          font-size: 15px;
-          color: darken($color-b, 10%);
-        }
+      @media all and (max-width: 660px) {
+        display: none;
       }
-
-      & + li time { border-top: dotted 2px $color-b; }
     }
-  }
-
-  #speakers {
-    width: 600px; margin: 0 auto;
-
-    section {
-      margin: 30px 0 0 0;
-      padding: 20px 0 0 0;
-      @include clearfix;
-      .avatar {
-        float: left;
-        width: 20%;
-        text-align: center;
-        @include box-sizing(border-box);
-        img {
-          display: block;
-          width: 80px;
-          height: 80px;
-          border-radius: 40px;
-          margin: 0 auto 10px auto;
-        }
-        @media all and (max-width: 660px) {
-          display: none;
-        }
+    .speaker {
+      float: left;
+      width: 80%;
+      padding: 0 0 0 20px;
+      @include box-sizing(border-box);
+      h3 {
+        font-size: 23px;
+        text-align: left;
+        a { text-decoration: none; }
+        small { font-size: 14px; }
+        small:before { content: " / "; }
       }
-      .speaker {
-        float: left;
-        width: 80%;
-        padding: 0 0 0 20px;
-        @include box-sizing(border-box);
-        h3 {
-          font-size: 23px;
-          text-align: left;
-          a { text-decoration: none; }
-          small { font-size: 14px; }
-          small:before { content: " / "; }
-        }
-        p {
-          margin: 10px 0;
-          line-height: 24px;
-        }
-        @media all and (max-width: 660px) {
-          width: 100%;
-        }
+      p {
+        margin: 10px 0;
+        line-height: 24px;
       }
-
-      & + section { border-top: dotted 2px $color-b; }
+      @media all and (max-width: 660px) {
+        width: 100%;
+      }
     }
+
+    & + section { border-top: dotted 2px $color-b; }
   }
 }
 
-html, body {
-  margin: 0;
-  padding: 34px 0 0 0;
-  font-family: 'Open Sans';
-  font-size: 14px;
-  background: #fff;
-}
 
 header {
   @include box-shadow(0 1px 10px #000);
@@ -394,6 +313,8 @@ footer {
   p {
     width: 25%;
     float: left;
+    font-size: 13px;
+    line-height: 16px;
     text-align: center;
     @include box-sizing(border-box);
     margin: 0;
@@ -403,6 +324,8 @@ footer {
       width: auto;
     }
   }
+
+  strong { display: block; }
 
   a {
     // .tween();
@@ -417,6 +340,8 @@ footer {
     font-weight: bold;
     &:hover { background: lighten($headerBackground, 20%); }
   }
+
+  a + a { margin-left: 5px; }
 }
 
 

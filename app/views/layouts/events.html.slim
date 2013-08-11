@@ -18,21 +18,18 @@
   footer
     div
       p
-        ' За контакт:
-        br
+        strong За контакт:
         = link_to 'Facebook', "https://www.facebook.com/#{current_conference.facebook_account}" if current_conference.facebook_account?
         = link_to 'Twitter', "http://twitter.com/#{current_conference.twitter_account}" if current_conference.twitter_account?
         = link_to 'YouTube', "http://youtube.com/#{current_conference.youtube_account}" if current_conference.youtube_account?
         = link_to current_conference.contact_name, "mailto:#{current_conference.contact_email}" if current_conference.contact_name?
       p
-        ' Издания:
-        br
+        strong Издания:
         - current_conference.events.publicly_announced.each do |event|
           = link_to event.name, archive_path(event.name)
       p
+        strong Други събития:
         - Conference.all.each do |conference|
           = link_to conference.name, "http://#{conference.domain}", class: conference == current_conference && 'selected'
 
-      p
-        ' Copyright #{copyright}<br>
-          All rights reserved.
+      p Copyright #{copyright}<br>All rights reserved.
