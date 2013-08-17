@@ -37,4 +37,19 @@ module ApplicationHelper
     content_for :content, &block
     render template: 'layouts/application'
   end
+
+
+  SOCIAL_LINK_CLASSES = {
+    github:   ['https://github/%s', 'icon-github'],
+    twitter:  ['http://twitter.com/%s', 'icon-twitter'],
+    facebook: ['http://facebook.com/%s', 'icon-facebook-squared'],
+  }
+
+  def social_link(social_network, account_name)
+    if account_name.present?
+      site_address, icon_class = SOCIAL_LINK_CLASSES[social_network]
+      icon = %Q(<i class="#{icon_class}"></i>).html_safe
+      link_to icon, site_address % account_name, class: 'icon'
+    end
+  end
 end
