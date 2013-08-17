@@ -166,6 +166,7 @@ article {
 
 #speaker {
   @include centered-content(800px);
+  margin-top: 60px;
   text-align: center;
 
   .avatar img { display: block; width: 140px; border-radius: 100%; margin: 0 auto 10px auto; }
