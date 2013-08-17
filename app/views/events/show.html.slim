@@ -58,7 +58,10 @@
       - @event.sessions.each do |session|
         li
           time = session.start_at
-          ' #{session.title} - #{link_to session.speaker_name}<br>
+          ' #{session.title}
+          - if session.speaker_id?
+            ' - #{link_to session.speaker_name}
+          br
           - if session.video_url?
             = link_to session.video_url, class: 'talk-link' do
               i.icon-video-circled
