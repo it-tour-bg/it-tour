@@ -74,27 +74,7 @@
   article#speakers
     h1 Лектори
     - @event.speakers.each do |speaker|
-      section
-        .avatar
-          - if speaker.photo?
-            = link_to image_tag(speaker.photo.url(:thumb)), speaker.personal_site, target: :blank
-
-          = social_link :github, speaker.github_account
-          = social_link :twitter, speaker.twitter_account
-          = social_link :facebook, speaker.facebook_account
-
-        .speaker
-          h3
-            - if speaker.personal_site?
-              = link_to speaker.name, speaker.personal_site, target: :blank
-            - else
-              = speaker.name
-            - if speaker.company?
-              - if speaker.company_site?
-                small = link_to speaker.company, speaker.company_site, target: :blank, class: 'company'
-              - else
-                small = speaker.company
-          = markdown speaker.description
+      section = render speaker
 
 - if @event.after_party_announced?
   article#after-party.venue

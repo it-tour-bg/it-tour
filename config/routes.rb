@@ -23,8 +23,9 @@ TourConf::Application.routes.draw do
     delete :out, to: 'sessions#destroy'
   end
 
-  resource :subscribers, only: [:new, :create]
-  resource :feedbacks, only: [:new, :create]
+  resources :subscribers, only: [:new, :create]
+  resources :feedbacks, only: [:new, :create]
+  resources :speakers, only: [:show]
 
   get 'archive/:year', to: 'events#show', as: :archive
 

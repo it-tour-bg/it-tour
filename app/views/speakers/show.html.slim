@@ -1,0 +1,19 @@
+article#speaker
+  = render @speaker
+
+  .sessions
+    - @speaker.sessions.announced.each do |session|
+      section
+        p
+          = session.event.full_name
+          - if session.video_url?
+            br
+            = link_to session.video_url, class: 'talk-link' do
+              i.icon-video-circled
+              ' Видео
+          - if session.slides_url?
+            br
+            = link_to session.slides_url, class: 'talk-link' do
+              i.icon-folder-open
+              ' Презентация
+        h4 = session.title

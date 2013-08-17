@@ -152,7 +152,7 @@ article {
   section + section { border-top: dotted 2px $color-b; }
 
   .avatar { @include box-sizing(border-box); float: left; width: 20%; text-align: center; }
-  .avatar img { display: block; width: 80px; height: 80px; border-radius: 40px; margin: 0 auto 10px auto; }
+  .avatar img { display: block; width: 80px; border-radius: 100%; margin: 0 auto 10px auto; }
   .avatar .icon { @include icon }
 
   .speaker { @include box-sizing(border-box); float: left; width: 80%; padding: 0 0 0 20px; }
@@ -162,6 +162,31 @@ article {
   .speaker h3 small:before { content: " / "; }
   .speaker p { margin: 10px 0; line-height: 24px; }
   .speaker p a { text-decoration: none; }
+}
+
+#speaker {
+  @include centered-content(800px);
+  text-align: center;
+
+  .avatar img { display: block; width: 140px; border-radius: 100%; margin: 0 auto 10px auto; }
+  .avatar .icon { @include icon }
+
+  h3 { margin: 30px 0; }
+  h3 > a { display: block; font-size: 40px; text-decoration: none; }
+  h3 > a:after,
+  h3 > a:before { @include inline-block; width: 140px; height: 3px; margin: 0 20px 8px; content: " "; background-color: $color-b; }
+  h3 small { font-size: 16px; }
+  h3 small a { text-decoration: none; }
+
+  .speaker p { padding: 0 120px 10px; font-size: 18px; line-height: 24px; }
+  .speaker p a { text-decoration: none; }
+
+  .sessions {
+    section { @include clearfix; margin: 30px 50px 0; padding-top: 30px; border-top: 1px dotted $color-b; }
+    h4 { text-align: left; font-weight: normal; font-size: 30px; float: right; width: 70%; padding: 0 0 0 30px; }
+    p { width: 20%; font-size: 16px; line-height: 30px; display: block; text-align: right; padding: 2px 30px 8px 0; float: left; border-right: solid 1px $color-b; }
+    p .talk-link { @include icon(5px); }
+  }
 }
 
 #subscribe, #feedback {

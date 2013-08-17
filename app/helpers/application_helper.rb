@@ -43,6 +43,7 @@ module ApplicationHelper
     github:   ['https://github/%s', 'icon-github'],
     twitter:  ['http://twitter.com/%s', 'icon-twitter'],
     facebook: ['http://facebook.com/%s', 'icon-facebook-squared'],
+    home:     ['%s', 'icon-home'],
   }
 
   def social_link(social_network, account_name)
