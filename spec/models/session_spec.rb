@@ -15,4 +15,14 @@ describe Session do
       expect(Session.all).to eq [at_12_30, at_14_20, at_15_10]
     end
   end
+
+  describe "announced" do
+    it "includes only sessions from public events where sessions are announced" do
+      not_announced_event   = create :session, event: create(:future_event)
+      not_announced_session = create :session, event: create(:event, sessions_announced: false)
+      announced_session     = create :session, event: create(:event, sessions_announced: true)
+
+      expect(Session.announced).to eq [announced_session]
+    end
+  end
 end

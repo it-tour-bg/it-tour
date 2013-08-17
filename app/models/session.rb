@@ -10,5 +10,7 @@ class Session < ActiveRecord::Base
 
   default_scope -> { order 'start_at ASC' }
 
+  scope :announced, -> { joins(:event).where('events.sessions_announced' => true, 'events.publicly_announced' => true) }
+
   delegate :name, to: :speaker, prefix: true
 end
