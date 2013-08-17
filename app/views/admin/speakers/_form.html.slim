@@ -6,9 +6,13 @@
   = form.input :personal_site
   = form.input :company
   = form.input :company_site
-  = form.input :twitter_account
   = form.input :photo, as: :file
   = form.input :tshirt_size
+
+  = field_set_tag "Social links" do
+    = form.input :twitter_account
+    = form.input :github_account
+    = form.input :facebook_account
 
   .form-actions
     = form.button :submit, class: 'btn-primary'
