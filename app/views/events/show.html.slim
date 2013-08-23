@@ -19,6 +19,13 @@
   article#coverart
     = image_tag @event.coverart.url(:default), alt: @event.full_name
 
+- if @event.show_streaming?
+  article#streaming
+    h1 Live Streaming
+
+    section
+      = raw @event.streaming_code
+
 - if @event.dates_announced?
   article#when
     h1 Кога?

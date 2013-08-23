@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130630121555) do
+ActiveRecord::Schema.define(version: 20130823200159) do
 
   create_table "conferences", force: true do |t|
     t.string   "name"
@@ -56,6 +56,8 @@ ActiveRecord::Schema.define(version: 20130630121555) do
     t.boolean  "current",                    default: false, null: false
     t.boolean  "show_feedback_form",         default: false, null: false
     t.boolean  "show_photo_gallery",         default: false, null: false
+    t.text     "streaming_code"
+    t.boolean  "show_streaming",             default: false, null: false
   end
 
   create_table "feedbacks", force: true do |t|
@@ -85,7 +87,7 @@ ActiveRecord::Schema.define(version: 20130630121555) do
   end
 
   create_table "speakers", force: true do |t|
-    t.string   "name",            null: false
+    t.string   "name",             null: false
     t.text     "description"
     t.string   "personal_site"
     t.string   "company"
@@ -95,6 +97,8 @@ ActiveRecord::Schema.define(version: 20130630121555) do
     t.string   "twitter_account"
     t.string   "photo"
     t.string   "tshirt_size"
+    t.string   "github_account"
+    t.string   "facebook_account"
   end
 
   create_table "subscribers", force: true do |t|

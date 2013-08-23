@@ -27,6 +27,9 @@
     = form.input :after_party_venue_notes
     = form.input :after_party_venue_map_url
 
+  = field_set_tag "Streaming html code" do
+    = form.input :streaming_code
+
   = field_set_tag "Announcements & Layout"
     = form.input :dates_announced
     = form.input :venue_announced
@@ -35,6 +38,7 @@
     = form.input :speakers_announced
     = form.input :show_feedback_form
     = form.input :show_photo_gallery
+    = form.input :show_streaming
 
   .form-actions
     = form.button :submit, class: 'btn-primary'
