@@ -36,14 +36,14 @@
         ' Вход:
         strong свободен
 
-      - if @event.finished?
-        .state Събитието завърши
-      - elsif @event.ongoing?
-        .state Събитието тече в момента
-      - else
-        .timer
-          ' Остават:
-          div data-countdown="#{@event.start_time}"
+      /* - if @event.finished? */
+      /*   .state Събитието завърши */
+      /* - elsif @event.ongoing? */
+      /*   .state Събитието тече в момента */
+      /* - else */
+      /*   .timer */
+      /*     ' Остават: */
+      /*     div data-countdown="#{@event.start_time}" */
 
     - if @event.event_url?
       = link_to 'Събитието във Facebook', @event.event_url, class: 'facebook-event', target: 'blank'
