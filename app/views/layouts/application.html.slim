@@ -38,13 +38,13 @@ html
         - Conference.all.each do |conference|
           = link_to conference.name, "http://#{conference.domain}", class: conference == current_conference && 'selected'
       nav.sub
-        = link_to 'Кога?', '#when' if current_event.dates_announced?
-        = link_to 'Къде?', '#venue' if current_event.venue_announced?
-        = link_to 'Програма', '#schedule' if current_event.sessions_announced?
-        = link_to 'Лектори', '#speakers' if current_event.speakers_announced?
-        = link_to 'After party', '#after-party' if current_event.after_party_announced?
-        = link_to 'Записвания', '#subscribe'
-        = link_to 'Идеи и препоръки', '#feedback' if current_event.show_feedback_form?
+        = link_to 'Кога?', archive_path(current_event.name, anchor: 'when') if current_event.dates_announced?
+        = link_to 'Къде?', archive_path(current_event.name, anchor: 'venue') if current_event.venue_announced?
+        = link_to 'Програма', archive_path(current_event.name, anchor: 'schedule') if current_event.sessions_announced?
+        = link_to 'Лектори', archive_path(current_event.name, anchor: 'speakers') if current_event.speakers_announced?
+        = link_to 'After party', archive_path(current_event.name , anchor: 'after-party') if current_event.after_party_announced?
+        = link_to 'Записвания', archive_path(current_event.name, anchor: 'subscribe')
+        = link_to 'Идеи и препоръки', archive_path(current_event.name, anchor: 'feedback') if current_event.show_feedback_form?
 
     = content_for?(:content) ? yield(:content) : yield
 
