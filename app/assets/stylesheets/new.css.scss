@@ -18,19 +18,23 @@ $color-c: #1BB0CE;
   @include opacity(0.5);
   @include transition(all 0.2s);
 
-  text-decoration: none;
-
   &:hover { @include opacity(1); }
   i { margin-right: $margin-right; font-size: 16px; color: darken($color-b, 10%); }
 }
+
+@mixin heading1 { font-size: 36px; line-heigth: 38px; }
+@mixin heading2 {}
+@mixin heading3 {}
+@mixin heading4 {}
 
 body {
   font-family: 'Open Sans';
   font-size: 14px;
   background: #fff;
+  padding-top: 85px;
 }
 
-a { color: inherit; }
+a { color: inherit; text-decoration: none; }
 
 header, footer {
   font-family: Arial;
@@ -56,7 +60,7 @@ header {
   h1 { @include opacity(0.2); @include transition(opacity 0.2s); float: left; margin-left: 12px; font-size: 2em; font-weight: bold; }
   h1:hover { @include opacity(1); @include text-shadow(2px 2px #000); }
 
-  a { @include inline-block; @include transition(all 0.2s); text-decoration: none; }
+  a { @include inline-block; @include transition(all 0.2s); }
 
   .main { font-size: 18px; }
   .main a { @include border-radius(10px 10px 0 0); padding: 10px 12px; }
@@ -87,7 +91,7 @@ footer {
 
   strong { display: block; }
 
-  a { @include transition(all 0.2s); @include inline-block; @include border-radius(4px); padding: 2px 4px; margin-top: 4px; text-decoration: none; background: lighten($color-a, 5%); font-size: 11px; line-height: 13px; font-weight: bold; }
+  a { @include transition(all 0.2s); @include inline-block; @include border-radius(4px); padding: 2px 4px; margin-top: 4px; background: lighten($color-a, 5%); font-size: 11px; line-height: 13px; font-weight: bold; }
   a:hover { background: lighten($color-a, 20%); }
   a + a { margin-left: 5px; }
 }
@@ -104,13 +108,12 @@ article {
   h1:before { @include inline-block; width: 140px; height: 3px; margin: 0 20px 8px; content: " "; background-color: $color-b; }
 
   a { @include transition(color opacity 0.2s); color: darken($color-a, 100%); }
-  a:hover { color: $color-a; text-decoration: none; }
+  a:hover { color: $color-a; }
 }
 
 #coverart {
   position: relative;
   height: 325px;
-  margin-top: 85px;
   background-size: cover;
 
   img { width: 200px; height: 200px; position: absolute; left: 50%; top: 50%; margin: -100px 0 0 -100px; }
@@ -126,7 +129,7 @@ article {
   strong { display: block; font-size: 24px; line-height: 28px; }
 
   .facebook-event { @include inline-block; @include border-radius(2px); @include transition(all 0.2s); width: 130px; margin-top: 18px; padding-right: 10px; font-size: 14px; line-height: 16px; background: image-url("facebook.png") no-repeat 0 0px; text-align: right; }
-  .facebook-event:hover { background-color: #2d4387; color: #fff; text-decoration: none; }
+  .facebook-event:hover { background-color: #2d4387; color: #fff; }
 }
 
 .venue {
@@ -157,30 +160,25 @@ article {
 
   .speaker { @include box-sizing(border-box); float: left; width: 80%; padding: 0 0 0 20px; }
   .speaker h3 { font-size: 23px; text-align: left; }
-  .speaker h3 a { text-decoration: none; }
   .speaker h3 small { font-size: 14px; }
   .speaker h3 small:before { content: " / "; }
   .speaker p { margin: 10px 0; line-height: 24px; }
-  .speaker p a { text-decoration: none; }
 }
 
 #speaker {
   @include centered-content(800px);
-  margin-top: 60px;
   text-align: center;
 
   .avatar img { display: block; width: 140px; border-radius: 100%; margin: 0 auto 10px auto; }
   .avatar .icon { @include icon }
 
   h3 { margin: 30px 0; }
-  h3 > a { display: block; font-size: 40px; text-decoration: none; }
+  h3 > a { display: block; font-size: 40px; }
   h3 > a:after,
   h3 > a:before { @include inline-block; width: 140px; height: 3px; margin: 0 20px 8px; content: " "; background-color: $color-b; }
   h3 small { font-size: 16px; }
-  h3 small a { text-decoration: none; }
 
   .speaker p { padding: 0 120px 10px; font-size: 18px; line-height: 24px; }
-  .speaker p a { text-decoration: none; }
 
   .sessions {
     section { @include clearfix; margin: 30px 50px 0; padding-top: 30px; border-top: 1px dotted $color-b; }
@@ -193,7 +191,6 @@ article {
 #subscribe, #feedback {
   @include centered-content(800px);
   text-align: center;
-
 
   form { @include clearfix; margin-top: 20px; }
 
@@ -211,8 +208,8 @@ article {
 
   form .btn { @include border-radius(8px); @include transition(all 0.2s); background: $color-a; border: solid 3px $color-b; padding: 8px 10px 8px 10px; color: #ffffff; font-size: 16px; font-weight: bold; }
   form .btn:hover,
-  form .btn:focus { background: $color-b; text-decoration: none; outline: none; }
-  form .btn:active { color: $color-a; text-decoration: none; }
+  form .btn:focus { background: $color-b; outline: none; }
+  form .btn:active { color: $color-a; }
 
   form .error { @include inline-block; @include border-radius(6px); width: 700px; padding: 10px 13px; margin: 17px 0 10px 0; color: #F00; background: $color-b; font-weight: bold; }
   form .error:before { margin: -19px 0 0 0; display: block; content: ""; width: 0; height: 0; position: absolute; border-left: 10px solid transparent; border-right: 10px solid transparent; border-bottom: 10px solid $color-b; }
