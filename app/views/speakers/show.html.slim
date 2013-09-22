@@ -5,7 +5,7 @@ article#speaker
     - @speaker.sessions.announced.each do |session|
       section
         p
-          = session.event.full_name
+          = link_to session.event.full_name, archive_path(session.event.name, domain: session.event.conference.domain, anchor: 'schedule')
           - if session.video_url?
             br
             = link_to session.video_url, class: 'talk-link' do
