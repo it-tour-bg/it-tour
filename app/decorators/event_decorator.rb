@@ -17,27 +17,31 @@ class EventDecorator < Draper::Decorator
     sessions.map(&:speaker).compact
   end
 
-  def start_time
-    session_time_in_seconds sessions.first
-  end
-
-  def finish_time
-    session_time_in_seconds sessions.last
+  def start_time_for_javascript
+    start_time.strftime '%Y-%m-%d %H:%M'
   end
 
   def ongoing?
-    Time.now.between? Time.at(start_time), Time.at(finish_time)
+    Time.now.between? start_time, finish_time
   end
 
   def finished?
-    Time.now > Time.at(finish_time)
+    Time.now > finish_time
   end
 
   private
 
-  def session_time_in_seconds(session)
+  def start_time
+    session_time sessions.first
+  end
+
+  def finish_time
+    session_time sessions.last
+  end
+
+  def session_time(session)
     start_at = session.try(:start_at) || ''
     hours, minutes = start_at.split ':'
-    date.to_time.to_i + hours.to_i * 60 * 60 + minutes.to_i
+    Time.new(date.year, date.month, date.day, hours, minutes)
   end
 end

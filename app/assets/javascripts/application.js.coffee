@@ -6,7 +6,7 @@
 $.fn.eachWithElement = (callback) -> @each (i) -> callback $(this), i
 
 $('[data-countdown]').eachWithElement (element) ->
-  date = new Date(element.data('countdown') * 1000)
+  date = new Date(element.data('countdown'))
   element.countdown until: date
 
 $('body')
