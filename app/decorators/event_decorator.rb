@@ -18,7 +18,7 @@ class EventDecorator < Draper::Decorator
   end
 
   def start_time_for_javascript
-    start_time.strftime '%Y-%m-%d %H:%M'
+    start_time.rfc2822
   end
 
   def ongoing?
