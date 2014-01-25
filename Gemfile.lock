@@ -5,18 +5,6 @@ GIT
     compass-rails (1.1.2)
       compass (>= 0.12.2)
 
-GIT
-  remote: git://github.com/heroku/rails3_serve_static_assets.git
-  revision: 84910ceb4ca2851d650e66d3b22f5008acf253f8
-  specs:
-    rails3_serve_static_assets (0.0.1)
-
-GIT
-  remote: git://github.com/heroku/rails_log_stdout.git
-  revision: 01b5bcc572e3baed1618f4068920dd83bd491fb2
-  specs:
-    rails_log_stdout (0.0.1)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -127,6 +115,8 @@ GEM
       coderay (~> 1.0.5)
       method_source (~> 0.8)
       slop (~> 3.4)
+    puma (2.7.1)
+      rack (>= 1.1, < 2.0)
     rack (1.5.2)
     rack-test (0.6.2)
       rack (>= 1.0)
@@ -220,9 +210,8 @@ DEPENDENCIES
   launchy
   pg
   pry
+  puma
   rails (= 4.0.0)
-  rails3_serve_static_assets!
-  rails_log_stdout!
   redcarpet
   responders
   rmagick
