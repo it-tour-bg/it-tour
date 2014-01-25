@@ -18,10 +18,11 @@ gem 'foreigner'
 gem 'redcarpet'
 gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'responders'
-gem 'fog', '~> 1.3.1'
+gem 'fog'
 gem 'carrierwave'
 gem 'rmagick'
 gem 'draper'
+gem 'capistrano', '~> 3.1.0'
 
 group :development, :test do
   gem 'rspec-rails'
