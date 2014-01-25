@@ -20,3 +20,6 @@
 
 # Ignore local uploads
 public/uploads
+
+# Ignore Ruby version manager files
+.ruby-version
