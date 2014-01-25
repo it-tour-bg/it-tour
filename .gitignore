@@ -23,3 +23,5 @@ public/uploads
 
 # Ignore Ruby version manager files
 .ruby-version
+
+config/database.yml
