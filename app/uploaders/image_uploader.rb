@@ -3,12 +3,12 @@ module ImageUploader
     base.send :include, CarrierWave::RMagick
     base.send :include, CarrierWave::MimeTypes
     base.send :process, :set_content_type
-    base.send :storage, Features.s3_uploads? ? :fog : :file
+    base.send :storage, :file
     base.send :version, :original
   end
 
   def store_dir
-    "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+    "system/uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
   def filename
