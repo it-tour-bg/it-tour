@@ -25,6 +25,7 @@ gem 'draper'
 gem 'capistrano', '~> 3.1.0'
 gem 'capistrano-rails'
 gem 'capistrano-bundler'
+gem 'therubyracer'
 
 group :development, :test do
   gem 'rspec-rails'

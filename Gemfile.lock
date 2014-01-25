@@ -108,6 +108,7 @@ GEM
       thor (>= 0.14, < 2.0)
     launchy (2.3.0)
       addressable (~> 2.3)
+    libv8 (3.16.14.3)
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
@@ -147,6 +148,7 @@ GEM
       thor (>= 0.18.1, < 2.0)
     rake (10.1.1)
     redcarpet (2.3.0)
+    ref (1.0.5)
     request_store (1.0.5)
     responders (0.6.5)
     rmagick (2.13.2)
@@ -192,6 +194,9 @@ GEM
     temple (0.6.5)
     term-ansicolor (1.2.2)
       tins (~> 0.8)
+    therubyracer (0.12.0)
+      libv8 (~> 3.16.14.0)
+      ref
     thor (0.18.1)
     thread_safe (0.1.0)
       atomic
@@ -242,5 +247,6 @@ DEPENDENCIES
   shoulda-matchers
   simple_form (= 3.0.0.rc)
   slim
+  therubyracer
   turbolinks
   uglifier (>= 1.3.0)
