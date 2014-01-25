@@ -22,10 +22,13 @@ gem 'fog'
 gem 'carrierwave'
 gem 'rmagick'
 gem 'draper'
-gem 'capistrano', '~> 3.1.0'
-gem 'capistrano-rails'
-gem 'capistrano-bundler'
 gem 'therubyracer'
+
+group :development do
+  gem 'capistrano', '~> 3.1.0'
+  gem 'capistrano-rails'
+  gem 'capistrano-bundler'
+end
 
 group :development, :test do
   gem 'rspec-rails'
