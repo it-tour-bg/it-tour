@@ -1,4 +1,11 @@
 GIT
+  remote: git://github.com/Compass/compass-rails.git
+  revision: e7fce026f270955a636c14e011068fc94bb6c36f
+  specs:
+    compass-rails (1.1.2)
+      compass (>= 0.12.2)
+
+GIT
   remote: git://github.com/heroku/rails3_serve_static_assets.git
   revision: 84910ceb4ca2851d650e66d3b22f5008acf253f8
   specs:
@@ -9,14 +16,6 @@ GIT
   revision: 01b5bcc572e3baed1618f4068920dd83bd491fb2
   specs:
     rails_log_stdout (0.0.1)
-
-GIT
-  remote: git://github.com/milgner/compass-rails.git
-  revision: 1749c06f15dc4b058427e7969810457213647fb8
-  ref: 1749c06f15dc4b058427e7969810457213647fb8
-  specs:
-    compass-rails (1.0.3)
-      compass (>= 0.12.2, < 0.14)
 
 GEM
   remote: https://rubygems.org/
@@ -61,7 +60,7 @@ GEM
     carrierwave (0.8.0)
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
-    chunky_png (1.2.8)
+    chunky_png (1.2.9)
     coderay (1.0.9)
     coffee-rails (4.0.0)
       coffee-script (>= 2.2.0)
