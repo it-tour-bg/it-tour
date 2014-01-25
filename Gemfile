@@ -3,6 +3,7 @@ ruby '2.1.0'
 
 gem 'rails', '4.0.0'
 gem 'pg'
+gem 'puma'
 
 gem 'slim'
 gem 'sass-rails', '~> 4.0.0.rc1'
@@ -17,20 +18,22 @@ gem 'foreigner'
 gem 'redcarpet'
 gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'responders'
-gem 'fog', '~> 1.3.1'
+gem 'fog'
 gem 'carrierwave'
 gem 'rmagick'
 gem 'draper'
+gem 'therubyracer'
+
+group :development do
+  gem 'capistrano', '~> 3.1.0'
+  gem 'capistrano-rails'
+  gem 'capistrano-bundler'
+end
 
 group :development, :test do
   gem 'rspec-rails'
   gem 'pry'
   gem 'dotenv'
-end
-
-group :production do
-  gem 'rails_log_stdout',           github: 'heroku/rails_log_stdout'
-  gem 'rails3_serve_static_assets', github: 'heroku/rails3_serve_static_assets'
 end
 
 group :test do
