@@ -9,6 +9,8 @@ Conferences:
 
 ## Installation
 
+Copy `config/database.yml.example` to `config/database.yml` and edit it to match your local configuration.
+
 ```
 gem install bundler
 bundle install
@@ -18,8 +20,7 @@ rake create_user first_name="Your" last_name="Name" email="mail@example.com" pas
 rails server
 ```
 
-From there just visit: [localhost:3000/admin/](http://localhost:3000/admin/)
-
+From there just visit: [localhost:3000/admin/](http://localhost:3000/admin/) and create a new conference with the "example.com" domain. Afterwards, you should be able to visit the public site, ie. [localhost:3000](http://localhost:3000/).
 
 ## Description
 
