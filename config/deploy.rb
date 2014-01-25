@@ -13,7 +13,7 @@ namespace :deploy do
   task :restart do
     on roles(:app), in: :sequence, wait: 5 do
       within release_path do
-        execute 'bin/pumactl', '--state', release_path.join('tmp/puma.state'), 'restart'
+        execute 'bin/pumactl', '--state', current_path.join('tmp/pids/puma.state'), 'restart'
       end
     end
   end
