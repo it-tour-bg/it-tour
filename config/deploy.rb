@@ -3,7 +3,7 @@ lock '3.1.0'
 set :application,         'ittour'
 set :scm,                 :git
 set :repo_url,            'git@github.com:RStankov/it-tour.git'
-set :branch,              'new-deployment'
+set :branch,              'master'
 set :deploy_to,           '/home/ittour/www/ittour'
 set :linked_files,        %w(config/database.yml)
 set :linked_dirs,         %w(bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system)
