@@ -26,5 +26,7 @@ module TourConf
     config.eager_load_paths += %W(#{config.root}/lib)
 
     config.filter_parameters += [:password, :password_confirmation]
+
+    config.i18n.enforce_available_locales = true
   end
 end
