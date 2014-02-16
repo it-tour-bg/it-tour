@@ -23,6 +23,9 @@ header { display: none; }
 
 .page {
 
+  article { padding: 60px 0; }
+  article h1 { margin: 0 auto; width: 700px; font-size: 50px; padding-bottom: 44px; margin-bottom: 40px; border-bottom: 1px solid $line; position: relative; }
+  article h1:after { content: ""; display: block; border-bottom: 1px solid $line; position: absolute; height: 1px; bottom: -3px; left: 0px; right: 0px;  }
   article section {  margin: 0 auto; width: 700px; }
   article + article { border-top: 1px solid $line-light; }
 }
@@ -32,7 +35,6 @@ header { display: none; }
 #streaming { display: none; }
 
 #when {
-   padding: 60px 0;
 
    text-align: center;
 
@@ -49,9 +51,30 @@ header { display: none; }
 
 #venue { display: none; }
 
-#schedule { display: none; }
+#schedule {
+  ol li { position: relative; min-height: 70px; padding-left: 270px; }
+  ol li + li { border-top: 1px solid $line; padding-top: 30px; margin-top: 30px; }
+  ol li time { font-size: 70px; font-weight: bold; position: absolute; left: 0px; }
+  ol li strong { font-size: 34px; font-weight: bold; display: block; margin-bottom: 15px; }
+  ol li .speaker { font-size: 22px; border-bottom: none; }
+  ol li .speaker:hover { border-bottom: 1px dotted #999; }
+  ol li .links { display: block; margin-top: 15px; }
+  ol li .links a + a { margin-left: 5px; }
+}
 
-#speakers { display: none; }
+#speakers {
+  .avatar { border-bottom: none; float: left; margin-right: 25px; }
+  .avatar:hover { @include opacity(0.8); }
+  .avatar img { @include border-radius(100%); }
+
+  h2 { font-size: 34px; font-weight: bold; }
+  h2 a { border-bottom: none; }
+  h2 a:hover { border-bottom: 1px dotted #999; }
+
+  h2 { float: left; padding: 22px 0; }
+
+  p { clear: both; font-size: 22px; padding: 15px 0; }
+}
 
 #after-party { display: none; }
 

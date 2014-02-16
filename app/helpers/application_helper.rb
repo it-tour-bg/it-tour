@@ -12,17 +12,6 @@ module ApplicationHelper
     "© #{Date.today.year} IT Tour."
   end
 
-  def render_session(session)
-    links = []
-    links << link_to('видео', session.video_url, target: :blank) if session.video_url?
-    links << link_to('слайдове', session.slides_url, target: :blank) if session.slides_url?
-
-    session_info = session.title
-    session_info << " - #{link_to session.speaker_name, '#speaker-' + session.speaker_id.to_s}" if session.speaker.present?
-    session_info << " (#{links.join(', ')})" if links.present?
-    session_info.html_safe
-  end
-
   def back_link
     content_tag :article, link_to("Обратно към #{current_conference.name}", root_url)
   end

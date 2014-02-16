@@ -56,13 +56,17 @@
 - if @event.sessions_announced?
   article#schedule
     h1 Програма
+
     section
       ol
         - @event.sessions.each do |session|
           li
             time = session.start_at
-            = render_session session
-
+            strong = session.title
+            = link_to session.speaker_name, "#speaker-#{session.speaker_id}", class: 'speaker' if session.speaker.present?
+            span.links
+              = link_to 'видео', session.video_url, target: :blank, class: 'video' if session.video_url?
+              = link_to 'слайдове', session.slides_url, target: :blank, class: 'slides' if session.slides_url?
 
 - if @event.speakers_announced?
   article#speakers
@@ -71,17 +75,8 @@
       section id="speaker-#{speaker.id}"
         - if speaker.photo?
           = link_to image_tag(speaker.photo.url(:thumb)), speaker.personal_site, target: :blank, class: 'avatar'
-        h2
-          - if speaker.personal_site?
-            = link_to speaker.name, speaker.personal_site, target: :blank, class: 'name'
-          - else
-            span.name = speaker.name
 
-          - if speaker.company?
-            - if speaker.company_site?
-              = link_to speaker.company, speaker.company_site, target: :blank, class: 'company'
-            - else
-              span.company = speaker.company
+        h2 = link_to speaker.name, '#'
 
         p = markdown speaker.description
 
