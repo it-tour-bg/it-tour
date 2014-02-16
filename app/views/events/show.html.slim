@@ -28,25 +28,20 @@
 
 - if @event.dates_announced?
   article#when
-    h1 Кога?
     h2 = @event.formatted_date
 
     section
-      .entrance
-        ' Вход:
-        strong свободен
-
       - if @event.finished?
         .state Събитието завърши
       - elsif @event.ongoing?
         .state Събитието тече в момента
       - else
-        .timer
-          ' Остават:
-          div data-countdown="#{@event.start_time_for_javascript}"
+        .timer data-countdown="#{@event.start_time_for_javascript}"
 
-    - if @event.event_url?
-      = link_to 'Събитието във Facebook', @event.event_url, class: 'facebook-event', target: 'blank'
+      .entrance вход свободен
+
+      - if @event.event_url?
+        = link_to 'cъбитието във Facebook', @event.event_url, class: 'facebook-event', target: '_blank'
 
 - if @event.venue_announced?
   article#venue

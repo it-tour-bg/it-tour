@@ -764,8 +764,8 @@ $.countdown = new Countdown(); // singleton instance
  * Written by Manol Trendafilov manol@rastermania.com (2010) */
 (function($) {
 	$.countdown.regional['bg'] = {
-		labels: ['Години', 'Месеца', 'Седмица', 'Дни', 'Часа', 'Минути', 'Секунди'],
-		labels1: ['Година', 'Месец', 'Седмица', 'Ден', 'Час', 'Минута', 'Секунда'],
+		labels: ['години', 'месеца', 'седмица', 'дни', 'часа', 'минути', 'секунди'],
+		labels1: ['година', 'месец', 'седмица', 'ден', 'час', 'минута', 'секунда'],
 		compactLabels: ['l', 'm', 'n', 'd'], compactLabels1: ['g', 'm', 'n', 'd'],
 		whichLabels: null,
 		timeSeparator: ':', isRTL: false};
