@@ -15,10 +15,6 @@
     meta content="#{@event.conference_slogan}" property="og:description"
     meta content="#{@event.conference_slogan}" name="description"
 
-- if @event.coverart?
-  article#coverart
-    = image_tag @event.coverart.url(:default), alt: @event.full_name
-
 - if @event.show_streaming?
   article#streaming
     h1 Live Streaming

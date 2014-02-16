@@ -1,11 +1,16 @@
 = render_in_layout do
-  header
+  - if @event && @event.coverart?
+    header style="background-image: url(#{@event.coverart.url(:default)})"
+
+  nav
     div
-      h1
-        = link_to 'IT Tour', '#about'
-      nav
-        - Conference.where(main: false).each do |conference|
-          = link_to conference.name, "http://#{conference.domain}", class: conference == current_conference && 'active'
+      span
+        = link_to 'Кога', '#when'
+        = link_to 'Къде', '#where'
+        = link_to 'Програма', '#schedule'
+        = link_to 'Лектори', '#speakers'
+        = link_to 'After party', '#after-party'
+        = link_to 'Контакти', '#feedback'
 
   .page
     = yield

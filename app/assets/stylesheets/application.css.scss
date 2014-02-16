@@ -14,25 +14,56 @@ body {
   color: $text;
 }
 
-a { color: $text; text-decoration: none; border-bottom: 1px dotted #999; }
-a:focus,
-a:hover { border-bottom-color: $text; }
-a:active { color: #999; }
-
 @mixin hidden-link {
   border-bottom: none;
   &:hover { border-bottom:  1px dotted #999; }
 }
 
-header { display: none; }
+@mixin centered-content {
+  margin: 0 auto;
+  width: 700px;
+}
+
+
+nav {
+  height: 68px;
+  padding-top: 10px;
+  background: asset-url('nav_background_line.png') repeat-x;
+  font-size: 24px;
+  text-align: center;
+
+  a { @include inline-block; padding: 22px 15px; text-decoration: none; color: $text; }
+  a.active,
+  a.focus,
+  a:hover { background-color: $line-light; }
+
+  div { background: asset-url('nav_background.png') repeat; z-index: 1; min-width: 680px; }
+  &.sticky div { position: fixed; top: 0px; left: 0px; right: 0px;}
+
+  @media all and (min-width: 700px) {
+    div span { position: relative; }
+    div span:before { content: ""; position: absolute; top: 50%; width: 83px; height: 8px; left: -83 - 55px; background: asset-url('nav_arrow_left.png'); }
+    div span:after { content: ""; position: absolute; top: 50%; width: 83px; height: 8px; right: - 83 - 55px; background: asset-url('nav_arrow_right.png'); }
+  }
+}
+
+header {
+  height: 300px;
+  background-size: cover;
+  background-position: center;
+}
 
 .page {
+  a { color: $text; text-decoration: none; border-bottom: 1px dotted #999; }
+  a:focus,
+  a:hover { border-bottom-color: $text; }
+  a:active { color: #999; }
 
   article { padding: 60px 0; }
-  article h1 { margin: 0 auto; width: 700px; font-size: 50px; padding-bottom: 44px; margin-bottom: 40px; border-bottom: 1px solid $line; position: relative; }
+  article h1 { @include centered-content; font-size: 50px; padding-bottom: 44px; margin-bottom: 40px; border-bottom: 1px solid $line; position: relative; }
   article h1:after { content: ""; display: block; border-bottom: 1px solid $line; position: absolute; height: 1px; bottom: -3px; left: 0px; right: 0px;  }
-  article section {  margin: 0 auto; width: 700px; }
-  article form {  margin: 0 auto; width: 700px; }
+  article section {  @include centered-content; }
+  article form {  @include centered-content; }
   article form textarea,
   article form input[type="email"] { border: 1px solid #898989; padding: 11px; width: 678px; }
   article form textarea { resize: none; }
