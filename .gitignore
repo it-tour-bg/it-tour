@@ -19,7 +19,7 @@
 .env
 
 # Ignore local uploads
-public/uploads
+public/system
 
 # Ignore Ruby version manager files
 .ruby-version
