@@ -9,7 +9,7 @@ class Admin::ConferencesController < Admin::BaseController
 
   def create
     @conference = Conference.create conference_params
-    respond_with @conference, location: admin_conference_path(@conference)
+    respond_with @conference, location: admin_conferences_path
   end
 
   def show
@@ -22,7 +22,7 @@ class Admin::ConferencesController < Admin::BaseController
 
   def update
     @conference = Conference.update conference_id, conference_params
-    respond_with @conference, location: admin_conference_path(@conference)
+    respond_with @conference, location: admin_conferences_path
   end
 
   def destroy
