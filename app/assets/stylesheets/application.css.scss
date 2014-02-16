@@ -2,25 +2,21 @@
 @import "compass/css3";
 @import "compass/utilities/general/clearfix";
 
-$highlight: #6785B8;
-$header: #262626;
-$text-color: #1e1e1e;
-$contrast: #ffffff;
-$link: #000000;
-$line: $highlight;
-$error: #b94a48;
-
-$min-width: 300px;
-$mid-width: 600px;
-$max-width: 900px;
+$text: #484848;
+$text-light: #969696;
+$line: $text-light;
+$line-light: #b6b6b6;
 
 body {
-  font-family: "Lucida Grande", tahoma, verdana, arial, sans-serif;;
-  font-size: 12pt;
-  color: $text-color;
+  font-family: "Roboto Condensed", tahoma, verdana, arial, sans-serif;;
+  font-size: 12px;
+  color: $text;
 }
 
-a { color: $link; text-decoration: none; }
+a { color: $text; text-decoration: none; border-bottom: 1px dotted #999; }
+a:focus,
+a:hover { border-bottom-color: $text; }
+a:active { color: #999; }
 
 
 header { display: none; }
