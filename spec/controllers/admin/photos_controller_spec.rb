@@ -24,7 +24,7 @@ describe Admin::PhotosController do
     end
 
     it "renders photo in json format" do
-      post :create
+      post :create, event_id: '1'
       expect(response.body).to eq photo.to_json
     end
   end
@@ -32,7 +32,7 @@ describe Admin::PhotosController do
   describe "DELETE 'destroy'" do
     it "removes a photo" do
       Photo.should_receive(:destroy).with('1')
-      delete :destroy, id: '1'
+      delete :destroy, event_id: '1', id: '1'
     end
   end
 
