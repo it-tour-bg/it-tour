@@ -6,6 +6,7 @@ $text: #484848;
 $text-light: #969696;
 $line: $text-light;
 $line-light: #b6b6b6;
+$error: #b94a48;
 
 body {
   font-family: "Roboto Condensed", tahoma, verdana, arial, sans-serif;;
@@ -31,6 +32,16 @@ header { display: none; }
   article h1 { margin: 0 auto; width: 700px; font-size: 50px; padding-bottom: 44px; margin-bottom: 40px; border-bottom: 1px solid $line; position: relative; }
   article h1:after { content: ""; display: block; border-bottom: 1px solid $line; position: absolute; height: 1px; bottom: -3px; left: 0px; right: 0px;  }
   article section {  margin: 0 auto; width: 700px; }
+  article form {  margin: 0 auto; width: 700px; }
+  article form textarea,
+  article form input[type="email"] { border: 1px solid #898989; padding: 11px; width: 678px; }
+  article form textarea { resize: none; }
+  article form .field_with_errors textarea,
+  article form .field_with_errors input[type="email"] { border-color: $error; }
+  article form .error { color: $error; }
+  article form .input { margin-bottom: 20px; }
+  article form label { display: block; font-size: 22px; padding: 15px 0; }
+  article form p { font-size: 14px; }
   article + article { border-top: 1px solid $line-light; }
 }
 
@@ -81,9 +92,5 @@ header { display: none; }
 
   p { clear: both; font-size: 22px; padding: 15px 0; }
 }
-
-#subscribe { display: none; }
-
-#feedback { display: none; }
 
 footer { display: none; }
