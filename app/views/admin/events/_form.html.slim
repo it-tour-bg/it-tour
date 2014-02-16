@@ -42,7 +42,10 @@
 
   .form-actions
     = form.button :submit, class: 'btn-primary'
-    = link_to 'Cancel', admin_event_path(@event), class: 'btn btn-danger'
+    - if @event.new_record?
+      = link_to 'Cancel', admin_events_path, class: 'btn btn-danger'
+    - else
+      = link_to 'Cancel', admin_event_path(@event), class: 'btn btn-danger'
 
 
 
