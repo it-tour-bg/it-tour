@@ -11,27 +11,30 @@
         = link_to 'Лектори', '#speakers'
         = link_to 'After party', '#after-party'
         = link_to 'Контакти', '#feedback'
+        = link_to 'Архив', '#archive'
 
   .page
     = yield
 
-  footer
-    div
-      dl
-        dt За контакт:
-        - if current_conference.facebook_account?
-          dd = link_to 'Facebook', "https://www.facebook.com/#{current_conference.facebook_account}"
-        - if current_conference.twitter_account?
-          dd = link_to 'Twitter', "http://twitter.com/#{current_conference.twitter_account}"
-        - if current_conference.youtube_account?
-          dd = link_to 'YouTube', "http://youtube.com/#{current_conference.youtube_account}"
-        - if current_conference.contact_name?
-          dd = link_to current_conference.contact_name, "mailto:#{current_conference.contact_email}"
-      dl.events
-        dt Издания:
-        - current_conference.events.publicly_announced.each do |event|
-          dd = link_to event.name, archive_path(event.name)
-      p
-        ' Copyright #{copyright}<br>
-          All rights reserved.
+    article#more
+      section
+        .column
+          ' Контакти:<br />
+          - if current_conference.contact_name?
+            = link_to current_conference.contact_name, "mailto:#{current_conference.contact_email}"
+
+          .socail
+            - if current_conference.facebook_account?
+              ' #{link_to '', "https://www.facebook.com/#{current_conference.facebook_account}", class: 'facebook', title: 'Facebook'}
+            - if current_conference.twitter_account?
+              ' #{link_to '', "http://twitter.com/#{current_conference.twitter_account}", class: 'twitter', title: 'Twitter'}
+            - if current_conference.youtube_account?
+              ' #{link_to '', "http://youtube.com/#{current_conference.youtube_account}", class: 'youtube', title: 'YouTube'}
+
+        .column
+          = raw Conference.all.map { |conferece| link_to conferece.name, conferece.domain }.join(', ')
+
+    footer
+      = link_to 'www.it-tour.bg', 'http://it-tour.bg'
+      .copyright © copyright
 

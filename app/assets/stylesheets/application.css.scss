@@ -1,6 +1,8 @@
 @import "compass/reset";
 @import "compass/css3";
 @import "compass/utilities/general/clearfix";
+@import "font-awesome/variables";
+@import "font-awesome/path";
 
 $text: #484848;
 $text-light: #969696;
@@ -24,6 +26,20 @@ body {
   width: 700px;
 }
 
+@mixin icon($text) {
+  & { border-bottom: none; }
+  &:hover { color: red; }
+  &:before {
+    @include inline-block;
+    content: $text;
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
 
 nav {
   height: 68px;
@@ -53,6 +69,18 @@ header {
   background-position: center;
 }
 
+footer {
+  @include centered-content;
+
+  padding: 60px 0;
+  border-top: 1px solid $line-light;
+
+  text-align: center;
+
+  font-size: 14px;
+  line-height: 20px;
+}
+
 .page {
   a { color: $text; text-decoration: none; border-bottom: 1px dotted #999; }
   a:focus,
@@ -75,10 +103,6 @@ header {
   article form p { font-size: 14px; }
   article + article { border-top: 1px solid $line-light; }
 }
-
-#coverart { display: none; }
-
-#streaming { display: none; }
 
 #when {
 
@@ -124,4 +148,14 @@ header {
   p { clear: both; font-size: 22px; padding: 15px 0; }
 }
 
-footer { display: none; }
+#more {
+  font-size: 22px;
+  line-height: 28px;
+
+  .column { @include inline-block; width: 50%; }
+  .column strong { display: block; margin-bottom: 5px; }
+
+  .facebook { @include icon($fa-var-facebook-square); }
+  .youtube { @include icon($fa-var-youtube-square); }
+  .twitter { @include icon($fa-var-twitter-square); }
+}
