@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20130823200159) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "conferences", force: true do |t|
     t.string   "name"
     t.string   "contact_name"
@@ -87,7 +90,7 @@ ActiveRecord::Schema.define(version: 20130823200159) do
   end
 
   create_table "speakers", force: true do |t|
-    t.string   "name",             null: false
+    t.string   "name",            null: false
     t.text     "description"
     t.string   "personal_site"
     t.string   "company"
@@ -97,8 +100,6 @@ ActiveRecord::Schema.define(version: 20130823200159) do
     t.string   "twitter_account"
     t.string   "photo"
     t.string   "tshirt_size"
-    t.string   "github_account"
-    t.string   "facebook_account"
   end
 
   create_table "subscribers", force: true do |t|
@@ -120,15 +121,15 @@ ActiveRecord::Schema.define(version: 20130823200159) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
 
-  add_foreign_key "events", "conferences", :name => "events_conference_id_fk"
+  add_foreign_key "events", "conferences", name: "events_conference_id_fk"
 
-  add_foreign_key "feedbacks", "events", :name => "feedbacks_event_id_fk"
+  add_foreign_key "feedbacks", "events", name: "feedbacks_event_id_fk"
 
-  add_foreign_key "photos", "events", :name => "photos_event_id_fk"
+  add_foreign_key "photos", "events", name: "photos_event_id_fk"
 
-  add_foreign_key "sessions", "events", :name => "sessions_event_id_fk"
-  add_foreign_key "sessions", "speakers", :name => "sessions_speaker_id_fk"
+  add_foreign_key "sessions", "events", name: "sessions_event_id_fk"
+  add_foreign_key "sessions", "speakers", name: "sessions_speaker_id_fk"
 
-  add_foreign_key "subscribers", "conferences", :name => "subscribers_conference_id_fk"
+  add_foreign_key "subscribers", "conferences", name: "subscribers_conference_id_fk"
 
 end
