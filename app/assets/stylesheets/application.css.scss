@@ -18,6 +18,10 @@ a:focus,
 a:hover { border-bottom-color: $text; }
 a:active { color: #999; }
 
+@mixin hidden-link {
+  border-bottom: none;
+  &:hover { border-bottom:  1px dotted #999; }
+}
 
 header { display: none; }
 
@@ -49,15 +53,18 @@ header { display: none; }
    .entrance { margin-top: 44px; padding: 33px 0 10px; border-top: 1px solid $line; }
 }
 
-#venue { display: none; }
+#venue, #after-party {
+  section { text-align: center; font-size: 22px; margin-top: 30px; }
+  section a { @include hidden-link; }
+  section address { margin-top: 5px; }
+}
 
 #schedule {
   ol li { position: relative; min-height: 70px; padding-left: 270px; }
   ol li + li { border-top: 1px solid $line; padding-top: 30px; margin-top: 30px; }
   ol li time { font-size: 70px; font-weight: bold; position: absolute; left: 0px; }
   ol li strong { font-size: 34px; font-weight: bold; display: block; margin-bottom: 15px; }
-  ol li .speaker { font-size: 22px; border-bottom: none; }
-  ol li .speaker:hover { border-bottom: 1px dotted #999; }
+  ol li .speaker { font-size: 22px; @include hidden-link; }
   ol li .links { display: block; margin-top: 15px; }
   ol li .links a + a { margin-left: 5px; }
 }
@@ -68,15 +75,12 @@ header { display: none; }
   .avatar img { @include border-radius(100%); }
 
   h2 { font-size: 34px; font-weight: bold; }
-  h2 a { border-bottom: none; }
-  h2 a:hover { border-bottom: 1px dotted #999; }
+  h2 a { @include hidden-link; }
 
   h2 { float: left; padding: 22px 0; }
 
   p { clear: both; font-size: 22px; padding: 15px 0; }
 }
-
-#after-party { display: none; }
 
 #subscribe { display: none; }
 
