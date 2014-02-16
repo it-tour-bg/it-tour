@@ -12,7 +12,7 @@ $error: #b94a48;
 
 body {
   font-family: "Roboto Condensed", tahoma, verdana, arial, sans-serif;;
-  font-size: 12px;
+  font-size: 14px;
   color: $text;
 }
 
@@ -27,7 +27,8 @@ body {
 }
 
 @mixin icon($text) {
-  & { border-bottom: none; }
+  & { border-bottom: none !important; }
+
   &:hover { color: red; }
   &:before {
     @include inline-block;
@@ -79,6 +80,9 @@ footer {
 
   font-size: 14px;
   line-height: 20px;
+
+
+  .top { @include icon($fa-var-arrow-circle-o-up); }
 }
 
 .page {
@@ -128,11 +132,13 @@ footer {
 #schedule {
   ol li { position: relative; min-height: 70px; padding-left: 270px; }
   ol li + li { border-top: 1px solid $line; padding-top: 30px; margin-top: 30px; }
-  ol li time { font-size: 70px; font-weight: bold; position: absolute; left: 0px; }
+  ol li time { @include icon($fa-var-clock-o); font-size: 70px; font-weight: bold; position: absolute; left: 0px; }
   ol li strong { font-size: 34px; font-weight: bold; display: block; margin-bottom: 15px; }
   ol li .speaker { font-size: 22px; @include hidden-link; }
   ol li .links { display: block; margin-top: 15px; }
   ol li .links a + a { margin-left: 5px; }
+  ol li .links a.video { @include icon($fa-var-video-camera); }
+  ol li .links a.slides { @include icon($fa-var-laptop); }
 }
 
 #speakers {

@@ -1,4 +1,6 @@
 = render_in_layout do
+  #top
+
   - if @event && @event.coverart?
     header style="background-image: url(#{@event.coverart.url(:default)})"
 
@@ -37,4 +39,5 @@
     footer
       = link_to 'www.it-tour.bg', 'http://it-tour.bg'
       .copyright © copyright
+      = link_to '', '#top', class: 'top', title: 'Scroll to top'
 
