@@ -1,17 +1,17 @@
 = render_in_layout do
   #top
 
-  - if @event && @event.coverart?
+  - if @event.coverart?
     header style="background-image: url(#{@event.coverart.url(:default)})"
 
   nav
     div
       span
-        = link_to 'Кога', '#when'
-        = link_to 'Къде', '#venue'
-        = link_to 'Програма', '#schedule'
-        = link_to 'Лектори', '#speakers'
-        = link_to 'After party', '#after-party'
+        = link_to 'Кога', '#when' if @event.dates_announced?
+        = link_to 'Къде', '#venue' if @event.venue_announced?
+        = link_to 'Програма', '#schedule' if @event.sessions_announced?
+        = link_to 'Лектори', '#speakers' if @event.speakers_announced?
+        = link_to 'After party', '#after-party' if @event.after_party_announced?
         = link_to 'Контакти', '#feedback'
 
   .page
