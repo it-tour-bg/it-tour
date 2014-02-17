@@ -4,6 +4,7 @@
 @import "font-awesome/variables";
 @import "font-awesome/path";
 
+$background: #ffffff;
 $text: #484848;
 $text-light: #969696;
 $line: $text-light;
@@ -14,6 +15,7 @@ body {
   font-family: "Roboto Condensed", tahoma, verdana, arial, sans-serif;;
   font-size: 14px;
   color: $text;
+  background: $background;
 }
 
 @mixin hidden-link {
@@ -29,7 +31,6 @@ body {
 @mixin icon($text) {
   & { border-bottom: none !important; }
 
-  &:hover { color: red; }
   &:before {
     @include inline-block;
     content: $text;
@@ -54,7 +55,7 @@ nav {
   a.focus,
   a:hover { background-color: $line-light; }
 
-  div { background: asset-url('nav_background.png') repeat; z-index: 1; min-width: 680px; }
+  div { background: asset-url('nav_background.png') repeat; z-index: 2; min-width: 680px; }
   &.sticky div { position: fixed; top: 0px; left: 0px; right: 0px;}
 
   @media all and (min-width: 700px) {
@@ -73,29 +74,31 @@ header {
 footer {
   @include centered-content;
 
-  padding: 60px 0;
+  padding: 40px 0;
   border-top: 1px solid $line-light;
-
   text-align: center;
+  font-size: 18px;
+  line-height: 26px;
 
-  font-size: 14px;
-  line-height: 20px;
+  .copyright { margin: 14px 0 10px; font-size: 14px; line-height: 22px; }
 
-
-  .top { @include icon($fa-var-arrow-circle-o-up); }
+  a.top { @include icon($fa-var-arrow-circle-o-up); color: $text-light; }
+  a.top:hover,
+  a.top:focus { color: $text; }
 }
 
 .page {
-  a { color: $text; text-decoration: none; border-bottom: 1px dotted #999; }
+  a { color: inherit; text-decoration: none; border-bottom: 1px dotted #999; }
   a:focus,
-  a:hover { border-bottom-color: $text; }
+  a:hover { border-style: solid; }
   a:active { color: #999; }
 
-  article { padding: 60px 0; }
-  article h1 { @include centered-content; font-size: 50px; padding-bottom: 44px; margin-bottom: 40px; border-bottom: 1px solid $line; position: relative; }
+  article { padding: 90px 0 40px; position: relative; }
+  article h1 { @include centered-content; font-size: 50px; padding-bottom: 40px; margin-bottom: 40px; border-bottom: 1px solid $line; position: relative; }
   article h1:after { content: ""; display: block; border-bottom: 1px solid $line; position: absolute; height: 1px; bottom: -3px; left: 0px; right: 0px;  }
-  article section {  @include centered-content; }
-  article form {  @include centered-content; }
+  article h2 { @include centered-content; font-size: 50px; margin-bottom: 28px; }
+  article section { @include centered-content; }
+  article form { @include centered-content; }
   article form textarea,
   article form input[type="email"] { border: 1px solid #898989; padding: 11px; width: 678px; }
   article form textarea { resize: none; }
@@ -105,22 +108,23 @@ footer {
   article form .input { margin-bottom: 20px; }
   article form label { display: block; font-size: 22px; padding: 15px 0; }
   article form p { font-size: 14px; }
-  article + article { border-top: 1px solid $line-light; }
+  article + article { border-top: 2px solid $line-light; }
+  article + article:before { content: "●"; position: absolute; top: -9px; left: 50%; color: $line; z-index: 1; background: $background; padding: 0 6px; margin-left: -7px; font-size: 14px; }
 }
 
 #when {
-
    text-align: center;
+   font-size: 22px;
 
    h2 { font-size: 34px; }
 
-   .hasCountdown { margin: 60px auto 0; width: 640px; text-align: center; }
+   .hasCountdown { margin: 40px auto 0; width: 640px; text-align: center; }
    .hasCountdown .countdown_section { @include inline-block; position: relative; }
    .hasCountdown .countdown_section + .countdown_section { margin-left: 40px; }
    .hasCountdown .countdown_section + .countdown_section .countdown_amount:before { content: ':'; position: absolute; left: -30px; color: $text-light; }
-   .hasCountdown .countdown_amount { font-size: 90px; }
+   .hasCountdown .countdown_amount { font-size: 120px; }
 
-   .entrance { margin-top: 44px; padding: 33px 0 10px; border-top: 1px solid $line; }
+   .entrance { margin-top: 33px; padding: 33px 0 10px; border-top: 1px solid $line; }
 }
 
 #venue, #after-party {
@@ -130,15 +134,16 @@ footer {
 }
 
 #schedule {
-  ol li { position: relative; min-height: 70px; padding-left: 270px; }
-  ol li + li { border-top: 1px solid $line; padding-top: 30px; margin-top: 30px; }
-  ol li time { @include icon($fa-var-clock-o); font-size: 70px; font-weight: bold; position: absolute; left: 0px; }
-  ol li strong { font-size: 34px; font-weight: bold; display: block; margin-bottom: 15px; }
+  ol li { position: relative; min-height: 82px; padding-left: 270px; }
+  ol li + li { border-top: 1px solid $line; padding-top: 15px; margin-top: 30px; }
+  ol li time { font-size: 70px; font-weight: bold; position: absolute; left: 0px; }
+  ol li time:before { @include inline-block; content: $fa-var-clock-o; font-family: FontAwesome; font-style: normal; font-weight: normal; font-size: 60px; line-height: 1; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; margin: -10px 8px 0 0; color: $line-light; }
+  ol li strong { font-size: 34px; font-weight: bold; display: block; margin-bottom: 10px; }
   ol li .speaker { font-size: 22px; @include hidden-link; }
-  ol li .links { display: block; margin-top: 15px; }
-  ol li .links a + a { margin-left: 5px; }
-  ol li .links a.video { @include icon($fa-var-video-camera); }
-  ol li .links a.slides { @include icon($fa-var-laptop); }
+  ol li .links { display: block; margin-top: 15px; font-size: 22px; }
+  ol li .links a + span { margin-left: 10px;  }
+  ol li .links .video { @include icon($fa-var-video-camera); margin-right: 5px; }
+  ol li .links .slides { @include icon($fa-var-laptop); margin-right: 5px; }
 }
 
 #speakers {
@@ -146,22 +151,28 @@ footer {
   .avatar:hover { @include opacity(0.8); }
   .avatar img { @include border-radius(100%); }
 
-  h2 { font-size: 34px; font-weight: bold; }
-  h2 a { @include hidden-link; }
+  h3 { font-size: 34px; font-weight: bold; }
+  h3 a { @include hidden-link; }
+  h3 { float: left; padding: 22px 0; }
 
-  h2 { float: left; padding: 22px 0; }
+  .description { clear: both; font-size: 22px; line-height: 30px; padding: 24px 0; }
 
-  p { clear: both; font-size: 22px; padding: 15px 0; }
+  section { padding-top: 20px; }
 }
 
 #more {
+  &:before { top: -17px !important; }
+
+  padding: 22px 0 28px;
   font-size: 22px;
-  line-height: 28px;
+  line-height: 30px;
 
   .column { @include inline-block; width: 50%; }
   .column strong { display: block; margin-bottom: 5px; }
 
+  .socail { margin-top: 8px; }
   .facebook { @include icon($fa-var-facebook-square); }
   .youtube { @include icon($fa-var-youtube-square); }
   .twitter { @include icon($fa-var-twitter-square); }
 }
+
