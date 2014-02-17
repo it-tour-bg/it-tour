@@ -173,6 +173,10 @@ footer {
   .conferences { @include inline-block; width: 300px; }
 
   .socail { margin-top: 8px; }
+  .socail a { @include transition(color 0.5s); }
+  .socail a:hover,
+  .socail a:active { color: $text-light; }
+
   .facebook { @include icon($fa-var-facebook-square); }
   .youtube { @include icon($fa-var-youtube-square); }
   .twitter { @include icon($fa-var-twitter-square); }
