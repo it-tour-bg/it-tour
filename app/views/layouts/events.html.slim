@@ -19,7 +19,7 @@
 
     article#more
       section
-        .column
+        .contact
           ' Контакти:<br />
           - if current_conference.contact_name?
             = link_to current_conference.contact_name, "mailto:#{current_conference.contact_email}"
@@ -32,7 +32,7 @@
             - if current_conference.youtube_account?
               ' #{link_to '', "http://youtube.com/#{current_conference.youtube_account}", class: 'youtube', title: 'YouTube'}
 
-        .column
+        .conferences
           = raw Conference.all.map { |conferece| link_to conferece.name, conferece.domain }.join(', ')
 
     footer

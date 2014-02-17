@@ -167,8 +167,10 @@ footer {
   font-size: 22px;
   line-height: 30px;
 
-  .column { @include inline-block; width: 50%; }
-  .column strong { display: block; margin-bottom: 5px; }
+  .contact { @include inline-block; width: 50%; margin-right: 40px; }
+  .contact strong { display: block; margin-bottom: 5px; }
+
+  .conferences { @include inline-block; width: 300px; }
 
   .socail { margin-top: 8px; }
   .facebook { @include icon($fa-var-facebook-square); }
