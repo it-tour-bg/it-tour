@@ -84,7 +84,7 @@
 
 - if @event.after_party_announced?
   article#after-party
-    h1 After Party
+    h2 After Party
     iframe width="100%" height="350" scrolling="no" src="#{@event.after_party_venue_map_url}"
     section
       = link_to @event.after_party_venue_name, @event.after_party_venue_site_url, target: '_blank'

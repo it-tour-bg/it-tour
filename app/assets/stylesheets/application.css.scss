@@ -3,14 +3,8 @@
 @import "compass/utilities/general/clearfix";
 @import "font-awesome/variables";
 @import "font-awesome/path";
-
-$background: #ffffff;
-$dark: #000000;
-$text: #484848;
-$text-light: #969696;
-$line: $text-light;
-$line-light: #b6b6b6;
-$error: #b94a48;
+@import "application/variables";
+@import "application/mixins";
 
 body {
   font-family: "Roboto Condensed", tahoma, verdana, arial, sans-serif;;
@@ -19,29 +13,16 @@ body {
   background: $background;
 }
 
-@mixin hidden-link {
-  border-bottom: none;
-  &:hover { border-bottom:  1px dotted #999; }
-}
+a {
+  @include transition(all 0.3s);
 
-@mixin centered-content {
-  margin: 0 auto;
-  width: 700px;
-}
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px dotted $line;
 
-@mixin icon($text) {
-  & { border-bottom: none !important; }
-
-  &:before {
-    @include inline-block;
-    content: $text;
-    font-family: FontAwesome;
-    font-style: normal;
-    font-weight: normal;
-    line-height: 1;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
+  &:focus,
+  &:hover { border-style: solid; }
+  &:active { color: $dark; border-color: $dark }
 }
 
 nav {
@@ -51,7 +32,7 @@ nav {
   font-size: 24px;
   text-align: center;
 
-  a { @include inline-block; @include transition(all 0.3s); padding: 22px 15px; text-decoration: none; color: $text; }
+  a { @include no-link-underline; @include inline-block; @include transition(all 0.3s); padding: 22px 15px; text-decoration: none; color: $text; }
   a.active,
   a.focus,
   a:hover { background-color: $line-light; }
@@ -83,59 +64,56 @@ footer {
 
   .copyright { margin: 14px 0 10px; font-size: 14px; line-height: 22px; }
 
-  a { @include transition(all 0.3s); color: inherit; text-decoration: none; border-bottom: 1px dotted #999; }
-  a:focus,
-  a:hover { border-style: solid; }
-  a:active { color: $line; }
-
   a.top { @include icon($fa-var-arrow-circle-o-up); color: $text-light; }
   a.top:hover,
   a.top:focus { color: $text; }
 }
 
-.page {
-  a { @include transition(all 0.3s); color: inherit; text-decoration: none; border-bottom: 1px dotted #999; }
-  a:focus,
-  a:hover { border-style: solid; }
-  a:active { color: $line; }
+article {
+  padding: 90px 0 40px;
+  position: relative;
 
-  article { padding: 90px 0 40px; position: relative; }
-  article h1 { @include centered-content; font-size: 50px; padding-bottom: 40px; margin-bottom: 40px; border-bottom: 1px solid $line; position: relative; }
-  article h1:after { content: ""; display: block; border-bottom: 1px solid $line; position: absolute; height: 1px; bottom: -3px; left: 0px; right: 0px;  }
-  article h2 { @include centered-content; font-size: 50px; margin-bottom: 28px; }
-  article section { @include centered-content; }
-  article form { @include centered-content; }
-  article form textarea,
-  article form input[type="email"] { border: 1px solid #898989; padding: 11px; width: 678px; }
-  article form textarea { resize: none; }
-  article form .field_with_errors textarea,
-  article form .field_with_errors input[type="email"] { border-color: $error; }
-  article form .error { color: $error; }
-  article form .input { margin-bottom: 20px; }
-  article form label { display: block; font-size: 15px; padding: 15px 0; }
-  article form input[type="submit"] { @include transition(all 0.2s); border: 1px solid $text; background: asset-url('button.png') center; height: 46px; color: $text; font-size: 16px; padding: 0 30px; cursor: pointer; }
-  article form input[type="submit"]:hover,
-  article form input[type="submit"]:focus { color: $dark; border-color: $dark; }
-  article form input[type="submit"]:active { @include transform(translateY(2px)); }
-  article + article { border-top: 2px solid $line-light; }
-  article + article:before { content: "●"; position: absolute; top: -9px; left: 50%; color: $line; z-index: 1; background: $background; padding: 0 6px; margin-left: -7px; font-size: 14px; }
+  h1 { @include centered-content; @include heading1; padding-bottom: 40px; margin-bottom: 40px; border-bottom: 1px solid $line; position: relative; }
+  h1:after { content: ""; display: block; border-bottom: 1px solid $line; position: absolute; height: 1px; bottom: -3px; left: 0px; right: 0px;  }
+  h2 { @include centered-content; @include heading1; margin-bottom: 28px; }
+  section { @include centered-content; }
+
+  + article { border-top: 2px solid $line-light; }
+  + article:before { content: "●"; position: absolute; top: -9px; left: 50%; color: $line; z-index: 1; background: $background; padding: 0 6px; margin-left: -7px; font-size: 14px; }
+}
+
+form {
+  @include centered-content;
+
+  textarea,
+  input[type="email"] { border: 1px solid $text; padding: 11px; width: 678px; }
+  textarea { resize: none; }
+  .field_with_errors textarea,
+  .field_with_errors input[type="email"] { border-color: $error; }
+  .error { color: $error; }
+  .input { margin-bottom: 20px; }
+  label { display: block; padding: 15px 0; }
+  input[type="submit"] { @include transition(all 0.2s); border: 1px solid $text; background: asset-url('button.png') center; height: 46px; color: $text; font-size: 14px; padding: 0 30px; cursor: pointer; }
+  input[type="submit"]:hover,
+  input[type="submit"]:focus { color: $dark; border-color: $dark; }
+  input[type="submit"]:active { @include transform(translateY(2px)); }
 }
 
 .content {
   p {
     @include centered-content;
-    font-size: 22px;
-    line-height: 30px;
+    @include heading3;
   }
 }
 
 #when {
+   @include heading3;
+
    text-align: center;
-   font-size: 22px;
 
-   h2 { font-size: 34px; }
+   h2 { @include heading2; }
 
-   .hasCountdown { margin: 40px auto 0; text-align: center; }
+   .hasCountdown { margin: 40px auto 0; }
    .hasCountdown .countdown_section { @include inline-block; position: relative; }
    .hasCountdown .countdown_section + .countdown_section { margin-left: 40px; }
    .hasCountdown .countdown_section + .countdown_section .countdown_amount:before { content: ':'; position: absolute; left: -30px; color: $text-light; }
@@ -146,48 +124,46 @@ footer {
    .entrance { @include icon($fa-var-smile-o); }
    .facebook { @include icon($fa-var-facebook-square); margin-left: 18px; }
    .facebook:hover,
-   .facebook:focus { color: $line; }
-   .facebook:active { color: $dark; }
+   .facebook:focus { color: $dark; }
+   .facebook:active { color: $text-light; }
 }
 
 #venue, #after-party {
-  section { text-align: center; font-size: 22px; margin-top: 30px; }
-  section a { @include hidden-link; }
-  section address { margin-top: 5px; }
+  h2 { margin-bottom: 50px; }
+  section { @include heading3; text-align: center; margin-top: 30px; }
 }
 
 #schedule {
   ol li { position: relative; min-height: 82px; padding-left: 270px; }
   ol li + li { border-top: 1px solid $line; padding-top: 15px; margin-top: 30px; }
-  ol li time { font-size: 70px; font-weight: bold; position: absolute; left: 0px; }
-  ol li time:before { @include inline-block; content: $fa-var-clock-o; font-family: FontAwesome; font-style: normal; font-weight: normal; font-size: 60px; line-height: 1; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; margin: -10px 8px 0 0; color: $line-light; }
-  ol li strong { font-size: 34px; font-weight: bold; display: block; margin-bottom: 10px; }
-  ol li .speaker { font-size: 22px; @include hidden-link; }
-  ol li .links { display: block; margin-top: 15px; font-size: 22px; }
+  ol li time { @include icon($fa-var-clock-o); font-size: 70px; font-weight: bold; position: absolute; left: 0px; }
+  ol li time:before { margin: -10px 8px 0 0; color: $line-light; }
+  ol li strong { @include heading2; font-weight: bold; display: block; margin-top: 8px; }
+  ol li .speaker { @include heading3; @include no-link-underline; }
+  ol li .links { display: block; @include heading3; }
   ol li .links a + span { margin-left: 10px;  }
   ol li .links .video { @include icon($fa-var-video-camera); margin-right: 5px; }
   ol li .links .slides { @include icon($fa-var-laptop); margin-right: 5px; }
 }
 
 #speakers {
-  .avatar { border-bottom: none; float: left; margin-right: 25px; }
-  .avatar:hover { @include opacity(0.8); }
+  .avatar { @include image-link; float: left; margin-right: 25px; }
   .avatar img { @include border-radius(100%); }
 
-  h3 { font-size: 34px; font-weight: bold; float: left; padding: 22px 0; }
-  h3 a { @include hidden-link; }
+  h3 { @include heading2; font-weight: bold; float: left; padding: 22px 0; }
+  h3 a { @include no-link-underline; }
 
-  .description { clear: both; font-size: 22px; line-height: 30px; padding: 24px 0; }
+  .description { @include heading3; clear: both; padding: 24px 0; }
 
   section { padding-top: 20px; }
 }
 
 #more {
-  &:before { top: -17px !important; }
+  @include heading3;
 
   padding: 22px 0 28px;
-  font-size: 22px;
-  line-height: 30px;
+
+  &:before { top: -17px !important; }
 
   .contact { @include inline-block; width: 50%; margin-right: 40px; }
   .contact strong { display: block; margin-bottom: 5px; }
@@ -197,7 +173,7 @@ footer {
   .socail { margin-top: 8px; }
   .socail a { @include transition(color 0.5s); }
   .socail a:hover,
-  .socail a:active { color: $text-light; }
+  .socail a:active { color: $dark; }
 
   .facebook { @include icon($fa-var-facebook-square); }
   .youtube { @include icon($fa-var-youtube-square); }
@@ -207,8 +183,8 @@ footer {
 #archive {
   &:before { top: -9px !important; }
 
-  ul { @include centered-content; font-size: 22px; line-height: 30px; }
+  ul { @include centered-content; @include heading3; }
   ul li { @include clearfix; }
-  ul li .logo { @include hidden-link; float: left; margin-right: 40px; }
+  ul li .logo { @include image-link; float: left; margin-right: 40px; }
   ul li + li { margin-top: 40px; }
 }

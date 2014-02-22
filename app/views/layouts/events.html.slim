@@ -12,24 +12,24 @@
         = link_to 'After party', archive_path(@event.name, anchor: 'after-party') if @event.after_party_announced?
         = link_to 'Контакти', archive_path(@event.name, anchor: 'feedback') if @event.show_feedback_form?
         = link_to 'Архив', archive_path(@event.name, anchor: 'archive') if @event.other_conference_events?
-  .page
-    = yield
 
-    article#more
-      section
-        .contact
-          ' Контакти:<br />
-          - if current_conference.contact_name?
-            = link_to current_conference.contact_name, "mailto:#{current_conference.contact_email}"
+  = yield
 
-          .socail
-            - if current_conference.facebook_account?
-              ' #{link_to '', "https://www.facebook.com/#{current_conference.facebook_account}", class: 'facebook', title: 'Facebook'}
-            - if current_conference.twitter_account?
-              ' #{link_to '', "http://twitter.com/#{current_conference.twitter_account}", class: 'twitter', title: 'Twitter'}
-            - if current_conference.youtube_account?
-              ' #{link_to '', "http://youtube.com/#{current_conference.youtube_account}", class: 'youtube', title: 'YouTube'}
+  article#more
+    section
+      .contact
+        ' Контакти:<br />
+        - if current_conference.contact_name?
+          = link_to current_conference.contact_name, "mailto:#{current_conference.contact_email}"
 
-        .conferences
-          = raw Conference.all.map { |conferece| link_to conferece.name, conferece.domain }.join(', ')
+        .socail
+          - if current_conference.facebook_account?
+            ' #{link_to '', "https://www.facebook.com/#{current_conference.facebook_account}", class: 'facebook', title: 'Facebook'}
+          - if current_conference.twitter_account?
+            ' #{link_to '', "http://twitter.com/#{current_conference.twitter_account}", class: 'twitter', title: 'Twitter'}
+          - if current_conference.youtube_account?
+            ' #{link_to '', "http://youtube.com/#{current_conference.youtube_account}", class: 'youtube', title: 'YouTube'}
+
+      .conferences
+        = raw Conference.all.map { |conferece| link_to conferece.name, conferece.domain }.join(', ')
 
