@@ -5,6 +5,7 @@
 @import "font-awesome/path";
 
 $background: #ffffff;
+$dark: #000000;
 $text: #484848;
 $text-light: #969696;
 $line: $text-light;
@@ -50,7 +51,7 @@ nav {
   font-size: 24px;
   text-align: center;
 
-  a { @include inline-block; padding: 22px 15px; text-decoration: none; color: $text; }
+  a { @include inline-block; @include transition(all 0.3s); padding: 22px 15px; text-decoration: none; color: $text; }
   a.active,
   a.focus,
   a:hover { background-color: $line-light; }
@@ -106,11 +107,10 @@ footer {
   article form .field_with_errors input[type="email"] { border-color: $error; }
   article form .error { color: $error; }
   article form .input { margin-bottom: 20px; }
-  article form label { display: block; font-size: 22px; padding: 15px 0; }
-  article form p { font-size: 14px; }
+  article form label { display: block; font-size: 15px; padding: 15px 0; }
   article form input[type="submit"] { @include transition(all 0.2s); border: 1px solid $text; background: asset-url('button.png') center; height: 46px; color: $text; font-size: 16px; padding: 0 30px; cursor: pointer; }
   article form input[type="submit"]:hover,
-  article form input[type="submit"]:focus { color: #000000; border-color: #000000; }
+  article form input[type="submit"]:focus { color: $dark; border-color: $dark; }
   article form input[type="submit"]:active { @include transform(translateY(2px)); }
   article + article { border-top: 2px solid $line-light; }
   article + article:before { content: "●"; position: absolute; top: -9px; left: 50%; color: $line; z-index: 1; background: $background; padding: 0 6px; margin-left: -7px; font-size: 14px; }
@@ -132,6 +132,9 @@ footer {
 
    .entrance { @include icon($fa-var-smile-o); }
    .facebook { @include icon($fa-var-facebook-square); margin-left: 18px; }
+   .facebook:hover,
+   .facebook:focus { color: $line; }
+   .facebook:active { color: $dark; }
 }
 
 #venue, #after-party {
