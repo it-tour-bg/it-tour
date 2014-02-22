@@ -9,7 +9,7 @@ class Admin::EventsController < Admin::BaseController
 
   def create
     @event = Event.create event_params
-    respond_with @event, location: admin_event_path(@event)
+    respond_with @event, location: admin_events_path
   end
 
   def show

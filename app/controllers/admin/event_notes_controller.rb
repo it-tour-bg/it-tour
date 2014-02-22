@@ -4,7 +4,7 @@ class Admin::EventNotesController < Admin::BaseController
   end
 
   def update
-    @event = Event.update event_id, notes: params[:event][:notes]
+    @event = Event.update event_id, notes: event_notes
     respond_with @event, location: admin_event_path(@event, anchor: 'notes')
   end
 
@@ -12,6 +12,10 @@ class Admin::EventNotesController < Admin::BaseController
 
   def event_id
     params[:event_id]
+  end
+
+  def event_notes
+    params[:event][:notes]
   end
 end
 
