@@ -6,9 +6,6 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(:default, Rails.env)
 
-# load the .env file
-Dotenv.load unless Rails.env.production?
-
 module TourConf
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.

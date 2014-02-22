@@ -38,7 +38,6 @@ end
 group :development, :test do
   gem 'rspec-rails'
   gem 'pry'
-  gem 'dotenv'
 end
 
 group :test do
