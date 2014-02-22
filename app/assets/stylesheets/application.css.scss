@@ -88,7 +88,7 @@ footer {
 }
 
 .page {
-  a { color: inherit; text-decoration: none; border-bottom: 1px dotted #999; }
+  a { @include transition(all 0.3s); color: inherit; text-decoration: none; border-bottom: 1px dotted #999; }
   a:focus,
   a:hover { border-style: solid; }
   a:active { color: #999; }
