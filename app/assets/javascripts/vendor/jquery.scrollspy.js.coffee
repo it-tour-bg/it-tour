@@ -5,47 +5,65 @@ do ($)->
 
       @selector = options.selector
       @offset = options.offset
+
       @element = $(element)
-      @observer = if @element.is('body') then $(window) else @element
-      @observer.on 'scroll.scrollspy', => @process()
-      @observer.on 'load resize', => @refresh()
+      @element.on 'click', 'a[href*=#]', (e) =>
+        [element, hash] = @findElementAndHash $(e.target)
+
+        if element
+          e.preventDefault()
+          $.scrollTo element,
+            duration: 300,
+            onAfter: -> location.hash = hash
+
+      @window = $(window)
+      @window.on 'scroll', => @process()
+      @window.on 'load resize', => @refresh()
+
       @refresh()
 
     refresh: ->
-      @offsets = []
-      @targets = []
+      @items = []
       @element
         .find(@selector)
-        .map ->
-          match = $(this).attr('href').match(/#.*/)
-          hash = match && match[0]
-          return null unless hash
-
-          element = /^#.*/.test(hash) && $(hash)
-          (element && element.length && [[element.position().top, hash]]) || null
-        .sort((a, b) -> a[0] - b[0])
-        .each (_, value) =>
-          @offsets.push value[0]
-          @targets.push value[1]
+          .map (_, link) =>
+            [element, hash] = @findElementAndHash $(link)
+            [offset: element.position().top, hash:hash] if element
+          .sort((a, b) -> a[0] - b[0])
+          .each (_, value) =>
+            @items.push value if value
 
       @process()
 
+    findElementAndHash: (href) ->
+      match = href.attr('href').match(/#.*/)
+      hash = match && match[0]
+      return [] unless hash
+
+      element = $(hash)
+      if element.length > 0
+        [element, hash]
+      else
+        []
+
     process: ->
-      scrollTop = @observer.scrollTop() + @offset
-      maxScroll = (@observer[0].scrollHeight || document.body.scrollHeight) - @observer.height()
+      scrollTop = @window.scrollTop() + @offset
+      maxScroll = document.body.scrollHeight - @window.height()
 
       if scrollTop >= maxScroll
-        @activate @targets[@targets.length - 1]
-      else
-        for offset, i in @offsets
-          nextOffset = @offsets[i+1]
-          if scrollTop >= offset && (!nextOffset || scrollTop <= nextOffset)
-            @activate @targets[i]
-            break
+        @activate @items[@items.length - 1]?.hash
+        return
+
+      for item, i in @items
+        nextOffset = @items[i + 1]?.offset
+        if scrollTop >= item.offset && (!nextOffset || scrollTop <= nextOffset)
+          @activate item.hash
+          break
 
     activate: (target) ->
       return if target is @activeTarget
       @activeTarget = target
+
       @activeElements.removeClass('active') if @activeElements
       @activeElements = @element.find(@selector + '[href*="' + target + '"]')
         .addClass('active')

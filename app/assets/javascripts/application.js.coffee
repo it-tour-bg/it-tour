@@ -10,22 +10,7 @@ $('[data-countdown]').eachWithElement (element) ->
   date = new Date(element.data('countdown'))
   element.countdown until: date
 
-$('body')
-  .scrollspy(selector: '> nav a')
-  .on 'click', 'a[href*=#]', (e) ->
-    e.preventDefault()
-
-    match = $(e.target).closest('a').attr('href').match(/#.*/)
-    hash = match && match[0]
-    return unless hash
-
-    target = $(hash)
-    if target.length > 0
-      e.preventDefault()
-      $.scrollTo target,
-        duration: 300,
-        onAfter: ->
-          location.hash = hash
+$('body').scrollspy(selector: '> nav a')
 
 $("#streaming section iframe").eachWithElement (element) ->
   element.data('aspectRatio', element.height() / element.width())
