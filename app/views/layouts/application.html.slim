@@ -30,8 +30,13 @@ html
         })();
 
   body
+    #top
     = content_for?(:content) ? yield(:content) : yield
 
-  = javascript_include_tag 'application'
+    footer
+      = link_to 'www.it-tour.bg', 'http://it-tour.bg'
+      .copyright © copyright
+      = link_to '', '#top', class: 'top', title: 'Scroll to top'
 
+    = javascript_include_tag 'application'
 

@@ -1,6 +1,4 @@
 = render_in_layout do
-  #top
-
   - if @event.coverart?
     header style="background-image: url(#{@event.coverart.url(:default)})"
 
@@ -34,9 +32,4 @@
 
         .conferences
           = raw Conference.all.map { |conferece| link_to conferece.name, conferece.domain }.join(', ')
-
-    footer
-      = link_to 'www.it-tour.bg', 'http://it-tour.bg'
-      .copyright © copyright
-      = link_to '', '#top', class: 'top', title: 'Scroll to top'
 

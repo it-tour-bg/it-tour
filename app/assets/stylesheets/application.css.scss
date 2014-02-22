@@ -83,6 +83,11 @@ footer {
 
   .copyright { margin: 14px 0 10px; font-size: 14px; line-height: 22px; }
 
+  a { @include transition(all 0.3s); color: inherit; text-decoration: none; border-bottom: 1px dotted #999; }
+  a:focus,
+  a:hover { border-style: solid; }
+  a:active { color: $line; }
+
   a.top { @include icon($fa-var-arrow-circle-o-up); color: $text-light; }
   a.top:hover,
   a.top:focus { color: $text; }
@@ -92,7 +97,7 @@ footer {
   a { @include transition(all 0.3s); color: inherit; text-decoration: none; border-bottom: 1px dotted #999; }
   a:focus,
   a:hover { border-style: solid; }
-  a:active { color: #999; }
+  a:active { color: $line; }
 
   article { padding: 90px 0 40px; position: relative; }
   article h1 { @include centered-content; font-size: 50px; padding-bottom: 40px; margin-bottom: 40px; border-bottom: 1px solid $line; position: relative; }
@@ -114,6 +119,14 @@ footer {
   article form input[type="submit"]:active { @include transform(translateY(2px)); }
   article + article { border-top: 2px solid $line-light; }
   article + article:before { content: "●"; position: absolute; top: -9px; left: 50%; color: $line; z-index: 1; background: $background; padding: 0 6px; margin-left: -7px; font-size: 14px; }
+}
+
+.content {
+  p {
+    @include centered-content;
+    font-size: 22px;
+    line-height: 30px;
+  }
 }
 
 #when {
@@ -161,9 +174,8 @@ footer {
   .avatar:hover { @include opacity(0.8); }
   .avatar img { @include border-radius(100%); }
 
-  h3 { font-size: 34px; font-weight: bold; }
+  h3 { font-size: 34px; font-weight: bold; float: left; padding: 22px 0; }
   h3 a { @include hidden-link; }
-  h3 { float: left; padding: 22px 0; }
 
   .description { clear: both; font-size: 22px; line-height: 30px; padding: 24px 0; }
 
