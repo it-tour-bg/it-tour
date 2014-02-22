@@ -10,8 +10,8 @@
         = link_to 'Програма', '#schedule' if @event.sessions_announced?
         = link_to 'Лектори', '#speakers' if @event.speakers_announced?
         = link_to 'After party', '#after-party' if @event.after_party_announced?
-        = link_to 'Контакти', '#feedback'
-
+        = link_to 'Контакти', '#feedback' if @event.show_feedback_form?
+        = link_to 'Архив', '#archive' if @event.other_conference_events?
   .page
     = yield
 

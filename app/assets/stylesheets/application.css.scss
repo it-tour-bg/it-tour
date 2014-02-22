@@ -204,3 +204,11 @@ footer {
   .twitter { @include icon($fa-var-twitter-square); }
 }
 
+#archive {
+  &:before { top: -9px !important; }
+
+  ul { @include centered-content; font-size: 22px; line-height: 30px; }
+  ul li { @include clearfix; }
+  ul li .logo { @include hidden-link; float: left; margin-right: 40px; }
+  ul li + li { margin-top: 40px; }
+}

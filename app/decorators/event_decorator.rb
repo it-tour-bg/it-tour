@@ -29,6 +29,14 @@ class EventDecorator < Draper::Decorator
     Time.now > finish_time
   end
 
+  def other_conference_events?
+    other_conference_events.any?
+  end
+
+  def other_conference_events
+    @other_conference_events ||= conference.events.publicly_announced
+  end
+
   private
 
   def start_time
