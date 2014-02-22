@@ -13,9 +13,13 @@ $('[data-countdown]').eachWithElement (element) ->
 $('body')
   .scrollspy(selector: '> nav a')
   .on 'click', 'a[href*=#]', (e) ->
-    hash  = $(e.target).closest('a').attr('href')
-    target = $(hash)
+    e.preventDefault()
 
+    match = $(e.target).closest('a').attr('href').match(/#.*/)
+    hash = match && match[0]
+    return unless hash
+
+    target = $(hash)
     if target.length > 0
       e.preventDefault()
       $.scrollTo target,

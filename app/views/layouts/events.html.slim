@@ -5,13 +5,13 @@
   nav
     div
       span
-        = link_to 'Кога', '#when' if @event.dates_announced?
-        = link_to 'Къде', '#venue' if @event.venue_announced?
-        = link_to 'Програма', '#schedule' if @event.sessions_announced?
-        = link_to 'Лектори', '#speakers' if @event.speakers_announced?
-        = link_to 'After party', '#after-party' if @event.after_party_announced?
-        = link_to 'Контакти', '#feedback' if @event.show_feedback_form?
-        = link_to 'Архив', '#archive' if @event.other_conference_events?
+        = link_to 'Кога', archive_path(@event.name, anchor: 'when') if @event.dates_announced?
+        = link_to 'Къде', archive_path(@event.name, anchor: 'venue') if @event.venue_announced?
+        = link_to 'Програма', archive_path(@event.name, anchor: 'schedule') if @event.sessions_announced?
+        = link_to 'Лектори', archive_path(@event.name, anchor: 'speakers') if @event.speakers_announced?
+        = link_to 'After party', archive_path(@event.name, anchor: 'after-party') if @event.after_party_announced?
+        = link_to 'Контакти', archive_path(@event.name, anchor: 'feedback') if @event.show_feedback_form?
+        = link_to 'Архив', archive_path(@event.name, anchor: 'archive') if @event.other_conference_events?
   .page
     = yield
 

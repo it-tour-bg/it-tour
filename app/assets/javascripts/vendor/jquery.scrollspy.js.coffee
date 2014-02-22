@@ -8,8 +8,7 @@ do ($)->
       @element = $(element)
       @observer = if @element.is('body') then $(window) else @element
       @observer.on 'scroll.scrollspy', => @process()
-      @observer.load => @refresh()
-      @observer.resize => @refresh()
+      @observer.on 'load resize', => @refresh()
       @refresh()
 
     refresh: ->
@@ -18,9 +17,12 @@ do ($)->
       @element
         .find(@selector)
         .map ->
-          href = $(this).attr('href')
-          element = /^#.*/.test(href) && $(href)
-          (element && element.length && [[element.position().top, href]]) || null
+          match = $(this).attr('href').match(/#.*/)
+          hash = match && match[0]
+          return null unless hash
+
+          element = /^#.*/.test(hash) && $(hash)
+          (element && element.length && [[element.position().top, hash]]) || null
         .sort((a, b) -> a[0] - b[0])
         .each (_, value) =>
           @offsets.push value[0]
@@ -45,7 +47,7 @@ do ($)->
       return if target is @activeTarget
       @activeTarget = target
       @activeElements.removeClass('active') if @activeElements
-      @activeElements = @element.find(@selector + '[href="' + target + '"]')
+      @activeElements = @element.find(@selector + '[href*="' + target + '"]')
         .addClass('active')
         .trigger('activate')
 
