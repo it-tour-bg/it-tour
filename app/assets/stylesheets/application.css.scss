@@ -33,9 +33,9 @@ nav {
   text-align: center;
 
   a { @include no-link-underline; @include inline-block; @include transition(all 0.3s); padding: 22px 15px; text-decoration: none; color: $text; }
-  a.active,
+  a.active { background-color: $line-light; }
   a.focus,
-  a:hover { background-color: $line-light; }
+  a:hover { color: $dark; }
 
   div { background: asset-url('nav_background.png') repeat; z-index: 2; min-width: 680px; }
   &.sticky div { position: fixed; top: 0px; left: 0px; right: 0px;}
