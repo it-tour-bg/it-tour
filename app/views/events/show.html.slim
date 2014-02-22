@@ -34,10 +34,11 @@
       - else
         .timer data-countdown="#{@event.start_time_for_javascript}"
 
-      .entrance вход свободен
+    section
+      span.entrance  вход свободен
 
       - if @event.event_url?
-        = link_to 'cъбитието във Facebook', @event.event_url, class: 'facebook-event', target: '_blank'
+        = link_to ' cъбитието във facebook', @event.event_url, class: 'facebook', target: '_blank'
 
 - if @event.venue_announced?
   article#venue

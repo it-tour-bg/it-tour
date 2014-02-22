@@ -118,13 +118,16 @@ footer {
 
    h2 { font-size: 34px; }
 
-   .hasCountdown { margin: 40px auto 0; width: 640px; text-align: center; }
+   .hasCountdown { margin: 40px auto 0; text-align: center; }
    .hasCountdown .countdown_section { @include inline-block; position: relative; }
    .hasCountdown .countdown_section + .countdown_section { margin-left: 40px; }
    .hasCountdown .countdown_section + .countdown_section .countdown_amount:before { content: ':'; position: absolute; left: -30px; color: $text-light; }
    .hasCountdown .countdown_amount { font-size: 120px; }
 
-   .entrance { margin-top: 33px; padding: 33px 0 10px; border-top: 1px solid $line; }
+   section + section { margin-top: 33px; padding: 33px 0 10px; border-top: 1px solid $line; }
+
+   .entrance { @include icon($fa-var-smile-o); }
+   .facebook { @include icon($fa-var-facebook-square); margin-left: 18px; }
 }
 
 #venue, #after-party {
