@@ -28,5 +28,5 @@ TourConf::Application.routes.draw do
 
   get 'archive/:year', to: 'events#show', as: :archive
 
-  root to: 'events#index'
+  root to: 'conferences#show'
 end

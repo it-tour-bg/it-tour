@@ -31,19 +31,28 @@ html
 
   body
     #top
-    - if current_event.coverart?
-      header style="background-image: url(#{current_event.coverart.url(:default)})"
+    - if current_conference.main?
+      nav
+        div
+          span
+            = link_to 'За турнето', '#about'
+            = link_to 'Градове', '#conferences'
+            = link_to 'Архив', '#archive'
+            = link_to 'Контакти', '#contacts'
+    - else
+      - if current_event.coverart?
+        header style="background-image: url(#{current_event.coverart.url(:default)})"
 
-    nav
-      div
-        span
-          = link_to 'Кога', archive_path(current_event.name, anchor: 'when') if current_event.dates_announced?
-          = link_to 'Къде', archive_path(current_event.name, anchor: 'venue') if current_event.venue_announced?
-          = link_to 'Програма', archive_path(current_event.name, anchor: 'schedule') if current_event.sessions_announced?
-          = link_to 'Лектори', archive_path(current_event.name, anchor: 'speakers') if current_event.speakers_announced?
-          = link_to 'After party', archive_path(current_event.name, anchor: 'after-party') if current_event.after_party_announced?
-          = link_to 'Контакти', archive_path(current_event.name, anchor: 'feedback') if current_event.show_feedback_form?
-          = link_to 'Архив', archive_path(current_event.name, anchor: 'archive') if current_event.other_conference_events?
+      nav
+        div
+          span
+            = link_to 'Кога', archive_path(current_event.name, anchor: 'when') if current_event.dates_announced?
+            = link_to 'Къде', archive_path(current_event.name, anchor: 'venue') if current_event.venue_announced?
+            = link_to 'Програма', archive_path(current_event.name, anchor: 'schedule') if current_event.sessions_announced?
+            = link_to 'Лектори', archive_path(current_event.name, anchor: 'speakers') if current_event.speakers_announced?
+            = link_to 'After party', archive_path(current_event.name, anchor: 'after-party') if current_event.after_party_announced?
+            = link_to 'Контакти', archive_path(current_event.name, anchor: 'feedback') if current_event.show_feedback_form?
+            = link_to 'Архив', archive_path(current_event.name, anchor: 'archive') if current_event.other_conference_events?
 
     = content_for?(:content) ? yield(:content) : yield
 

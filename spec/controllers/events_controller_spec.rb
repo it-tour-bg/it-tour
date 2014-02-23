@@ -9,26 +9,6 @@ describe EventsController do
     request.host = 'exampleconf.com'
   end
 
-  describe "GET index" do
-    it "assign the current conference event for given domain" do
-      conference.stub current_event: event
-      get :index
-      expect(assigns[:event]).to eq event
-    end
-
-    it "decorates the event" do
-      conference.stub current_event: event
-      get :index
-      expect(assigns[:event]).to be_decorated
-    end
-
-    it "renders show action" do
-      conference.stub current_event: event
-      get :index
-      expect(controller).to render_template :show
-    end
-  end
-
   describe "GET show" do
     before do
       event.stub :current?
