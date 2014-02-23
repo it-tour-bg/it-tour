@@ -11,6 +11,10 @@ class Conference < ActiveRecord::Base
     def find_for_domain(domain)
       where(domain: domain).first!
     end
+
+    def without_main
+      where(main: false)
+    end
   end
 
   def current_event

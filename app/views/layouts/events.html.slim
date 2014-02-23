@@ -31,5 +31,5 @@
             ' #{link_to '', "http://youtube.com/#{current_conference.youtube_account}", class: 'youtube', title: 'YouTube'}
 
       .conferences
-        = raw Conference.all.map { |conferece| link_to conferece.name, conferece.domain }.join(', ')
+        = raw Conference.without_main.map { |conferece| link_to conferece.name, conferece.domain }.join(', ')
 

@@ -14,6 +14,15 @@ describe Conference do
     end
   end
 
+  describe ".without_main" do
+    it "selects all confrences except the main one" do
+      main  = create :conference, main: true
+      other = create :conference, main: false
+
+      expect(Conference.without_main).to eq [other]
+    end
+  end
+
   describe ".find_for_domain" do
     it "finds conference by domain" do
       varna = create :conference, domain: 'varnaconf.com'

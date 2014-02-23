@@ -2,7 +2,7 @@
   = form.error_notification
 
   - if @event.new_record?
-    = form.association :conference, collection: Conference.all, prompt: '- Select -', selected: params[:conference_id]
+    = form.association :conference, collection: Conference.without_main, prompt: '- Select -', selected: params[:conference_id]
 
   = form.input :name
   = form.input :date
