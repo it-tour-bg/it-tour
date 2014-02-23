@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130823200159) do
+ActiveRecord::Schema.define(version: 20140223153330) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,7 +27,11 @@ ActiveRecord::Schema.define(version: 20130823200159) do
     t.string   "youtube_account"
     t.string   "domain"
     t.string   "slogan"
+    t.boolean  "main",             default: false, null: false
+    t.text     "about"
   end
+
+  add_index "conferences", ["main"], name: "index_conferences_on_main", using: :btree
 
   create_table "events", force: true do |t|
     t.integer  "conference_id"
