@@ -6,11 +6,15 @@
   = form.input :contact_name
   = form.input :contact_email
   = form.input :slogan
+  = form.input :about
 
   = field_set_tag 'Social accounts' do
     = form.input :facebook_account
     = form.input :twitter_account
     = form.input :youtube_account
+
+  = field_set_tag 'Settings' do
+    = form.input :main
 
   .form-actions
     = form.button :submit, class: 'btn-primary'

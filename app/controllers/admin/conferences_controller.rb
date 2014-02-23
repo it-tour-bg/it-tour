@@ -46,6 +46,8 @@ class Admin::ConferencesController < Admin::BaseController
       :youtube_account,
       :domain,
       :slogan,
+      :main,
+      :about,
     )
   end
 end

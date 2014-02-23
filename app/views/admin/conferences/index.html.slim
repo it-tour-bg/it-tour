@@ -13,7 +13,9 @@ table.table
   tbody
     - @conferences.each do |conference|
       tr
-        td = link_to conference.name, admin_conference_path(conference)
+        td
+          = link_to conference.name, admin_conference_path(conference)
+          = raw ' <mark class="label label-important">current</mark>' if conference.main?
         td = link_to conference.domain, root_url(domain: conference.domain) if conference.domain?
         td
           - if conference.contact_name?

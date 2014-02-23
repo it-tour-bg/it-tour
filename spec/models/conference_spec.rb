@@ -4,6 +4,15 @@ describe Conference do
   it { should validate_presence_of :name }
   it { should have_many :events }
 
+  describe "main conference" do
+    it "has only one main conference" do
+      first  = create :conference, main: true
+      second = create :conference, main: true
+
+      expect(second.reload).to be_main
+      expect(first.reload).not_to be_main
+    end
+  end
 
   describe ".find_for_domain" do
     it "finds conference by domain" do
