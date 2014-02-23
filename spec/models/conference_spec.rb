@@ -53,6 +53,13 @@ describe Conference do
     end
   end
 
+  describe "#regular?" do
+    it "is revert of main?" do
+      expect(Conference.new(main: true)).not_to be_regular
+      expect(Conference.new(main: false)).to be_regular
+    end
+  end
+
   describe "#announced_event_named" do
     it "finds event by given name" do
       conference = create :conference

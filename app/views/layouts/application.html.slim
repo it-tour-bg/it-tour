@@ -3,7 +3,7 @@ doctype html
 html
   head
     meta charset="utf-8"
-    title = title_value || current_conference.name
+    title = current_conference.name
 
     link href="//fonts.googleapis.com/css?family=Roboto+Condensed:300italic,300,400italic,400,700italic,700" rel="stylesheet" type="text/css"
 
@@ -14,6 +14,20 @@ html
 
     meta content="index,follow,noydir,noodp" name="robots"
     meta content="initial-scale = 1.0" name="viewport"
+
+    meta content="#{copyright}" name="copyright"
+    meta content="#{current_conference.name}" property="og:site_name"
+    meta content="#{current_conference.name}" property="og:title"
+    meta content="website" property="og:type"
+    meta content="#{root_url}" property="og:url"
+
+    - if current_conference.slogan?
+      meta content="#{current_conference.slogan}" property="og:description"
+      meta content="#{current_conference.slogan}" name="description"
+
+    - if current_conference.regular? && current_event.logo?
+      link href="#{current_event.favicon}" rel="shortcut icon" type="image/vnd.microsoft.icon"
+      meta content="#{current_event.logo}" property="og:image"
 
     = yield :meta_data
 

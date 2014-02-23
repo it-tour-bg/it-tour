@@ -25,6 +25,10 @@ class Conference < ActiveRecord::Base
     events.publicly_announced.find_by! name: name
   end
 
+  def regular?
+    !main?
+  end
+
   private
 
   def ensure_only_one_main

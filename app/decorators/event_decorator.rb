@@ -3,8 +3,6 @@ class EventDecorator < Draper::Decorator
   decorates :event
   delegate_all
 
-  delegate :name, :slogan, to: :conference, prefix: true
-
   def favicon
     logo.url :favicon
   end
