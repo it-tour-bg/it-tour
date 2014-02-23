@@ -1,6 +1,4 @@
 class SubscribersController < ApplicationController
-  layout 'events'
-
   def new
   end
 

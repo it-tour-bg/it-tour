@@ -1,6 +1,4 @@
 class FeedbacksController < ApplicationController
-  layout 'events'
-
   def new
   end
 
