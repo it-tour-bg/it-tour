@@ -35,6 +35,13 @@ class EventDecorator < Draper::Decorator
     @other_conference_events ||= conference.events.publicly_announced
   end
 
+  def information
+    information = []
+    information << l(date, format: :long) if dates_announced?
+    information << venue_name if venue_announced?
+    information.join ', '
+  end
+
   private
 
   def start_time

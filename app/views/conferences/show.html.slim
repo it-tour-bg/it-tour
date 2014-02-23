@@ -2,3 +2,15 @@
   article#about
     h1 За Турнето
     div.content = markdown @conference.about
+
+article#conferences
+  h1 Градове
+  ul
+    - Conference.regular.with_events.each do |conference|
+      - with_event(conference.current_event) do |event|
+        li
+          h3 = event.town
+          p = event.information
+          span.arrow
+          = link_to 'сайта на събитето', conference.domain
+

@@ -1,5 +1,5 @@
 @mixin heading1 { font-size: 50px; line-height: 50px; }
-@mixin heading2 { font-size: 34px; line-height: 34px; font-weight: bold; }
+@mixin heading2 { font-size: 34px; line-height: 40px; font-weight: bold; }
 @mixin heading3 { font-size: 22px; line-height: 30px; }
 
 @mixin no-link-underline {

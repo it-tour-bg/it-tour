@@ -189,3 +189,10 @@ form {
   ul li .logo { @include image-link; float: left; margin-right: 40px; }
   ul li + li { margin-top: 40px; }
 }
+
+#conferences {
+  ul { @include centered-content; @include heading3; }
+  ul li h3 { @include heading2; }
+  ul li + li { margin-top: 40px; }
+  ul li .arrow { @include icon($fa-var-arrow-circle-o-right); margin-right: 5px; }
+}

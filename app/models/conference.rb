@@ -12,13 +12,17 @@ class Conference < ActiveRecord::Base
       where(domain: domain).first!
     end
 
-    def without_main
+    def regular
       where(main: false)
+    end
+
+    def with_events
+      includes(:events).where('events.publicly_announced' => true)
     end
   end
 
   def current_event
-    events.publicly_announced.order('current DESC').first!
+    @current_event = events.publicly_announced.order('current DESC').first!
   end
 
   def announced_event_named(name)
