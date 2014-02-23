@@ -186,7 +186,7 @@ form {
 
   ul { @include centered-content; @include heading3; }
   ul li { @include clearfix; }
-  ul li .logo { @include image-link; float: left; margin-right: 40px; }
+  ul li .logo { @include image-link; float: left; margin-right: 20px; }
   ul li + li { margin-top: 40px; }
 }
 

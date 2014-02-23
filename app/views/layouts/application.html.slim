@@ -52,7 +52,6 @@ html
             = link_to 'За турнето', '#about'
             = link_to 'Градове', '#conferences'
             = link_to 'Архив', '#archive'
-            = link_to 'Контакти', '#contacts'
     - else
       - if current_event.coverart?
         header style="background-image: url(#{current_event.coverart.url(:default)})"
