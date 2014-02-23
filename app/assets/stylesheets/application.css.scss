@@ -100,10 +100,11 @@ form {
 }
 
 .content {
-  p {
-    @include centered-content;
-    @include heading3;
-  }
+  @include centered-content;
+  @include heading3;
+
+  strong { font-weight: bold; }
+  em { font-style: italic; }
 }
 
 #when {
@@ -153,7 +154,7 @@ form {
   h3 { @include heading2; font-weight: bold; float: left; padding: 22px 0; }
   h3 a { @include no-link-underline; }
 
-  .description { @include heading3; clear: both; padding: 24px 0; }
+  .content { clear: both; padding: 24px 0; }
 
   section { padding-top: 20px; }
 }

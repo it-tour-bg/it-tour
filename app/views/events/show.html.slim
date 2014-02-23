@@ -63,7 +63,7 @@
 
         h3 = link_to speaker.name, '#'
 
-        .description = markdown speaker.description
+        .content = markdown speaker.description
 
 - if @event.after_party_announced?
   article#after-party

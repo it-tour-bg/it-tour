@@ -1,0 +1,4 @@
+- if @conference.about?
+  article#about
+    h1 За Турнето
+    div.content = markdown @conference.about

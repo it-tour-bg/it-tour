@@ -31,6 +31,11 @@ describe ConferencesController do
         conference.stub main?: true
       end
 
+      it "assigns the current conference as @conference" do
+        get :show
+        expect(assigns[:conference]).to eq conference
+      end
+
       it "doesn't assigns current event" do
         get :show
         expect(assigns[:events]).to be_nil
