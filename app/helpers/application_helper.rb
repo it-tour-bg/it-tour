@@ -34,4 +34,8 @@ module ApplicationHelper
   def with_event(event)
     yield EventDecorator.decorate(event)
   end
+
+  def conference_url(conference)
+    "http://#{conference.domain}"
+  end
 end

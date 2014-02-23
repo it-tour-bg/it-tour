@@ -85,7 +85,7 @@ html
               ' #{link_to '', "http://youtube.com/#{current_conference.youtube_account}", class: 'youtube', title: 'YouTube'}
 
         .conferences
-          = raw Conference.regular.map { |conferece| link_to conferece.name, conferece.domain }.join(', ')
+          = raw Conference.regular.map { |conferece| link_to conferece.name, conference_url(conferece) }.join(', ')
 
     footer
       = link_to 'www.it-tour.bg', 'http://it-tour.bg'
