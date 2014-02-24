@@ -4,7 +4,7 @@
       h1
         = link_to 'IT Tour', '#about'
       nav
-        - Conference.all.each do |conference|
+        - Conference.where(main: false).each do |conference|
           = link_to conference.name, "http://#{conference.domain}", class: conference == current_conference && 'active'
 
   .page
