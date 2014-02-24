@@ -48,6 +48,7 @@ class Admin::ConferencesController < Admin::BaseController
       :slogan,
       :main,
       :about,
+      :color,
     )
   end
 end
