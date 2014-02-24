@@ -76,7 +76,7 @@ html
           - if current_conference.contact_name?
             = link_to current_conference.contact_name, "mailto:#{current_conference.contact_email}"
 
-          .socail
+          .social
             - if current_conference.facebook_account?
               ' #{link_to '', "https://www.facebook.com/#{current_conference.facebook_account}", class: 'facebook', title: 'Facebook'}
             - if current_conference.twitter_account?

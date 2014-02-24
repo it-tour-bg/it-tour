@@ -171,10 +171,10 @@ form {
 
   .conferences { @include inline-block; width: 300px; }
 
-  .socail { margin-top: 8px; }
-  .socail a { @include transition(color 0.5s); }
-  .socail a:hover,
-  .socail a:active { color: $dark; }
+  .social { margin-top: 8px; }
+  .social a { @include transition(color 0.5s); }
+  .social a:hover,
+  .social a:active { color: $dark; }
 
   .facebook { @include icon($fa-var-facebook-square); }
   .youtube { @include icon($fa-var-youtube-square); }
