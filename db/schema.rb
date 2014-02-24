@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140223153330) do
+ActiveRecord::Schema.define(version: 20140224214307) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 20140223153330) do
     t.string   "slogan"
     t.boolean  "main",             default: false, null: false
     t.text     "about"
+    t.string   "color"
   end
 
   add_index "conferences", ["main"], name: "index_conferences_on_main", using: :btree
