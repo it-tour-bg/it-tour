@@ -5,6 +5,6 @@
       - events.each do |event|
         - with_event(event) do |event|
           li
-            = link_to image_tag(event.logo.url(:thumb)), archive_path(event.name), class: 'logo'
-            = link_to "#{event.conference.name} #{event.name}", archive_path(event.name)
+            = link_to image_tag(event.logo.url(:thumb)), conference_url(event.conference) + archive_path(event.name), class: 'logo'
+            = link_to "#{event.conference.name} #{event.name}", conference_url(event.conference) + archive_path(event.name)
             p = event.information
