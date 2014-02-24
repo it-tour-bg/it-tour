@@ -142,9 +142,12 @@ form {
   ol li strong { @include heading2; font-weight: bold; display: block; margin-top: 8px; }
   ol li .speaker { @include heading3; @include no-link-underline; }
   ol li .links { display: block; @include heading3; }
-  ol li .links a + span { margin-left: 10px;  }
-  ol li .links .video { @include icon($fa-var-video-camera); margin-right: 5px; }
-  ol li .links .slides { @include icon($fa-var-laptop); margin-right: 5px; }
+  ol li .links a span { margin: 0 20px 0 10px; border-bottom: 1px dotted $line; }
+  ol li .links a:focus span,
+  ol li .links a:hover span { border-style: solid; }
+  ol li .links a:active span { color: $dark; border-color: $dark }
+  ol li .links .video { @include icon($fa-var-video-camera); }
+  ol li .links .slides { @include icon($fa-var-laptop); }
 }
 
 #speakers {
