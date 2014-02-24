@@ -45,7 +45,7 @@ html
 
   body#top
     - if current_conference.main?
-      nav
+      nav style="border-top-color: #{current_conference.color}"
         div
           span
             = link_to 'За турнето', '#about'
@@ -55,7 +55,7 @@ html
       - if current_event.coverart?
         header style="background-image: url(#{current_event.coverart.url(:default)})"
 
-      nav
+      nav style="border-top-color: #{current_conference.color}"
         div
           span
             = link_to 'Кога', archive_path(current_event.name, anchor: 'when') if current_event.dates_announced?
