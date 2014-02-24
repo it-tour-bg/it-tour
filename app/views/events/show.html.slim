@@ -76,8 +76,8 @@
 
 = render 'subscribers/form'
 = render 'feedbacks/form' if @event.show_feedback_form?
+= render 'shared/archive', events: @event.other_conference_events
 
-- if @event.other_conference_events?
   article#archive
     h1 Архив
     ul
