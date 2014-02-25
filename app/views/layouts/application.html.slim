@@ -54,6 +54,7 @@ html
     - else
       - if current_event.coverart?
         header style="background-image: url(#{current_event.coverart.url(:default)})"
+          = image_tag current_event.logo.url(:main) if current_event.logo?
 
       nav style="border-top-color: #{current_conference.color}"
         div

@@ -50,6 +50,10 @@ header {
   height: 300px;
   background-size: cover;
   background-position: center;
+  position: relative;
+
+  img { position: absolute; top: 50%; left: 50%; margin-top: -127px; margin-left: -127px; }
+
 }
 
 footer {
