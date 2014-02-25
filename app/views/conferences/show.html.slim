@@ -14,4 +14,5 @@ article#conferences
           span.arrow
           = link_to 'сайта на събитето', conference_url(conference)
 
+= render 'subscribers/form'
 = render 'shared/archive', events: Event.publicly_announced

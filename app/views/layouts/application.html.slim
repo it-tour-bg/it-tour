@@ -50,11 +50,13 @@ html
           span
             = link_to 'За турнето', '#about'
             = link_to 'Градове', '#conferences'
+            = link_to 'Контакти', '#subscribe'
             = link_to 'Архив', '#archive'
     - else
       - if current_event.coverart?
         header style="background-image: url(#{current_event.coverart.url(:default)})"
-          = image_tag current_event.logo.url(:main) if current_event.logo?
+          = link_to archive_path(current_event.name) do
+            = image_tag current_event.logo.url(:main) if current_event.logo?
 
       nav style="border-top-color: #{current_conference.color}"
         div
