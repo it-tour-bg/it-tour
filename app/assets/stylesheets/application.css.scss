@@ -138,13 +138,15 @@ form {
 }
 
 #schedule {
-  ol li { position: relative; min-height: 82px; padding-left: 270px; }
-  ol li + li { border-top: 1px solid $line; padding-top: 15px; margin-top: 30px; }
-  ol li time { @include icon($fa-var-clock-o); font-size: 70px; font-weight: bold; position: absolute; left: 0px; }
+  ol li { position: relative; min-height: 82px; padding-left: 220px; }
+  ol li + li { border-top: 1px solid $line; padding-top: 25px; margin-top: 25px; }
+  ol li + li { border-top: 1px solid $line; }
+  ol li time { @include icon($fa-var-clock-o); font-size: 60px; font-weight: bold; position: absolute; left: 0px; }
   ol li time:before { margin: -10px 8px 0 0; color: $line-light; }
-  ol li strong { @include heading2; font-weight: bold; display: block; margin-top: 8px; }
-  ol li .speaker { @include heading3; @include no-link-underline; }
-  ol li .links { display: block; @include heading3; }
+  ol li strong { @include heading3; font-weight: bold; display: block; margin-top: 4px; }
+  ol li .speaker { @include heading4; @include no-link-underline; }
+  ol li .speaker:hover { border-bottom: 1px solid $text; }
+  ol li .links { display: block; @include heading4; margin-top: 4px; }
   ol li .links a span { margin: 0 20px 0 10px; border-bottom: 1px dotted $line; }
   ol li .links a:focus span,
   ol li .links a:hover span { border-style: solid; }
