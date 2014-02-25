@@ -6,7 +6,7 @@
   &,
   &:hover,
   &:active,
-  &:focus { border-bottom: none !important; }
+  &:focus { border-bottom: none; }
 }
 
 @mixin image-link {

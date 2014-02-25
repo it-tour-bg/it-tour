@@ -155,6 +155,7 @@ form {
 
   h3 { @include heading2; font-weight: bold; float: left; padding: 22px 0; }
   h3 a { @include no-link-underline; }
+  h3 a:hover { border-bottom: 1px solid $text; }
 
   .content { clear: both; padding: 24px 0; }
 
