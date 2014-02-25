@@ -38,4 +38,12 @@ module ApplicationHelper
   def conference_url(conference)
     "http://#{conference.domain}"
   end
+
+  def current_event_path(options = {})
+    if current_event.current?
+      root_path(options)
+    else
+      archive_path(current_event.name, options)
+    end
+  end
 end
