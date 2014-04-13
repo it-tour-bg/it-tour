@@ -1,9 +1,6 @@
 require 'spec_helper'
 
 describe Conference do
-  it { should validate_presence_of :name }
-  it { should have_many :events }
-
   describe "main conference" do
     it "has only one main conference" do
       first  = create :conference, main: true

@@ -1,9 +1,6 @@
 require 'spec_helper'
 
 describe Photo do
-  it { should belong_to :event }
-  it { should validate_presence_of :asset }
-
   describe "#change_position_of" do
     it "reorders photos in the given order" do
       photo_1 = create :photo
