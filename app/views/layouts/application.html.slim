@@ -51,7 +51,7 @@ html
             = link_to 'За турнето', root_url(anchor: '#about')
             = link_to 'Градове', root_url(anchor: '#conferences')
             = link_to 'Контакти', root_url(anchor: '#subscribe')
-            = link_to 'Архив', roo_url(anchor: '#archive')
+            = link_to 'Архив', root_path(anchor: '#archive')
     - else
       - if current_event.show_coverart? && current_event.coverart?
         header
