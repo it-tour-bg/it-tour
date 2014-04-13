@@ -53,7 +53,7 @@ html
             = link_to 'Контакти', root_url(anchor: '#subscribe')
             = link_to 'Архив', roo_url(anchor: '#archive')
     - else
-      - if current_event.coverart?
+      - if current_event.show_coverart? && current_event.coverart?
         header style="background-image: url(#{current_event.coverart.url(:default)})"
           = link_to current_event_path do
             = image_tag current_event.logo.url(:main) if current_event.logo?

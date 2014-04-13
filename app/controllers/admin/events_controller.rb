@@ -66,6 +66,7 @@ class Admin::EventsController < Admin::BaseController
       :show_feedback_form,
       :show_photo_gallery,
       :show_streaming,
+      :show_coverart,
     )
   end
 end

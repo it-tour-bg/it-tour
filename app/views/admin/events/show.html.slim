@@ -84,7 +84,11 @@
           th colspan="6" = link_to '+ session', new_admin_session_path(event_id: @event.id), class: 'btn'
 
   article
-    h4 Media
+    h4
+      ' Media
+      - unless @event.show_coverart?
+          span.label.label-important hidden
+
     p Number of feedbacks given: #{link_to @event.feedbacks.count, admin_event_feedbacks_path(@event)} #{raw '<span class="label label-important">hidden</span>' unless @event.show_feedback_form?}
     p Number of photos: #{link_to @event.photos.count, admin_event_photos_path(@event)} #{raw '<span class="label label-important">hidden</span>' unless @event.show_photo_gallery?}
 
