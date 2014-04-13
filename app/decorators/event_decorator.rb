@@ -3,8 +3,6 @@ class EventDecorator < Draper::Decorator
   decorates :event
   delegate_all
 
-  delegate :name, :slogan, to: :conference, prefix: true
-
   def favicon
     logo.url :favicon
   end
@@ -27,6 +25,21 @@ class EventDecorator < Draper::Decorator
 
   def finished?
     Time.now > finish_time
+  end
+
+  def other_conference_events?
+    other_conference_events.any?
+  end
+
+  def other_conference_events
+    @other_conference_events ||= conference.events.publicly_announced
+  end
+
+  def information
+    information = []
+    information << l(date, format: :long) if dates_announced?
+    information << venue_name if venue_announced?
+    information.join ', '
   end
 
   private

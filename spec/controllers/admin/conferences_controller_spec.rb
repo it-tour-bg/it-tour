@@ -38,7 +38,7 @@ describe Admin::ConferencesController do
     end
 
     it "responds with the new conference" do
-      controller.should_receive(:respond_with).with conference, location: admin_conference_path(conference)
+      controller.should_receive(:respond_with).with conference, location: admin_conferences_path
       post :create, conference: {name: 'VarnaConf'}
     end
   end
@@ -75,7 +75,7 @@ describe Admin::ConferencesController do
     end
 
     it "responds with the conference" do
-      controller.should_receive(:respond_with).with conference, location: admin_conference_path(conference)
+      controller.should_receive(:respond_with).with conference, location: admin_conferences_path
       patch :update, id: '1', conference: {name: 'VarnaConf'}
     end
   end

@@ -12,7 +12,7 @@ module ImageUploader
   end
 
   def filename
-    "image.jpg" if original_filename
+    "image#{File.extname(super)}" if original_filename
   end
 
   def extension_white_list

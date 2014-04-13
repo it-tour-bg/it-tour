@@ -14,12 +14,31 @@ describe Conference do
     end
   end
 
+  describe ".regular" do
+    it "selects all confrences except the main one" do
+      main  = create :conference, main: true
+      other = create :conference, main: false
+
+      expect(Conference.regular).to eq [other]
+    end
+  end
+
   describe ".find_for_domain" do
     it "finds conference by domain" do
       varna = create :conference, domain: 'varnaconf.com'
       sofia = create :conference, domain: 'sofiaconf.com'
 
       expect(Conference.find_for_domain('varnaconf.com')).to eq varna
+    end
+  end
+
+  describe ".with_events" do
+    it "selects only conferences with ongoing events" do
+      with_announced_event = create(:event, publicly_announced: true).conference
+      with_hidden_event    = create(:event, publicly_announced: false).conference
+      without_event        = create(:conference)
+
+      expect(Conference.with_events).to eq [with_announced_event]
     end
   end
 
@@ -41,6 +60,13 @@ describe Conference do
       finished = create :finished_event, conference: conference
 
       expect(conference.current_event).to eq finished
+    end
+  end
+
+  describe "#regular?" do
+    it "is revert of main?" do
+      expect(Conference.new(main: true)).not_to be_regular
+      expect(Conference.new(main: false)).to be_regular
     end
   end
 

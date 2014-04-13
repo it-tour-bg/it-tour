@@ -5,6 +5,6 @@ article#feedback
 
   = simple_form_for feedback do |form|
     = form.hidden_field :event_id
-    = form.input :comment, label: "Какво ви хареса, какво не от #{feedback.event_name} или какво бихте искали да има догодина..."
+    = form.input :comment, label: false, input_html: {rows: 5}
     = form.button :submit, 'Изпрати'
 

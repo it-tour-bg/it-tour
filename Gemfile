@@ -22,6 +22,7 @@ gem 'carrierwave'
 gem 'rmagick'
 gem 'draper'
 gem 'therubyracer'
+gem 'font-awesome-sass'
 
 group :development do
   gem 'capistrano', '~> 3.1.0'
@@ -37,7 +38,6 @@ end
 group :development, :test do
   gem 'rspec-rails'
   gem 'pry'
-  gem 'dotenv'
 end
 
 group :test do

@@ -11,14 +11,26 @@ class Conference < ActiveRecord::Base
     def find_for_domain(domain)
       where(domain: domain).first!
     end
+
+    def regular
+      where(main: false)
+    end
+
+    def with_events
+      includes(:events).where('events.publicly_announced' => true)
+    end
   end
 
   def current_event
-    events.publicly_announced.order('current DESC').first!
+    @current_event = events.publicly_announced.order('current DESC').first!
   end
 
   def announced_event_named(name)
     events.publicly_announced.find_by! name: name
+  end
+
+  def regular?
+    !main?
   end
 
   private

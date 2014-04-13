@@ -1,7 +1,6 @@
 article#subscribe
   h1 Записвания
-  p Aко искате да сте едни от първите уведомени за новини свързани с IT Tour, моля оставете email за контакт.
 
   = simple_form_for @subscriber || Subscriber.new do |form|
-    = form.input :email, label: 'E-mail адрес'
+    = form.input :email, label: 'Aко искате да сте едни от първите уведомени за новини свързани с IT Tour, моля оставете email за контакт.', required: false
     = form.button :submit, 'Добави'

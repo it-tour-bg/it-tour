@@ -1,8 +1,9 @@
 require 'spec_helper'
 
 describe Admin::EventsController do
+  include SpecSupport::Controllers::RespondWith
+
   stub_current_user
-  stub_rendering
 
   let(:event) { double :event }
 
@@ -28,8 +29,8 @@ describe Admin::EventsController do
     end
 
     it "creates a new event" do
-      Event.should_receive(:create).with('name' => 'VarnaConf').and_return event
       post :create, event: {name: 'VarnaConf'}
+      expect(Event).to have_received(:create).with('name' => 'VarnaConf')
     end
 
     it "assigns the new event" do
@@ -38,8 +39,8 @@ describe Admin::EventsController do
     end
 
     it "responds with the new event" do
-      controller.should_receive(:respond_with).with event, location: admin_event_path(event)
       post :create, event: {name: 'VarnaConf'}
+      expect(controller).to respond_with event, location: admin_events_path
     end
   end
 
@@ -65,8 +66,8 @@ describe Admin::EventsController do
     end
 
     it "updates the event" do
-      Event.should_receive(:update).with('1', 'name' => 'VarnaConf').and_return event
       patch :update, id: '1', event: {name: 'VarnaConf'}
+      expect(Event).to have_received(:update).with('1', 'name' => 'VarnaConf')
     end
 
     it "assigns the event" do
@@ -75,8 +76,8 @@ describe Admin::EventsController do
     end
 
     it "responds with the event" do
-      controller.should_receive(:respond_with).with event, location: admin_event_path(event)
       patch :update, id: '1', event: {name: 'VarnaConf'}
+      expect(controller).to respond_with event, location: admin_event_path(event)
     end
   end
 
@@ -86,13 +87,13 @@ describe Admin::EventsController do
     end
 
     it "removes the event" do
-      Event.should_receive(:destroy).with('1')
       delete :destroy, id: '1'
+      expect(Event).to have_received(:destroy).with('1')
     end
 
     it "redirects to events list" do
-      controller.should_receive(:respond_with).with event, location: admin_events_path
       delete :destroy, id: '1'
+      expect(controller).to respond_with event, location: admin_events_path
     end
   end
 end

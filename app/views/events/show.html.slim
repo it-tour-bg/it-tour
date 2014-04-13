@@ -1,73 +1,57 @@
-- title @event.full_name
-
-- content_for :meta_data do
-  meta content="#{copyright}" name="copyright"
-  meta content="#{@event.conference_name}" property="og:site_name"
-  meta content="#{@event.conference_name}" property="og:title"
-  meta content="website" property="og:type"
-  meta content="#{root_url}" property="og:url"
-
-  - if @event.logo?
-    link href="#{@event.favicon}" rel="shortcut icon" type="image/vnd.microsoft.icon"
-    meta content="#{@event.logo}" property="og:image"
-
-  - if @event.conference_slogan.present?
-    meta content="#{@event.conference_slogan}" property="og:description"
-    meta content="#{@event.conference_slogan}" name="description"
-
-- if @event.coverart?
-  article#coverart
-    = image_tag @event.coverart.url(:default), alt: @event.full_name
-
 - if @event.show_streaming?
   article#streaming
-    h1 Live Streaming
+    h2 Live Streaming
 
     section
       = raw @event.streaming_code
 
 - if @event.dates_announced?
   article#when
-    h1 Кога?
     h2 = @event.formatted_date
 
     section
-      .entrance
-        ' Вход:
-        strong свободен
-
       - if @event.finished?
         .state Събитието завърши
       - elsif @event.ongoing?
         .state Събитието тече в момента
       - else
-        .timer
-          ' Остават:
-          div data-countdown="#{@event.start_time_for_javascript}"
+        .timer data-countdown="#{@event.start_time_for_javascript}"
 
-    - if @event.event_url?
-      = link_to 'Събитието във Facebook', @event.event_url, class: 'facebook-event', target: 'blank'
+    section
+      span.entrance  вход свободен
+
+      - if @event.event_url?
+        = link_to ' cъбитието във facebook', @event.event_url, class: 'facebook', target: '_blank'
 
 - if @event.venue_announced?
   article#venue
-    h1 Къде?
+    h2 Къде?
 
-    p Събитието ще се проведе във:
-    = link_to @event.venue_name, @event.venue_site_url, target: 'black', class: 'site'
-    address = @event.venue_address
-    address = @event.venue_notes
-    iframe width="100%" height="350" scrolling="no" src="#{@event.venue_map_url}"
+    iframe width="100%" height="500" scrolling="no" src="#{@event.venue_map_url}"
+
+    section
+      = link_to @event.venue_name, @event.venue_site_url, target: '_blank'
+      address = @event.venue_address
+      address = @event.venue_notes
 
 - if @event.sessions_announced?
   article#schedule
     h1 Програма
+
     section
       ol
         - @event.sessions.each do |session|
           li
             time = session.start_at
-            = render_session session
-
+            strong = session.title
+            = link_to session.speaker_name, "#speaker-#{session.speaker_id}", class: 'speaker' if session.speaker.present?
+            span.links
+              - if session.video_url?
+                = link_to session.video_url, class: 'video', target: '_blank' do
+                  span видео
+              - if session.slides_url?
+                = link_to session.slides_url, class: 'slides', target: '_blank' do
+                  span презентация
 
 - if @event.speakers_announced?
   article#speakers
@@ -75,29 +59,35 @@
     - @event.speakers.each do |speaker|
       section id="speaker-#{speaker.id}"
         - if speaker.photo?
-          = link_to image_tag(speaker.photo.url(:thumb)), speaker.personal_site, target: :blank, class: 'avatar'
-        h2
+          = link_to image_tag(speaker.photo.url(:thumb)), speaker.personal_site, target: '_blank', class: 'avatar'
+
+        h3
           - if speaker.personal_site?
-            = link_to speaker.name, speaker.personal_site, target: :blank, class: 'name'
+            = link_to speaker.name, speaker.personal_site
           - else
-            span.name = speaker.name
+            = speaker.name
 
-          - if speaker.company?
-            - if speaker.company_site?
-              = link_to speaker.company, speaker.company_site, target: :blank, class: 'company'
-            - else
-              span.company = speaker.company
-
-        p = markdown speaker.description
+        .content = markdown speaker.description
 
 - if @event.after_party_announced?
   article#after-party
-    h1 After Party
-    = link_to @event.after_party_venue_name, @event.after_party_venue_site_url, target: 'black', class: 'site'
-    address = @event.after_party_venue_address
-    address = @event.after_party_venue_notes
+    h2 After Party
     iframe width="100%" height="350" scrolling="no" src="#{@event.after_party_venue_map_url}"
+    section
+      = link_to @event.after_party_venue_name, @event.after_party_venue_site_url, target: '_blank'
+      address = @event.after_party_venue_address
+      address = @event.after_party_venue_notes
 
 = render 'subscribers/form'
 = render 'feedbacks/form' if @event.show_feedback_form?
+= render 'shared/archive', events: @event.other_conference_events
 
+  article#archive
+    h1 Архив
+    ul
+      - @event.other_conference_events.each do |event|
+        - with_event(event) do |event|
+          li
+            = link_to image_tag(event.logo.url(:thumb)), archive_path(event.name), class: 'logo'
+            = link_to "#{event.conference.name} #{event.name}", archive_path(event.name)
+            p = event.information

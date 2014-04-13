@@ -1,8 +1,9 @@
 require 'spec_helper'
 
 describe Admin::EventNotesController do
+  include SpecSupport::Controllers::RespondWith
+
   stub_current_user
-  stub_rendering
 
   let(:event) { double :event }
 
@@ -20,8 +21,8 @@ describe Admin::EventNotesController do
     end
 
     it "updates the event" do
-      Event.should_receive(:update).with('1', notes: 'text').and_return event
       patch :update, event_id: '1', event: {notes: 'text'}
+      expect(Event).to have_received(:update).with('1', notes: 'text')
     end
 
     it "assigns the event" do
@@ -30,8 +31,8 @@ describe Admin::EventNotesController do
     end
 
     it "responds with the event" do
-      controller.should_receive(:respond_with).with(event, location: admin_event_path(event, anchor: 'notes'))
       patch :update, event_id: '1', event: {notes: 'text'}
+      expect(controller).to respond_with(event, location: admin_event_path(event, anchor: 'notes'))
     end
   end
 end

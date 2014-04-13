@@ -12,17 +12,6 @@ module ApplicationHelper
     "© #{Date.today.year} IT Tour."
   end
 
-  def render_session(session)
-    links = []
-    links << link_to('видео', session.video_url, target: :blank) if session.video_url?
-    links << link_to('слайдове', session.slides_url, target: :blank) if session.slides_url?
-
-    session_info = session.title
-    session_info << " - #{link_to session.speaker_name, '#speaker-' + session.speaker_id.to_s}" if session.speaker.present?
-    session_info << " (#{links.join(', ')})" if links.present?
-    session_info.html_safe
-  end
-
   def back_link
     content_tag :article, link_to("Обратно към #{current_conference.name}", root_url)
   end
@@ -36,5 +25,25 @@ module ApplicationHelper
   def render_in_layout(&block)
     content_for :content, &block
     render template: 'layouts/application'
+  end
+
+  def current_event
+    @current_event ||= @event || EventDecorator.decorate(current_conference.current_event)
+  end
+
+  def with_event(event)
+    yield EventDecorator.decorate(event)
+  end
+
+  def conference_url(conference)
+    "http://#{conference.domain}"
+  end
+
+  def current_event_path(options = {})
+    if current_event.current?
+      root_path(options)
+    else
+      archive_path(current_event.name, options)
+    end
   end
 end
