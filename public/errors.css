@@ -79,5 +79,10 @@ article h1:after {
 article p {
   font-size: 22px;
   line-height: 30px;
+  padding-bottom: 20px;
 }
+
+article a { color: inherit; text-decoration: none; }
+article a:hover,
+article a:focus { text-decoration: underline; }
 
