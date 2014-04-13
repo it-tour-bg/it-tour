@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 ruby '2.1.0'
 
-gem 'rails', '4.0.2'
+gem 'rails', '4.1'
 gem 'pg'
 gem 'puma'
 
@@ -12,14 +12,14 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'compass-rails',  github: 'Compass/compass-rails'
 gem 'jquery-rails'
 gem 'bootstrap-sass', '2.3.2.0'
-gem 'simple_form', '3.0.1'
+gem 'simple_form'
 gem 'turbolinks'
 gem 'foreigner'
 gem 'redcarpet'
 gem 'bcrypt-ruby'
 gem 'responders'
+gem 'rmagick', require: false
 gem 'carrierwave'
-gem 'rmagick'
 gem 'draper'
 gem 'therubyracer'
 gem 'font-awesome-sass'
@@ -42,8 +42,6 @@ end
 
 group :test do
   gem 'launchy'
-  gem 'shoulda-matchers'
   gem 'capybara'
-  gem 'database_cleaner'
   gem 'factory_girl_rails'
 end
