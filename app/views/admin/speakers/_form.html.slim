@@ -3,12 +3,19 @@
 
   = form.input :name
   = form.input :description
-  = form.input :personal_site
-  = form.input :company
-  = form.input :company_site
-  = form.input :twitter_account
   = form.input :photo, as: :file
   = form.input :tshirt_size
+
+  fieldset
+    legend Social links
+    = form.input :personal_site
+
+    = form.input :company
+    = form.input :company_site
+    = form.input :twitter_account
+    = form.input :github_account
+    = form.input :dribbble_account
+    = form.input :facebook_account
 
   .form-actions
     = form.button :submit, class: 'btn-primary'

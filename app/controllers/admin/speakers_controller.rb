@@ -44,6 +44,9 @@ class Admin::SpeakersController < Admin::BaseController
       :company,
       :company_site,
       :twitter_account,
+      :facebook_account,
+      :dribbble_account,
+      :github_account,
       :photo,
       :tshirt_size,
     )
