@@ -11,4 +11,5 @@ class Session < ActiveRecord::Base
   default_scope -> { order 'start_at ASC' }
 
   delegate :name, to: :speaker, prefix: true
+  delegate :full_name, to: :event, prefix: true
 end

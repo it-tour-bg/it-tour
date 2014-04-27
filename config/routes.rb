@@ -26,6 +26,8 @@ TourConf::Application.routes.draw do
   resource :subscribers, only: [:new, :create]
   resource :feedbacks, only: [:new, :create]
 
+  resources :speakers, only: [:show]
+
   get 'archive/:year', to: 'events#show', as: :archive
 
   root to: 'conferences#show'

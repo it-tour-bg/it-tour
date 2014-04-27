@@ -1,0 +1,24 @@
+article#speaker
+  - if @speaker.photo?
+    = link_to image_tag(@speaker.photo.url(:thumb)), @speaker.personal_site, target: '_blank', class: 'avatar'
+
+  h2 = @speaker.name
+
+  .description = markdown @speaker.description
+
+  ul.sessions
+    - @speaker.sessions.each do |session|
+      li
+        strong #{link_to session.event_full_name, event_path(session.event)} - #{session.title}
+        - if session.video_url?
+          = link_to '', session.video_url, class: 'video', target: '_blank', title: 'Видео'
+        - if session.slides_url?
+          = link_to '', session.slides_url, class: 'slides', target: '_blank', title: 'Презентация'
+
+  ul.links
+    - if @speaker.personal_site?
+      li = link_to @speaker.personal_site
+
+    li
+      - @speaker.social_links.each do |type, url|
+        = link_to '', url, class: type, title: type

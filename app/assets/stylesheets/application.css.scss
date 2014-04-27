@@ -162,8 +162,8 @@ form {
   ol li .links a:focus span,
   ol li .links a:hover span { border-style: solid; }
   ol li .links a:active span { color: $dark; border-color: $dark }
-  ol li .links .video { @include icon($fa-var-video-camera); }
-  ol li .links .slides { @include icon($fa-var-laptop); }
+  ol li .links .video { @include icon($fa-var-youtube-play); }
+  ol li .links .slides { @include icon($fa-var-file); }
 }
 
 #speakers {
@@ -177,6 +177,30 @@ form {
   .content { clear: both; padding: 24px 0; }
 
   section { padding-top: 20px; }
+}
+
+#speaker {
+  @include centered-content;
+  @include heading3;
+
+  text-align: center;
+
+  .avatar { @include inline-block; @include image-link; margin-bottom: 60px; }
+  .avatar img { @include border-radius(100%); }
+
+  .description { padding: 60px 0; margin: 60px auto; border-top: 1px solid $line; border-bottom: 1px solid $line; text-align: left; }
+
+  .sessions { padding-bottom: 60px; margin-bottom: 60px; border-bottom: 1px solid $line; }
+  .sessions li { margin: 5px 0; }
+  .sessions a { margin-left: 10px; }
+  .sessions a.video { @include icon($fa-var-youtube-play); }
+  .sessions a.slides { @include icon($fa-var-file); }
+
+  .links { margin-bottom: 60px; }
+  .links li { margin-bottom: 10px; }
+  .links a + a { margin-left: 10px; }
+  .links a.twitter { @include icon($fa-var-twitter); }
+  .links a.company { @include icon($fa-var-external-link-square); }
 }
 
 #more {

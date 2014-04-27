@@ -40,10 +40,14 @@ module ApplicationHelper
   end
 
   def current_event_path(options = {})
-    if current_event.current?
-      root_path(options)
+    event_path current_event, options
+  end
+
+  def event_path(event, options = {})
+    if event.current?
+      root_path options
     else
-      archive_path(current_event.name, options)
+      archive_path event.name, options
     end
   end
 end
