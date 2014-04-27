@@ -24,4 +24,4 @@ article#speaker
 
     li
       - @speaker.social_links.each do |type, url|
-        = link_to '', url, class: type, title: type
+        = link_to '', url, class: type, title: type.humanize

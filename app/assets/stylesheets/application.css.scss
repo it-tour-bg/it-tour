@@ -199,8 +199,11 @@ form {
   .links { margin-bottom: 60px; }
   .links li { margin-bottom: 10px; }
   .links a + a { margin-left: 10px; }
-  .links a.twitter { @include icon($fa-var-twitter); }
+  .links a.twitter { @include icon($fa-var-twitter-square); }
   .links a.company { @include icon($fa-var-external-link-square); }
+  .links a.facebook { @include icon($fa-var-facebook-square); }
+  .links a.github { @include icon($fa-var-github-square); }
+  .links a.dribbble { @include icon($fa-var-dribbble); }
 }
 
 #more {

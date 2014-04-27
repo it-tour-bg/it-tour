@@ -4,7 +4,10 @@ class SpeakerDecorator < Draper::Decorator
 
   SOCIAL_LINKS = {
     twitter_account:  ['twitter', 'http://twitter.com/%s'],
+    github_account:   ['github', 'http://github.com/%s'],
+    facebook_account: ['facebook', 'http://facebook.com/%s'],
     company_site:     ['company', '%s'],
+    dribbble_account: ['dribbble', 'http://dribble.com/%s'],
   }
 
   def social_links
