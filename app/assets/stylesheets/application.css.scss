@@ -131,7 +131,8 @@ form {
    .hasCountdown { margin: 40px auto 0; }
    .hasCountdown .countdown_section { @include inline-block; position: relative; }
    .hasCountdown .countdown_section + .countdown_section { margin-left: 40px; }
-   .hasCountdown .countdown_section + .countdown_section .countdown_amount:before { content: ':'; position: absolute; left: -30px; color: $text-light; }
+   .hasCountdown .countdown_section + .countdown_section .countdown_amount:before { position: absolute; left: -30px; color: $text-light; }
+   .hasCountdown .countdown_section:nth-last-of-type(-n+2) .countdown_amount:before { content: ':'; }
    .hasCountdown .countdown_amount { font-size: 120px; }
 
    section + section { margin-top: 33px; padding: 33px 0 10px; border-top: 1px solid $line; }
