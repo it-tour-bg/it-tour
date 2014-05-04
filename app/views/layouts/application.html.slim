@@ -92,7 +92,14 @@ html
 
     footer
       = link_to 'www.it-tour.bg', 'http://it-tour.bg'
-      .copyright © copyright
+      .copyright
+        p
+          a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"
+            img alt="Creative Commons License" src="http://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png"
+
+        p © 2014 IT Tour
+
+
       = link_to '', '#top', class: 'top', title: 'Scroll to top'
 
     = javascript_include_tag 'application'
