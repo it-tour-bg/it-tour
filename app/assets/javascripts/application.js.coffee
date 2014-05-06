@@ -30,5 +30,5 @@ $ ->
   body = $('body')
   nav = body.find('nav')
   $(window)
-    .on 'scroll', -> nav.toggleClass 'sticky', body.scrollTop() > headerHeight
+    .on 'scroll', -> nav.toggleClass 'sticky', $(document).scrollTop() > headerHeight
     .trigger 'scroll'
