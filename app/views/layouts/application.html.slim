@@ -57,7 +57,7 @@ html
         header
           div style="background-image: url(#{current_event.coverart.url(:default)})"
           = link_to current_event_path do
-            = image_tag current_event.logo.url(:main) if current_event.logo?
+            = image_tag current_event.logo.url(:main), alt: current_conference.name if current_event.logo?
 
       nav style="border-top-color: #{current_conference.color}"
         div
