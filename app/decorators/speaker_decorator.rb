@@ -7,7 +7,7 @@ class SpeakerDecorator < Draper::Decorator
     github_account:   ['github', 'http://github.com/%s'],
     facebook_account: ['facebook', 'http://facebook.com/%s'],
     company_site:     ['company', '%s'],
-    dribbble_account: ['dribbble', 'http://dribble.com/%s'],
+    dribbble_account: ['dribbble', 'http://dribbble.com/%s'],
   }
 
   def social_links
