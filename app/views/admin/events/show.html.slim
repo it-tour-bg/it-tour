@@ -33,7 +33,7 @@
           #{raw "( #{link_to 'Map', @event.venue_map_url, target: :blank} )" if @event.venue_map_url?}
       p
         ' #{@event.venue_address}<br>
-          #{@event.venue_notes}
+          #{markdown @event.venue_notes}
 
   - if @event.after_party_venue_name?
     article
