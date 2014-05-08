@@ -25,8 +25,8 @@
     = form.input :venue_name
     = form.input :venue_site_url
     = form.input :venue_address
-    = form.input :venue_notes
     = form.input :venue_map_url
+    = form.input :venue_notes, as: :text
 
   = field_set_tag 'After party' do
     = form.input :after_party_venue_name

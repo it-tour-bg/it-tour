@@ -32,7 +32,7 @@
     section
       = link_to @event.venue_name, @event.venue_site_url, target: '_blank'
       address = @event.venue_address
-      address = @event.venue_notes
+      address = markdown @event.venue_notes
 
 - if @event.sessions_announced?
   article#schedule
@@ -65,6 +65,14 @@
 
         .content = markdown speaker.description
 
+- if @event.show_photo_gallery?
+  article#gallery
+    h2 = link_to 'Галерия', '#TODO'
+
+    - @event.photos.ordered.limit(9).each do |photo|
+      = image_tag photo.asset_url(:thumb)
+
+
 - if @event.after_party_announced?
   article#after-party
     h2 After Party
@@ -73,6 +81,7 @@
       = link_to @event.after_party_venue_name, @event.after_party_venue_site_url, target: '_blank'
       address = @event.after_party_venue_address
       address = @event.after_party_venue_notes
+
 
 = render 'subscribers/form'
 = render 'feedbacks/form' if @event.show_feedback_form?
