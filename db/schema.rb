@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140427174320) do
+ActiveRecord::Schema.define(version: 20140509080345) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,7 +44,7 @@ ActiveRecord::Schema.define(version: 20140427174320) do
     t.string   "venue_site_url"
     t.string   "venue_address"
     t.string   "venue_map_url"
-    t.string   "venue_notes"
+    t.text     "venue_notes"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "after_party_venue_name"
