@@ -147,6 +147,7 @@ form {
 #venue, #after-party {
   h2 { margin-bottom: 50px; }
   section { @include heading3; text-align: center; margin-top: 30px; }
+  section p + p { margin-top: 20px; }
 }
 
 #schedule {
