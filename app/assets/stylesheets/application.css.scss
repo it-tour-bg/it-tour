@@ -27,7 +27,6 @@ a {
 
 nav {
   border-top: 10px solid #488695;
-  height: 68px;
   font-size: 24px;
   text-align: center;
 
@@ -39,7 +38,13 @@ nav {
   div { background: asset-url('nav_background.png') repeat; z-index: 2; min-width: 680px; }
   &.sticky div { position: fixed; top: 0px; left: 0px; right: 0px;}
 
-  @media all and (min-width: 700px) {
+  @media all and (max-width: 740px) {
+    a { padding: 12px 15px; font-size: 14px; }
+    div { min-width: 550px; }
+    &.sticky div { position: relative; }
+  }
+
+  @media all and (min-width: 1000px) {
     div span { position: relative; }
     div span:before { content: ""; position: absolute; top: 50%; width: 83px; height: 8px; left: -83 - 55px; background: asset-url('nav_arrow_left.png'); }
     div span:after { content: ""; position: absolute; top: 50%; width: 83px; height: 8px; right: - 83 - 55px; background: asset-url('nav_arrow_right.png'); }
@@ -65,6 +70,10 @@ header {
   }
 
   img { position: absolute; top: 50%; left: 50%; margin-top: -127px; margin-left: -127px; }
+
+  @media all and (max-width: 700px) {
+    & { display: none; }
+  }
 }
 
 footer {
@@ -92,6 +101,11 @@ article {
   h2 { @include centered-content; @include heading1; margin-bottom: 28px; }
   section { @include centered-content; }
 
+  @media all and (max-width: 700px) {
+    h1 { @include heading2; padding-bottom: 15px; margin-bottom: 15px; }
+    h2 { @include centered-content; @include heading2; margin-bottom: 15px !important; }
+  }
+
   + article { border-top: 2px solid $line-light; }
   + article:before { content: "●"; position: absolute; top: -9px; left: 50%; color: $line; z-index: 1; background: $background; padding: 0 6px; margin-left: -7px; font-size: 14px; }
 }
@@ -100,7 +114,7 @@ form {
   @include centered-content;
 
   textarea,
-  input[type="email"] { border: 1px solid $text; padding: 11px; width: 678px; }
+  input[type="email"] { border: 1px solid $text; padding: 11px; width: 90%; }
   textarea { resize: none; }
   .field_with_errors textarea,
   .field_with_errors input[type="email"] { border-color: $error; }
@@ -122,26 +136,30 @@ form {
 }
 
 #when {
-   @include heading3;
+  @include heading3;
 
-   text-align: center;
+  text-align: center;
 
-   h2 { @include heading2; }
+  h2 { @include heading2; }
 
-   .hasCountdown { margin: 40px auto 0; }
-   .hasCountdown .countdown_section { @include inline-block; position: relative; }
-   .hasCountdown .countdown_section + .countdown_section { margin-left: 40px; }
-   .hasCountdown .countdown_section + .countdown_section .countdown_amount:before { position: absolute; left: -30px; color: $text-light; }
-   .hasCountdown .countdown_section:nth-last-of-type(-n+2) .countdown_amount:before { content: ':'; }
-   .hasCountdown .countdown_amount { font-size: 120px; }
+  .hasCountdown { margin: 40px auto 0; }
+  .hasCountdown .countdown_section { @include inline-block; position: relative; }
+  .hasCountdown .countdown_section + .countdown_section { margin-left: 40px; }
+  .hasCountdown .countdown_section + .countdown_section .countdown_amount:before { position: absolute; left: -30px; color: $text-light; }
+  .hasCountdown .countdown_section:nth-last-of-type(-n+2) .countdown_amount:before { content: ':'; }
+  .hasCountdown .countdown_amount { font-size: 120px; }
 
-   section + section { margin-top: 33px; padding: 33px 0 10px; border-top: 1px solid $line; }
+  @media all and (max-width: 700px) {
+    .hasCountdown .countdown_amount { font-size: 50px; }
+  }
 
-   .entrance { @include icon($fa-var-smile-o); }
-   .facebook { @include icon($fa-var-facebook-square); margin-left: 18px; }
-   .facebook:hover,
-   .facebook:focus { color: $dark; }
-   .facebook:active { color: $text-light; }
+  section + section { margin-top: 33px; padding: 33px 0 10px; border-top: 1px solid $line; }
+
+  .entrance { @include icon($fa-var-smile-o); }
+  .facebook { @include icon($fa-var-facebook-square); margin-left: 18px; }
+  .facebook:hover,
+  .facebook:focus { color: $dark; }
+  .facebook:active { color: $text-light; }
 }
 
 #venue, #after-party {
@@ -179,6 +197,13 @@ form {
   .content { clear: both; padding: 24px 0; }
 
   section { padding-top: 20px; }
+
+  @media all and (max-width: 700px) {
+    h3 { @include heading2; padding: 10px 0; }
+    .avatar { margin-left: 25px; }
+    .avatar img { width: 60px; }
+  }
+
 }
 
 #speaker {
@@ -219,6 +244,12 @@ form {
   .contact strong { display: block; margin-bottom: 5px; }
 
   .conferences { @include inline-block; width: 300px; }
+
+  @media all and (max-width: 700px) {
+    text-align: center;
+
+    .conferences { display: block; width: 100%; margin-top: 20px; }
+  }
 
   .social { margin-top: 8px; }
   .social a { @include transition(color 0.5s); }

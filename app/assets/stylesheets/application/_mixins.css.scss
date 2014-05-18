@@ -21,6 +21,10 @@
 @mixin centered-content {
   margin: 0 auto;
   width: 700px;
+
+  @media all and (max-width: 700px) {
+    width: 90%;
+  }
 }
 
 @mixin icon($text) {
