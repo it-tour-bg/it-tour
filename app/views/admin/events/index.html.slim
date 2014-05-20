@@ -7,6 +7,7 @@ table.table
   thead
     tr
       th Name
+      th width="40px" Color
       th.number width="80px" Feedback
       th.number width="80px" Photos
       th width="300px"
@@ -17,6 +18,8 @@ table.table
           = link_to event.full_name, admin_event_path(event)
           = raw ' <mark class="label label-important">current</mark>' if event.current?
           = raw ' <mark class="label label-notice">hidden</mark>' unless event.publicly_announced?
+        td
+          span.label style="background-color: #{event.color}" = event.color
         td.number = link_to event.feedbacks.count, admin_event_feedbacks_path(event)
         td.number = link_to event.photos.count, admin_event_photos_path(event)
         td.actions width="300px"

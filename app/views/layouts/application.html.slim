@@ -45,7 +45,7 @@ html
 
   body#top
     - if current_conference.main?
-      nav style="border-top-color: #{current_conference.color}"
+      nav style="border-top-color: #488695"
         div
           span
             = link_to 'За турнето', root_url(anchor: 'about') if current_conference.about?
@@ -59,7 +59,7 @@ html
           = link_to current_event_path do
             = image_tag current_event.logo.url(:main), alt: current_conference.name if current_event.logo?
 
-      nav style="border-top-color: #{current_conference.color}"
+      nav style="border-top-color: #{current_event.color}"
         div
           span
             = link_to 'Кога', current_event_path(anchor: 'when') if current_event.dates_announced?

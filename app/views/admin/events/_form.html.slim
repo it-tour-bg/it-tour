@@ -49,6 +49,9 @@
     = form.input :show_streaming
     = form.input :show_coverart
 
+  = field_set_tag 'Settings' do
+    = form.input :color
+
   .form-actions
     = form.button :submit, class: 'btn-primary'
     - if @event.new_record?

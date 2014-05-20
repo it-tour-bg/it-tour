@@ -9,7 +9,6 @@ table.table
       th Name
       th Domain
       th Contact person
-      th Color
       th
   tbody
     - @conferences.each do |conference|
@@ -21,8 +20,6 @@ table.table
         td
           - if conference.contact_name?
             ' #{conference.contact_name} (#{conference.contact_email})
-        td
-          span.label style="background-color: #{conference.color}" = conference.color
         td width="1%"
           = link_to 'Edit', edit_admin_conference_path(conference), class: 'btn'
 

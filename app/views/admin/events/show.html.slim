@@ -9,6 +9,7 @@
 
 = raw ' <mark class="label label-important">current</mark>' if @event.current?
 = raw ' <mark class="label label-notice">hidden</mark>' unless @event.publicly_announced?
+= raw %Q( <mark class="label" style="background: #{@event.color}">#{@event.color}</mark>) if @event.color?
 
 #event-show
   article
