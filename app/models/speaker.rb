@@ -1,5 +1,5 @@
 class Speaker < ActiveRecord::Base
-  has_many :sessions, dependent: :nullify
+  has_many :sessions, dependent: :nullify, order: 'sessions.id ASC'
 
   validates :name, presence: true
 
