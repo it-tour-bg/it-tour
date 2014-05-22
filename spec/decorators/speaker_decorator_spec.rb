@@ -28,7 +28,7 @@ describe SpeakerDecorator do
 
     it "can have dribbble account" do
       speaker = Speaker.new dribbble_account: 'user'
-      expect(social_links_of(speaker)).to eq [['dribbble', 'http://dribble.com/user']]
+      expect(social_links_of(speaker)).to eq [['dribbble', 'http://dribbble.com/user']]
     end
   end
 end
