@@ -18,4 +18,8 @@ module ImageUploader
   def extension_white_list
     %w(jpg jpeg png gif)
   end
+
+  def url(kind = nil)
+    "#{super(kind)}?#{model.updated_at.to_i}"
+  end
 end
