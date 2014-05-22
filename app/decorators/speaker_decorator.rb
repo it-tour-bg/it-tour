@@ -16,4 +16,8 @@ class SpeakerDecorator < Draper::Decorator
       [type, mask % link] if link.present?
     end.compact
   end
+
+  def ordered_sessions
+    sessions.reorder 'id ASC'
+  end
 end

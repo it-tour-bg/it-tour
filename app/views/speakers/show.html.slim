@@ -10,7 +10,7 @@ article#speaker
   .description = markdown @speaker.description
 
   ul.sessions
-    - @speaker.sessions.each do |session|
+    - @speaker.ordered_sessions.each do |session|
       li
         strong #{link_to session.event_full_name, event_path(session.event)} - #{session.title}
         - if session.video_url?
