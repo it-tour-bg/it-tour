@@ -2,6 +2,7 @@
 @mixin heading2 { font-size: 34px; line-height: 40px; font-weight: bold; }
 @mixin heading3 { font-size: 22px; line-height: 30px; }
 @mixin heading4 { font-size: 18px; line-height: 20px; }
+@mixin heading5 { font-size: 12px; line-height: 18px; }
 
 @mixin no-link-underline {
   &,
@@ -20,11 +21,8 @@
 
 @mixin centered-content {
   margin: 0 auto;
-  width: 700px;
-
-  @media all and (max-width: 700px) {
-    width: 90%;
-  }
+  width: 85%;
+  max-width: 700px;
 }
 
 @mixin icon($text) {

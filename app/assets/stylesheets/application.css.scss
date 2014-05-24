@@ -6,6 +6,7 @@
 @import "application/variables";
 @import "application/mixins";
 
+
 body {
   font-family: "Roboto Condensed", tahoma, verdana, arial, sans-serif;;
   font-size: 14px;
@@ -19,6 +20,7 @@ a {
   color: inherit;
   text-decoration: none;
   border-bottom: 1px dotted $line;
+  white-space: nowrap;
 
   &:focus,
   &:hover { border-style: solid; }
@@ -96,18 +98,24 @@ article {
   padding: 90px 0 40px;
   position: relative;
 
+  max-width: 700px;
+  margin: 0 auto;
+
   h1 { @include centered-content; @include heading1; padding-bottom: 40px; margin-bottom: 40px; border-bottom: 1px solid $line; position: relative; }
   h1:after { content: ""; display: block; border-bottom: 1px solid $line; position: absolute; height: 1px; bottom: -3px; left: 0px; right: 0px;  }
   h2 { @include centered-content; @include heading1; margin-bottom: 28px; }
   section { @include centered-content; }
 
   @media all and (max-width: 700px) {
+    padding-top: 20px;
     h1 { @include heading2; padding-bottom: 15px; margin-bottom: 15px; }
     h2 { @include centered-content; @include heading2; margin-bottom: 15px !important; }
   }
 
-  + article { border-top: 2px solid $line-light; }
-  + article:before { content: "●"; position: absolute; top: -9px; left: 50%; color: $line; z-index: 1; background: $background; padding: 0 6px; margin-left: -7px; font-size: 14px; }
+  @media all and (min-width: 700px) {
+    + article { border-top: 2px solid $line-light; }
+    + article:before { content: "●"; position: absolute; top: -9px; left: 50%; color: $line; z-index: 1; background: $background; padding: 0 6px; margin-left: -7px; font-size: 14px; }
+  }
 }
 
 form {
@@ -150,7 +158,9 @@ form {
   .hasCountdown .countdown_amount { font-size: 120px; }
 
   @media all and (max-width: 700px) {
-    .hasCountdown .countdown_amount { font-size: 50px; }
+    .hasCountdown .countdown_amount { font-size: 30px; }
+    .hasCountdown .countdown_section + .countdown_section { margin-left: 10px; }
+    .hasCountdown .countdown_section:nth-last-of-type(-n+2) .countdown_amount:before { margin-left: 25px; }
   }
 
   section + section { margin-top: 33px; padding: 33px 0 10px; border-top: 1px solid $line; }
@@ -199,11 +209,12 @@ form {
   section { padding-top: 20px; }
 
   @media all and (max-width: 700px) {
-    h3 { @include heading2; padding: 10px 0; }
-    .avatar { margin-left: 25px; }
+    h3 { @include heading3; display: block; text-align: center; width: 100%; }
+    .content { padding: 0px; }
+    .avatar { display: block; float: none; text-align: center; }
     .avatar img { width: 60px; }
+    p { @include heading5; }
   }
-
 }
 
 #speaker {
@@ -247,8 +258,8 @@ form {
 
   @media all and (max-width: 700px) {
     text-align: center;
-
-    .conferences { display: block; width: 100%; margin-top: 20px; }
+    .contact { margin-right: 0px; }
+    .conferences { display: none; }
   }
 
   .social { margin-top: 8px; }
@@ -268,6 +279,12 @@ form {
   ul li { @include clearfix; }
   ul li .logo { @include image-link; float: left; margin-right: 20px; }
   ul li + li { margin-top: 40px; }
+
+  @media all and (max-width: 700px) {
+    ul { text-align: center; }
+    ul li .logo { display: block; width: 100%; float: none; }
+    ul li p { @include heading5; }
+  }
 }
 
 #conferences {
