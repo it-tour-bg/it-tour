@@ -41,9 +41,8 @@ nav {
   &.sticky div { position: fixed; top: 0px; left: 0px; right: 0px;}
 
   @media all and (max-width: 740px) {
-    a { padding: 12px 15px; font-size: 14px; }
-    div { min-width: 550px; }
     &.sticky div { position: relative; }
+    div { display: none; }
   }
 
   @media all and (min-width: 1000px) {
@@ -56,6 +55,7 @@ nav {
 header {
   height: 300px;
   position: relative;
+  min-width: 300px;
 
   div {
     background-size: cover;
@@ -72,10 +72,6 @@ header {
   }
 
   img { position: absolute; top: 50%; left: 50%; margin-top: -127px; margin-left: -127px; }
-
-  @media all and (max-width: 700px) {
-    & { display: none; }
-  }
 }
 
 footer {
