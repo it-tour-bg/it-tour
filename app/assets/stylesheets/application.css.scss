@@ -130,14 +130,6 @@ form {
   input[type="submit"]:active { @include transform(translateY(2px)); }
 }
 
-.content {
-  @include centered-content;
-  @include heading3;
-
-  strong { font-weight: bold; }
-  em { font-style: italic; }
-}
-
 #when {
   @include heading3;
 
@@ -203,7 +195,14 @@ form {
   h3 a { @include no-link-underline; }
   h3 a:hover { border-bottom: 1px solid $text; }
 
-  .content { clear: both; padding: 24px 0; }
+  .content {
+    clear: both;
+    padding: 24px 0;
+    @include heading3;
+
+    strong { font-weight: bold; }
+    em { font-style: italic; }
+  }
 
   section { padding-top: 20px; }
 
