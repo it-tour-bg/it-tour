@@ -98,7 +98,6 @@ article {
   padding: 90px 0 40px;
   position: relative;
 
-  max-width: 700px;
   margin: 0 auto;
 
   h1 { @include centered-content; @include heading1; padding-bottom: 40px; margin-bottom: 40px; border-bottom: 1px solid $line; position: relative; }
@@ -176,6 +175,11 @@ form {
   h2 { margin-bottom: 50px; }
   section { @include heading3; text-align: center; margin-top: 30px; }
   section p + p { margin-top: 20px; }
+
+
+  @media all and (max-width: 400px) {
+    iframe { @include centered-content; }
+  }
 }
 
 #schedule {
