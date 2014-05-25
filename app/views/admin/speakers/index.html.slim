@@ -9,12 +9,14 @@ table.table
       th Name
       th.number width="100px" Sessions
       th width="100px" T-shirt size
-      th width="1%"
+      th width="150px"
   tbody
     - @speakers.each do |speaker|
       tr
         td = link_to speaker.name, admin_speaker_path(speaker)
         td.number = speaker.sessions.count
         td = speaker.tshirt_size
-        td = link_to 'Edit', edit_admin_speaker_path(speaker), class: 'btn'
+        td
+          = link_to 'Edit', edit_admin_speaker_path(speaker), class: 'btn'
+          = link_to 'Site link', speaker_path(speaker), class: 'btn'
 
