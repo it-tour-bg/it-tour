@@ -6,12 +6,15 @@
 @import "application/variables";
 @import "application/mixins";
 
-
 body {
   font-family: "Roboto Condensed", tahoma, verdana, arial, sans-serif;;
   font-size: 14px;
   color: $text;
   background: $background;
+
+  @media all and (max-width: 700px) {
+    font-size: 12px;
+  }
 }
 
 a {
@@ -76,14 +79,14 @@ header {
 
 footer {
   @include centered-content;
+  @include heading4;
 
   padding: 40px 0;
   border-top: 1px solid $line-light;
   text-align: center;
-  font-size: 18px;
-  line-height: 26px;
 
-  .copyright { margin: 14px 0 10px; font-size: 14px; line-height: 22px; }
+  .copyright { margin: 14px 0 10px; font-size: 0.8em; line-height: 22px; }
+  .copyright a { @include no-link-underline; }
 
   a.top { @include icon($fa-var-arrow-circle-o-up); color: $text-light; }
   a.top:hover,
@@ -165,7 +168,7 @@ form {
   section p + p { margin-top: 20px; }
 
 
-  @media all and (max-width: 400px) {
+  @media all and (max-width: 700px) {
     iframe { @include centered-content; }
   }
 }
@@ -211,7 +214,6 @@ form {
     .content { padding: 0px; }
     .avatar { display: block; float: none; text-align: center; }
     .avatar img { width: 60px; }
-    p { @include heading5; }
   }
 }
 
@@ -281,7 +283,6 @@ form {
   @media all and (max-width: 700px) {
     ul { text-align: center; }
     ul li .logo { display: block; width: 100%; float: none; }
-    ul li p { @include heading5; }
   }
 }
 
