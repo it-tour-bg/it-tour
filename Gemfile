@@ -23,6 +23,7 @@ gem 'carrierwave'
 gem 'draper'
 gem 'therubyracer'
 gem 'font-awesome-sass'
+gem 'dotenv'
 
 group :development do
   gem 'capistrano', '~> 3.1.0'

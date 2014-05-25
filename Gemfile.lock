@@ -79,6 +79,7 @@ GEM
       sass (~> 3.2.19)
     daemons (1.1.9)
     diff-lcs (1.2.5)
+    dotenv (0.9.0)
     draper (1.3.0)
       actionpack (>= 3.0)
       activemodel (>= 3.0)
@@ -235,6 +236,7 @@ DEPENDENCIES
   carrierwave
   coffee-rails (~> 4.0.0)
   compass-rails!
+  dotenv
   draper
   factory_girl_rails
   font-awesome-sass
