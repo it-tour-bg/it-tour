@@ -42,6 +42,10 @@ class EventDecorator < Draper::Decorator
     information.join ', '
   end
 
+  def show_call_to_papers?
+    call_to_papers_url? && !sessions_announced?
+  end
+
   private
 
   def start_time
