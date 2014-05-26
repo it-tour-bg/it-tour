@@ -13,6 +13,15 @@
 
 #event-show
   article
+    h4 Information
+
+    p Created at: #{l @event.created_at, format: :short}
+    p Updated at: #{l @event.updated_at, format: :short}
+
+    - if @event.call_to_papers_url?
+      p Call to papers: #{link_to @event.call_to_papers_url}
+
+  article
     h4
       ' Dates
       ' Venue

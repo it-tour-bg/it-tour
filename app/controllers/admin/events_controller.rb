@@ -68,6 +68,7 @@ class Admin::EventsController < Admin::BaseController
       :show_streaming,
       :show_coverart,
       :color,
+      :call_to_papers_url,
     )
   end
 end
