@@ -1,4 +1,5 @@
 #= require jquery
+#= require 'vendor/jquery.plugin'
 #= require 'vendor/jquery.countdown'
 #= require 'vendor/jquery.scroll_to'
 #= require 'vendor/jquery.scrollspy'

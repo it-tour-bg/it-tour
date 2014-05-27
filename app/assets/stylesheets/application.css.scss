@@ -140,17 +140,21 @@ form {
 
   h2 { @include heading2; }
 
-  .hasCountdown { margin: 40px auto 0; }
-  .hasCountdown .countdown_section { @include inline-block; position: relative; }
-  .hasCountdown .countdown_section + .countdown_section { margin-left: 40px; }
-  .hasCountdown .countdown_section + .countdown_section .countdown_amount:before { position: absolute; left: -30px; color: $text-light; }
-  .hasCountdown .countdown_section:nth-last-of-type(-n+2) .countdown_amount:before { content: ':'; }
-  .hasCountdown .countdown_amount { font-size: 120px; }
+  .is-countdown {
+    margin: 40px auto 0;
 
-  @media all and (max-width: 700px) {
-    .hasCountdown .countdown_amount { font-size: 30px; }
-    .hasCountdown .countdown_section + .countdown_section { margin-left: 10px; }
-    .hasCountdown .countdown_section:nth-last-of-type(-n+2) .countdown_amount:before { margin-left: 25px; }
+    .countdown-section { @include inline-block; position: relative; }
+    .countdown-section + .countdown-section { margin-left: 40px; }
+    .countdown-section + .countdown-section .countdown-amount:before { position: absolute; left: -30px; color: $text-light; }
+    .countdown-section:nth-last-of-type(-n+2) .countdown-amount:before { content: ':'; }
+    .countdown-amount { font-size: 120px; }
+    .countdown-period { display: block; }
+
+    @media all and (max-width: 700px) {
+        .countdown-amount { font-size: 30px; }
+        .countdown-section + .countdown-section { margin-left: 10px; }
+        .countdown-section:nth-last-of-type(-n+2) .countdown-amount:before { margin-left: 25px; }
+    }
   }
 
   section + section { margin-top: 33px; padding: 33px 0 10px; border-top: 1px solid $line; }
