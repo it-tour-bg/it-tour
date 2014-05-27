@@ -8,7 +8,7 @@ $.fn.eachWithElement = (callback) -> @each (i) -> callback $(this), i
 
 $('[data-countdown]').eachWithElement (element) ->
   date = new Date(element.data('countdown'))
-  element.countdown until: date
+  element.countdown until: date, padZeroes: true
 
 $('body').scrollspy(selector: '> nav a')
 
