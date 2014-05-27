@@ -66,7 +66,7 @@ html
             = link_to 'Кога', current_event_path(anchor: 'when') if current_event.dates_announced?
             = link_to 'Къде', current_event_path(anchor: 'venue') if current_event.venue_announced?
             = link_to 'Програма', current_event_path(anchor: 'schedule') if current_event.sessions_announced?
-            = link_to 'Програма', current_event_path(anchor: 'call-to-papers') if current_event.show_call_to_papers?
+            = link_to 'Програма', current_event_path(anchor: 'call-for-papers') if current_event.show_call_to_papers?
             = link_to 'Лектори', current_event_path(anchor: 'speakers') if current_event.speakers_announced?
             = link_to 'After party', current_event_path(anchor: 'after-party') if current_event.after_party_announced?
             = link_to 'Контакти', current_event_path(anchor: 'feedback') if current_event.show_feedback_form?
