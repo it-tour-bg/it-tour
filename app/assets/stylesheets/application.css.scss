@@ -173,6 +173,14 @@ form {
   }
 }
 
+#call-to-papers {
+  .link {
+    @include heading3;
+    margin-top: 10px;
+    text-align: center;
+  }
+}
+
 #schedule {
   ol li { position: relative; padding: 10px 0 10px 80px; }
   ol li time { @include heading3; font-weight: bold; position: absolute; left: 10px; top: 10px }

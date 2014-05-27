@@ -34,6 +34,13 @@
       address = @event.venue_address
       address = markdown @event.venue_notes
 
+- if @event.show_call_to_papers?
+  article#call-to-papers
+    h1 Програма
+    section
+      p Ако искате да сте лектор на събитието, изпратете ни предложението си за презентация и ще се свържем с вас.
+      .link = link_to 'Предложи лекция', @event.call_to_papers_url
+
 - if @event.sessions_announced?
   article#schedule
     h1 Програма
