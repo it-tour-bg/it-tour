@@ -20,21 +20,21 @@ module Sign
 
     describe "validation" do
       it "requires a email" do
-        expect(Login.new).to have(1).errors_on(:email)
+        expect(Login.new).to have_error_on(:email)
       end
 
       it "requires a password" do
-        expect(Login.new).to have(1).errors_on(:password)
+        expect(Login.new).to have_error_on(:password)
       end
 
       it "doesn't accept correct email with wrong password" do
         login = Login.new email: user.email, password: '-wrong-password-'
-        expect(login).to have(1).errors_on(:email)
+        expect(login).to have_error_on(:email)
       end
 
       it "doesn't accept wrong email with correct password" do
         login = Login.new email: 'invalid-email@example.org', password: user.password
-        expect(login).to have(1).errors_on(:email)
+        expect(login).to have_error_on(:email)
       end
 
       it "requires correct email and password" do
