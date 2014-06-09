@@ -1,11 +1,14 @@
 # IT Tour
 
-The site used for conferences part of the "IT Tour".
+The site used for conferences part of the "[IT Tour](http://it-tour.bg)".
 
 Conferences:
 
-* [VarnConf](http://varnaconf.com)
+* [VarnaConf](http://varnaconf.com)
 * [PlovdivConf](http://plovdivconf.com)
+* [BurgasConf](http://burgasconf.com)
+* [TarnovoConf](http://tarnovoconf.com/)
+* [BlagoevgradConf.com](http://blagoevgradconf.com/)
 
 ## Installation
 
