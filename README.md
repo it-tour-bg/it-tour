@@ -1,3 +1,5 @@
+[![Code Climate](https://codeclimate.com/github/RStankov/it-tour.png)](https://codeclimate.com/github/RStankov/it-tour)
+
 # IT Tour
 
 The site used for conferences part of the "[IT Tour](http://it-tour.bg)".
