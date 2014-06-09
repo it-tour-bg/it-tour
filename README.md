@@ -1,4 +1,5 @@
 [![Code Climate](https://codeclimate.com/github/RStankov/it-tour.png)](https://codeclimate.com/github/RStankov/it-tour)
+[![Build Status](https://travis-ci.org/RStankov/it-tour.png?branch=master)](https://travis-ci.org/RStankov/it-tour)
 
 # IT Tour
 
