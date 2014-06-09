@@ -6,3 +6,5 @@ script:
 before_script:
   - cp config/database.yml.travis config/database.yml
 bundler_args: -j4 --without development production --quiet
+addons:
+  postgresql: "9.3"
