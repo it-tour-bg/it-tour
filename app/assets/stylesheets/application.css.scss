@@ -140,6 +140,8 @@ form {
 
   h2 { @include heading2; }
 
+  .about { margin-bottom: 40px; }
+
   .is-countdown {
     margin: 40px auto 0;
 
@@ -151,9 +153,9 @@ form {
     .countdown-period { display: block; }
 
     @media all and (max-width: 700px) {
-        .countdown-amount { font-size: 30px; }
-        .countdown-section + .countdown-section { margin-left: 10px; }
-        .countdown-section:nth-last-of-type(-n+2) .countdown-amount:before { margin-left: 25px; }
+      .countdown-amount { font-size: 30px; }
+      .countdown-section + .countdown-section { margin-left: 10px; }
+      .countdown-section:nth-last-of-type(-n+2) .countdown-amount:before { margin-left: 25px; }
     }
   }
 

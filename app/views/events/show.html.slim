@@ -1,3 +1,4 @@
+
 - if @event.show_streaming?
   article#streaming
     h2 Live Streaming
@@ -7,6 +8,9 @@
 
 - if @event.dates_announced?
   article#when
+    - if @event.about?
+      .about = markdown @event.about
+
     h2 = @event.formatted_date
 
     section
