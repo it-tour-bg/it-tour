@@ -22,7 +22,7 @@ gem 'rmagick', require: false
 gem 'carrierwave'
 gem 'draper'
 gem 'therubyracer'
-gem 'font-awesome-sass'
+gem 'font-awesome-sass', '4.0.3.1'
 gem 'dotenv'
 
 group :development do

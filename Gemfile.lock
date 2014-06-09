@@ -95,7 +95,7 @@ GEM
     factory_girl_rails (4.4.1)
       factory_girl (~> 4.4.0)
       railties (>= 3.0.0)
-    font-awesome-sass (4.1.0)
+    font-awesome-sass (4.0.3.1)
       sass (~> 3.2)
     foreigner (1.6.1)
       activerecord (>= 3.0.0)
@@ -242,7 +242,7 @@ DEPENDENCIES
   dotenv
   draper
   factory_girl_rails
-  font-awesome-sass
+  font-awesome-sass (= 4.0.3.1)
   foreigner
   jquery-rails
   launchy
