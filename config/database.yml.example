@@ -5,6 +5,7 @@ development: &default
   username: some_user
   password:
   min_messages: WARNING
+  template: template0
 
 test: &test
   <<: *default
