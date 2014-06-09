@@ -1,0 +1,12 @@
+development: &default
+  adapter: postgresql
+  host: localhost
+  database: tour_conf_development
+  username: postgresql
+  password:
+  min_messages: WARNING
+
+test: &test
+  <<: *default
+  database: tour_conf_test<%= ENV['TEST_ENV_NUMBER'] %>
+
