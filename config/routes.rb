@@ -23,6 +23,11 @@ TourConf::Application.routes.draw do
     delete :out, to: 'sessions#destroy'
   end
 
+  if Rails.env.test?
+    get '/backdoor/login',  to: 'backdoor#login'
+    get '/backdoor/logout', to: 'backdoor#logout'
+  end
+
   resource :subscribers, only: [:new, :create]
   resource :feedbacks, only: [:new, :create]
 

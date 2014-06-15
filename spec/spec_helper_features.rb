@@ -8,6 +8,8 @@ require 'capybara/poltergeist'
 TourConf::Application.config.cache_classes = true
 
 RSpec.configure do |config|
+  config.include SpecSupport::Features::Authentication, type: :feature
+
   config.use_transactional_fixtures = false
 
   config.before :each do
