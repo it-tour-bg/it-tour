@@ -45,4 +45,6 @@ group :test do
   gem 'launchy'
   gem 'capybara'
   gem 'factory_girl_rails'
+  gem 'poltergeist'
+  gem 'database_cleaner'
 end
