@@ -34,6 +34,7 @@ nav {
   border-top: 10px solid #488695;
   font-size: 24px;
   text-align: center;
+  overflow: hidden;
 
   a { @include no-link-underline; @include inline-block; @include transition(all 0.3s); padding: 22px 15px; text-decoration: none; color: $text; }
   a.active { background-color: $line-light; }
