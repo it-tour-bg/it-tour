@@ -80,11 +80,13 @@
         .content = markdown speaker.description
 
 - if @event.show_photo_gallery?
-  article#gallery
-    h2 = link_to 'Галерия', '#TODO'
+  article#photos
+    h1 Снимки
 
-    - @event.photos.ordered.limit(9).each do |photo|
-      = image_tag photo.asset_url(:thumb)
+    section
+      div
+        - @event.photos.ordered.limit(9).each do |photo|
+          = image_tag photo.asset_url(:thumb)
 
 
 - if @event.after_party_announced?

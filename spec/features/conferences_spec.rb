@@ -3,7 +3,6 @@ require 'spec_helper'
 
 describe "Conference" do
   context "main conference" do
-
   end
 
   context "normal conference" do
@@ -34,6 +33,24 @@ describe "Conference" do
         visit root_path
 
         expect(page).to have_content 'Архив'
+      end
+    end
+
+    describe "Photos" do
+      it "isn't displayed when they aren't other event of current conference" do
+        create :event, conference: conference, show_photo_gallery: false
+
+        visit root_path
+
+        expect(page).not_to have_content 'Снимки'
+      end
+
+      it "is displayed when they aren't at least two events current conference" do
+        create :event, conference: conference, show_photo_gallery: true
+
+        visit root_path
+
+        expect(page).to have_content 'Снимки'
       end
     end
   end
