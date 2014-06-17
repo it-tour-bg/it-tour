@@ -70,7 +70,7 @@ html
             = link_to 'Лектори', current_event_path(anchor: 'speakers') if current_event.speakers_announced?
             = link_to 'After party', current_event_path(anchor: 'after-party') if current_event.after_party_announced?
             = link_to 'Контакти', current_event_path(anchor: 'feedback') if current_event.show_feedback_form?
-            = link_to 'Архив', current_event_path(anchor: 'archive') if current_event.other_conference_events?
+            = link_to 'Архив', current_event_path(anchor: 'archive') if current_event.other_conference_events.count > 1
 
     = content_for?(:content) ? yield(:content) : yield
 
