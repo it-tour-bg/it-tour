@@ -4,9 +4,7 @@ class Photo < ActiveRecord::Base
   validates :asset, presence: true
   validates :event, presence: true
 
-  unless Rails.env.test?
-    mount_uploader :asset, PhotoAssetUploader
-  end
+  mount_uploader :asset, PhotoAssetUploader
 
   before_create :set_position
   after_destroy :remove_position
