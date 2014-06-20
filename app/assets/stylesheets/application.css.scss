@@ -311,6 +311,8 @@ form {
 }
 
 #photos {
+  section { @include clearfix; }
   section div { margin-left: -1.6%; margin-right: -1.6%; }
   section img { width: 30%; margin: 1.6%; }
+  section .more { float: right; }
 }
