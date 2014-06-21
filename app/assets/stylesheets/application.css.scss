@@ -5,6 +5,7 @@
 @import "font-awesome/path";
 @import "application/variables";
 @import "application/mixins";
+@import "vendor/light_gallery";
 
 body {
   font-family: "Roboto Condensed", tahoma, verdana, arial, sans-serif;;
@@ -311,8 +312,8 @@ form {
 }
 
 #photos {
-  section { @include clearfix; }
-  section div { margin-left: -1.6%; margin-right: -1.6%; }
-  section img { width: 30%; margin: 1.6%; }
-  section .more { float: right; }
+  ul { @include clearfix; margin-left: -1.6%; margin-right: -1.6%; }
+  ul li { float: left; width: 30%; margin: 1.6%; cursor: pointer; }
+  ul li img { width: 100%; }
+  .more { float: right; }
 }

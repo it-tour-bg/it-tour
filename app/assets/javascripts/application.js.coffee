@@ -3,6 +3,7 @@
 #= require 'vendor/jquery.countdown'
 #= require 'vendor/jquery.scroll_to'
 #= require 'vendor/jquery.scrollspy'
+#= require 'vendor/light_gallery'
 #= require_self
 
 $.fn.eachWithElement = (callback) -> @each (i) -> callback $(this), i
@@ -33,3 +34,5 @@ $ ->
   $(window)
     .on 'scroll', -> nav.toggleClass 'sticky', $(document).scrollTop() > headerHeight
     .trigger 'scroll'
+
+  $('#js-gallery').lightGallery()
