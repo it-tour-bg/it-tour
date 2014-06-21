@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe ConferencesController do
-  set_current_conference
+  stub_current_conference
 
   describe "#show" do
     context "regular conference" do

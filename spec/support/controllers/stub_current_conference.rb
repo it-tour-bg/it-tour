@@ -1,7 +1,7 @@
 module SpecSupport
   module Controllers
     module StubCurrentConference
-      def set_current_conference
+      def stub_current_conference
         current_conference { double 'Current conference'}
       end
 

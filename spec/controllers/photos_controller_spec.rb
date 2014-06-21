@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe PhotosController do
-  set_current_conference
+  stub_current_conference
 
   let(:event) { double 'event' }
 

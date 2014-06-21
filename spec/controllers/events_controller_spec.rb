@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe EventsController do
-  set_current_conference
+  stub_current_conference
 
   let(:event) { double 'event' }
 

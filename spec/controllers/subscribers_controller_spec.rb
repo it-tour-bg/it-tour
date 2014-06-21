@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe SubscribersController do
-  set_current_conference
+  stub_current_conference
 
   describe "POST 'create'" do
     let(:subscriber) { double 'Subscriber', valid?: true }
