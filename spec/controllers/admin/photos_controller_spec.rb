@@ -25,7 +25,7 @@ describe Admin::PhotosController do
 
     it "renders photo in json format" do
       post :create, event_id: '1'
-      expect(response.body).to eq photo.to_json
+      expect(controller).to render json: photo
     end
   end
 

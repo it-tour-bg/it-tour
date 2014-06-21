@@ -1,8 +1,6 @@
 require 'spec_helper'
 
 describe Admin::SessionsController do
-  include SpecSupport::Controllers::RespondWith
-
   stub_current_user
 
   let(:session) { double :session, event: double(:event) }

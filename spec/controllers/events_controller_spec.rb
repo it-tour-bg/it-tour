@@ -24,7 +24,7 @@ describe EventsController do
     it "renders show action if event is not current" do
       allow(event).to receive(:current?).and_return false
       get :show, year: '2012'
-      expect(controller).to render_template :show
+      expect(controller).to render :show
     end
 
     it "redirects to root if event is current" do

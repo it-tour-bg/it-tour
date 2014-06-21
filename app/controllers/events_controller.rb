@@ -4,6 +4,8 @@ class EventsController < ApplicationController
 
     if @event.current?
       redirect_to root_path
+    else
+      render :show
     end
   end
 end

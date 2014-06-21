@@ -2,10 +2,6 @@ require 'spec_helper'
 
 module Sign
   describe SessionsController do
-    include SpecSupport::Controllers::RespondWith
-
-    stub_rendering
-
     let(:login) { double :login }
 
     describe "GET new" do

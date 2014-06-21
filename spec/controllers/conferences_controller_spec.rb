@@ -19,7 +19,7 @@ describe ConferencesController do
 
       it "renders 'event/show' action" do
         get :show
-        expect(controller).to render_template 'events/show'
+        expect(controller).to render 'events/show'
       end
     end
 
@@ -40,7 +40,7 @@ describe ConferencesController do
 
       it "renders show action" do
         get :show
-        expect(controller).to render_template 'conferences/show'
+        expect(controller).to render 'conferences/show'
       end
     end
   end

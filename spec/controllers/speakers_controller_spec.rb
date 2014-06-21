@@ -1,8 +1,6 @@
 require 'spec_helper'
 
 describe SpeakersController do
-  include SpecSupport::Controllers::RespondWith
-
   stub_current_user
 
   describe "GET 'show'" do

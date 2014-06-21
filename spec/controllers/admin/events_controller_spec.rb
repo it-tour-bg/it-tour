@@ -1,8 +1,6 @@
 require 'spec_helper'
 
 describe Admin::EventsController do
-  include SpecSupport::Controllers::RespondWith
-
   stub_current_user
 
   let(:event) { double :event }

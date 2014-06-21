@@ -1,8 +1,6 @@
 require 'spec_helper'
 
 describe Admin::ConferencesController do
-  include SpecSupport::Controllers::RespondWith
-
   stub_current_user
 
   let(:conference) { double :conference }

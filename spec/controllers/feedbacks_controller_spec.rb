@@ -1,13 +1,6 @@
 require 'spec_helper'
 
 describe FeedbacksController do
-  describe "GET 'new'" do
-    it "renders new action" do
-      get :new
-      expect(controller).to render_template :new
-    end
-  end
-
   describe "POST 'create'" do
     let(:feedback) { double 'Feedback', valid?: true }
 
@@ -23,13 +16,13 @@ describe FeedbacksController do
     it "renders create action if feedback is valid" do
       allow(feedback).to receive(:valid?).and_return true
       post :create, feedback: {comment: 'text'}
-      expect(controller).to render_template :create
+      expect(controller).to render :create
     end
 
     it "renders new action if feedback is not valid" do
       allow(feedback).to receive(:valid?).and_return false
       post :create, feedback: {comment: 'text'}
-      expect(controller).to render_template :new
+      expect(controller).to render :new
     end
   end
 end

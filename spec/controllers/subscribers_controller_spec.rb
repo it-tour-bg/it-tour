@@ -3,13 +3,6 @@ require 'spec_helper'
 describe SubscribersController do
   set_current_conference
 
-  describe "GET 'new'" do
-    it "renders new action" do
-      get :new
-      expect(controller).to render_template :new
-    end
-  end
-
   describe "POST 'create'" do
     let(:subscriber) { double 'Subscriber', valid?: true }
 
@@ -25,13 +18,13 @@ describe SubscribersController do
     it "renders create action if subscriber is valid" do
       allow(subscriber).to receive(:valid?).and_return true
       post :create, subscriber: {email: 'email@example.org'}
-      expect(controller).to render_template :create
+      expect(controller).to render :create
     end
 
     it "renders new action if subscriber is not valid" do
       allow(subscriber).to receive(:valid?).and_return false
       post :create, subscriber: {email: 'email@example.org'}
-      expect(controller).to render_template :new
+      expect(controller).to render :new
     end
   end
 end

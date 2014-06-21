@@ -1,8 +1,6 @@
 require 'spec_helper'
 
 describe Admin::UsersController do
-  include SpecSupport::Controllers::RespondWith
-
   stub_current_user
 
   describe "GET edit" do

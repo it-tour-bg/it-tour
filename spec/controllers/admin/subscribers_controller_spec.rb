@@ -1,8 +1,6 @@
 require 'spec_helper'
 
 describe Admin::SubscribersController do
-  include SpecSupport::Controllers::RespondWith
-
   stub_current_user
 
   let(:subscriber) { double :subscriber, conference_id: '2' }

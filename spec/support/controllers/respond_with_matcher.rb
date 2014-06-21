@@ -15,6 +15,14 @@ module SpecSupport
           have_received(:respond_with).with object
         end
       end
+
+      def render(*args)
+        if args.any?
+          have_received(:render).with *args
+        else
+          have_received(:render)
+        end
+      end
     end
   end
 end
