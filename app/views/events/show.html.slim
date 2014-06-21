@@ -88,6 +88,8 @@
         - @event.photos.ordered.limit(9).each do |photo|
           = image_tag photo.asset_url(:thumb)
 
+      - if @event.photos.count > 9
+        = link_to 'Виж всички снимки', photos_path(@event.name), class: 'more'
 
 - if @event.after_party_announced?
   article#after-party

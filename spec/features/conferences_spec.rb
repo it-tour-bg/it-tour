@@ -52,6 +52,17 @@ describe "Conference" do
 
         expect(page).to have_content 'Снимки'
       end
+
+      specify "more the 9 photos" do
+        event = create :event, conference: conference, show_photo_gallery: true
+
+        10.times { create :photo, event: event }
+
+        visit root_path
+        click_on 'Виж всички снимки'
+
+        expect(page).to have_content "Снимки от #{conference.name}"
+      end
     end
   end
 end

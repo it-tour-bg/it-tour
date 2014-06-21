@@ -1,0 +1,7 @@
+article#photos
+  h1 Снимки от #{@event.full_name}
+
+  section
+    div
+      - @photos.each do |photo|
+        = image_tag photo.asset_url(:thumb)
