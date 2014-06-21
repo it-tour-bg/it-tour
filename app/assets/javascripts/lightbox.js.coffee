@@ -14,7 +14,9 @@ window.Lightbox = (container = $('body')) ->
     model = new LB.Items(items: elements.toArray(), index: index)
     view  = new LB.View(model: model)
 
-    container.append view.render().el
+    container.append view.el
+
+    view.render()
 
 LB = {}
 
@@ -70,7 +72,9 @@ class LB.View extends Backbone.View
   className: 'lightbox'
 
   template: """
-    <div class="lb-image" />
+    <div class="lb-container">
+       <div class="lb-image" />
+    </div>
   """
   events:
     'click': 'next'
@@ -108,10 +112,3 @@ class LB.View extends Backbone.View
     container.html ''
     @model.item().load (image) =>
       container.html $('<img />').prop('src', image.src)
-      dim = @calculateDimensions image
-      container.css width: dim.width, marginLeft: -dim.width/2, marginTop: -dim.height/2
-
-  calculateDimensions: (base) ->
-    # TODO calculate if fits on screen
-    base
-
