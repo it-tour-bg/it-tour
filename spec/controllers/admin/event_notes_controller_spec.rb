@@ -9,7 +9,7 @@ describe Admin::EventNotesController do
 
   describe "GET edit" do
     it "assigns the event" do
-      Event.stub(:find).with('1').and_return event
+      allow(Event).to receive(:find).with('1').and_return event
       get :edit, event_id: '1'
       expect(assigns[:event]).to eq event
     end
@@ -17,7 +17,7 @@ describe Admin::EventNotesController do
 
   describe "PATCH update" do
     before do
-      Event.stub(:update).with('1', notes: 'text').and_return event
+      allow(Event).to receive(:update).with('1', notes: 'text').and_return event
     end
 
     it "updates the event" do

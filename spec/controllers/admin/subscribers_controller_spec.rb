@@ -1,14 +1,15 @@
 require 'spec_helper'
 
 describe Admin::SubscribersController do
+  include SpecSupport::Controllers::RespondWith
+
   stub_current_user
-  stub_rendering
 
   let(:subscriber) { double :subscriber, conference_id: '2' }
 
   describe "GET index" do
     it "assign filtered subscribers list" do
-      Subscriber.stub(:filter).with({'key' => 'value'}).and_return [subscriber]
+      allow(Subscriber).to receive(:filter).with({'key' => 'value'}).and_return [subscriber]
       get :index, filter: {key: 'value'}
       expect(assigns[:subscribers]).to eq [subscriber]
     end
@@ -16,13 +17,14 @@ describe Admin::SubscribersController do
 
   describe "POST create" do
     before do
-      Subscriber.stub create: subscriber
-      subscriber.stub error_message: nil
+      allow(Subscriber).to receive(:create).and_return subscriber
+      allow(subscriber).to receive(:error_message).and_return nil
     end
 
     it "creates a new subscriber" do
-      Subscriber.should_receive(:create).with('email' => 'address').and_return subscriber
       post :create, subscriber: {email: 'address'}
+
+      expect(Subscriber).to have_received(:create).with('email' => 'address')
     end
 
     it "assigns the new subscriber" do
@@ -31,7 +33,7 @@ describe Admin::SubscribersController do
     end
 
     it "sets the flash alert to subscriber error message (if some)" do
-      subscriber.stub error_message: 'Error message'
+      allow(subscriber).to receive(:error_message).and_return 'Error message'
       post :create, subscriber: {some: 'attributes'}
       expect(flash[:alert]).to eq 'Error message'
     end
@@ -44,13 +46,13 @@ describe Admin::SubscribersController do
 
   describe "PATCH update" do
     before do
-      Subscriber.stub update: subscriber
-      subscriber.stub error_message: nil
+      allow(Subscriber).to receive(:update).and_return subscriber
+      allow(subscriber).to receive(:error_message).and_return nil
     end
 
     it "updates the subscriber" do
-      Subscriber.should_receive(:update).with('1', 'email' => 'address').and_return subscriber
       patch :update, id: 1, subscriber: {email: 'address'}
+      expect(Subscriber).to have_received(:update).with('1', 'email' => 'address')
     end
 
     it "assigns the subscriber" do
@@ -59,7 +61,7 @@ describe Admin::SubscribersController do
     end
 
     it "sets the flash alert to subscriber error message (if some)" do
-      subscriber.stub error_message: 'Error message'
+      allow(subscriber).to receive(:error_message).and_return 'Error message'
       patch :update, id: 1, subscriber: {some: 'attributes'}
       expect(flash[:alert]).to eq 'Error message'
     end
@@ -72,12 +74,12 @@ describe Admin::SubscribersController do
 
   describe "DELETE destroy" do
     before do
-      Subscriber.stub(:destroy).with('1').and_return subscriber
+      allow(Subscriber).to receive(:destroy).with('1').and_return subscriber
     end
 
     it "removes the subscriber" do
-      Subscriber.should_receive(:destroy).with('1')
       delete :destroy, id: '1'
+      expect(Subscriber).to have_received(:destroy).with('1')
     end
 
     it "redirects to subscribers list" do

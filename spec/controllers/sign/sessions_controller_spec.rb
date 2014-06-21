@@ -2,13 +2,15 @@ require 'spec_helper'
 
 module Sign
   describe SessionsController do
+    include SpecSupport::Controllers::RespondWith
+
     stub_rendering
 
     let(:login) { double :login }
 
     describe "GET new" do
       it "assigns new login" do
-        Login.stub new: login
+        allow(Login).to receive(:new).and_return login
         get :new
         expect(assigns[:login]).to eq login
       end
@@ -16,8 +18,8 @@ module Sign
 
     describe "POST create" do
       before do
-        Login.stub(:new).with('email' => 'some', 'password' => 'some').and_return login
-        login.stub user_id: 1
+        allow(Login).to receive(:new).with('email' => 'some', 'password' => 'some').and_return login
+        allow(login).to receive(:user_id).and_return 1
       end
 
       it "sets session user id to the login id" do
@@ -31,8 +33,8 @@ module Sign
       end
 
       it "responds with the new login" do
-        controller.should_receive(:respond_with).with(login, location: admin_root_path)
         post :create, sign_login: {email: 'some', password: 'some'}
+        expect(controller).to respond_with login, location: admin_root_path
       end
     end
 

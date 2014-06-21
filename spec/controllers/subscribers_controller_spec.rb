@@ -14,22 +14,22 @@ describe SubscribersController do
     let(:subscriber) { double 'Subscriber', valid?: true }
 
     before do
-      Subscriber.stub subscribe: subscriber
+      allow(Subscriber).to receive(:subscribe).and_return subscriber
     end
 
     it "creates a new subscriber" do
-      Subscriber.should_receive(:subscribe).with('email@example.org', current_conference)
       post :create, subscriber: {email: 'email@example.org'}
+      expect(Subscriber).to have_received(:subscribe).with'email@example.org', current_conference
     end
 
     it "renders create action if subscriber is valid" do
-      subscriber.stub valid?: true
+      allow(subscriber).to receive(:valid?).and_return true
       post :create, subscriber: {email: 'email@example.org'}
       expect(controller).to render_template :create
     end
 
     it "renders new action if subscriber is not valid" do
-      subscriber.stub valid?: false
+      allow(subscriber).to receive(:valid?).and_return false
       post :create, subscriber: {email: 'email@example.org'}
       expect(controller).to render_template :new
     end

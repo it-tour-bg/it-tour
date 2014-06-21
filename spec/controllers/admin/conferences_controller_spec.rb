@@ -1,14 +1,15 @@
 require 'spec_helper'
 
 describe Admin::ConferencesController do
+  include SpecSupport::Controllers::RespondWith
+
   stub_current_user
-  stub_rendering
 
   let(:conference) { double :conference }
 
   describe "GET index" do
     it "assigns all conferences" do
-      Conference.stub all: [conference]
+      allow(Conference).to receive(:all).and_return [conference]
       get :index
       expect(assigns[:conferences]).to eq [conference]
     end
@@ -16,7 +17,7 @@ describe Admin::ConferencesController do
 
   describe "GET new" do
     it "assigns new conference" do
-      Conference.stub new: conference
+      allow(Conference).to receive(:new).and_return conference
       get :new
       expect(assigns[:conference]).to eq conference
     end
@@ -24,12 +25,12 @@ describe Admin::ConferencesController do
 
   describe "POST create" do
     before do
-      Conference.stub(:create).with('name' => 'VarnaConf').and_return conference
+      allow(Conference).to receive(:create).with('name' => 'VarnaConf').and_return conference
     end
 
     it "creates a new conference" do
-      Conference.should_receive(:create).with('name' => 'VarnaConf').and_return conference
       post :create, conference: {name: 'VarnaConf'}
+      expect(Conference).to have_received(:create).with('name' => 'VarnaConf')
     end
 
     it "assigns the new conference" do
@@ -38,14 +39,14 @@ describe Admin::ConferencesController do
     end
 
     it "responds with the new conference" do
-      controller.should_receive(:respond_with).with conference, location: admin_conferences_path
       post :create, conference: {name: 'VarnaConf'}
+      expect(controller).to respond_with conference, location: admin_conferences_path
     end
   end
 
   describe "GET show" do
     it "assigns the conference" do
-      Conference.stub(:find).with('1').and_return conference
+      allow(Conference).to receive(:find).with('1').and_return conference
       get :show, id: '1'
       expect(assigns[:conference]).to eq conference
     end
@@ -53,7 +54,7 @@ describe Admin::ConferencesController do
 
   describe "GET edit" do
     it "assigns the conference" do
-      Conference.stub(:find).with('1').and_return conference
+      allow(Conference).to receive(:find).with('1').and_return conference
       get :edit, id: '1'
       expect(assigns[:conference]).to eq conference
     end
@@ -61,12 +62,12 @@ describe Admin::ConferencesController do
 
   describe "PATCH update" do
     before do
-      Conference.stub(:update).with('1', 'name' => 'VarnaConf').and_return conference
+      allow(Conference).to receive(:update).with('1', 'name' => 'VarnaConf').and_return conference
     end
 
     it "updates the conference" do
-      Conference.should_receive(:update).with('1', 'name' => 'VarnaConf').and_return conference
       patch :update, id: '1', conference: {name: 'VarnaConf'}
+      expect(Conference).to have_received(:update).with('1', 'name' => 'VarnaConf')
     end
 
     it "assigns the conference" do
@@ -75,24 +76,24 @@ describe Admin::ConferencesController do
     end
 
     it "responds with the conference" do
-      controller.should_receive(:respond_with).with conference, location: admin_conferences_path
       patch :update, id: '1', conference: {name: 'VarnaConf'}
+      expect(controller).to respond_with conference, location: admin_conferences_path
     end
   end
 
   describe "DELETE destroy" do
     before do
-      Conference.stub destroy: conference
+      allow(Conference).to receive(:destroy).with('1').and_return conference
     end
 
     it "removes the conference" do
-      Conference.should_receive(:destroy).with('1')
       delete :destroy, id: '1'
+      expect(Conference).to have_received(:destroy).with('1')
     end
 
     it "redirects to conferences list" do
-      controller.should_receive(:respond_with).with conference, location: admin_conferences_path
       delete :destroy, id: '1'
+      expect(controller).to respond_with conference, location: admin_conferences_path
     end
   end
 end

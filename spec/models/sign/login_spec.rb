@@ -51,7 +51,7 @@ module Sign
 
       it "returns nil if login is not valid" do
         login = Login.new email: user.email, password: user.password
-        login.stub valid?: false
+        allow(login).to receive(:valid?).and_return false
         expect(login.user_id).to be_blank
       end
     end

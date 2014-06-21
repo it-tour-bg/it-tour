@@ -5,7 +5,7 @@ describe Admin::FeedbacksController do
 
   describe "GET 'index'" do
     it "assigns selected event" do
-      Event.stub(:find).with('1').and_return 'event'
+      allow(Event).to receive(:find).with('1').and_return 'event'
       get :index, event_id: 1
       expect(assigns[:event]).to eq 'event'
     end
@@ -13,12 +13,12 @@ describe Admin::FeedbacksController do
 
   describe "DELETE destroy" do
     before do
-      Feedback.stub(:destroy).with('1').and_return double(:feedback, event_id: '2')
+      allow(Feedback).to receive(:destroy).with('1').and_return double(:feedback, event_id: '2')
     end
 
     it "removes the feedback" do
-      Feedback.should_receive(:destroy).with('1')
       delete :destroy, id: '1'
+      expect(Feedback).to have_received(:destroy).with('1')
     end
 
     it "redirects to feedbacks list" do

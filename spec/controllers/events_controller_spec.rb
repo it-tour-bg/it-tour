@@ -7,7 +7,7 @@ describe EventsController do
 
   describe "GET show" do
     before do
-      event.stub :current?
+      allow(event).to receive(:current?)
       allow(current_conference).to receive(:announced_event_named).with('2012').and_return event
     end
 
@@ -22,13 +22,13 @@ describe EventsController do
     end
 
     it "renders show action if event is not current" do
-      event.stub current?: false
+      allow(event).to receive(:current?).and_return false
       get :show, year: '2012'
       expect(controller).to render_template :show
     end
 
     it "redirects to root if event is current" do
-      event.stub current?: true
+      allow(event).to receive(:current?).and_return true
       get :show, year: '2012'
       expect(controller).to redirect_to root_path
     end

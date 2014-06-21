@@ -3,8 +3,8 @@ module SpecSupport
     module RespondWith
       def self.included(base)
         base.before do
-          controller.stub respond_with: nil
-          controller.stub render: ''
+          allow(controller).to receive(:respond_with).and_return nil
+          allow(controller).to receive(:render).and_return ''
         end
       end
 

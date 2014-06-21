@@ -12,22 +12,22 @@ describe FeedbacksController do
     let(:feedback) { double 'Feedback', valid?: true }
 
     before do
-      Feedback.stub create: feedback
+      allow(Feedback).to receive(:create).and_return feedback
     end
 
     it "creates a new feedback" do
-      Feedback.should_receive(:create).with('comment' => 'text', 'event_id' => '1')
       post :create, feedback: {comment: 'text', event_id: 1}
+      expect(Feedback).to have_received(:create).with('comment' => 'text', 'event_id' => '1')
     end
 
     it "renders create action if feedback is valid" do
-      feedback.stub valid?: true
+      allow(feedback).to receive(:valid?).and_return true
       post :create, feedback: {comment: 'text'}
       expect(controller).to render_template :create
     end
 
     it "renders new action if feedback is not valid" do
-      feedback.stub valid?: false
+      allow(feedback).to receive(:valid?).and_return false
       post :create, feedback: {comment: 'text'}
       expect(controller).to render_template :new
     end

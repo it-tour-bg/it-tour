@@ -6,7 +6,7 @@ module SpecSupport
       end
 
       def stub_rendering
-        controller.stub render: ''
+        allow(controller).to receive(:render).and_return ''
       end
 
       module ClassMethods

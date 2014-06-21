@@ -6,7 +6,7 @@ module SpecSupport
 
         before do
           @current_user = block_given? ? yield : double('current user')
-          controller.stub current_user: @current_user
+          allow(controller).to receive(:current_user).and_return @current_user
         end
       end
     end

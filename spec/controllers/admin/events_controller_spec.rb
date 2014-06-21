@@ -9,7 +9,7 @@ describe Admin::EventsController do
 
   describe "GET index" do
     it "assigns all events" do
-      Event.stub all: [event]
+      allow(Event).to receive(:all).and_return [event]
       get :index
       expect(assigns[:events]).to eq [event]
     end
@@ -17,7 +17,7 @@ describe Admin::EventsController do
 
   describe "GET new" do
     it "assigns new event" do
-      Event.stub new: event
+      allow(Event).to receive(:new).and_return event
       get :new
       expect(assigns[:event]).to eq event
     end
@@ -25,7 +25,7 @@ describe Admin::EventsController do
 
   describe "POST create" do
     before do
-      Event.stub(:create).with('name' => 'VarnaConf').and_return event
+      allow(Event).to receive(:create).with('name' => 'VarnaConf').and_return event
     end
 
     it "creates a new event" do
@@ -46,7 +46,7 @@ describe Admin::EventsController do
 
   describe "GET show" do
     it "assigns the event" do
-      Event.stub(:find).with('1').and_return event
+      allow(Event).to receive(:find).with('1').and_return event
       get :show, id: '1'
       expect(assigns[:event]).to eq event
     end
@@ -54,7 +54,7 @@ describe Admin::EventsController do
 
   describe "GET edit" do
     it "assigns the event" do
-      Event.stub(:find).with('1').and_return event
+      allow(Event).to receive(:find).with('1').and_return event
       get :edit, id: '1'
       expect(assigns[:event]).to eq event
     end
@@ -62,7 +62,7 @@ describe Admin::EventsController do
 
   describe "PATCH update" do
     before do
-      Event.stub(:update).with('1', 'name' => 'VarnaConf').and_return event
+      allow(Event).to receive(:update).with('1', 'name' => 'VarnaConf').and_return event
     end
 
     it "updates the event" do
@@ -83,7 +83,7 @@ describe Admin::EventsController do
 
   describe "DELETE destroy" do
     before do
-      Event.stub destroy: event
+      allow(Event).to receive(:destroy).with('1').and_return event
     end
 
     it "removes the event" do
@@ -97,4 +97,3 @@ describe Admin::EventsController do
     end
   end
 end
-

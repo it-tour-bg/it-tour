@@ -40,12 +40,12 @@ describe Subscriber do
     end
 
     it "can filter by conference_id" do
-      Subscriber.stub(:for_conference).with(1) { 'filter by conference' }
+      allow(Subscriber).to receive(:for_conference).with(1) { 'filter by conference' }
       expect(Subscriber.filter(conference_id: 1)).to eq 'filter by conference'
     end
 
     it "can filter to only active subscribers" do
-      Subscriber.stub active: 'filter by active'
+      allow(Subscriber).to receive(:active).and_return 'filter by active'
       expect(Subscriber.filter(active: true)).to eq 'filter by active'
     end
   end

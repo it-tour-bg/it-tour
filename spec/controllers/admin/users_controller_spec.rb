@@ -1,8 +1,9 @@
 require 'spec_helper'
 
 describe Admin::UsersController do
+  include SpecSupport::Controllers::RespondWith
+
   stub_current_user
-  stub_rendering
 
   describe "GET edit" do
     it "assigns user to current_user" do
@@ -13,7 +14,7 @@ describe Admin::UsersController do
 
   describe "PATCH update" do
     before do
-      current_user.stub :update
+      allow(current_user).to receive(:update)
     end
 
     it "assigns user to current_user" do
@@ -22,13 +23,15 @@ describe Admin::UsersController do
     end
 
     it "updates the user" do
-      current_user.should_receive(:update).with('email' => 'new-email@example.org')
       patch :update, user: {email: 'new-email@example.org'}
+
+      expect(current_user).to have_received(:update).with('email' => 'new-email@example.org')
     end
 
     it "responds with the user" do
-      controller.should_receive(:respond_with).with(current_user, location: edit_admin_user_path)
       patch :update, user: {some: 'attributes'}
+
+      expect(controller).to respond_with(current_user, location: edit_admin_user_path)
     end
   end
 end

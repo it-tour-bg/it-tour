@@ -6,8 +6,10 @@ describe ConferencesController do
   describe "#show" do
     context "regular conference" do
       before do
-        current_conference.stub current_event: 'event', main?: false
-        EventDecorator.stub(:decorate).with('event') { 'decorated event' }
+        allow(current_conference).to receive(:current_event).and_return 'event'
+        allow(current_conference).to receive(:main?).and_return false
+
+        allow(EventDecorator).to receive(:decorate).with('event').and_return 'decorated event'
       end
 
       it "assigns decorated event" do
@@ -23,7 +25,7 @@ describe ConferencesController do
 
     context "main conference" do
       before do
-        current_conference.stub main?: true
+        allow(current_conference).to receive(:main?).and_return true
       end
 
       it "assigns the current conference as @conference" do

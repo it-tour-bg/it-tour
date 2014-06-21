@@ -5,7 +5,7 @@ describe Admin::PhotosController do
 
   describe "GET 'index'" do
     it "assigns an event" do
-      Event.stub(:find).with('1').and_return 'event'
+      expect(Event).to receive(:find).with('1').and_return 'event'
       get :index, event_id: 1
       expect(assigns[:event]).to eq 'event'
     end
@@ -15,12 +15,12 @@ describe Admin::PhotosController do
     let(:photo) { {id: 1} }
 
     before do
-      Photo.stub create!: photo
+      allow(Photo).to receive(:create!).and_return photo
     end
 
     it "creates a new photo" do
-      Photo.should_receive(:create!).with(event_id: '1', asset: 'file').and_return photo
       post :create, event_id: '1', file: 'file'
+      expect(Photo).to have_received(:create!).with(event_id: '1', asset: 'file')
     end
 
     it "renders photo in json format" do
@@ -31,15 +31,17 @@ describe Admin::PhotosController do
 
   describe "DELETE 'destroy'" do
     it "removes a photo" do
-      Photo.should_receive(:destroy).with('1')
+      allow(Photo).to receive(:destroy).with('1')
       delete :destroy, event_id: '1', id: '1'
+      expect(Photo).to have_received(:destroy).with('1')
     end
   end
 
   describe "PATCH reorder" do
     it "reorders photos from the given event" do
-      Photo.should_receive(:change_position_of).with %w(1 2 3), event_id: '1'
+      allow(Photo).to receive(:change_position_of).with %w(1 2 3), event_id: '1'
       patch :reorder, event_id: '1', ids: %w(1 2 3)
+      expect(Photo).to have_received(:change_position_of).with %w(1 2 3), event_id: '1'
     end
   end
 end
