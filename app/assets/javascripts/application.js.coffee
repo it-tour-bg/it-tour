@@ -4,6 +4,7 @@
 #= require 'vendor/jquery.scroll_to'
 #= require 'vendor/jquery.scrollspy'
 #= require 'vendor/light_gallery'
+#= require 'lightbox'
 #= require_self
 
 $.fn.eachWithElement = (callback) -> @each (i) -> callback $(this), i
@@ -36,3 +37,4 @@ $ ->
     .trigger 'scroll'
 
   $('#js-gallery').lightGallery()
+  # Lightbox()
