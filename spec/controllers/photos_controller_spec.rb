@@ -1,20 +1,16 @@
 require 'spec_helper'
 
 describe PhotosController do
-  let(:event) { double 'event' }
-  let(:conference) { double 'conference' }
+  set_current_conference
 
-  before do
-    allow(Conference).to receive(:find_for_domain).with('exampleconf.com').and_return conference
-    request.host = 'exampleconf.com'
-  end
+  let(:event) { double 'event' }
 
   describe "GET 'index'" do
-    let(:photos) { double ordered: 'photos' }
+    let(:photos) { double 'photos' }
 
     before do
-      allow(conference).to receive(:announced_event_named).with('2012').and_return event
-      allow(event).to receive(:photos).and_return photos
+      allow(current_conference).to receive(:announced_event_named).with('2012').and_return event
+      allow(event).to receive(:photos).and_return double(ordered: photos)
     end
 
     it "assigns event" do

@@ -1,18 +1,14 @@
 require 'spec_helper'
 
 describe EventsController do
-  let(:event) { double 'event' }
-  let(:conference) { double 'conference' }
+  set_current_conference
 
-  before do
-    Conference.stub(:find_for_domain).with('exampleconf.com').and_return conference
-    request.host = 'exampleconf.com'
-  end
+  let(:event) { double 'event' }
 
   describe "GET show" do
     before do
       event.stub :current?
-      conference.stub(:announced_event_named).with('2012').and_return event
+      allow(current_conference).to receive(:announced_event_named).with('2012').and_return event
     end
 
     it "assign a finished conference event for given domain for year" do

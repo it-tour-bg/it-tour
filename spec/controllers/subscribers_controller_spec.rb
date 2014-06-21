@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe SubscribersController do
+  set_current_conference
+
   describe "GET 'new'" do
     it "renders new action" do
       get :new
@@ -9,16 +11,14 @@ describe SubscribersController do
   end
 
   describe "POST 'create'" do
-    let(:conference) { double 'Conference' }
     let(:subscriber) { double 'Subscriber', valid?: true }
 
     before do
-      controller.stub current_conference: conference
       Subscriber.stub subscribe: subscriber
     end
 
     it "creates a new subscriber" do
-      Subscriber.should_receive(:subscribe).with('email@example.org', conference)
+      Subscriber.should_receive(:subscribe).with('email@example.org', current_conference)
       post :create, subscriber: {email: 'email@example.org'}
     end
 

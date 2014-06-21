@@ -16,5 +16,6 @@ RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
   config.include SpecSupport::Controllers::StubRendering, type: :controller
   config.extend  SpecSupport::Controllers::StubCurrentUser, type: :controller
+  config.extend  SpecSupport::Controllers::StubCurrentConference, type: :controller
   config.include  SpecSupport::UploaderHelper, type: :uploader
 end

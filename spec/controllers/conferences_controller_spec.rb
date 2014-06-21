@@ -1,17 +1,12 @@
 require 'spec_helper'
 
 describe ConferencesController do
+  set_current_conference
+
   describe "#show" do
-    let(:conference) { double :conference }
-
-    before do
-      Conference.stub(:find_for_domain).with('example.com').and_return conference
-      request.host = 'example.com'
-    end
-
     context "regular conference" do
       before do
-        conference.stub current_event: 'event', main?: false
+        current_conference.stub current_event: 'event', main?: false
         EventDecorator.stub(:decorate).with('event') { 'decorated event' }
       end
 
@@ -28,12 +23,12 @@ describe ConferencesController do
 
     context "main conference" do
       before do
-        conference.stub main?: true
+        current_conference.stub main?: true
       end
 
       it "assigns the current conference as @conference" do
         get :show
-        expect(assigns[:conference]).to eq conference
+        expect(assigns[:conference]).to eq current_conference
       end
 
       it "doesn't assigns current event" do
