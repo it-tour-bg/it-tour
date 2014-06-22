@@ -1,6 +1,7 @@
 #= require vendor/underscore
 #= require vendor/backbone
 #= require vendor/backbone_bind_to
+#= require lib/swipe
 
 window.Lightbox =
   start: (container = $('body')) ->
@@ -82,8 +83,10 @@ class Lightbox.View extends Backbone.View
 
   events:
     'click .lb-close':     'close'
-    'click .lb-next':      'next'
     'click .lb-previous':  'previous'
+    'click .lb-next':      'next'
+    'swipe:right':         'previous'
+    'swipe:left':          'next'
 
   bindToModel:
     'change:index': 'renderImage'
@@ -102,6 +105,7 @@ class Lightbox.View extends Backbone.View
     @remove()
 
   render: ->
+    @$el.observeSwipe()
     @$el.parent().addClass 'lightbox-parent'
     @$el.html @template
     @$container = @$el.find '.lb-container'
