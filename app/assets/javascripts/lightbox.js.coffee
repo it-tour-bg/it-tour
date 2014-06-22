@@ -72,12 +72,19 @@ class LB.View extends Backbone.View
   className: 'lightbox'
 
   template: """
+    <button class="lb-close"></button>
     <div class="lb-container">
        <div class="lb-image" />
     </div>
+    <div class="lb-controls">
+      <button class="lb-previous"></button>
+      <button class="lb-next"></button>
+    </div>
   """
   events:
-    'click': 'next'
+    'click .lb-close':     'close'
+    'click .lb-next':      'next'
+    'click .lb-previous':  'previous'
 
   bindToModel:
     'change:index': 'renderImage'

@@ -348,12 +348,12 @@ form {
   bottom: 0px;
   z-index: 1000;
   overflow-y: scroll;
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.9);
 
   .lb-image {
     text-align: center;
-    padding-top: 10%;
-    height: 90%;
+    padding: 10% 0;
+    height: 80%;
   }
 
   .lb-image img {
@@ -368,5 +368,21 @@ form {
     bottom: 5%;
     right: 5%;
   }
+
+  .lb-close {
+    position: absolute;
+    right: 2%;
+    top: 2%;
+  }
+
+  .lb-controls {
+    position: absolute;
+    right: 5%;
+    bottom: 2%;
+    left: 5%;
+  }
+
+  .lb-controls .lb-previous { float: left; }
+  .lb-controls .lb-next { float: right; }
 }
 
