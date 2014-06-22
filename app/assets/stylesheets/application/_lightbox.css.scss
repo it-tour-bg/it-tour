@@ -1,5 +1,6 @@
 .lightbox-parent {
-  overflow: hidden;
+  overflow: hidden !important;
+  position: fixed;
 }
 
 .lightbox {
@@ -8,9 +9,11 @@
   left: 0px;
   right: 0px;
   bottom: 0px;
+  width: 100%;
+  height: 100%;
   z-index: 1000;
   overflow-y: scroll;
-  background: rgba(0, 0, 0, 0.9);
+  background: #0d0d0d;
 
   .lb-container {
     position: absolute;
@@ -34,6 +37,7 @@
     @include transition(all 0.3s);
     @include border-radius(50%);
     @include inline-block;
+    border: none;
     outline: none;
     background: #e6e6e6;
     width: 40px;
