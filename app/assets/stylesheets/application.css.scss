@@ -6,7 +6,6 @@
 @import "application/variables";
 @import "application/mixins";
 @import "application/lightbox";
-@import "vendor/light_gallery";
 
 body {
   font-family: "Roboto Condensed", tahoma, verdana, arial, sans-serif;;
@@ -317,22 +316,4 @@ form {
   ul li { float: left; width: 30%; margin: 1.6%; cursor: pointer; }
   ul li img { width: 100%; }
   .more { float: right; }
-}
-
-#lightGallery-Gallery {
-  a { border: none; }
-
-  #lightGallery-slider .lightGallery-slide {
-    background-image: asset-url("light_gallery_loader.gif") !important;
-  }
-
-  #lightGallery-close:after {
-    top: 6px;
-  }
-
-  #lightGallery-action a#lightGallery-prev:before,
-  #lightGallery-action a#lightGallery-next:after,
-  #lightGallery-action a.cLthumb:after {
-    bottom: 6px;
-  }
 }

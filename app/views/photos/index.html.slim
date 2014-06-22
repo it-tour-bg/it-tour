@@ -2,6 +2,6 @@ article#photos
   h1 Снимки от #{@event.full_name}
 
   section
-    ul#js-gallery
+    ul
       - @photos.each do |photo|
         li data-src="#{photo.asset_url(:original)}" = image_tag photo.asset_url(:thumb)

@@ -84,7 +84,7 @@
     h1 Снимки
 
     section
-      ul#js-gallery
+      ul
         - @event.photos.ordered.limit(9).each do |photo|
           li data-src="#{photo.asset_url(:original)}" = image_tag photo.asset_url(:thumb)
 
