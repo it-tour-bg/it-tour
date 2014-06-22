@@ -129,20 +129,25 @@ class Lightbox.Cloak
   constructor: (@el)->
 
   cover: (item) ->
+    return if item.length == 0
+
     @el
+      .stop(true, true)
       .fadeIn()
-      .css(@clone(item))
+      .css(@dimensionsOf(item))
 
     item.remove()
 
   uncover: (item) ->
-    @el.animate @clone(item), =>
+    return if item.length == 0
+
+    @el.animate @dimensionsOf(item), =>
       @el.fadeOut()
-      item.fadeIn()
+      item.css(opacity: 100).fadeIn()
 
-    item.hide()
+    item.css opacity: 0
 
-  clone: (el) ->
+  dimensionsOf: (el) ->
     top:     el.offset().top,
     left:    el.offset().left,
     width:   el.width(),
