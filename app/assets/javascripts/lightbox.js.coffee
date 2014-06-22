@@ -73,11 +73,13 @@ class Lightbox.View extends Backbone.View
     <div class="lb-container">
       <img width="50%" height="50%" />
     </div>
+    <div class="lb-cloak"></div>
     <div class="lb-controls">
       <button class="lb-previous"></button>
       <button class="lb-next"></button>
     </div>
   """
+
   events:
     'click .lb-close':     'close'
     'click .lb-next':      'next'
@@ -87,8 +89,6 @@ class Lightbox.View extends Backbone.View
     'change:index': 'renderImage'
 
   initialize: ->
-    @cloak = new Lightbox.Cloak
-
     @bindTo window, 'keyup', 'keyUp'
 
   keyUp: (e) ->
@@ -104,7 +104,8 @@ class Lightbox.View extends Backbone.View
   render: ->
     @$el.parent().addClass 'lightbox-parent'
     @$el.html @template
-    @$el.append @cloak.el
+    @$container = @$el.find '.lb-container'
+    @cloak = new Lightbox.Cloak @$el.find('.lb-cloak')
     @renderImage()
     @
 
@@ -115,22 +116,17 @@ class Lightbox.View extends Backbone.View
     @model.previous()
 
   renderImage: ->
-    container = @$el.find '.lb-container'
-
-    @cloak.cover container.find('img');
+    @cloak.cover @$container.find('img');
 
     @model.item().load (image) =>
       image = $('<img />').prop('src', image.src)
-      image.appendTo(container)
-      image.css marginTop: (container.height() - image.height())/2
+      image.appendTo(@$container)
+      image.css marginTop: (@$container.height() - image.height())/2
 
       @cloak.uncover image
 
-  verticalCenter: (image) ->
-
 class Lightbox.Cloak
-  constructor: ->
-    @el = $('<div class="lb-cloak" />')
+  constructor: (@el)->
 
   cover: (item) ->
     @el
