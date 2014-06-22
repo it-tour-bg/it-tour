@@ -121,8 +121,12 @@ class Lightbox.View extends Backbone.View
 
     @model.item().load (image) =>
       image = $('<img />').prop('src', image.src)
-      container.html image
+      image.appendTo(container)
+      image.css marginTop: (container.height() - image.height())/2
+
       @cloak.uncover image
+
+  verticalCenter: (image) ->
 
 class Lightbox.Cloak
   constructor: ->
@@ -133,7 +137,7 @@ class Lightbox.Cloak
       .fadeIn()
       .css(@clone(item))
 
-    item.hide()
+    item.remove()
 
   uncover: (item) ->
     @el.animate @clone(item), =>
