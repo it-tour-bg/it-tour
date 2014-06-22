@@ -69,14 +69,14 @@ class Lightbox.View extends Backbone.View
   className: 'lightbox'
 
   template: """
-    <button class="lb-close"></button>
+    <a class="lb-button lb-close">✕</a>
     <div class="lb-container">
       <img width="50%" height="50%" />
     </div>
     <div class="lb-cloak"></div>
     <div class="lb-controls">
-      <button class="lb-previous"></button>
-      <button class="lb-next"></button>
+      <a class="lb-button lb-previous">&larr;</a>
+      <a class="lb-button lb-next">&rarr;</a>
     </div>
   """
 

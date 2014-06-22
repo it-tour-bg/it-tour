@@ -5,6 +5,7 @@
 @import "font-awesome/path";
 @import "application/variables";
 @import "application/mixins";
+@import "application/lightbox";
 @import "vendor/light_gallery";
 
 body {
@@ -335,55 +336,3 @@ form {
     bottom: 6px;
   }
 }
-
-.lightbox-parent {
-  overflow: hidden;
-}
-
-.lightbox {
-  position: fixed;
-  top: 0px;
-  left: 0px;
-  right: 0px;
-  bottom: 0px;
-  z-index: 1000;
-  overflow-y: scroll;
-  background: rgba(0, 0, 0, 0.9);
-
-  .lb-container {
-    position: absolute;
-    top: 15%;
-    left: 5%;
-    bottom: 15%;
-    right: 5%;
-    text-align: center;
-  }
-
-  .lb-cloak {
-    @include border-radius(5px);
-    position: absolute;
-    background: #e6e6e6 asset-url('admin/loading.gif') center no-repeat;
-  }
-
-  .lb-container img {
-    max-width: 100%;
-    max-height: 100%;
-  }
-
-  .lb-close {
-    position: absolute;
-    right: 2%;
-    top: 2%;
-  }
-
-  .lb-controls {
-    position: absolute;
-    right: 4%;
-    bottom: 4%;
-    left: 4%;
-  }
-
-  .lb-controls .lb-previous { float: left; }
-  .lb-controls .lb-next { float: right; }
-}
-
