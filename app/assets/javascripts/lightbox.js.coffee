@@ -114,6 +114,8 @@ class LB.View extends Backbone.View
 
   renderImage: ->
     container = @$el.find '.lb-container'
+    container.addClass 'lb-loading'
     container.html ''
     @model.item().load (image) =>
+      container.removeClass 'lb-loading'
       container.html $('<img />').prop('src', image.src)
