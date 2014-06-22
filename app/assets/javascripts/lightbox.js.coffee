@@ -73,9 +73,7 @@ class LB.View extends Backbone.View
 
   template: """
     <button class="lb-close"></button>
-    <div class="lb-container">
-       <div class="lb-image" />
-    </div>
+    <div class="lb-container"></div>
     <div class="lb-controls">
       <button class="lb-previous"></button>
       <button class="lb-next"></button>
@@ -115,7 +113,7 @@ class LB.View extends Backbone.View
     @model.previous()
 
   renderImage: ->
-    container = @$el.find '.lb-image'
+    container = @$el.find '.lb-container'
     container.html ''
     @model.item().load (image) =>
       container.html $('<img />').prop('src', image.src)
