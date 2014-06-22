@@ -84,9 +84,9 @@
     h1 Снимки
 
     section
-      ul
+      div
         - @event.photos.ordered.limit(9).each do |photo|
-          li data-src="#{photo.asset_url(:original)}" = image_tag photo.asset_url(:thumb)
+          = image_tag photo.asset_url(:thumb), 'data-src' => "#{photo.asset_url(:original)}"
 
       - if @event.photos.count > 9
         = link_to 'Виж всички снимки', photos_path(@event.name), class: 'more'

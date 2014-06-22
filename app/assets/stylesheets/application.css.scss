@@ -312,8 +312,7 @@ form {
 }
 
 #photos {
-  ul { @include clearfix; margin-left: -1.6%; margin-right: -1.6%; }
-  ul li { float: left; width: 30%; margin: 1.6%; cursor: pointer; }
-  ul li img { width: 100%; }
+  div { @include clearfix; margin-left: -1.6%; margin-right: -1.6%; }
+  div img { float: left; width: 30%; margin: 1.6%; cursor: pointer; }
   .more { float: right; }
 }
