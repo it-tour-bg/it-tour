@@ -2,31 +2,29 @@
 #= require vendor/backbone
 #= require vendor/backbone_bind_to
 
-window.Lightbox = (container = $('body')) ->
-  container.on 'click', '[data-src]', (e) ->
-    target = $(e.target).closest('[data-src]')[0]
+window.Lightbox =
+  start: (container = $('body')) ->
+    container.on 'click', '[data-src]', (e) ->
+      target = $(e.target).closest('[data-src]')[0]
 
-    index = 0
-    elements = container.find('[data-src]').map (i, el) =>
-      index = i if el == target
-      new LB.Image($(el).data('src'))
+      index = 0
+      elements = container.find('[data-src]').map (i, el) =>
+        index = i if el == target
+        new Lightbox.Image($(el).data('src'))
 
-    model = new LB.Items(items: elements.toArray(), index: index)
-    view  = new LB.View(model: model)
+      model = new Lightbox.Items(items: elements.toArray(), index: index)
+      view  = new Lightbox.View(model: model)
 
-    container.append view.el
+      container.append view.el
 
-    view.render()
+      view.render()
 
-LB = {}
-
-class LB.Image
+class Lightbox.Image
   constructor: (@src) ->
     @isLoaded = false
     @width    = 0
     @height   = 0
 
-  # todo: promise
   load: (callback) ->
     return callback this if @isLoaded
 
@@ -41,10 +39,10 @@ class LB.Image
 
     @image.src = @src
 
-class LB.Items extends Backbone.Model
+class Lightbox.Items extends Backbone.Model
   defaults:
     'index': 0
-    'items':    []
+    'items': []
 
   index: (value) ->
     if value == undefined
@@ -52,7 +50,7 @@ class LB.Items extends Backbone.Model
     else
       @set 'index', value
 
-  item: (index = @get('index'))->
+  item: (index = @index()) ->
     @get('items')[index]
 
   count: ->
@@ -66,14 +64,15 @@ class LB.Items extends Backbone.Model
     index = @get('index') + 1;
     @index if index <= @count() - 1 then index else 0
 
-
-class LB.View extends Backbone.View
+class Lightbox.View extends Backbone.View
   tagName: 'div'
   className: 'lightbox'
 
   template: """
     <button class="lb-close"></button>
-    <div class="lb-container"></div>
+    <div class="lb-container">
+      <img width="50%" height="50%" />
+    </div>
     <div class="lb-controls">
       <button class="lb-previous"></button>
       <button class="lb-next"></button>
@@ -88,6 +87,8 @@ class LB.View extends Backbone.View
     'change:index': 'renderImage'
 
   initialize: ->
+    @cloak = new Lightbox.Cloak
+
     @bindTo window, 'keyup', 'keyUp'
 
   keyUp: (e) ->
@@ -103,6 +104,7 @@ class LB.View extends Backbone.View
   render: ->
     @$el.parent().addClass 'lightbox-parent'
     @$el.html @template
+    @$el.append @cloak.el
     @renderImage()
     @
 
@@ -114,8 +116,35 @@ class LB.View extends Backbone.View
 
   renderImage: ->
     container = @$el.find '.lb-container'
-    container.addClass 'lb-loading'
-    container.html ''
+
+    @cloak.cover container.find('img');
+
     @model.item().load (image) =>
-      container.removeClass 'lb-loading'
-      container.html $('<img />').prop('src', image.src)
+      image = $('<img />').prop('src', image.src)
+      container.html image
+      @cloak.uncover image
+
+class Lightbox.Cloak
+  constructor: ->
+    @el = $('<div class="lb-cloak" />')
+
+  cover: (item) ->
+    @el
+      .fadeIn()
+      .css(@clone(item))
+
+    item.hide()
+
+  uncover: (item) ->
+    @el.animate @clone(item), =>
+      @el.fadeOut()
+      item.fadeIn()
+
+    item.hide()
+
+  clone: (el) ->
+    top:     el.offset().top,
+    left:    el.offset().left,
+    width:   el.width(),
+    height:  el.height()
+
