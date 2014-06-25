@@ -12,10 +12,6 @@ module ApplicationHelper
     "© #{Date.today.year} IT Tour."
   end
 
-  def back_link
-    content_tag :article, link_to("Обратно към #{current_conference.name}", root_url)
-  end
-
   def new_line_to_break(text)
     return '' if text.blank?
     text = h(text)
