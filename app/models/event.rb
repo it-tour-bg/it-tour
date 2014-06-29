@@ -18,7 +18,7 @@ class Event < ActiveRecord::Base
   mount_uploader :logo, EventLogoUploader
   mount_uploader :coverart, EventCoverartUploader
 
-  scope :publicly_announced, ->{ where publicly_announced: true }
+  scope :publicly_announced, ->{ order('date DESC').where publicly_announced: true }
 
   default_scope ->{ order('name DESC') }
 
