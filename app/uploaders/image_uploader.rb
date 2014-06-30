@@ -11,6 +11,10 @@ module ImageUploader
     "system/uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
+  def default_url
+    ActionController::Base.helpers.asset_path "fallbacks/#{model.class.to_s.underscore}/#{mounted_as}/#{version_name || 'default'}.png"
+  end
+
   def filename
     "image#{File.extname(super)}" if original_filename
   end
