@@ -71,4 +71,24 @@ describe Subscriber do
       expect(subscriber).to_not be_valid
     end
   end
+
+  describe ".unsubscribe" do
+    it "unsubscribe subscriber based on its token" do
+      subscriber = create :subscriber
+      Subscriber.unsubscribe(subscriber.token)
+      expect { subscriber.reload }.to change(subscriber, :active?).to false
+    end
+
+    it "doesn't unsubscribe when token is not valid" do
+      subscriber = create :subscriber
+      Subscriber.unsubscribe('invalid-token')
+      expect { subscriber.reload }.not_to change(subscriber, :active?)
+    end
+
+    it "can't be cheated by passing token with valid id" do
+      subscriber = create :subscriber
+      Subscriber.unsubscribe(EmailToken.for(double(email: 'fake@email.org', id: subscriber.id)))
+      expect { subscriber.reload }.not_to change(subscriber, :active?)
+    end
+  end
 end

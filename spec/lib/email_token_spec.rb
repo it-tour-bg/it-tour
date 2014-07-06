@@ -4,6 +4,13 @@ describe EmailToken do
   it "can reversed to user id" do
     user = create :subscriber
     expect(EmailToken.for(user).user_id).to eq user.id
+    expect(EmailToken.user_id(EmailToken.for(user))).to eq user.id
+  end
+
+  it "can handle invalid token inputs" do
+    expect(EmailToken.user_id(0)).to eq 0
+    expect(EmailToken.user_id('0')).to eq 0
+    expect(EmailToken.user_id('invalid')).to eq 0
   end
 
   it "is different for different users" do

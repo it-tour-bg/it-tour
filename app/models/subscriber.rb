@@ -24,6 +24,14 @@ class Subscriber < ActiveRecord::Base
       subscriber.update active: true
       subscriber
     end
+
+    def unsubscribe(token)
+      where(id: EmailToken.user_id(token)).each do |user|
+        if user.token == token
+          user.update active: false
+        end
+      end
+    end
   end
 
   def error_message
@@ -32,5 +40,9 @@ class Subscriber < ActiveRecord::Base
 
   def conference_name
     conference ? conference.name : ""
+  end
+
+  def token
+    EmailToken.for(self).to_s
   end
 end

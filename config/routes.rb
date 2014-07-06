@@ -33,6 +33,8 @@ TourConf::Application.routes.draw do
 
   resources :speakers, only: [:show]
 
+  get 'unsubscribe/:token', to: 'subscribers#destroy', as: :unsubscribe
+
   get 'archive/:year', to: 'events#show', as: :archive
   get 'archive/:year/photos', to: 'photos#index', as: :photos
 

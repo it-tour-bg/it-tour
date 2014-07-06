@@ -11,5 +11,9 @@ class SubscribersController < ApplicationController
       render :new
     end
   end
+
+  def destroy
+    Subscriber.unsubscribe params[:token]
+  end
 end
 

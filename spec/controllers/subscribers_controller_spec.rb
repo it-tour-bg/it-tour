@@ -27,4 +27,14 @@ describe SubscribersController do
       expect(controller).to render :new
     end
   end
+
+  describe "GET 'destroy'" do
+    it "unsubscribes email" do
+      allow(Subscriber).to receive(:unsubscribe).with('token')
+
+      get :destroy, token: 'token'
+
+      expect(Subscriber).to have_received(:unsubscribe)
+    end
+  end
 end
