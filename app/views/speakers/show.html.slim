@@ -20,7 +20,7 @@ article#speaker
 
   ul.links
     - if @speaker.personal_site?
-      li = link_to @speaker.personal_site
+      li = link_to @speaker.personal_site, @speaker.personal_site
 
     li
       - @speaker.social_links.each do |type, url|
