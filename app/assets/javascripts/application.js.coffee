@@ -14,19 +14,6 @@ $('[data-countdown]').eachWithElement (element) ->
 
 $('body').scrollspy(selector: '> nav a')
 
-$("#streaming section iframe").eachWithElement (element) ->
-  element.data('aspectRatio', element.height() / element.width())
-  element.removeAttr 'height'
-  element.removeAttr 'width'
-
-$(window).resize ->
-  $("#streaming section iframe").eachWithElement (element) ->
-    newWidth = $("#streaming").width()
-    newHeight = newWidth * element.data('aspectRatio')
-    element.width newWidth
-    element.height newHeight
-.resize()
-
 $ ->
   headerHeight = 10 + ($('header').height() || 0)
   body = $('body')
