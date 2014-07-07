@@ -3,8 +3,7 @@
   article#streaming
     h2 Live Streaming
 
-    section
-      = raw @event.streaming_code
+    = raw @event.streaming_code
 
 - if @event.dates_announced?
   article#when
