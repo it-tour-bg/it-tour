@@ -28,6 +28,7 @@ gem 'dotenv'
 group :development do
   gem 'capistrano', '~> 3.1.0'
   gem 'capistrano-rails'
+  gem 'capistrano-db-tasks', require: false
   gem 'capistrano-bundler'
 
   gem 'quiet_assets'

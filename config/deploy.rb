@@ -1,3 +1,5 @@
+require 'capistrano-db-tasks'
+
 lock '3.1.0'
 
 set :application,         'ittour'
@@ -19,4 +21,19 @@ namespace :deploy do
   end
 
   after :publishing, :restart
+end
+
+namespace :db do
+  desc 'Fetches remote database and stores it.'
+  task :fetch do
+    on roles(:db) do
+      remote_db = Database::Remote.new(self)
+      remote_db.dump.download
+
+      output_file = remote_db.output_file
+      unless output_file.empty?
+        execute "rm -f #{current_path}/#{output_file}"
+      end
+    end
+  end
 end
