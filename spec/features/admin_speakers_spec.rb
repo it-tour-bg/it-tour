@@ -1,9 +1,9 @@
 require 'spec_helper_features.rb'
 
-describe "Admin - Managing speakers" do
+feature "Admin - Managing speakers" do
   sign_in
 
-  specify "creating a speaker" do
+  scenario "creating speaker" do
     visit admin_speakers_path
 
     click_on 'New speaker'
@@ -22,7 +22,7 @@ describe "Admin - Managing speakers" do
     expect(speaker.tshirt_size).to eq 'XXXL'
   end
 
-  specify "validating new speaker" do
+  scenario "creating speaker(validation error)" do
     visit admin_speakers_path
 
     click_on 'New speaker'
@@ -34,7 +34,7 @@ describe "Admin - Managing speakers" do
     expect(Speaker.count).to eq 0
   end
 
-  specify "update speaker" do
+  scenario "updating speaker" do
     speaker = create :speaker, name: 'Test name'
 
     visit admin_speakers_path
@@ -51,7 +51,7 @@ describe "Admin - Managing speakers" do
     expect { speaker.reload }.to change(speaker, :name).from('Test name').to('Updated name')
   end
 
-  specify "validating speaker update" do
+  scenario "updating speaker(validation error)" do
     speaker = create :speaker, name: 'Test name'
 
     visit admin_speakers_path
@@ -67,7 +67,7 @@ describe "Admin - Managing speakers" do
     expect { speaker.reload }.not_to change(speaker, :name).from('Test name')
   end
 
-  specify "deleting a speaker" do
+  scenario "deleting speaker" do
     speaker = create :speaker
 
     visit admin_speakers_path

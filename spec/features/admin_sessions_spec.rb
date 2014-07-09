@@ -24,7 +24,7 @@ feature "Admin - Manage sessions" do
      expect(session.title).to eq 'Test session'
    end
 
-   scenario "adding session with multiple speaker" do
+   scenario "creating session with multiple speaker" do
      speaker1 = create :speaker, name: 'First speaker'
      speaker2 = create :speaker, name: 'Second speaker'
      speaker3 = create :speaker, name: 'Other speaker'
