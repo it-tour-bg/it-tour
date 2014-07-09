@@ -14,7 +14,7 @@ class EventDecorator < Draper::Decorator
   end
 
   def speakers
-    sessions.map(&:speaker).compact
+    sessions.map(&:speakers).flatten
   end
 
   def start_time_for_javascript

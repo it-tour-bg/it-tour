@@ -9,7 +9,7 @@
     = form.hidden_field :event_id
 
   = form.input :title
-  = form.association :speaker, collection: Speaker.all, prompt: '[None]'
+  = form.association :speakers, collection: Speaker.order('name DESC')
   = form.input :start_at, hint: 'Example: 09:10'
 
   = form.input :slides_url

@@ -39,12 +39,12 @@ class Admin::SessionsController < Admin::BaseController
   def session_params
     params.require(:session).permit(
       :event_id,
-      :speaker_id,
       :title,
       :start_at,
       :slides_url,
       :video_url,
-      :description
+      :description,
+      speaker_ids: [],
     )
   end
 

@@ -83,7 +83,9 @@
           tr
             td = session.start_at
             td = session.title
-            td = session.speaker && link_to(session.speaker.name, admin_speaker_path(session.speaker))
+            td
+              - session.speakers.each do |speaker|
+                = link_to(speaker.name, admin_speaker_path(speaker))
             td = session.slides_url
             td = session.video_url
             td

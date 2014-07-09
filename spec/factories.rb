@@ -61,4 +61,9 @@ FactoryGirl.define do
     event
     asset { Rack::Test::UploadedFile.new(Rails.root.join('spec/fixtures/photo_asset.jpg').to_s) }
   end
+
+  factory :session_speaker do
+    session { build :session }
+    speaker { build :speaker }
+  end
 end

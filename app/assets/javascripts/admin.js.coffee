@@ -19,3 +19,9 @@ $(document).on 'focus', 'textarea', ->
       textarea.off ".#{namespace}"
 
 
+$(document).on 'mousedown', 'select[multiple] option', ->
+  $(this).data('selected', $(this).prop('selected'));
+
+$(document).on 'mouseup', 'select[multiple] option', ->
+  $(this).prop('selected', !$(this).data('selected'));
+

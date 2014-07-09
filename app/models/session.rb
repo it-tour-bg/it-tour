@@ -6,10 +6,11 @@ class Session < ActiveRecord::Base
   attr_readonly :event_id
 
   belongs_to :event
-  belongs_to :speaker
+
+  has_many :session_speakers, dependent: :destroy
+  has_many :speakers, through: :session_speakers
 
   default_scope -> { order 'start_at ASC' }
 
-  delegate :name, to: :speaker, prefix: true
   delegate :full_name, to: :event, prefix: true
 end

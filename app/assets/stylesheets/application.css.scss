@@ -196,6 +196,7 @@ form {
   ol li time { @include heading3; font-weight: bold; position: absolute; left: 10px; top: 10px }
   ol li strong { @include heading3; font-weight: bold; display: block; }
   ol li .speaker { @include heading4; @include no-link-underline;  font-weight: lighter; }
+  ol li .speaker + .speaker:before { content: ", "; border: none !important; }
   ol li .speaker:hover { border-bottom: 1px solid $text; }
   ol li .speaker + .links:before { content: " / "; }
   ol li .links { @include heading4; margin-top: 4px; font-weight: lighter; }
