@@ -1,9 +1,7 @@
-require 'spec_helper'
+require 'spec_helper_features'
 
 feature "Subscribers" do
-  before do
-    create :event, conference: create(:conference, domain: 'example.com')
-  end
+  create_dummy_conference_event
 
   scenario "unsubscribe" do
     subscriber = create :subscriber

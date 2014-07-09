@@ -9,6 +9,7 @@ TourConf::Application.config.cache_classes = true
 
 RSpec.configure do |config|
   config.include SpecSupport::Features::Authentication, type: :feature
+  config.extend SpecSupport::Features::ConferenceEvent, type: :feature
 
   config.use_transactional_fixtures = false
 
