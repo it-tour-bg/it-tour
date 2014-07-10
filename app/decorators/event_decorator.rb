@@ -1,4 +1,3 @@
-#encoding: utf-8
 class EventDecorator < Draper::Decorator
   decorates :event
   delegate_all
@@ -22,11 +21,11 @@ class EventDecorator < Draper::Decorator
   end
 
   def ongoing?
-    Time.now.between? start_time, finish_time
+    Time.current.between? start_time, finish_time
   end
 
   def finished?
-    Time.now > finish_time
+    Time.current > finish_time
   end
 
   def other_conference_events?
