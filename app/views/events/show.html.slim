@@ -94,7 +94,11 @@
 - if @event.after_party_announced?
   article#after-party
     h2 After Party
-    iframe width="100%" height="350" scrolling="no" src="#{@event.after_party_venue_map_url}"
+
+    .map
+      iframe width="100%" height="500" scrolling="no" src="#{@event.after_party_venue_map_url}"
+      = link_to '', @event.after_party_venue_map_url, target: :blank, class: 'overlay'
+
     section
       = link_to @event.after_party_venue_name, @event.after_party_venue_site_url, target: '_blank'
       address = @event.after_party_venue_address
