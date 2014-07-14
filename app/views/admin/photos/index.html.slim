@@ -2,6 +2,9 @@
 
 - breadcrumbs ['Events', admin_events_path], [@event.conference.name, admin_conference_path(@event.conference)], [@event.name, admin_event_path(@event)]
 
+- actions do
+  = link_to 'View in site', photos_path(@event.name), class: 'btn'
+
 #js-photos data-url="#{admin_event_photos_path(@event)}"
   button.btn#js-photo-upload Upload photos
 
