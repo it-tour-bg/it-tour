@@ -3,7 +3,7 @@ module Sign
     include ActiveModel::Model
     attr_accessor :email, :password
 
-    validate :credentianls
+    validate :credentials
 
     def user_id
       user.id if valid?
@@ -11,7 +11,7 @@ module Sign
 
     private
 
-    def credentianls
+    def credentials
       errors.add(:email, 'is required') if email.blank?
       errors.add(:password, 'is required') if password.blank?
 
