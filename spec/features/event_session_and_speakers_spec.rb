@@ -33,7 +33,7 @@ feature "Event - session and speakers" do
       visit root_path
 
       within '#schedule' do
-        expect(page).to have_content "#{speaker1.name}#{speaker2.name}"
+        expect(page).to have_content "#{speaker1.name}, #{speaker2.name}"
       end
     end
 
