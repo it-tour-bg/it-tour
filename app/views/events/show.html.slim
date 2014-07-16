@@ -56,8 +56,7 @@
           li
             time = session.start_at
             strong = session.title
-            - session.speakers.each do |speaker|
-              = link_to speaker.name, "#speaker-#{speaker.id}", class: 'speaker'
+            = session.speakers.map { |s| link_to s.name, "#speaker-#{s.id}", class: 'speaker' }.join(', ').html_safe
             - if session.video_url? || session.slides_url?
               span.links
                 - if session.video_url?
