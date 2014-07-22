@@ -6,9 +6,8 @@
 #= require 'lib/lightbox'
 #= require_self
 
-$.fn.eachWithElement = (callback) -> @each (i) -> callback $(this), i
-
-$('[data-countdown]').eachWithElement (element) ->
+$('[data-countdown]').each ->
+  element = $(this)
   date = new Date(element.data('countdown'))
   element.countdown until: date, padZeroes: true
 
