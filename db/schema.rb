@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140708211216) do
+ActiveRecord::Schema.define(version: 20140724151011) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,9 +35,9 @@ ActiveRecord::Schema.define(version: 20140708211216) do
 
   create_table "events", force: true do |t|
     t.integer  "conference_id"
-    t.string   "name",                                       null: false
-    t.date     "date",                                       null: false
-    t.boolean  "publicly_announced",         default: false, null: false
+    t.string   "name",                                               null: false
+    t.date     "date",                                               null: false
+    t.boolean  "publicly_announced",                 default: false, null: false
     t.string   "event_url"
     t.string   "venue_name"
     t.string   "venue_site_url"
@@ -53,21 +53,23 @@ ActiveRecord::Schema.define(version: 20140708211216) do
     t.text     "after_party_venue_map_url"
     t.string   "town"
     t.text     "notes"
-    t.boolean  "dates_announced",            default: false
-    t.boolean  "venue_announced",            default: false
-    t.boolean  "after_party_announced",      default: false
-    t.boolean  "sessions_announced",         default: false
-    t.boolean  "speakers_announced",         default: false
+    t.boolean  "dates_announced",                    default: false
+    t.boolean  "venue_announced",                    default: false
+    t.boolean  "after_party_announced",              default: false
+    t.boolean  "sessions_announced",                 default: false
+    t.boolean  "speakers_announced",                 default: false
     t.string   "logo"
     t.string   "coverart"
-    t.boolean  "current",                    default: false, null: false
-    t.boolean  "show_feedback_form",         default: false, null: false
-    t.boolean  "show_photo_gallery",         default: false, null: false
+    t.boolean  "current",                            default: false, null: false
+    t.boolean  "show_feedback_form",                 default: false, null: false
+    t.boolean  "show_photo_gallery",                 default: false, null: false
     t.text     "streaming_code"
-    t.boolean  "show_streaming",             default: false, null: false
-    t.boolean  "show_coverart",              default: false, null: false
+    t.boolean  "show_streaming",                     default: false, null: false
+    t.boolean  "show_coverart",                      default: false, null: false
     t.string   "color"
     t.string   "call_to_papers_url"
+    t.text     "venue_map_embedded_url"
+    t.text     "after_party_venue_map_embedded_url"
   end
 
   create_table "feedbacks", force: true do |t|
