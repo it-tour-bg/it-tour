@@ -31,7 +31,7 @@
     h2 Къде?
 
     .map
-      iframe width="100%" height="500" scrolling="no" src="#{@event.venue_map_url}"
+      iframe width="100%" height="500" scrolling="no" src="#{@event.venue_map_embedded_url}"
       = link_to '', @event.venue_map_url, target: :blank, class: 'overlay'
 
     section
@@ -95,7 +95,7 @@
     h2 After Party
 
     .map
-      iframe width="100%" height="500" scrolling="no" src="#{@event.after_party_venue_map_url}"
+      iframe width="100%" height="500" scrolling="no" src="#{@event.after_party_venue_map_embedded_url}"
       = link_to '', @event.after_party_venue_map_url, target: :blank, class: 'overlay'
 
     section
