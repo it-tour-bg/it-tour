@@ -5,6 +5,6 @@ class Admin::FeedbacksController < Admin::BaseController
 
   def destroy
     feedback = Feedback.destroy params[:id]
-    redirect_to admin_event_feedbacks_path(event_id: feedback.event_id), notice: 'Feedback delete successfully'
+    redirect_to admin_event_feedbacks_path(event_id: feedback.event_id), notice: 'Feedback deleted successfully'
   end
 end
