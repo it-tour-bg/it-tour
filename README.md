@@ -11,6 +11,7 @@ Conferences:
 * [PlovdivConf](http://plovdivconf.com)
 * [BurgasConf](http://burgasconf.com)
 * [TarnovoConf](http://tarnovoconf.com/)
+* [RuseConf](http://ruseconf.com/)
 * [BlagoevgradConf.com](http://blagoevgradconf.com/)
 
 ## Installation
