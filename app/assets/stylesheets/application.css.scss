@@ -73,6 +73,7 @@ header {
     -webkit-filter: blur(2px);
     -moz-filter: blur(2px);
     filter: blur(2px);
+    filter: asset-url("blur.svg#blur");
     filter:progid:DXImageTransform.Microsoft.Blur(PixelRadius='2');
   }
 
