@@ -47,6 +47,10 @@ class EventDecorator < Draper::Decorator
     call_to_papers_url? && !sessions_announced?
   end
 
+  def after_party_venue_map?
+    after_party_venue_map_url? && after_party_venue_map_embedded_url?
+  end
+
   private
 
   def start_time

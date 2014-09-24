@@ -94,9 +94,10 @@
   article#after-party
     h2 After Party
 
-    .map
-      iframe width="100%" height="500" scrolling="no" src="#{@event.after_party_venue_map_embedded_url}"
-      = link_to '', @event.after_party_venue_map_url, target: :blank, class: 'overlay'
+    - if @event.after_party_venue_map?
+      .map
+        iframe width="100%" height="500" scrolling="no" src="#{@event.after_party_venue_map_embedded_url}"
+        = link_to '', @event.after_party_venue_map_url, target: :blank, class: 'overlay'
 
     section
       = link_to @event.after_party_venue_name, @event.after_party_venue_site_url, target: '_blank'
