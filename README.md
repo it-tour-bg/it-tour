@@ -12,7 +12,8 @@ Conferences:
 * [BurgasConf](http://burgasconf.com)
 * [TarnovoConf](http://tarnovoconf.com/)
 * [RuseConf](http://ruseconf.com/)
-* [BlagoevgradConf.com](http://blagoevgradconf.com/)
+* [BlagoevgradConf](http://blagoevgradconf.com/)
+* [RuseConf](http://http://ruseconf.com/)
 
 ## Installation
 
