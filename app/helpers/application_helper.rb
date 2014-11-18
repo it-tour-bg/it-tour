@@ -43,7 +43,7 @@ module ApplicationHelper
     if event.current?
       root_path options
     else
-      archive_path event.name, options
+      archive_url event.name, options.merge(domain: event.domain)
     end
   end
 end

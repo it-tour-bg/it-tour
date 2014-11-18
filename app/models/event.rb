@@ -22,6 +22,8 @@ class Event < ActiveRecord::Base
 
   default_scope ->{ order('name DESC') }
 
+  delegate :domain, to: :conference
+
   def full_name
     "#{conference.name} #{name}"
   end
