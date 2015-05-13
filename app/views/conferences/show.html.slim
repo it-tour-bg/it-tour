@@ -12,7 +12,7 @@ article#conferences
           h3 = event.town
           p = event.information
           span.arrow
-          = link_to 'сайта на събитето', conference_url(conference)
+          = link_to 'сайт на събитието', conference_url(conference)
 
 = render 'subscribers/form'
 = render 'shared/archive', events: Event.publicly_announced
