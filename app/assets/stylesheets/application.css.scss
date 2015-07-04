@@ -52,8 +52,8 @@ nav {
 
   @media all and (min-width: 1000px) {
     div span { position: relative; }
-    div span:before { content: ""; position: absolute; top: 50%; width: 83px; height: 8px; left: -83 - 55px; background: asset-url('nav_arrow_left.png'); }
-    div span:after { content: ""; position: absolute; top: 50%; width: 83px; height: 8px; right: - 83 - 55px; background: asset-url('nav_arrow_right.png'); }
+    div span:before { content: ""; position: absolute; top: 50%; width: 83px; height: 4px; left: -83 - 55px; background-color: #626262; }
+    div span:after { content: ""; position: absolute; top: 50%; width: 83px; height: 4px; right: - 83 - 55px; background-color: #626262; }
   }
 }
 
@@ -106,6 +106,12 @@ article {
   h1:after { content: ""; display: block; border-bottom: 1px solid $line; position: absolute; height: 1px; bottom: -3px; left: 0px; right: 0px;  }
   h2 { @include centered-content; @include heading1; margin-bottom: 28px; }
   section { @include centered-content; }
+
+  p {
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+  }
 
   @media all and (max-width: 700px) {
     padding-top: 20px;
