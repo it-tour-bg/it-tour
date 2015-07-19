@@ -5,7 +5,7 @@ feature "Admin - Manage sessions" do
 
    let(:event) { create :event }
 
-   scenario "creating session" do
+   scenario "creating session with minumum data" do
      visit admin_event_path(event)
 
      click_on '+ session'
@@ -48,6 +48,28 @@ feature "Admin - Manage sessions" do
 
      expect(session).to be_present
      expect(session.speakers).to eq [speaker1, speaker2]
+   end
+
+   scenario 'creating session on 2nd track' do
+     visit admin_event_path(event)
+
+     click_on '+ session'
+
+     fill_in 'Title', with: 'Test session'
+     fill_in 'Start at', with: '09:00'
+     fill_in 'Track', with: '2'
+
+     click_on 'Create'
+
+     expect(page).to have_content 'Test session'
+     expect(page).to have_content '09:00'
+     expect(page).to have_content '2'
+
+     session = event.sessions.first
+
+     expect(session).to be_present
+     expect(session.title).to eq 'Test session'
+     expect(session.track).to eq 2
    end
 
    scenario "deleting session" do

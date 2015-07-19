@@ -9,6 +9,7 @@
     = form.hidden_field :event_id
 
   = form.input :title
+  = form.input :track
   = form.association :speakers, collection: Speaker.order('name DESC')
   = form.input :start_at, hint: 'Example: 09:10'
 

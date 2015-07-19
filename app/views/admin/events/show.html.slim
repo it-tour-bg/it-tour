@@ -61,6 +61,9 @@
           #{@event.after_party_venue_notes}
 
   article#sessions
+    .actions
+      = link_to '+ session', new_admin_session_path(event_id: @event.id), class: 'btn'
+
     h4
       ' Sessions
       - unless @event.sessions_announced?
@@ -70,30 +73,38 @@
         span.label.label-important Speakers not announced
 
     table.table
-      thead
-        tr
-          th width="1%" Start
-          th Name
-          th Speaker
-          th Slides
-          th Video
-          td width="60px"
-      tbody
-        - @event.sessions.each do |session|
+      - sessions_by_track = @event.sessions.by_track
+      - sessions_by_track.each do |track, sessions|
+        thead
+          - if sessions_by_track.count > 1
+            tr
+              th width="1%"
+                span.label Track #{track}
+              th colspan="7"
           tr
-            td = session.start_at
-            td = session.title
-            td
-              - session.speakers.each do |speaker|
-                = link_to(speaker.name, admin_speaker_path(speaker))
-            td = session.slides_url
-            td = session.video_url
-            td
-              = link_to 'Edit', edit_admin_session_path(session)
-              = link_to 'Delete', admin_session_path(session), method: :delete, confirm: 'Are you sure?'
-      tfoot
-        tr
-          th colspan="6" = link_to '+ session', new_admin_session_path(event_id: @event.id), class: 'btn'
+            - if sessions_by_track.count > 1
+              th
+            th width="1%" Start
+            th Name
+            th Speaker
+            th Slides
+            th Video
+            td width="60px"
+        tbody
+          - sessions.each do |session|
+              tr
+                - if sessions_by_track.count > 1
+                  td
+                td = session.start_at
+                td = session.title
+                td
+                  - session.speakers.each do |speaker|
+                    = link_to(speaker.name, admin_speaker_path(speaker))
+                td = session.slides_url
+                td = session.video_url
+                td
+                  = link_to 'Edit', edit_admin_session_path(session)
+                  = link_to 'Delete', admin_session_path(session), method: :delete, confirm: 'Are you sure?'
 
   article
     h4

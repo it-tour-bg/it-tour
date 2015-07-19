@@ -19,4 +19,13 @@ describe Session do
       expect(Session.announced).to eq [announced]
     end
   end
+
+  describe '.by_track' do
+    it 'groups by track number' do
+      track_1 = create :session, track: 1
+      track_2 = create :session, track: 2
+
+      expect(Session.by_track).to eq 1 => [track_1], 2 => [track_2]
+    end
+  end
 end
