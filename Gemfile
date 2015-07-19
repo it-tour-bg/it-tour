@@ -3,7 +3,7 @@ ruby '2.1.0'
 source 'https://rubygems.org'
 
 gem 'rails', '4.2.3'
-gem 'pg'
+gem 'pg', '0.17.1'
 gem 'puma'
 
 gem 'slim'
