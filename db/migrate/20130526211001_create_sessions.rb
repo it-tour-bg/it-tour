@@ -12,7 +12,7 @@ class CreateSessions < ActiveRecord::Migration
       t.string :slides_url
       t.string :video_url
 
-      t.timestamps
+      t.timestamps null: true
     end
   end
 end

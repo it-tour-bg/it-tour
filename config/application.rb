@@ -28,5 +28,7 @@ module TourConf
     config.filter_parameters += [:password, :password_confirmation]
 
     config.i18n.enforce_available_locales = true
+
+    config.active_record.raise_in_transactional_callbacks = true
   end
 end

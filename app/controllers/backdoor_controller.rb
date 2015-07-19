@@ -2,7 +2,7 @@ class BackdoorController < ApplicationController
   before_action :restrict_access unless Rails.env.test?
 
   def login
-    session[:user_id] = User.find_by_email!(params[:email])
+    session[:user_id] = User.find_by_email!(params[:email]).id
     render nothing: true
   end
 

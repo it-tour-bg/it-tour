@@ -15,7 +15,7 @@ class CreateEvents < ActiveRecord::Migration
       t.string :venue_google_map_image_url
       t.string :venue_notes
 
-      t.timestamps
+      t.timestamps null: true
     end
   end
 end

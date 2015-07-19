@@ -14,8 +14,8 @@ RSpec.configure do |config|
   config.infer_spec_type_from_file_location!
 
   config.include FactoryGirl::Syntax::Methods
+  config.include SpecSupport::UploaderHelper, type: :uploader
   config.include SpecSupport::Controllers::RespondWith, type: :controller
-  config.extend  SpecSupport::Controllers::StubCurrentUser, type: :controller
-  config.extend  SpecSupport::Controllers::StubCurrentConference, type: :controller
-  config.include  SpecSupport::UploaderHelper, type: :uploader
+  config.extend SpecSupport::Controllers::StubCurrentUser, type: :controller
+  config.extend SpecSupport::Controllers::StubCurrentConference, type: :controller
 end

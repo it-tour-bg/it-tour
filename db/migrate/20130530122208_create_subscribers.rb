@@ -7,7 +7,7 @@ class CreateSubscribers < ActiveRecord::Migration
       t.string :email, null: false
       t.boolean :active, null: false, default: true
 
-      t.timestamps
+      t.timestamps null: true
     end
   end
 end

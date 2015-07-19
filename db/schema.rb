@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 20140724151011) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "conferences", force: true do |t|
+  create_table "conferences", force: :cascade do |t|
     t.string   "name"
     t.string   "contact_name"
     t.string   "contact_email"
@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 20140724151011) do
 
   add_index "conferences", ["main"], name: "index_conferences_on_main", using: :btree
 
-  create_table "events", force: true do |t|
+  create_table "events", force: :cascade do |t|
     t.integer  "conference_id"
     t.string   "name",                                               null: false
     t.date     "date",                                               null: false
@@ -72,14 +72,14 @@ ActiveRecord::Schema.define(version: 20140724151011) do
     t.text     "after_party_venue_map_embedded_url"
   end
 
-  create_table "feedbacks", force: true do |t|
+  create_table "feedbacks", force: :cascade do |t|
     t.integer  "event_id",   null: false
     t.text     "comment",    null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "photos", force: true do |t|
+  create_table "photos", force: :cascade do |t|
     t.integer  "event_id",   null: false
     t.integer  "position",   null: false
     t.string   "asset",      null: false
@@ -87,7 +87,7 @@ ActiveRecord::Schema.define(version: 20140724151011) do
     t.datetime "updated_at"
   end
 
-  create_table "session_speakers", force: true do |t|
+  create_table "session_speakers", force: :cascade do |t|
     t.integer  "speaker_id", null: false
     t.integer  "session_id", null: false
     t.datetime "created_at"
@@ -96,7 +96,7 @@ ActiveRecord::Schema.define(version: 20140724151011) do
 
   add_index "session_speakers", ["speaker_id", "session_id"], name: "index_session_speakers_on_speaker_id_and_session_id", unique: true, using: :btree
 
-  create_table "sessions", force: true do |t|
+  create_table "sessions", force: :cascade do |t|
     t.integer  "event_id",   null: false
     t.string   "start_at",   null: false
     t.string   "title",      null: false
@@ -106,7 +106,7 @@ ActiveRecord::Schema.define(version: 20140724151011) do
     t.datetime "updated_at"
   end
 
-  create_table "speakers", force: true do |t|
+  create_table "speakers", force: :cascade do |t|
     t.string   "name",             null: false
     t.text     "description"
     t.string   "personal_site"
@@ -122,7 +122,7 @@ ActiveRecord::Schema.define(version: 20140724151011) do
     t.string   "dribbble_account"
   end
 
-  create_table "subscribers", force: true do |t|
+  create_table "subscribers", force: :cascade do |t|
     t.integer  "conference_id"
     t.string   "email",                        null: false
     t.boolean  "active",        default: true, null: false
@@ -130,28 +130,22 @@ ActiveRecord::Schema.define(version: 20140724151011) do
     t.datetime "updated_at"
   end
 
-  create_table "users", force: true do |t|
+  create_table "users", force: :cascade do |t|
     t.string   "first_name",                   null: false
     t.string   "last_name",                    null: false
     t.string   "email",           default: "", null: false
     t.string   "password_digest", default: "", null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
 
-  add_foreign_key "events", "conferences", name: "events_conference_id_fk"
-
-  add_foreign_key "feedbacks", "events", name: "feedbacks_event_id_fk"
-
-  add_foreign_key "photos", "events", name: "photos_event_id_fk"
-
-  add_foreign_key "session_speakers", "sessions", name: "session_speakers_session_id_fk"
-  add_foreign_key "session_speakers", "speakers", name: "session_speakers_speaker_id_fk"
-
-  add_foreign_key "sessions", "events", name: "sessions_event_id_fk"
-
-  add_foreign_key "subscribers", "conferences", name: "subscribers_conference_id_fk"
-
+  add_foreign_key "events", "conferences"
+  add_foreign_key "feedbacks", "events"
+  add_foreign_key "photos", "events"
+  add_foreign_key "session_speakers", "sessions"
+  add_foreign_key "session_speakers", "speakers"
+  add_foreign_key "sessions", "events"
+  add_foreign_key "subscribers", "conferences"
 end

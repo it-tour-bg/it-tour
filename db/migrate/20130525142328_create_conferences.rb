@@ -5,7 +5,7 @@ class CreateConferences < ActiveRecord::Migration
       t.string :contact_name
       t.string :contact_email
 
-      t.timestamps
+      t.timestamps null: true
     end
   end
 end

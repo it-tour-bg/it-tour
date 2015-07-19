@@ -4,7 +4,7 @@ class CreateFeedbacks < ActiveRecord::Migration
       t.integer :event_id, null: false
       t.foreign_key :events
       t.text :comment, null: false
-      t.timestamps
+      t.timestamps null: true
     end
   end
 end

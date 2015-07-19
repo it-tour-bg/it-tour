@@ -7,7 +7,7 @@ class CreateSpeakers < ActiveRecord::Migration
       t.string :company
       t.string :company_site
 
-      t.timestamps
+      t.timestamps null: true
     end
   end
 end
