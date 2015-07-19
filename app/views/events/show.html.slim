@@ -50,21 +50,25 @@
   article#schedule
     h1 Програма
 
-    section
-      ol
-        - @event.sessions.each do |session|
-          li
-            time = session.start_at
-            strong = session.title
-            = session.speakers.map { |s| link_to s.name, "#speaker-#{s.id}", class: 'speaker' }.join(', ').html_safe
-            - if session.video_url? || session.slides_url?
-              span.links
-                - if session.video_url?
-                  = link_to session.video_url, class: 'video', target: '_blank' do
-                    span видео
-                - if session.slides_url?
-                  = link_to session.slides_url, class: 'slides', target: '_blank' do
-                    span презентация
+    - @event.sessions_by_track.each do |track, sessions|
+      section
+        - if @event.multi_track?
+          h3 Track #{track}
+
+        ol
+          - sessions.each do |session|
+            li
+              time = session.start_at
+              strong = session.title
+              = session.speakers.map { |s| link_to s.name, "#speaker-#{s.id}", class: 'speaker' }.join(', ').html_safe
+              - if session.video_url? || session.slides_url?
+                span.links
+                  - if session.video_url?
+                    = link_to session.video_url, class: 'video', target: '_blank' do
+                      span видео
+                  - if session.slides_url?
+                    = link_to session.slides_url, class: 'slides', target: '_blank' do
+                      span презентация
 
 - if @event.speakers_announced?
   article#speakers

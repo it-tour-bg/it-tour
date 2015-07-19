@@ -199,6 +199,8 @@ form {
 }
 
 #schedule {
+  h3 { @include heading2; padding: 22px 0 22px 10px; }
+
   ol li { position: relative; padding: 10px 0 10px 80px; }
   ol li time { @include heading3; font-weight: bold; position: absolute; left: 10px; top: 10px }
   ol li strong { @include heading3; font-weight: bold; display: block; }
@@ -219,7 +221,7 @@ form {
   .avatar { @include image-link; float: left; margin-right: 25px; }
   .avatar img { @include border-radius(100%); }
 
-  h3 { @include heading2; font-weight: bold; float: left; padding: 22px 0; }
+  h3 { @include heading2; float: left; padding: 22px 0; }
   h3 a { @include no-link-underline; }
   h3 a:hover { border-bottom: 1px solid $text; }
 
