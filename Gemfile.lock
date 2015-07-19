@@ -1,5 +1,4 @@
 GEM
-  remote: https://rubygems.org/
   specs:
     actionmailer (4.2.3)
       actionpack (= 4.2.3)
@@ -114,8 +113,6 @@ GEM
     ffi (1.9.10)
     font-awesome-sass (4.0.3.1)
       sass (~> 3.2)
-    foreigner (1.7.4)
-      activerecord (>= 3.0.0)
     globalid (0.3.5)
       activesupport (>= 4.1.0)
     hike (1.2.3)
@@ -282,7 +279,6 @@ DEPENDENCIES
   draper
   factory_girl_rails
   font-awesome-sass (= 4.0.3.1)
-  foreigner
   jquery-rails
   launchy
   pg

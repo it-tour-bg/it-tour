@@ -1,4 +1,3 @@
-source 'https://rubygems.org'
 ruby '2.1.0'
 
 gem 'rails', '4.2.3'
@@ -14,7 +13,6 @@ gem 'jquery-rails'
 gem 'bootstrap-sass', '2.3.2.0'
 gem 'simple_form'
 gem 'turbolinks'
-gem 'foreigner'
 gem 'redcarpet'
 gem 'bcrypt-ruby'
 gem 'responders'
