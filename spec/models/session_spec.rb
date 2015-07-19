@@ -10,4 +10,13 @@ describe Session do
       expect(Session.all).to eq [at_12_30, at_14_20, at_15_10]
     end
   end
+
+  describe '.announced' do
+    it 'includes only announced sessions' do
+      unannounced = create :session, event: create(:event, sessions_announced: false)
+      announced   = create :session, event: create(:event, sessions_announced: true)
+
+      expect(Session.announced).to eq [announced]
+    end
+  end
 end

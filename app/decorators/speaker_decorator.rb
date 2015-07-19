@@ -18,6 +18,6 @@ class SpeakerDecorator < Draper::Decorator
   end
 
   def ordered_sessions
-    sessions.joins(:event).where('events.sessions_announced' => true).reorder 'id ASC'
+    sessions.announced.reorder 'id ASC'
   end
 end
