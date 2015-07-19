@@ -5,7 +5,7 @@ class AllowMoreThanOneSpeakerPerSession < ActiveRecord::Migration
       t.foreign_key :speakers
       t.integer :session_id, null: false
       t.foreign_key :sessions
-      t.timestamps
+      t.timestamps null: true
     end
 
     add_index :session_speakers, [:speaker_id, :session_id], unique: true

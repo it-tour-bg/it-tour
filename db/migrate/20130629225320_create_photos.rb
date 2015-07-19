@@ -5,7 +5,7 @@ class CreatePhotos < ActiveRecord::Migration
       t.foreign_key :events
       t.integer :position, null: false
       t.string :asset, null: false
-      t.timestamps
+      t.timestamps null: true
     end
   end
 end
