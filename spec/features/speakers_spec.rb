@@ -13,10 +13,12 @@ feature "Speaker" do
   end
 
   scenario "showing speaker sessions" do
+    event = create :event, sessions_announced: true
+
     speaker = create :speaker
 
-    session1 = create :session, speakers: [speaker]
-    session2 = create :session, speakers: [speaker]
+    session1 = create :session, event: event, speakers: [speaker]
+    session2 = create :session, event: event, speakers: [speaker]
 
     visit speaker_path(speaker)
 
