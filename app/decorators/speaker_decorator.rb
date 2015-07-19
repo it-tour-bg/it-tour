@@ -18,6 +18,6 @@ class SpeakerDecorator < Draper::Decorator
   end
 
   def ordered_sessions
-    sessions.reorder 'id ASC'
+    sessions.announced.reorder 'id ASC'
   end
 end

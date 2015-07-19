@@ -32,6 +32,14 @@ class EventDecorator < Draper::Decorator
     other_conference_events.any?
   end
 
+  def sessions_by_track
+    @sessions_by_track ||= sessions.by_track
+  end
+
+  def multi_track?
+    @sessions_by_track.count > 1
+  end
+
   def other_conference_events
     @other_conference_events ||= conference.events.publicly_announced
   end

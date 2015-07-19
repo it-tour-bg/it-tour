@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140724151011) do
+ActiveRecord::Schema.define(version: 20150719202301) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -97,13 +97,14 @@ ActiveRecord::Schema.define(version: 20140724151011) do
   add_index "session_speakers", ["speaker_id", "session_id"], name: "index_session_speakers_on_speaker_id_and_session_id", unique: true, using: :btree
 
   create_table "sessions", force: :cascade do |t|
-    t.integer  "event_id",   null: false
-    t.string   "start_at",   null: false
-    t.string   "title",      null: false
+    t.integer  "event_id",               null: false
+    t.string   "start_at",               null: false
+    t.string   "title",                  null: false
     t.string   "slides_url"
     t.string   "video_url"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "track",      default: 1, null: false
   end
 
   create_table "speakers", force: :cascade do |t|

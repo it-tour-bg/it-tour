@@ -44,6 +44,7 @@ class Admin::SessionsController < Admin::BaseController
       :slides_url,
       :video_url,
       :description,
+      :track,
       speaker_ids: [],
     )
   end
