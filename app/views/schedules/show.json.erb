@@ -1,1 +1,5 @@
-<%= raw @event.sessions.map { |s| ScheduleSessionSerializer.new(s)  }.group_by(&:track).to_json %>
+<% if @event.sessions_announced? %>
+  <%= raw @event.sessions.map { |s| ScheduleSessionSerializer.new(s)  }.group_by(&:track).to_json %>
+<% else %>
+  {}
+<% end %>
