@@ -5,7 +5,6 @@ class SchedulesController < ApplicationController
   end
 
   def show
-    @track = params[:track].to_i
     @event = current_conference.announced_event_named(params[:id])
   end
 end

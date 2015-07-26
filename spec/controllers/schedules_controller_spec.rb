@@ -25,11 +25,5 @@ describe SchedulesController do
 
       expect(assigns[:event]).to eq event
     end
-
-    it 'assigns track number' do
-      get :show, id: event.name, track: '1'
-
-      expect(assigns[:track]).to eq 1
-    end
   end
 end
