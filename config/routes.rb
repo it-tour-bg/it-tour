@@ -32,6 +32,7 @@ TourConf::Application.routes.draw do
   resource :feedbacks, only: [:new, :create]
 
   resources :speakers, only: [:show]
+  resources :schedules, only: [:index, :show]
 
   get 'unsubscribe/:token', to: 'subscribers#destroy', as: :unsubscribe
 
