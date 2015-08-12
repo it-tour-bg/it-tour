@@ -10,7 +10,7 @@ module CurrentConferenceMethods
   def current_conference
     @current_conference ||= begin
       domain = request.domain
-      domain = params[:domain] || 'example.com' if Rails.env.development?
+      domain = params[:domain] || 'varnaconf.com' if Rails.env.development?
       Conference.find_for_domain(domain)
     end
   end
