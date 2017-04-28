@@ -85,9 +85,9 @@ html
             - if current_conference.facebook_account?
               ' #{link_to '', "https://www.facebook.com/#{current_conference.facebook_account}", class: 'facebook', title: 'Facebook'}
             - if current_conference.twitter_account?
-              ' #{link_to '', "http://twitter.com/#{current_conference.twitter_account}", class: 'twitter', title: 'Twitter'}
+              ' #{link_to '', "https://twitter.com/#{current_conference.twitter_account}", class: 'twitter', title: 'Twitter'}
             - if current_conference.youtube_account?
-              ' #{link_to '', "http://youtube.com/#{current_conference.youtube_account}", class: 'youtube', title: 'YouTube'}
+              ' #{link_to '', "https://youtube.com/#{current_conference.youtube_account}", class: 'youtube', title: 'YouTube'}
 
         .conferences
           = raw Conference.regular.map { |conferece| link_to conferece.name, conference_url(conferece) }.join(', ')
@@ -96,8 +96,8 @@ html
       = link_to 'www.it-tour.bg', 'http://it-tour.bg'
       .copyright
         p
-          = link_to 'http://creativecommons.org/licenses/by-nc-nd/4.0/', rel: 'license'
-            = image_tag 'http://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png', alt: 'Creative Commons License'
+          = link_to 'https://creativecommons.org/licenses/by-nc-nd/4.0/', rel: 'license'
+            = image_tag 'https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-nd.png', alt: 'Creative Commons License'
 
         p &copy; 2014 IT Tour
 
