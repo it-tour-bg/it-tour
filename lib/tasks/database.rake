@@ -1,7 +1,6 @@
 namespace :database do
   desc 'Import the latest database from tmp directory'
   task import: %i(environment) do
-    database_name = Rails.configuration.database_configuration['development']['database']
     file_path = Dir[Rails.root.join('db', 'it*.sql')].last
 
     raise 'Missing database file at db' unless file_path.present?
@@ -9,7 +8,9 @@ namespace :database do
     Rake::Task['db:drop'].invoke
     Rake::Task['db:create'].invoke
 
-    Bundler.clean_system "cat #{file_path} | psql #{database_name}"
+    config = Rails.configuration.database_configuration['development']
+
+    Bundler.clean_system format('cat %s | PGPASSWORD=%s psql -h %s -p %d -U %s -d %s', file_path, config['password'], config['host'], config['port'], config['username'], config['database'])
   end
 end
 
