@@ -2,7 +2,9 @@ ruby '2.1.0'
 
 source 'https://rubygems.org'
 
-gem 'rails', '4.2.6'
+gem 'rails', '4.2.7.1'
+gem 'activesupport', '4.2.7.1'
+gem 'actionpack', '4.2.7.1'
 gem 'pg', '0.17.1'
 gem 'puma'
 
@@ -13,7 +15,7 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'compass-rails',  '2.0.4'
 gem 'jquery-rails'
 gem 'bootstrap-sass', '2.3.2.0'
-gem 'simple_form'
+gem 'simple_form', '3.1.0'
 gem 'turbolinks'
 gem 'redcarpet'
 gem 'bcrypt-ruby'
@@ -21,9 +23,9 @@ gem 'responders'
 gem 'rmagick', require: false
 gem 'carrierwave'
 gem 'draper'
-gem 'therubyracer'
 gem 'font-awesome-sass', '4.0.3.1'
 gem 'dotenv'
+gem 'rake', '11.1.1'
 
 group :development do
   gem 'capistrano', '~> 3.1.0'
