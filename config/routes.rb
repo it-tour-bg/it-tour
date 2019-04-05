@@ -39,5 +39,7 @@ TourConf::Application.routes.draw do
   get 'archive/:year', to: 'events#show', as: :archive
   get 'archive/:year/photos', to: 'photos#index', as: :photos
 
+  get 'tarnovoconf',  to: 'conferences#show'
+
   root to: 'conferences#show'
 end
