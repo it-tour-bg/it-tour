@@ -8,8 +8,13 @@ class Conference < ActiveRecord::Base
   after_save :ensure_only_one_main, if: :main?
 
   class << self
-    def find_for_domain(domain)
-      where(domain: domain).first!
+    def find_for_domain(domain, path)
+      if defined?(path) && path != '/'
+        dom_with_path = domain + path
+        where(domain: dom_with_path).first!
+      else
+        where(domain: domain).first!
+      end
     end
 
     def regular
