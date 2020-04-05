@@ -25,7 +25,7 @@ gem 'carrierwave'
 gem 'draper'
 gem 'font-awesome-sass', '4.0.3.1'
 gem 'dotenv'
-gem 'rake', '11.1.1'
+gem 'rake', '12.3.3'
 
 group :development do
   gem 'capistrano', '~> 3.1.0'
