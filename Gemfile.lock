@@ -186,7 +186,7 @@ GEM
       activesupport (= 4.2.7.1)
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
-    rake (11.1.1)
+    rake (12.3.3)
     rb-fsevent (0.9.5)
     rb-inotify (0.9.5)
       ffi (>= 0.5.0)
@@ -292,7 +292,7 @@ DEPENDENCIES
   puma
   quiet_assets
   rails (= 4.2.7.1)
-  rake (= 11.1.1)
+  rake (= 12.3.3)
   redcarpet
   responders
   rmagick
