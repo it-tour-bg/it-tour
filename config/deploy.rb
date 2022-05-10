@@ -4,7 +4,7 @@ lock '3.4.1'
 
 set :application,         'ittour'
 set :scm,                 :git
-set :repo_url,            'git@github.com:RStankov/it-tour.git'
+set :repo_url,            'git@github.com:it-tour-bg/it-tour.git'
 set :branch,              'master'
 set :deploy_to,           '/home/ittour/www/ittour'
 set :linked_files,        %w(config/database.yml .env)
