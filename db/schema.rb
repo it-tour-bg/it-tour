@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150719202301) do
+ActiveRecord::Schema.define(version: 20220509193007) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 20150719202301) do
     t.string   "slogan"
     t.boolean  "main",             default: false, null: false
     t.text     "about"
+    t.text     "path",             default: ""
   end
 
   add_index "conferences", ["main"], name: "index_conferences_on_main", using: :btree
@@ -70,6 +71,8 @@ ActiveRecord::Schema.define(version: 20150719202301) do
     t.string   "call_to_papers_url"
     t.text     "venue_map_embedded_url"
     t.text     "after_party_venue_map_embedded_url"
+    t.text     "sponsor_embed"
+    t.boolean  "show_sponsor_embed",                 default: false, null: false
   end
 
   create_table "feedbacks", force: :cascade do |t|

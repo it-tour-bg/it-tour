@@ -1,8 +1,6 @@
 module ImageUploader
   def self.included(base)
     base.send :include, CarrierWave::RMagick
-    base.send :include, CarrierWave::MimeTypes
-    base.send :process, :set_content_type
     base.send :storage, :file
     base.send :version, :original
   end

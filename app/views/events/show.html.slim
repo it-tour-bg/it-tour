@@ -82,6 +82,12 @@
 
         .content = markdown speaker.description
 
+- if @event.show_sponsor_embed?
+  article#streaming
+    h1 Спонсори
+    section
+      = raw @event.sponsor_embed
+
 - if @event.show_photo_gallery?
   article#photos
     h1 Снимки
