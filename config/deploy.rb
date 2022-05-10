@@ -1,6 +1,6 @@
 require 'capistrano-db-tasks'
 
-lock '3.1.0'
+lock '3.4.1'
 
 set :application,         'ittour'
 set :scm,                 :git

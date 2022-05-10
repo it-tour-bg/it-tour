@@ -28,7 +28,7 @@ gem 'dotenv'
 gem 'rake', '12.3.3'
 
 group :development do
-  gem 'capistrano', '~> 3.1.0'
+  gem 'capistrano', '~> 3.4.1'
   gem 'capistrano-rails'
   gem 'capistrano-db-tasks', require: false
   gem 'capistrano-bundler'
