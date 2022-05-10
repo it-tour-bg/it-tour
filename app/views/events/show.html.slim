@@ -70,6 +70,12 @@
                     = link_to session.slides_url, class: 'slides', target: '_blank' do
                       span презентация
 
+- if @event.show_sponsor_embed?
+  article#streaming
+    h1 Спонсори
+    section
+      = raw @event.sponsor_embed
+
 - if @event.speakers_announced?
   article#speakers
     h1 Лектори
@@ -81,12 +87,6 @@
         h3 = link_to speaker.name, speaker_path(speaker)
 
         .content = markdown speaker.description
-
-- if @event.show_sponsor_embed?
-  article#streaming
-    h1 Спонсори
-    section
-      = raw @event.sponsor_embed
 
 - if @event.show_photo_gallery?
   article#photos
