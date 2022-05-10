@@ -1,0 +1,56 @@
+version: '3.8'
+
+volumes:
+  ittour-pg-data:
+
+networks:
+  ittour_net:
+    driver: bridge
+
+services:
+  app:
+    build: .
+    container_name: ittour-app
+    shm_size: 512mb
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rake db:migrate && bundle exec rails s -p 5000 -b '0.0.0.0'"
+    # command: "bundle exec puma"
+    environment:
+      DATABASE_USERNAME: postgres
+      DATABASE_PASSWORD: postgres
+      DATABASE_HOST: db
+    volumes:
+      - .:/app
+    ports:
+      - "5000:5000"
+    depends_on:
+      - db
+    networks:
+      - ittour_net
+  db:
+    image: postgres:11.14
+    container_name: ittour-db
+    restart: always
+    shm_size: 512mb
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "postgres"]
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_HOST_AUTH_METHOD: trust
+    volumes:
+      - ittour-pg-data:/var/lib/postgresql/data
+    networks:
+      - ittour_net
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: ittour-pgadmin
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: postgres
+    ports:
+      - "5050:80"
+    networks:
+      - ittour_net
