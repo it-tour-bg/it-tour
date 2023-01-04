@@ -11,23 +11,25 @@ services:
   app:
     build: .
     container_name: ittour-app
+    restart: always
     shm_size: 512mb
-    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rake db:migrate && bundle exec rails s -p 5000 -b '0.0.0.0'"
-    # command: "bundle exec puma"
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rake db:migrate && bundle exec rails s -p 9081 -b '0.0.0.0'"
     environment:
-      DATABASE_USERNAME: postgres
-      DATABASE_PASSWORD: postgres
-      DATABASE_HOST: db
+      DB_USERNAME: postgres
+      DB_PASSWORD: postgres
+      DB_HOST: db
+      DB_NAME: ittour
+      RAILS_ENV: development
     volumes:
       - .:/app
     ports:
-      - "5000:5000"
+      - "9081:9081"
     depends_on:
       - db
     networks:
       - ittour_net
   db:
-    image: postgres:11.14
+    image: postgres:13.9
     container_name: ittour-db
     restart: always
     shm_size: 512mb
@@ -38,7 +40,6 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
-      POSTGRES_HOST_AUTH_METHOD: trust
     volumes:
       - ittour-pg-data:/var/lib/postgresql/data
     networks:

@@ -36,3 +36,21 @@ The site can handle multiple ```Conference```s. Each conference is planed to liv
 One conference can have multiple events.
 
 There is a share list of speakers and subscribers to all conferneces.
+
+## Local dev with Docker
+
+- Prerequisites
+In order to run the projects locally you need to:
+  - Import a database dump from production, mainly confereces and events table. (full restore from a sql file is best option)
+  - Change table `public.confereces` to match local setup, `domain`
+  column holds what address responds to which conference
+
+- Dev Note
+  `db:migrate` should ran after a succesfull build, but it would
+  generate an emtpy database, creating a user with rake task `users`
+  should result in an admin user, and viting `/admin` will allow
+  a conference and then event creation.
+
+Start/stop
+`docker-compose up --build --remove-orphans app db pgadmin`
+`docker-compose down app db pgadmin`

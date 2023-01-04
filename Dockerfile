@@ -1,7 +1,7 @@
-FROM ruby:2.1.0
+FROM ruby:2.1.10
 
 RUN apt-get update \
-    && apt-get install -y --no-install-recommends \
+    && apt-get install -y --force-yes --no-install-recommends \
         postgresql-client \
         build-essential \
         libpq-dev \
